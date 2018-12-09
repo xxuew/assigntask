@@ -1,4 +1,4 @@
-package com.wx.assigntask.common.security;
+package com.wx.assigntask.common.config.security;
 
 /**
  * @Author: wx

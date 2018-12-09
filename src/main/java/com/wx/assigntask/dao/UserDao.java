@@ -14,6 +14,17 @@ import java.util.List;
  */
 @Mapper     //声明是一个Mapper,与springbootApplication中的@MapperScan二选一写上即可
 @Repository
-public interface UserMapper {
-    User selectUserById(int id);
+public interface UserDao {
+    /**
+     * 功能描述：根据登录用户名和密码获取用户信息
+     * @param username
+     * @param password
+     * @return
+     */
+    User selectUserByLogin(String username,String password);
+
+    User findUserByUserName(String username);
+
+
+
 }

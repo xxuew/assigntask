@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
  */
 @Mapper
 @Repository
-public interface ReleaseMapper {
+public interface ReleaseDao {
      ReleaseTask selectReleaseByUserId(int id);
 }

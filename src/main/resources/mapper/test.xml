@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wx.assigntask.dao.TestDao" >
+
+ <!--   <resultMap id="1findAllJobData" type="com.wx.assigntask.entity.TaskTest">
+        <result column="item_1" jdbcType="varchar" property="item_1"></result>
+        <result column="item_2" jdbcType="varchar" property="item_2"></result>
+        <result column="item_3" jdbcType="varchar" property="item_3"></result>
+        <result column="item_4" jdbcType="varchar" property="item_4"></result>
+        <result column="item_5" jdbcType="varchar" property="item_5"></result>
+        <result column="item_6" jdbcType="varchar" property="item_6"></result>
+        <result column="item_7" jdbcType="varchar" property="item_7"></result>
+        <result column="item_8" jdbcType="varchar" property="item_8"></result>
+        <result column="item_9" jdbcType="varchar" property="item_9"></result>
+        <result column="item_10" jdbcType="varchar" property="item_10"></result>
+    </resultMap>
+    -->
+    <!--获取任务原始数据-->
+    <select id="findAllJobData"  resultType="com.wx.assigntask.entity.TaskTest">
+        SELECT * FROM test
+    </select>
+
+</mapper>

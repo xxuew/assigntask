@@ -8,19 +8,20 @@ import java.util.List;
  * @Version 1.0
  */
 public class User {
-    private Integer id;
+    private Integer userId;
     private String username;
     private Integer password;
-    private List releaseId;
-    private List receiveId;
+//    private List releaseId;
+//    private List receiveId;
+    private String releaseId;
+    private String receiveId;
 
-
-    public Integer getId() {
-        return id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -39,34 +40,26 @@ public class User {
         this.password = password;
     }
 
-    public List getReleaseId() {
+    public String getReleaseId() {
         return releaseId;
     }
 
-    public void addReleaseId(Integer releaseId) {
-        this.releaseId.add(releaseId);
+    public void setReleaseId(String releaseId) {
+        this.releaseId = releaseId;
     }
 
-    public void removeReleaseId(Integer releaseId){
-        this.releaseId.remove(releaseId);
-    }
-
-    public List getReceiveId() {
+    public String getReceiveId() {
         return receiveId;
     }
 
-    public void addReceiveId(Integer receiveId) {
-        this.receiveId.add(receiveId);
-    }
-
-    public void removeReceiveId(Integer receiveId){
-        this.receiveId.remove(receiveId);
+    public void setReceiveId(String receiveId) {
+        this.receiveId = receiveId;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "userId=" + userId +
                 ", username='" + username + '\'' +
                 ", password=" + password +
                 ", releaseId=" + releaseId +

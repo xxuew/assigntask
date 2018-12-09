@@ -12,7 +12,7 @@ public class ReleaseTask {
      *发布任务表，记录任务ID、任务名称、任务数据、任务选取方案ID、任务目前进度、任务预计划分子表个数、
      * 已经划分子任务ID、目前参与人数、预计工作量、已完成工作量、发布者ID。
      */
-    private int taskID;
+    private int taskId;
     private String taskName;
     private List taskData; //任务原始数据
     private int planID;
@@ -24,12 +24,12 @@ public class ReleaseTask {
     private String completedWorkload; //已经完成工作量
     private int userID; //发布者ID
 
-    public int getTaskID() {
-        return taskID;
+    public int getTaskId() {
+        return taskId;
     }
 
-    public void setTaskID(int taskID) {
-        this.taskID = taskID;
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
     }
 
     public String getTaskName() {

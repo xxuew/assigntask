@@ -1,14 +1,12 @@
 package com.wx.assigntask.service.impl;
 
-import com.wx.assigntask.dao.ReleaseMapper;
-import com.wx.assigntask.dao.UserMapper;
+import com.wx.assigntask.dao.ReleaseDao;
+import com.wx.assigntask.dao.UserDao;
 import com.wx.assigntask.entity.ReleaseTask;
 import com.wx.assigntask.entity.User;
 import com.wx.assigntask.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @Author: wx
@@ -19,21 +17,24 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserMapper userMapper;
+    UserDao userDao;
 
-    @Autowired
-    ReleaseMapper releaseMapper;
+//    @Override
+//    public User queryUser(int id) {
+//        User user = userDao.selectUserByLogin("xx","123456");
+//        return user;
+//    }
 
     @Override
-    public User queryUser(int id) {
-        User user = userMapper.selectUserById(1);
+    public User userLogin(String username, String password) {
+        User user = userDao.selectUserByLogin(username,password);
         return user;
     }
 
     @Override
-    public ReleaseTask queryRelease(int id) {
-        ReleaseTask releaseTask = releaseMapper.selectReleaseByUserId(1);
-        return releaseTask;
+    public User findUserByUserName(String username) {
+        User user = userDao.findUserByUserName(username);
+        return user;
     }
 
 
