@@ -12,15 +12,15 @@ import org.springframework.stereotype.Service;
  * @Version 1.0
  */
 @Service
-public class ReleaseServiceIml  implements ReleaseService {
+public class ReleaseServiceImpl implements ReleaseService {
 
     @Autowired
     ReleaseDao releaseDao;
 
     @Override
-    public ReleaseTask findReleaseById(int id) {
+    public String finAlgsByInputName(String inputName) {
 
-        ReleaseTask releaseTask = releaseDao.selectReleaseByUserId(id);
-        return releaseTask;
+        String algs = releaseDao.finAlgsByInputName(inputName);
+        return algs;
     }
 }

@@ -67,13 +67,13 @@ public class UserController {
         return "user/home";
     }
 
-    //返回数据库数据传给jsp
-    @RequestMapping(value = "/myreleasetask")
-    public String releaseInfo(){
-
-        ReleaseTask releaseTask =releaseService.findReleaseById(1);
-        request.setAttribute("releaseInfos",releaseTask);
-        return  "user/myreleasetask";
-    }
+//    //返回数据库数据传给jsp
+//    @RequestMapping(value = "/myreleasetask")
+//    public String releaseInfo(){
+//
+//        ReleaseTask releaseTask =releaseService.findReleaseById(1);
+//        request.setAttribute("releaseInfos",releaseTask);
+//        return  "user/myreleasetask";
+//    }
 
 }

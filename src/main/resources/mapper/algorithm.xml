@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wx.assigntask.dao.AlgorithmDao" >
+
+    <resultMap id="algorithm" type="com.wx.assigntask.entity.Algorithm">
+        <result column="algorithm_id"  property="algorithmId"></result>
+        <result column="algorithm_name"  property="algorithmName"></result>
+        <result column="item_name"  property="itemName"></result>
+        <result column="input_name"  property="inputName"></result>
+        <result column="input_des"  property="inputDes"></result>
+    </resultMap>
+
+    <select id="findItemByAlgName" resultType="String" >
+        SELECT item_name FROM algorithm WHERE algorithm_name = ${param1} AND input_name = ${param2}
+    </select>
+
+
+    <!--插入task
+    <insert id="insertTask"  parameterType="com.wx.assigntask.entity.algorithmm">
+        INSERT INTO test VALUES (${param1},${param2},${param3},${param4})
+    </insert>
+    -->
+
+    <!--judged_frequency
+    <update id="updateJudFreq" parameterType="com.wx.assigntask.entity.Algorithm">
+        UPDATE test SET judged_frequency = ${param2} WHERE algorithmId = ${param1}
+    </update>
+    -->
+
+    <!--更新divided
+    <update id="updataeDivided" parameterType="com.wx.assigntask.entity.Algorithm">
+        UPDATE test SET divided = ${param2} WHERE algorithmId = ${param1}
+    </update>
+    -->
+</mapper>

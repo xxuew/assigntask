@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ReleaseService {
 
-    public ReleaseTask findReleaseById(int id);
+    public String finAlgsByInputName(String inputName);
 }
