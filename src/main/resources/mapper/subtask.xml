@@ -9,7 +9,7 @@
 
     <!--插入数据-->
     <insert id="insertSubTask" parameterType="com.wx.assigntask.entity.Divided">
-        INSERT INTO sub_task (algorithm_id1,algorithm_id2,judged_frequency) VALUES (${param1},${param2},${param3})
+        INSERT INTO sub_task (divided_id,item1_name,item1_des,item2_name,item2_des) VALUES (#{param1},#{param2},#{param3},#{param4},#{param5})
     </insert>
 
 </mapper>

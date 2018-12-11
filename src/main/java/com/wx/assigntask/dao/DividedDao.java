@@ -11,5 +11,6 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface DividedDao {
-    public void insertDivided(int algorithm_id1,int algorithm_id2);
+    public int insertDivided(String algname1,String algname2);
+    public int findDividedIdByAlgs(String algname1,String algname2);
 }

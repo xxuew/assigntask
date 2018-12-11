@@ -12,5 +12,5 @@ import org.springframework.stereotype.Repository;
 public interface SubTaskService {
     public SubTask findSubBySubId(int id);
 
-    public void insertSubTask(int algorithm_id1,int algorithm_id2,int judged_frequency);
+    public void insertSubTask(int dividedId,String item1Name,String item1Des,String item2Name,String item2Des);
 }

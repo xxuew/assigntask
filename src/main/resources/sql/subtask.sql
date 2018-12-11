@@ -6,7 +6,9 @@ CREATE TABLE `sub_task` (
   `divided_id` int DEFAULT NULL,
   `user_id` int DEFAULT NULL,
   `item1_name` varchar(255) DEFAULT NULL,
+  `item1_des` varchar(255) DEFAULT NULL,
   `item2_name` varchar(255) DEFAULT NULL,
+  `item2_des` varchar(255) DEFAULT NULL,
   `item1_score` varchar(255) DEFAULT NULL,
   `item2_score` varchar(255) DEFAULT NULL,
 

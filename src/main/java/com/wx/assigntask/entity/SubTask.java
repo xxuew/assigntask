@@ -9,20 +9,22 @@ public class SubTask {
     /**
      * 存放子任务、某用户对该子任务的打分、该子任务属于哪个对比组
      */
-    private int subaTskId;
+    private int subtaskId;
     private int dividedId; //所属划分的组，比如A1：B1-B10属于A:B的组
     private int userId; //打分者ID
     private String item1Name;
+    private String item1Des;
     private String item2Name;
+    private String item2Des;
     private String item1Score;
     private String item2Score;
 
-    public int getSubaTskId() {
-        return subaTskId;
+    public int getSubtaskId() {
+        return subtaskId;
     }
 
-    public void setSubaTskId(int subaTskId) {
-        this.subaTskId = subaTskId;
+    public void setSubtaskId(int subtaskId) {
+        this.subtaskId = subtaskId;
     }
 
     public int getDividedId() {
@@ -49,12 +51,28 @@ public class SubTask {
         this.item1Name = item1Name;
     }
 
+    public String getItem1Des() {
+        return item1Des;
+    }
+
+    public void setItem1Des(String item1Des) {
+        this.item1Des = item1Des;
+    }
+
     public String getItem2Name() {
         return item2Name;
     }
 
     public void setItem2Name(String item2Name) {
         this.item2Name = item2Name;
+    }
+
+    public String getItem2Des() {
+        return item2Des;
+    }
+
+    public void setItem2Des(String item2Des) {
+        this.item2Des = item2Des;
     }
 
     public String getItem1Score() {
@@ -76,11 +94,13 @@ public class SubTask {
     @Override
     public String toString() {
         return "SubTask{" +
-                "subaTskId=" + subaTskId +
+                "subtaskId=" + subtaskId +
                 ", dividedId=" + dividedId +
                 ", userId=" + userId +
                 ", item1Name='" + item1Name + '\'' +
+                ", item1Des='" + item1Des + '\'' +
                 ", item2Name='" + item2Name + '\'' +
+                ", item2Des='" + item2Des + '\'' +
                 ", item1Score='" + item1Score + '\'' +
                 ", item2Score='" + item2Score + '\'' +
                 '}';

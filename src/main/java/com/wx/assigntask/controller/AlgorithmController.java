@@ -31,31 +31,76 @@ public class AlgorithmController {
     @RequestMapping("/test")
     public  String divideJob(HttpServletRequest request){
 
+
+        //根据某次input的项目名称获取所使用的算法名称
+         List algs = releaseService.finAlgsByInputName("QQ");
+
         //TODO
-        // 需要再建一个task表，存放inputName、inputDes、用到的算法、complete
-        //根据某次input的项目名称和所使用的算法名称得到相应的item项目名称
+        //整合一下，写死了 ，获取算法相应的item名称
+        List itemsAName = algorithmService.findItemByAloName("A","QQ");
+        List itemsBName = algorithmService.findItemByAloName("B","QQ");
+        List itemsCName = algorithmService.findItemByAloName("C","QQ");
 
-        String algs = releaseService.finAlgsByInputName("QQ");
+        //插入divided表，两两分配，AB一组，C暂时不分配
+        for (int i=0;i<algs.size()-1;){
+            String alg1 = algs.get(i).toString();
+            String alg2 = algs.get(i+1).toString();
+            String alg1Divided = releaseService.findDivided("QQ",alg1); //alg1算法是否已分配
+            String alg2Divided = releaseService.findDivided("QQ",alg2);
+            if (!(alg1Divided.equals("yes")) && (!alg2Divided.equals("yes")) ){
+                int dividedId = dividedService.insertDivided(alg1,alg2);
+                releaseService.updateDivided("yes","QQ",alg1);
+                releaseService.updateDivided("yes","QQ",alg2);
 
-        List itemsAName = algorithmService.findItemByAloName("'A'","'QQ'");
-        List itemsBName = algorithmService.findItemByAloName("'B'","'QQ'");
-        List itemsCName = algorithmService.findItemByAloName("'C'","'QQ'");
+                //根据itemName获取相应的description
+                HashMap hashMapA = new LinkedHashMap();
+                for (int j=0;j<itemsAName.size();j++){
 
-        //根据itemName获取相应的description
-        HashMap hashMapA = new LinkedHashMap();
-        HashMap hashMapB = new LinkedHashMap();
-        HashMap hashMapC = new LinkedHashMap();
+                    String itemName=itemsAName.get(j).toString();
+                    String des = itemsService.findDesByItemsName(itemName);
+                    hashMapA.put(itemName,des);
+                }
 
-        for (int i=0;i<itemsAName.size();i++){
-            String itemName = "'" +(String) itemsAName.get(i) + "'";
-            String des = itemsService.findDesByItemsName(itemName);
-            hashMapA.put(itemName,des);
+                HashMap hashMapB = new LinkedHashMap();
+                for (int k=0;k<itemsBName.size();k++){
+                    String itemName=itemsBName.get(k).toString();
+                    String des = itemsService.findDesByItemsName(itemName);
+                    hashMapB.put(itemName,des);
+                }
+
+                //生成子任务插入subtask表
+                // int dividedId = dividedService.findDividedIdByAlgs(alg1,alg2);
+                Iterator iterator1 = hashMapA.keySet().iterator();
+
+                while (iterator1.hasNext() ){
+                    String item1Name = iterator1.next().toString();
+                    String item1Des = hashMapA.get(item1Name).toString();
+                    Iterator iterator2 = hashMapB.keySet().iterator();
+                    while (iterator2.hasNext()){
+                        String item2Name = iterator2.next().toString();
+                        String item2Des = hashMapB.get(item2Name).toString();
+                        subTaskService.insertSubTask(dividedId,item1Name,item1Des,item2Name,item2Des);
+                    }
+                }
+            }
+
+
+            i =i +2;
         }
+
+
+
+//        HashMap hashMapC = new LinkedHashMap();
+//
+//        for (int i=0;i<itemsCName.size();i++){
+//            String itemName=itemsCName.get(i).toString();
+//            String des=itemsService.findDesByItemsName(itemName);
+//            hashMapC.put(i,des);
+//        }
 
 //
 //         ArrayList<Algorithm> algorithms = algorithmService.allJobInfo(); //获取数据库中的原始任务数据
-         request.setAttribute("allJobInfo", hashMapA);
-        request.setAttribute("test", algs);
+
 
          //两两划分一组
 //         for (int i=1;i< algorithms.size();){

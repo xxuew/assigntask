@@ -22,7 +22,6 @@ public class Items {
     }
 
     public String getItemName() {
-        System.out.println("ItemNamdede get方法");
         return itemName;
     }
 

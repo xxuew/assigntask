@@ -12,8 +12,9 @@ public class Release {
     private int releaseId;
     private String inputName;
     private String inputDes;
-    private String algs;
-    private int ifComplete; //是否结束
+    private String alg;
+    private String ifDivided;
+    private String ifComplete; //是否结束
     private String winAlgName; //胜出的算法
     private String result;
 
@@ -41,19 +42,27 @@ public class Release {
         this.inputDes = inputDes;
     }
 
-    public String getAlgs() {
-        return algs;
+    public String getAlg() {
+        return alg;
     }
 
-    public void setAlgs(String algs) {
-        this.algs = algs;
+    public void setAlg(String alg) {
+        this.alg = alg;
     }
 
-    public int getIfComplete() {
+    public String getIfDivided() {
+        return ifDivided;
+    }
+
+    public void setIfDivided(String ifDivided) {
+        this.ifDivided = ifDivided;
+    }
+
+    public String getIfComplete() {
         return ifComplete;
     }
 
-    public void setIfComplete(int ifComplete) {
+    public void setIfComplete(String ifComplete) {
         this.ifComplete = ifComplete;
     }
 
@@ -79,8 +88,9 @@ public class Release {
                 "releaseId=" + releaseId +
                 ", inputName='" + inputName + '\'' +
                 ", inputDes='" + inputDes + '\'' +
-                ", algs='" + algs + '\'' +
-                ", ifComplete=" + ifComplete +
+                ", alg='" + alg + '\'' +
+                ", ifDivided='" + ifDivided + '\'' +
+                ", ifComplete='" + ifComplete + '\'' +
                 ", winAlgName='" + winAlgName + '\'' +
                 ", result='" + result + '\'' +
                 '}';

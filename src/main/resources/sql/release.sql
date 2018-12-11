@@ -2,18 +2,21 @@ use assigntask;
 
 DROP TABLE IF EXISTS `release`;
 CREATE TABLE `release` (
-  `release_id` int(11) NOT NULL AUTO_INCREMENT,
-  `input_name` varchar(255) DEFAULT NULL,
-  `input_des` text DEFAULT NULL,
-  `algs` varchar(255) DEFAULT NULL,
-  `if_complete` int  DEFAULT NULL,
-  `win_algname` varchar(255)  DEFAULT NULL,
+  `releaseid` int(11) NOT NULL AUTO_INCREMENT,
+  `inputname` varchar(255) DEFAULT NULL,
+  `inputdes` text DEFAULT NULL,
+  `alg` varchar(255) DEFAULT NULL,
+  `ifdivided` varchar(255) DEFAULT "no",
+  `ifcomplete` varchar(255)  DEFAULT "no" ,
+  `winalgname` varchar(255)  DEFAULT NULL,
   `result` varchar(255)  DEFAULT NULL,
 
-  PRIMARY KEY (`release_id`)
+  PRIMARY KEY (`releaseid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sub_task
 -- ----------------------------
-INSERT INTO `release` (input_name,input_des,algs) VALUES ('QQ', 'QQ describtion','A,B,C');
+INSERT INTO `release` (inputname,inputdes,alg) VALUES ('QQ', 'QQ describtion','A');
+INSERT INTO `release` (inputname,inputdes,alg) VALUES ('QQ', 'QQ describtion','B');
+INSERT INTO `release` (inputname,inputdes,alg) VALUES ('QQ', 'QQ describtion','C');

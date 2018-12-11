@@ -2,11 +2,11 @@ use assigntask;
 
 DROP TABLE IF EXISTS `algorithm`;
 CREATE TABLE `algorithm` (
-  `algorithm_id` int(11) NOT NULL AUTO_INCREMENT,
-  `algorithm_name` varchar(255) DEFAULT NULL,
-  `item_name` varchar(255) DEFAULT NULL,
-  `input_name` varchar(255) DEFAULT NULL,
-  `input_des` text DEFAULT NULL,
+  `algorithmid` int(11) NOT NULL AUTO_INCREMENT,
+  `algorithmname` varchar(255) DEFAULT NULL,
+  `itemname` varchar(255) DEFAULT NULL,
+  `inputname` varchar(255) DEFAULT NULL,
+  `inputdes` text DEFAULT NULL,
 
   PRIMARY KEY (`algorithm_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
@@ -20,33 +20,33 @@ INSERT INTO `algorithm` (algorithm_name,item_num,item_1,item_2,item_3,item_4,ite
 
 USE assigntask;
 
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('A', 'A1','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('A', 'A2','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('A', 'A3','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('A', 'A4','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('A', 'A5','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('A', 'A6','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('A', 'A7','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('A', 'A8','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('A', 'A9','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('A', 'A10','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('B', 'B1','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('B', 'B2','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('B', 'B3','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('B', 'B4','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('B', 'B5','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('B', 'B6','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('B', 'B7','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('B', 'B8','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('B', 'B9','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('B', 'B10','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('C', 'C1','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('C', 'C2','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('C', 'C3','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('C', 'C4','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('C', 'C5','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('C', 'C6','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('C', 'C7','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('C', 'C8','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('C', 'C9','QQ', 'QQ describtion');
-INSERT INTO `algorithm` (algorithm_name,item_name,input_name,input_des) VALUES ('C', 'C10','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('A', 'A1','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('A', 'A2','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('A', 'A3','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('A', 'A4','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('A', 'A5','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('A', 'A6','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('A', 'A7','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('A', 'A8','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('A', 'A9','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('A', 'A10','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('B', 'B1','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('B', 'B2','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('B', 'B3','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('B', 'B4','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('B', 'B5','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('B', 'B6','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('B', 'B7','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('B', 'B8','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('B', 'B9','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('B', 'B10','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('C', 'C1','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('C', 'C2','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('C', 'C3','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('C', 'C4','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('C', 'C5','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('C', 'C6','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('C', 'C7','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('C', 'C8','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('C', 'C9','QQ', 'QQ describtion');
+INSERT INTO `algorithm` (algorithmname,itemname,inputname,input_des) VALUES ('C', 'C10','QQ', 'QQ describtion');

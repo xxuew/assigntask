@@ -24,7 +24,7 @@ public class SubTaskServiceImpl implements SubTaskService {
     }
 
     @Override
-    public void insertSubTask(int algorithm_id1, int algorithm_id2,int judged_frequency) {
-        subTaskDao.insertSubTask(algorithm_id1,algorithm_id2,judged_frequency);
+    public void insertSubTask(int dividedId,String item1Name,String item1Des,String item2Name,String item2Des) {
+        subTaskDao.insertSubTask(dividedId,item1Name,item1Des,item2Name,item2Des);
     }
 }

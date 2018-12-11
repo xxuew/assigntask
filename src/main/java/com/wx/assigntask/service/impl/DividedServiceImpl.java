@@ -16,7 +16,14 @@ public class DividedServiceImpl implements DividedService {
     DividedDao dividedDao;
 
     @Override
-    public void insertDivided(int algorithm_id1, int algorithm_id2) {
-        dividedDao.insertDivided(algorithm_id1,algorithm_id2);
+    public int insertDivided(String algname1, String algname2) {
+       int dividedId = dividedDao.insertDivided(algname1,algname2);
+        return dividedId;
+    }
+
+    @Override
+    public int findDividedIdByAlgs(String algname1, String algname2) {
+        int dividedId = dividedDao.findDividedIdByAlgs(algname1,algname2);
+        return dividedId;
     }
 }

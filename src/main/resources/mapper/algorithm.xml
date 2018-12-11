@@ -11,7 +11,7 @@
     </resultMap>
 
     <select id="findItemByAlgName" resultType="String" >
-        SELECT item_name FROM algorithm WHERE algorithm_name = ${param1} AND input_name = ${param2}
+        SELECT item_name FROM algorithm WHERE algorithm_name = #{param1} AND input_name = #{param2}
     </select>
 
 

@@ -6,6 +6,8 @@ import com.wx.assigntask.service.ReleaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Author: wx
  * @Date: 2018/12/7 18:30
@@ -18,9 +20,20 @@ public class ReleaseServiceImpl implements ReleaseService {
     ReleaseDao releaseDao;
 
     @Override
-    public String finAlgsByInputName(String inputName) {
+    public List finAlgsByInputName(String inputName) {
 
-        String algs = releaseDao.finAlgsByInputName(inputName);
+        List algs = releaseDao.finAlgsByInputName(inputName);
         return algs;
+    }
+
+    @Override
+    public void updateDivided(String divided,String inputName,String algName) {
+        releaseDao.updateDivided(divided,inputName,algName);
+    }
+
+    @Override
+    public String findDivided(String inputName, String algName) {
+        String divided = releaseDao.findDivided(inputName,algName);
+        return divided;
     }
 }
