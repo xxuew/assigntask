@@ -1,6 +1,5 @@
 package com.wx.assigntask.service;
 
-import com.wx.assigntask.entity.ReleaseTask;
 import com.wx.assigntask.entity.User;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +12,9 @@ import java.util.List;
  */
 @Repository
 public interface UserService {
-    public User userLogin(String username,String password);
+//    public User userLogin(String username,String password);
 
     public User findUserByUserName(String username);
+
+ //   public void  assignTaskToU(int userId,int taskId);
 }

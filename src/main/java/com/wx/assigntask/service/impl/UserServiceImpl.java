@@ -1,8 +1,7 @@
 package com.wx.assigntask.service.impl;
 
-import com.wx.assigntask.dao.ReleaseDao;
-import com.wx.assigntask.dao.UserDao;
-import com.wx.assigntask.entity.ReleaseTask;
+
+import com.wx.assigntask.dao.UserMapper;
 import com.wx.assigntask.entity.User;
 import com.wx.assigntask.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserDao userDao;
+    UserMapper userMapper;
 
 //    @Override
 //    public User queryUser(int id) {
@@ -25,17 +24,21 @@ public class UserServiceImpl implements UserService {
 //        return user;
 //    }
 
-    @Override
-    public User userLogin(String username, String password) {
-        User user = userDao.selectUserByLogin(username,password);
-        return user;
-    }
+//    @Override
+//    public User userLogin(String username, String password) {
+//        User user = userDao.selectUserByLogin(username,password);
+//        return user;
+//    }
 
     @Override
     public User findUserByUserName(String username) {
-        User user = userDao.findUserByUserName(username);
+        User user = userMapper.findUserByUserName(username);
         return user;
     }
 
-
+    //插入任务ID
+//    @Override
+//    public void assignTaskToU(int userId,int taskId) {
+//        userDao.assignTaskToU(userId,taskId);
+//    }
 }

@@ -21,7 +21,7 @@ $(function(){
             success: function (data) {
                 console.log(data);
                 if(data=="OK"){
-                    location.href = "/index.html";
+                    location.href = "/home";
                 }else{
                     alert(data);
                 }
@@ -44,7 +44,7 @@ window.onload = function addRelease() {
     btn.onclick = function () {
         $("body").append("<div id='dlg_lost' style='padding:20px;'></div>");
         $('#dlg_lost').dialog({
-            href:path+'/user/login.jsp',
+            href:path+'/user/login.html',
             modal:true,
             closed:false,
             title:'信息发布',

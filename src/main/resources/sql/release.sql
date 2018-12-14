@@ -1,18 +1,12 @@
-use assigntask;
-
-DROP TABLE IF EXISTS `release`;
-CREATE TABLE `release` (
-  `releaseid` int(11) NOT NULL AUTO_INCREMENT,
-  `inputname` varchar(255) DEFAULT NULL,
-  `inputdes` text DEFAULT NULL,
-  `alg` varchar(255) DEFAULT NULL,
-  `ifdivided` varchar(255) DEFAULT "no",
-  `ifcomplete` varchar(255)  DEFAULT "no" ,
-  `winalgname` varchar(255)  DEFAULT NULL,
-  `result` varchar(255)  DEFAULT NULL,
-
-  PRIMARY KEY (`releaseid`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+CREATE TABLE `assigntask`.`release` (
+  `releaseId` INT NOT NULL AUTO_INCREMENT,
+  `inputName` VARCHAR(45) NULL DEFAULT NULL COMMENT '输入查询算法的名称',
+  `inputDes` VARCHAR(45) NULL DEFAULT NULL COMMENT '输入查询算法的描述',
+  `algs` VARCHAR(45) NULL DEFAULT NULL COMMENT '使用的算法',
+  `ifComplete` VARCHAR(45) NULL DEFAULT 'no' COMMENT '是否完成',
+  `winAlgname` VARCHAR(45) NULL COMMENT '获胜的算法名称',
+  `result` VARCHAR(45) NULL COMMENT '比分情况',
+  PRIMARY KEY (`releaseId`));
 
 -- ----------------------------
 -- Records of sub_task

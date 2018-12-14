@@ -1,6 +1,6 @@
 package com.wx.assigntask.controller;
 
-import com.wx.assigntask.entity.ReleaseTask;
+
 import com.wx.assigntask.entity.User;
 import com.wx.assigntask.service.ReleaseService;
 import com.wx.assigntask.service.UserService;
@@ -26,54 +26,42 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @Autowired
-    ReleaseService releaseService;
-
-    @Autowired
-    HttpServletRequest request;
-
-
     @RequestMapping(value = "/login")
     public String login(){
+
         return "user/login";
     }
 
     @RequestMapping(value = "loginjudge",method = RequestMethod.POST)
     @ResponseBody
-    public String loginJudge(){
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        System.out.print(username + password);
-
-        User user = userService.userLogin(username,password);
-        if (user == null)
-            return "用户名或密码错误";
-        else {
+    public String loginJudge(HttpServletRequest request,String username,String password){
+        User user = userService.findUserByUserName(username);
+        if (user.getPassword().equals(password)){
             HttpSession session = request.getSession();
 
-            session.setAttribute("username",username);
-            session.setAttribute("password",password);
-
+            session.setAttribute("currentUser",user);
             return "OK";
         }
+        else {
+            return "用户名或密码错误";
+        }
+
     }
 
     @RequestMapping(value = "/home")
-    public String home( HttpServletRequest request){
-//        HttpSession session = request.getSession();
-//        String username = (String) session.getAttribute("username");
-        User user = userService.findUserByUserName("xx");
-        request.setAttribute("userInfo",user);
+    public String home( HttpSession httpSession){
+//        User user = (User) httpSession.getAttribute("currentUser");
+//        request.setAttribute("userInfo",user);
         return "user/home";
     }
 
-//    //返回数据库数据传给jsp
-//    @RequestMapping(value = "/myreleasetask")
-//    public String releaseInfo(){
-//
+    //返回数据库数据传给jsp
+    @RequestMapping(value = "/myreleasetask")
+    public String releaseInfo(){
+
 //        ReleaseTask releaseTask =releaseService.findReleaseById(1);
 //        request.setAttribute("releaseInfos",releaseTask);
-//        return  "user/myreleasetask";
-//    }
+        return  "user/myreleasetask";
+    }
 
 }

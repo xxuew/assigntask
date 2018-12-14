@@ -14,11 +14,11 @@ public class UrlController {
 
 
 
-    @RequestMapping(value = "/index")
-    public String index(){
-
-        return "head";
-    }
+//    @RequestMapping(value = "/login")
+//    public String index(){
+//
+//        return "user/login";
+//    }
 
 
 
@@ -27,9 +27,9 @@ public class UrlController {
 //        return "user/myreleasetask";
 //    }
 
-    @RequestMapping(value = "myreceivedtask")
-    public String myReceivedTask(){
-
-        return "user/myreceivedtask";
-    }
+//    @RequestMapping(value = "myreceivedtask")
+//    public String myReceivedTask(){
+//
+//        return "user/myreceivedtask";
+//    }
 }

@@ -12,12 +12,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 //@MapperScan("com.wx.assigntask.dao")//与dao层的@Mapper二选一写上即可（主要作用是扫包）
 public class AssigntaskApplication extends SpringBootServletInitializer {
 
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder applicationBuilder){
-        return applicationBuilder.sources(AssigntaskApplication.class);
-    }
-
-
     public static void main(String[] args) {
 
         SpringApplication.run(AssigntaskApplication.class, args);
