@@ -1,8 +1,8 @@
 package com.wx.assigntask.controller;
 
 
+import com.wx.assigntask.comment.ItemList;
 import com.wx.assigntask.entity.User;
-import com.wx.assigntask.service.ReleaseService;
 import com.wx.assigntask.service.UserService;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Controller;
@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 
 /**
  * @Author: wx
@@ -63,5 +66,53 @@ public class UserController {
 //        request.setAttribute("releaseInfos",releaseTask);
         return  "user/myreleasetask";
     }
+
+
+    @RequestMapping(value = "/comment")
+    public String common(Map<String, Object> map){
+        List<ItemList> lists = new ArrayList<ItemList>();
+        for(int i = 0;i < 10;i++){
+            String itema = "A" + (i+1) ;
+            String itemb = "B" + (i+1) ;
+            ItemList item = new ItemList();
+            item.setItema(itema);
+            item.setItemb(itemb);
+            lists.add(item);
+        }
+        map.put("lists",lists);
+        for(ItemList item:lists){
+            System.out.println(item.itema+" "+item.getItemb());
+        }
+        return "user/comment";
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/results",method= RequestMethod.POST)
+    public String results(HttpServletRequest request){
+        System.out.println("--------------------");
+        String[] s = new String[20];
+        for(int i = 0;i < 10;i++){
+            int j = 2*i;
+            s[j] = "A" + (i+1) ;
+        }
+        for(int i = 0;i < 10;i++){
+            int j = 2*i+1;
+            s[j] = "B" + (i+1) ;
+        }
+        for (String a:s){
+            System.out.println(a);
+        }
+
+        for(int i = 0;i < 20;i++){
+            String[] insts = new String[20];
+            insts[i] = request.getParameter(s[i]);
+            System.out.println(s[i]+" "+insts[i]);
+        }
+
+        return "OK";
+    }
+
+
+
 
 }

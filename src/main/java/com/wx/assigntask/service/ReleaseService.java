@@ -1,6 +1,6 @@
 package com.wx.assigntask.service;
 
-import com.wx.assigntask.entity.ReleaseTask;
+import com.wx.assigntask.entity.Release;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

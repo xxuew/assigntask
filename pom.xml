@@ -41,9 +41,10 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-            <version>8.0.13</version>
+            <version>8.0.12</version>
         </dependency>
+
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -92,6 +93,13 @@
             <version>1.3.5</version>
         </dependency>
 
+        <!--自闭合标签-->
+        <dependency>
+            <groupId>net.sourceforge.nekohtml</groupId>
+            <artifactId>nekohtml</artifactId>
+            <version>1.9.22</version>
+        </dependency>
+        <!---->
 
     </dependencies>
 
@@ -126,8 +134,13 @@
                     <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
-                        <scope>runtime</scope>
-                        <version>8.0.13</version>
+                        <version>8.0.12</version>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>org.mybatis.generator</groupId>
+                        <artifactId>mybatis-generator-core</artifactId>
+                        <version>1.3.5</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -135,3 +148,4 @@
         </plugins>
     </build>
 </project>
+
