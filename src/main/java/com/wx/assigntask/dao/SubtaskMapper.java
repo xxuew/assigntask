@@ -5,7 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
 @Mapper
 @Repository
 public interface SubtaskMapper {
@@ -48,4 +47,11 @@ public interface SubtaskMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Subtask record);
+
+    /**
+     * 插入subtask
+     */
+    int insertSubTask(Subtask subtask);
+
+    int updateRandom(Subtask subtask);
 }

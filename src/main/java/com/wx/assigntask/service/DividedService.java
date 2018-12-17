@@ -1,6 +1,9 @@
 package com.wx.assigntask.service;
 
+import com.wx.assigntask.entity.Divided;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @Author: wx
@@ -9,7 +12,13 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface DividedService {
-    public int insertDivided(String algname1,String algname2);
+    public int insertDivided(int releaseId,String inputName,String algname1,String algname2);
 
-    public int findDividedIdByAlgs(String algname1,String algname2);
+    List<Divided> selectAll();
+
+    String findIfDivided(int dividedId);
+
+    int updataDivided(String ifdivided,int dividedId);
+
+ //   public int findDividedIdByAlgs(String algname1,String algname2);
 }

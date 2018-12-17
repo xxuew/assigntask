@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!--
     <jsp:include page="../head.jsp"></jsp:include>
@@ -7,29 +7,31 @@
     <title>接收的任务</title>
 </head>
 <body>
-<!--需要分成两部分，已完成的任务和未完成的任务-->
-<table class="table table-striped">
-    <div class="row">
-        <div class="center-block" style="width:300px;">
-            <h2>我收到的任务</h2>
+    <!--导航栏-->
+    <div th:include="head :: head"></div>
+    <!--需要分成两部分，已完成的任务和未完成的任务-->
+    <table class="table table-striped">
+        <div class="row">
+            <div class="center-block" style="width:300px;">
+                <h2>我收到的任务</h2>
+            </div>
         </div>
-    </div>
-    <thead>
-    <tr>
-        <th>任务ID</th>
-        <th>任务名称</th>
-        <!--   <th>开始任务</th> -->
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${taskList}" var="item" varStatus="vs">
+        <thead>
         <tr>
-            <td>${item.subtask_id}</td>
-            <td></td>
-            <!--   <td><button id="addReleaseTask" class = "btn btn-primary" type= "submit">开始任务</button></td> -->
+            <th>任务ID</th>
+            <th>任务名称</th>
+            <!--   <th>开始任务</th> -->
         </tr>
-    </c:forEach>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        <c:forEach items="${taskList}" var="item" varStatus="vs">
+            <tr>
+                <td>${item.subtask_id}</td>
+                <td></td>
+                <!--   <td><button id="addReleaseTask" class = "btn btn-primary" type= "submit">开始任务</button></td> -->
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 </body>
 </html>

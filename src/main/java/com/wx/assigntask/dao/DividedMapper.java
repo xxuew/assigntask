@@ -5,7 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
 @Mapper
 @Repository
 public interface DividedMapper {
@@ -48,4 +47,18 @@ public interface DividedMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Divided record);
+
+    /**
+     * 插入算法分组
+     * @param releaseId
+     * @param inputName
+     * @param algName1
+     * @param algName2
+     * @return
+     */
+    int insertDivided(Divided divided);
+
+    String findIfDivided(int dividedId);
+
+    int updataDivided(String ifdivided,int dividedId);
 }

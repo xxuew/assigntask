@@ -48,4 +48,5 @@ public interface RecommanddesMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Recommanddes record);
+
 }

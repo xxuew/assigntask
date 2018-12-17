@@ -80,4 +80,17 @@
     ifLatest, winAlgname, ifFinal
     from divided
   </select>
+
+  <insert id="insertDivided" useGeneratedKeys="true" keyProperty="dividedid" parameterType="com.wx.assigntask.entity.Divided">
+    insert into divided (releaseId,inputName,algName1,algName2) values (#{releaseid},#{inputname},#{algname1},#{algname2})
+  </insert>
+
+
+  <select id="findIfDivided" resultType="String">
+    select ifDivided from divided where dividedId = #{dividedid}
+  </select>
+
+  <update id="updataDivided" parameterType="com.wx.assigntask.entity.Divided">
+    update divided SET  ifDivided = #{param1} where dividedId = #{param2}
+  </update>
 </mapper>

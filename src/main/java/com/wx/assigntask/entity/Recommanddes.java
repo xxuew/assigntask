@@ -1,6 +1,8 @@
 package com.wx.assigntask.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Recommanddes implements Serializable {
     /**
@@ -2134,5 +2136,72 @@ public class Recommanddes implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
+    }
+
+    public List des(){
+        List list = new ArrayList();
+        list.add(lstm1);
+        list.add(lstm2);
+        list.add(lstm3);
+        list.add(lstm4);
+        list.add(lstm5);
+        list.add(lstm6);
+        list.add(lstm7);
+        list.add(lstm8);
+        list.add(lstm9);
+        list.add(lstm10);
+        list.add(nn1);
+        list.add(nn2);
+        list.add(nn3);
+        list.add(nn4);
+        list.add(nn4);
+        list.add(nn5);
+        list.add(nn6);
+        list.add(nn7);
+        list.add(nn8);
+        list.add(nn9);
+        list.add(nn9);
+        list.add(nn10);
+        list.add(cnn1);
+        list.add(cnn2);
+        list.add(cnn3);
+        list.add(cnn4);
+        list.add(cnn5);
+        list.add(cnn6);
+        list.add(cnn7);
+        list.add(cnn8);
+        list.add(cnn9);
+        list.add(cnn10);
+        list.add(tfidf1);
+        list.add(tfidf2);
+        list.add(tfidf3);
+        list.add(tfidf4);
+        list.add(tfidf5);
+        list.add(tfidf6);
+        list.add(tfidf7);
+        list.add(tfidf8);
+        list.add(tfidf9);
+        list.add(tfidf10);
+        list.add(doc1);
+        list.add(doc2);
+        list.add(doc3);
+        list.add(doc4);
+        list.add(doc5);
+        list.add(doc6);
+        list.add(doc7);
+        list.add(doc8);
+        list.add(doc9);
+        list.add(doc10);
+        list.add(index1);
+        list.add(index2);
+        list.add(index3);
+        list.add(index4);
+        list.add(index5);
+        list.add(index6);
+        list.add(index7);
+        list.add(index8);
+        list.add(index9);
+        list.add(index10);
+        return list;
     }
 }

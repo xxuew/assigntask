@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 @Mapper
 @Repository
 public interface UserMapper {
@@ -24,10 +25,5 @@ public interface UserMapper {
      */
     List<User> selectAll();
 
-    /**
-     * 通过用户名查询
-     * @param username
-     * @return
-     */
     User findUserByUserName(String username);
 }
