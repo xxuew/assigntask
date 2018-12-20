@@ -1,19 +1,14 @@
 package com.wx.assigntask.service.impl;
 
 
-import com.wx.assigntask.dao.DividedMapper;
-import com.wx.assigntask.dao.OriginalDataMapper;
-import com.wx.assigntask.dao.ReleaseMapper;
-import com.wx.assigntask.dao.SubtaskMapper;
-import com.wx.assigntask.entity.OriginalData;
-import com.wx.assigntask.entity.Release;
+import com.wx.assigntask.dao.*;
+import com.wx.assigntask.entity.*;
 import com.wx.assigntask.service.ReleaseService;
+import com.wx.assigntask.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.lang.String;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -28,13 +23,11 @@ public class ReleaseServiceImpl implements ReleaseService {
     ReleaseMapper releaseMapper;
 
     @Autowired
-    OriginalDataMapper originalDataMapper;
-
-    @Autowired
-    DividedMapper dividedMapper;
-
+    UsertaskMapper usertaskMapper;
     @Autowired
     SubtaskMapper subtaskMapper;
+    @Autowired
+    UserService userService;
 
 
 //    @Override
@@ -76,7 +69,6 @@ public class ReleaseServiceImpl implements ReleaseService {
             int id = release.getReleaseid();
             return id;
         }
-
     }
 
     @Override

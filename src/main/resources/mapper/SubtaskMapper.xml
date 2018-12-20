@@ -75,11 +75,52 @@
     from subtask
   </select>
 
-  <insert id="insertSubTask" parameterType="com.wx.assigntask.entity.Subtask" useGeneratedKeys="true" keyProperty="subtaskid">
-    insert into subtask (dividedId,itemName1,itemDes1,itemName2,itemDes2) values (#{dividedid},#{itemname1},#{itemdes1},#{itemname2},#{itemdes2})
+  <insert id="inserToLstmNn" parameterType="com.wx.assigntask.entity.Subtask" useGeneratedKeys="true" keyProperty="subtaskid">
+    insert into subtask_lstm_nn (dividedId,itemName1,itemDes1,itemName2,itemDes2) values (#{dividedid},#{itemname1},#{itemdes1},#{itemname2},#{itemdes2})
   </insert>
 
-  <update id="updateRandom" parameterType="com.wx.assigntask.entity.Subtask">
-    update subtask set randomnum = #{randomnum} where subtaskid = #{subtaskid}
+  <insert id="insertToCnnTfidf" parameterType="com.wx.assigntask.entity.Subtask" useGeneratedKeys="true" keyProperty="subtaskid">
+    insert into subtask_cnn_tfidf (dividedId,itemName1,itemDes1,itemName2,itemDes2) values (#{dividedid},#{itemname1},#{itemdes1},#{itemname2},#{itemdes2})
+  </insert>
+
+  <insert id="insertToDocIndex" parameterType="com.wx.assigntask.entity.Subtask" useGeneratedKeys="true" keyProperty="subtaskid">
+    insert into subtask_doc_index (dividedId,itemName1,itemDes1,itemName2,itemDes2) values (#{dividedid},#{itemname1},#{itemdes1},#{itemname2},#{itemdes2})
+  </insert>
+
+  <update id="updateLstmNnRandom" parameterType="com.wx.assigntask.entity.Subtask">
+    update subtask_lstm_nn set randomnum = #{randomnum} where subtaskid = #{subtaskid}
+  </update>
+
+  <update id="updateCnnTfidf" parameterType="com.wx.assigntask.entity.Subtask">
+    update subtask_cnn_tfidf set randomnum = #{randomnum} where subtaskid = #{subtaskid}
+  </update>
+
+  <update id="updateDocIndex" parameterType="com.wx.assigntask.entity.Subtask">
+    update subtask_doc_index set randomnum = #{randomnum} where subtaskid = #{subtaskid}
+  </update>
+
+
+  <select id="selectAllLstmNn" resultType="com.wx.assigntask.entity.Subtask">
+    select * from subtask_lstm_nn where frequency &lt; 5 order by randomnum
+  </select>
+
+  <select id="selectAllCnnTfidf" resultType="com.wx.assigntask.entity.Subtask">
+    select * from subtask_cnn_tfidf where frequency &lt; 5 order by randomnum
+  </select>
+
+  <select id="selectAllDocIndex" resultType="com.wx.assigntask.entity.Subtask">
+    select * from subtask_doc_index where frequency &lt; 5 order by randomnum
+  </select>
+
+  <update id="updateFreLstmNn" parameterType="com.wx.assigntask.entity.Subtask">
+    update subtask_lstm_nn set frequency = #{frequency} where subtaskid = #{subtaskid}
+  </update>
+
+  <update id="updateFreCnnTfidf" parameterType="com.wx.assigntask.entity.Subtask">
+    update subtask_cnn_tfidf set frequency = #{frequency} where subtaskid = #{subtaskid}
+  </update>
+
+  <update id="updateFreDocIndex" parameterType="com.wx.assigntask.entity.Subtask">
+    update subtask_doc_index set frequency = #{frequency} where subtaskid = #{subtaskid}
   </update>
 </mapper>

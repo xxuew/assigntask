@@ -50,11 +50,6 @@ public interface DividedMapper {
 
     /**
      * 插入算法分组
-     * @param releaseId
-     * @param inputName
-     * @param algName1
-     * @param algName2
-     * @return
      */
     int insertDivided(Divided divided);
 

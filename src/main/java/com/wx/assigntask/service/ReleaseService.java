@@ -24,5 +24,7 @@ public interface ReleaseService {
 
     public void updateIfDivided(int releaseid,String ifDivided);
 
+  //  public void assignTaskToUser();
+
 
 }

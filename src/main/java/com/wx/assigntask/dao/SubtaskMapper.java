@@ -51,7 +51,22 @@ public interface SubtaskMapper {
     /**
      * 插入subtask
      */
-    int insertSubTask(Subtask subtask);
+    int inserToLstmNn(Subtask subtask);
+    int insertToCnnTfidf(Subtask subtask);
+    int insertToDocIndex(Subtask subtask);
 
-    int updateRandom(Subtask subtask);
+    int updateLstmNnRandom(Subtask subtask);
+    int updateCnnTfidf(Subtask subtask);
+    int updateDocIndex(Subtask subtask);
+
+
+    List<Subtask> selectAllLstmNn();
+    List<Subtask> selectAllCnnTfidf();
+    List<Subtask> selectAllDocIndex();
+
+    int updateFreLstmNn(Subtask subtask);
+    int updateFreCnnTfidf(Subtask subtask);
+    int updateFreDocIndex(Subtask subtask);
+
+
 }
