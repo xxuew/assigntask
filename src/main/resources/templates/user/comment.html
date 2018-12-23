@@ -3,141 +3,326 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
-    <link rel="stylesheet" href="css/comment.css" type="text/css" th:href="@{css/comment.css}"/>
-    <script type="text/javascript" th:src="@{js/comment.js}" src="js/comment.js"></script>
+    <link rel="stylesheet" href="css/comment.css" type="text/css" />
+    <script type="text/javascript" src="js/comment.js" ></script>
     <title>user</title>
-
 </head>
 <body>
 
 <div class="wrap" id="wrap">
-    <ul class="tabClick">
-        <li class="active">1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
-        <li>7</li>
-        <li>8</li>
-        <li>9</li>
-        <li>10</li>
-    </ul>
-    <div class="lineBorder">
-        <div class="lineDiv"><!--移动的div--></div>
-    </div>
+
+
     <form action="/results" method="post" >
         <div class="tabCon">
             <div class="tabBox">
 
-                <div class="tabList">
-                    <ul border="1">
-                        <li th:text="${lists[0].itema}">itema</li>
-                        <!-- th:name="${list.itema}"  name = A1 -->
-                        <input type="range" min =0 max =10 value =0 id="itema1" th:name = "${lists[0].itema}"><span>10</span>
-                        <li th:text="${lists[0].itemb}">itemb</li>
-                        <input type="range" min =0 max =10 value =0 id="itemb1" th:name = "${lists[0].itemb}"><span>10</span>
-                    </ul>
-                    1/10
-                </div>
-                <div class="tabList">
-                    <ul border="1">
-                        <li th:text="${lists[1].itema}">itema</li>
-                        <!-- th:name="${list.itema}"  name = A1 -->
-                        <input type="range" min =0 max =10 value =0 id="itema2" th:name = "${lists[1].itema}"><span>10</span>
-                        <li th:text="${lists[1].itemb}">itemb</li>
-                        <input type="range" min =0 max =10 value =0 id="itemb2" th:name = "${lists[1].itemb}"><span>10</span>
-                    </ul>
-                    2/10
-                </div>
-                <div class="tabList">
-                    <ul border="1">
-                        <li th:text="${lists[2].itema}">itema</li>
-                        <!-- th:name="${list.itema}"  name = A1 -->
-                        <input type=range min =0 max =10 value =0 id="itema3" th:name = "${lists[2].itema}"><span>0</span>
-                        <li th:text="${lists[2].itemb}">itemb</li>
-                        <input type=range min =0 max =10 value =0 id="itemb3" th:name = "${lists[2].itemb}"><span>0</span>
-                    </ul>
-                    3/10
-                </div>
-                <div class="tabList">
-                    <ul border="1">
-                        <li th:text="${lists[3].itema}">itema</li>
-                        <!-- th:name="${list.itema}"  name = A1 -->
-                        <input type=range min =0 max =10 value =10 id="itema4" th:name = "${lists[3].itema}"><span>10</span>
-                        <li th:text="${lists[3].itemb}">itemb</li>
-                        <input type=range min =0 max =10 value =10 id="itemb4" th:name = "${lists[3].itemb}"><span>10</span>
-                    </ul>
-                    4/10
-                </div>
-                <div class="tabList">
-                    <ul border="1">
-                        <li th:text="${lists[4].itema}">itema</li>
-                        <!-- th:name="${list.itema}"  name = A1 -->
-                        <input type=range min =0 max =10 value =10 id="itema5" th:name = "${lists[4].itema}"><span>10</span>
-                        <li th:text="${lists[4].itemb}">itemb</li>
-                        <input type=range min =0 max =10 value =10 id="itemb5" th:name = "${lists[4].itemb}"><span>10</span>
-                    </ul>
-                    5/10
-                </div>
-                <div class="tabList">
-                    <ul border="1">
-                        <li th:text="${lists[5].itema}">itema</li>
-                        <!-- th:name="${list.itema}"  name = A1 -->
-                        <input type=range min =0 max =10 value =10 id="itema6" th:name = "${lists[5].itema}"><span>10</span>
-                        <li th:text="${lists[5].itemb}">itemb</li>
-                        <input type=range min =0 max =10 value =10 id="itemb6" th:name = "${lists[5].itemb}"><span>10</span>
-                    </ul>
-                    6/10
-                </div>
-                <div class="tabList">
-                    <ul border="1">
-                        <li th:text="${lists[6].itema}">itema</li>
-                        <!-- th:name="${list.itema}"  name = A1 -->
-                        <input type=range min =0 max =10 value =10 id="itema7" th:name = "${lists[6].itema}"><span>10</span>
-                        <li th:text="${lists[6].itemb}">itemb</li>
-                        <input type=range min =0 max =10 value =10 id="itemb7" th:name = "${lists[6].itemb}"><span>10</span>
-                    </ul>
-                    7/10
-                </div>
-                <div class="tabList">
-                    <ul border="1">
-                        <li th:text="${lists[7].itema}">itema</li>
-                        <!-- th:name="${list.itema}"  name = A1 -->
-                        <input type=range min =0 max =10 value =10 id="itema8" th:name = "${lists[7].itema}"><span>10</span>
-                        <li th:text="${lists[7].itemb}">itemb</li>
-                        <input type=range min =0 max =10 value =10 id="itemb8" th:name = "${lists[7].itemb}"><span>10</span>
-                    </ul>
-                    8/10
-                </div>
-                <div class="tabList">
-                    <ul border="1">
-                        <li th:text="${lists[8].itema}">itema</li>
-                        <!-- th:name="${list.itema}"  name = A1 -->
-                        <input type=range min =0 max =10 value =10 id="itema9" th:name = "${lists[8].itema}"><span>10</span>
-                        <li th:text="${lists[8].itemb}">itemb</li>
-                        <input type=range min =0 max =10 value =10 id="itemb9" th:name = "${lists[8].itemb}"><span>10</span>
-                    </ul>
-                    9/10
-                </div>
-                <div class="tabList">
-                    <ul border="1">
-                        <li th:text="${lists[9].itema}">itema</li>
-                        <!-- th:name="${list.itema}"  name = A1 -->
-                        <input type=range min =0 max =10 value =10 id="itema10" th:name = "${lists[9].itema}"><span>10</span>
-                        <li th:text="${lists[9].itemb}">itemb</li>
-                        <input type=range min =0 max =10 value =10 id="itemb10" th:name = "${lists[9].itemb}"><span>10</span>
-                    </ul>
-                    10/10
-                    <div align="center" >
-                        <input type="submit" value="Submit" class="sub"/>
+                <div class="tabList" style="height:501px" >
+                    <div class="place_holder" style="height:12%;width: 100%"></div>
+                    <div class="comment-container">
+                        <ul border="1" >
+                            <div class="input">
+                                <div class="step-item-header"><span class="current-order">1</span>/10</div>
+                                <li th:text="${lists[0].inputname}" class="item-name">itema</li>
+                                <li th:text="${lists[0].inputdes}" class="item-des"></li>
+                            </div>
+
+                            <div class="comment">
+                                <div style="height:180px">
+                                    <li th:text="${lists[0].itema}" class="item-name">itema</li>
+                                    <li th:text="${lists[0].desa}" class="item-des">desa</li>
+                                    <input name = "itema1" type="range" min =0 max =10 value =0 id="range">
+                                    <span id="text">0</span>
+                                </div>
+                                <div style="height:180px">
+                                    <li th:text="${lists[0].itemb}" class="item-name">itemb</li>
+                                    <li th:text="${lists[0].desb}" class="item-des">desb</li>
+                                    <input name = "itemb1" type="range" min =0 max =10 value =0 id="range" >
+                                    <span id="text">0</span>
+                                </div>
+                            </div>
+                        </ul>
                     </div>
                 </div>
+
+                <div class="tabList" style="height:501px" >
+                    <div class="place_holder" style="height:12%;width: 100%"></div>
+                    <div class="comment-container">
+                        <ul border="1" >
+                            <div class="input">
+                                <div class="step-item-header"><span class="current-order">2</span>/10</div>
+                                <li th:text="${lists[1].inputname}" class="item-name">itema</li>
+                                <li th:text="${lists[1].inputdes}" class="item-des"></li>
+                            </div>
+
+                            <div class="comment">
+                                <div style="height:180px">
+                                    <li th:text="${lists[1].itema}" class="item-name">itema</li>
+                                    <li th:text="${lists[1].desa}" class="item-des">desa</li>
+                                    <input name = "itema2" type="range" min =0 max =10 value =0 id="range">
+                                    <span id="text">0</span>
+                                </div>
+                                <div style="height:180px">
+                                    <li th:text="${lists[1].itemb}" class="item-name">itemb</li>
+                                    <li th:text="${lists[1].desb}" class="item-des">desb</li>
+                                    <input name = "itemb2" type="range" min =0 max =10 value =0 id="range" >
+                                    <span id="text">0</span>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tabList" style="height:501px" >
+                    <div class="place_holder" style="height:12%;width: 100%"></div>
+                    <div class="comment-container">
+                        <ul border="1" >
+                            <div class="input">
+                                <div class="step-item-header"><span class="current-order">3</span>/10</div>
+                                <li th:text="${lists[2].inputname}" class="item-name">itema</li>
+                                <li th:text="${lists[2].inputdes}" class="item-des"></li>
+                            </div>
+
+                            <div class="comment">
+                                <div style="height:180px">
+                                    <li th:text="${lists[2].itema}" class="item-name">itema</li>
+                                    <li th:text="${lists[2].desa}" class="item-des">desa</li>
+                                    <input name = "itema3" type="range" min =0 max =10 value =0 id="range">
+                                    <span id="text">0</span>
+                                </div>
+                                <div style="height:180px">
+                                    <li th:text="${lists[2].itemb}" class="item-name">itemb</li>
+                                    <li th:text="${lists[2].desb}" class="item-des">desb</li>
+                                    <input name = "itemb3" type="range" min =0 max =10 value =0 id="range" >
+                                    <span id="text">0</span>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tabList" style="height:501px" >
+                    <div class="place_holder" style="height:12%;width: 100%"></div>
+                    <div class="comment-container">
+                        <ul border="1" >
+                            <div class="input">
+                                <div class="step-item-header"><span class="current-order">4</span>/10</div>
+                                <li th:text="${lists[3].inputname}" class="item-name">itema</li>
+                                <li th:text="${lists[3].inputdes}" class="item-des"></li>
+                            </div>
+
+                            <div class="comment">
+                                <div style="height:180px">
+                                    <li th:text="${lists[3].itema}" class="item-name">itema</li>
+                                    <li th:text="${lists[3].desa}" class="item-des">desa</li>
+                                    <input name = "itema4" type="range" min =0 max =10 value =0 id="range">
+                                    <span id="text">0</span>
+                                </div>
+                                <div style="height:180px">
+                                    <li th:text="${lists[3].itemb}" class="item-name">itemb</li>
+                                    <li th:text="${lists[3].desb}" class="item-des">desb</li>
+                                    <input name = "itemb4" type="range" min =0 max =10 value =0 id="range" >
+                                    <span id="text">0</span>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tabList" style="height:501px" >
+                    <div class="place_holder" style="height:12%;width: 100%"></div>
+                    <div class="comment-container">
+                        <ul border="1" >
+                            <div class="input">
+                                <div class="step-item-header"><span class="current-order">5</span>/10</div>
+                                <li th:text="${lists[4].inputname}" class="item-name">itema</li>
+                                <li th:text="${lists[4].inputdes}" class="item-des"></li>
+                            </div>
+
+                            <div class="comment">
+                                <div style="height:180px">
+                                    <li th:text="${lists[4].itema}" class="item-name">itema</li>
+                                    <li th:text="${lists[4].desa}" class="item-des">desa</li>
+                                    <input name = "itema5" type="range" min =0 max =10 value =0 id="range">
+                                    <span id="text">0</span>
+                                </div>
+                                <div style="height:180px">
+                                    <li th:text="${lists[4].itemb}" class="item-name">itemb</li>
+                                    <li th:text="${lists[4].desb}" class="item-des">desb</li>
+                                    <input name = "itemb5" type="range" min =0 max =10 value =0 id="range" >
+                                    <span id="text">0</span>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tabList" style="height:501px" >
+                    <div class="place_holder" style="height:12%;width: 100%"></div>
+                    <div class="comment-container">
+                        <ul border="1" >
+                            <div class="input">
+                                <div class="step-item-header"><span class="current-order">6</span>/10</div>
+                                <li th:text="${lists[5].inputname}" class="item-name">itema</li>
+                                <li th:text="${lists[5].inputdes}" class="item-des"></li>
+                            </div>
+
+                            <div class="comment">
+                                <div style="height:180px">
+                                    <li th:text="${lists[5].itema}" class="item-name">itema</li>
+                                    <li th:text="${lists[5].desa}" class="item-des">desa</li>
+                                    <input name = "itema6" type="range" min =0 max =10 value =0 id="range">
+                                    <span id="text">0</span>
+                                </div>
+                                <div style="height:180px">
+                                    <li th:text="${lists[5].itemb}" class="item-name">itemb</li>
+                                    <li th:text="${lists[5].desb}" class="item-des">desb</li>
+                                    <input name = "itemb6" type="range" min =0 max =10 value =0 id="range" >
+                                    <span id="text">0</span>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tabList" style="height:501px" >
+                    <div class="place_holder" style="height:12%;width: 100%"></div>
+                    <div class="comment-container">
+                        <ul border="1" >
+                            <div class="input">
+                                <div class="step-item-header"><span class="current-order">7</span>/10</div>
+                                <li th:text="${lists[6].inputname}" class="item-name">itema</li>
+                                <li th:text="${lists[6].inputdes}" class="item-des"></li>
+                            </div>
+
+                            <div class="comment">
+                                <div style="height:180px">
+                                    <li th:text="${lists[6].itema}" class="item-name">itema</li>
+                                    <li th:text="${lists[6].desa}" class="item-des">desa</li>
+                                    <input name = "itema7" type="range" min =0 max =10 value =0 id="range">
+                                    <span id="text">0</span>
+                                </div>
+                                <div style="height:180px">
+                                    <li th:text="${lists[6].itemb}" class="item-name">itemb</li>
+                                    <li th:text="${lists[6].desb}" class="item-des">desb</li>
+                                    <input name = "itemb7" type="range" min =0 max =10 value =0 id="range" >
+                                    <span id="text">0</span>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tabList" style="height:501px" >
+                    <div class="place_holder" style="height:12%;width: 100%"></div>
+                    <div class="comment-container">
+                        <ul border="1" >
+                            <div class="input">
+                                <div class="step-item-header"><span class="current-order">8</span>/10</div>
+                                <li th:text="${lists[7].inputname}" class="item-name">itema</li>
+                                <li th:text="${lists[7].inputdes}" class="item-des"></li>
+                            </div>
+
+                            <div class="comment">
+                                <div style="height:180px">
+                                    <li th:text="${lists[7].itema}" class="item-name">itema</li>
+                                    <li th:text="${lists[7].desa}" class="item-des">desa</li>
+                                    <input name = "itema8" type="range" min =0 max =10 value =0 id="range">
+                                    <span id="text">0</span>
+                                </div>
+                                <div style="height:180px">
+                                    <li th:text="${lists[7].itemb}" class="item-name">itemb</li>
+                                    <li th:text="${lists[7].desb}" class="item-des">desb</li>
+                                    <input name = "itemb8" type="range" min =0 max =10 value =0 id="range" >
+                                    <span id="text">0</span>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tabList" style="height:501px" >
+                    <div class="place_holder" style="height:12%;width: 100%"></div>
+                    <div class="comment-container">
+                        <ul border="1" >
+                            <div class="input">
+                                <div class="step-item-header"><span class="current-order">9</span>/10</div>
+                                <li th:text="${lists[8].inputname}" class="item-name">itema</li>
+                                <li th:text="${lists[8].inputdes}" class="item-des"></li>
+                            </div>
+
+                            <div class="comment">
+                                <div style="height:180px">
+                                    <li th:text="${lists[8].itema}" class="item-name">itema</li>
+                                    <li th:text="${lists[8].desa}" class="item-des">desa</li>
+                                    <input name = "itema9" type="range" min =0 max =10 value =0 id="range">
+                                    <span id="text">0</span>
+                                </div>
+                                <div style="height:180px">
+                                    <li th:text="${lists[8].itemb}" class="item-name">itemb</li>
+                                    <li th:text="${lists[8].desb}" class="item-des">desb</li>
+                                    <input name = "itemb9" type="range" min =0 max =10 value =0 id="range" >
+                                    <span id="text">0</span>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tabList" style="height:501px" >
+                    <div class="place_holder" style="height:12%;width: 100%"></div>
+                    <div class="comment-container">
+                        <ul border="1" >
+                            <div class="input">
+                                <div class="step-item-header"><span class="current-order">10</span>/10</div>
+                                <li th:text="${lists[9].inputname}" class="item-name">itema</li>
+                                <li th:text="${lists[9].inputdes}" class="item-des"></li>
+
+                            </div>
+
+                            <div class="comment">
+                                <div style="height:160px">
+                                    <li th:text="${lists[9].itema}" class="item-name">itema</li>
+                                    <li th:text="${lists[9].desa}" class="item-des">desa</li>
+                                    <input name = "itema10" type="range" min =0 max =10 value =0 id="range">
+                                    <span id="text">0</span>
+                                </div>
+                                <div style="height:160px">
+                                    <li th:text="${lists[9].itemb}" class="item-name">itemb</li>
+                                    <li th:text="${lists[9].desb}" class="item-des">desb</li>
+                                    <input name = "itemb10" type="range" min =0 max =10 value =0 id="range" >
+                                    <span id="text">0</span>
+                                </div>
+
+                                <div align="center" >
+                                    <input type="submit" value="Submit" id="submit"/>
+                                </div>
+                            </div>
+                        </ul>
+
+                    </div>
+
+                </div>
+
             </div>
         </div>
-
-
     </form>
+    <div class="lineBorder">
+        <div class="lineDiv"><!--移动的div--></div>
+    </div>
+    <footer>
+        <ul class="tabClick">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+        </ul>
+    </footer>
 </div>
 
 <script>
@@ -149,6 +334,7 @@
             this.nextElementSibling.innerHTML = this.value;
         }
     }
+
 </script>
 </body>
 </html>

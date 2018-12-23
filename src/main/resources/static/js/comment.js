@@ -102,6 +102,8 @@ window.onload = function (){
         init.lineAnme(lineDiv,stars*windowWidth/4);
 
     };
+//    --------------------
+
 };
 
 

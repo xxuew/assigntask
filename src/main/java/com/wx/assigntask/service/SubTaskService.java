@@ -1,10 +1,14 @@
 package com.wx.assigntask.service;
 
+import com.wx.assigntask.comment.ItemList;
 import com.wx.assigntask.dao.SubtaskMapper;
 import com.wx.assigntask.dao.UserMapper;
+import com.wx.assigntask.entity.OriginalData;
 import com.wx.assigntask.entity.Subtask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @Author: wx
@@ -19,7 +23,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SubTaskService {
     public Subtask findSubBySubId(int id);
-    public void insertSubTask(int dividedId,String item1Name,String item1Des,String item2Name,String item2Des);
+    public List<ItemList> insertSubTask(List<OriginalData> originalData);
 
     public Subtask selectByPrimaryKey(int id);
 

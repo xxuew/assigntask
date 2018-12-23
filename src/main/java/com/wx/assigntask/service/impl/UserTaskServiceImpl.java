@@ -1,7 +1,7 @@
 //package com.wx.assigntask.service.impl;
 //
-//import com.wx.assigntask.dao.UserTaskDao;
-//import com.wx.assigntask.entity.UserTask;
+//import com.wx.assigntask.dao.UserMapper;
+//import com.wx.assigntask.entity.Usertask;
 //import com.wx.assigntask.service.UserTaskService;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Service;
@@ -16,16 +16,16 @@
 //@Service
 //public class UserTaskServiceImpl implements UserTaskService {
 //    @Autowired
-//    UserTaskDao userTaskDao;
+//    UserMapper userMapper;
 //
 //    @Override
 //    public void assignTaskToU(int userId, int taskId) {
-//    userTaskDao.assignTaskToU(userId,taskId);
+//        userMapper.assignTaskToU(userId,taskId);
 //    }
 //
 //    @Override
 //    public List findByUserId(int userId) {
-//        List list = userTaskDao.findByUserId(userId);
+//        List list = userMapper.findByUserId(userId);
 //        return null;
 //    }
 //}
