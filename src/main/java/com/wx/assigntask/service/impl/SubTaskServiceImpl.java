@@ -20,7 +20,7 @@ import java.util.List;
  */
 @Service
 public class SubTaskServiceImpl implements SubTaskService {
-    OriginalDataService originalDataService;
+    OriginalDataService originalDataService = new OriginalDataServiceImpl();
 
     @Override
     public Subtask findSubBySubId(int id) {
@@ -28,6 +28,7 @@ public class SubTaskServiceImpl implements SubTaskService {
     }
 
     @Override
+//    将两种算法的十个item两两配对
     public List<ItemList> insertSubTask(List<OriginalData> originalData) {
         String s;
         BuildTask buildTask = new BuildTask();
@@ -56,10 +57,11 @@ public class SubTaskServiceImpl implements SubTaskService {
 
         }
 
-        for (ItemList itemList:list){
-            System.out.println(itemList.itema);
-            System.out.println(itemList.itemb);
-        }
+//测试看是否生成任务
+//        for (ItemList itemList:list){
+//            System.out.println(itemList.itema);
+//            System.out.println(itemList.itemb);
+//        }
 
         System.out.println("------------------------------------------");
 //        for (OriginalData o: originalData) {

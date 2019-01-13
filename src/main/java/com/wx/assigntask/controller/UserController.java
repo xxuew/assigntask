@@ -77,9 +77,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "/home")
-    public String home( HttpSession httpSession){
+    public String home( HttpServletRequest request){
 //        User user = (User) httpSession.getAttribute("currentUser");
 //        request.setAttribute("userInfo",user);
+        String username = request.getParameter("username");
+        System.out.println(username+"看看有啥");
         return "user/home";
     }
 
@@ -114,9 +116,9 @@ public class UserController {
         }
 
         map.put("lists",lists);
-        for(ItemList item:lists){
-            System.out.println(item.itema+" "+item.getItemb());
-        }
+//        for(ItemList item:lists){
+//            System.out.println(item.itema+" "+item.getItemb());
+//        }
 //        下列代码可获取需要生成的任务
 //        List<OriginalData> lista;
 //        lista= originalDataService.selectAll();
