@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wx.assigntask.dao.UserMapper">
-    <insert id="insert" parameterType="com.wx.assigntask.entity.User" useGeneratedKeys="true" keyProperty="userid">
+    <insert id="insert" keyProperty="userid" parameterType="com.wx.assigntask.entity.User" useGeneratedKeys="true">
         insert into user (username,password) values (#{username},#{password})
     </insert>
     <select id="selectAll" resultType="com.wx.assigntask.entity.User">
@@ -15,6 +15,9 @@
     </select>
     <select id="selectAllByTasking" resultType="com.wx.assigntask.entity.User">
         select * from user where tasking &lt; 3 order by tasking
+    </select>
+    <select id="selectAllIdByTasking" resultType="int">
+        select userid from  user where tasking &lt; 3 order by tasking,userid
     </select>
 
     <update id="updateTaking" parameterType="com.wx.assigntask.entity.User">

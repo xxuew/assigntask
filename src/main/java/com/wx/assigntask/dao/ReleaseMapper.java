@@ -59,9 +59,13 @@ public interface ReleaseMapper {
      * 查找ifDivided
      */
 
-    String findDivided(int id);
+    Release selectById(int releaseid);
+    String findDivided(int releaseid);
+    List<String> selectPlans();
+    Release findReleaseById(int releaseid);
+    List<Integer> selectNullResult();
 
     int updateIfDivided(int releaseid,String ifDivided);
 
-    List<String> selectPlans();
+
 }

@@ -124,7 +124,7 @@
         </table>
         -->
 
-
+        <!--
         <table schema="assigntask" tableName="user"
                enableCountByExample="false"
                enableUpdateByExample="false"
@@ -132,9 +132,10 @@
                enableSelectByExample="false"
                selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="false" />
-              <!-- 数据库表主键 -->
+
             <generatedKey column="userId" sqlStatement="Mysql" identity="true" />
         </table>
+    -->
 
         <!--
         <table schema="assigntask" tableName="usertask"
@@ -157,6 +158,28 @@
             <property name="useActualColumnNames" value="false" />
         </table>
         -->
+   <!--
+    <table schema="assigntask" tableName="orderlist"
+           enableCountByExample="false"
+           enableUpdateByExample="false"
+           enableDeleteByExample="false"
+           enableSelectByExample="false"
+           selectByExampleQueryId="false">
+        <property name="useActualColumnNames" value="false" />
+        <generatedKey column="userId" sqlStatement="Mysql" identity="true" />
+    </table>
+    -->
+
+    <table schema="assigntask" tableName="algresult"
+           enableCountByExample="false"
+           enableUpdateByExample="false"
+           enableDeleteByExample="false"
+           enableSelectByExample="false"
+           selectByExampleQueryId="false">
+        <property name="useActualColumnNames" value="false" />
+        <!-- 数据库表主键 -->
+        <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+    </table>
 
     </context>
 </generatorConfiguration>

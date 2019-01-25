@@ -18,19 +18,17 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
+    @Autowired
+    UserMapper userMapper;
+
     @Override
     public List<Integer> selectAllId() {
         //查询所有用户Id
-        List users = userMapper.selectAllByTasking();
-        List userIds  = new ArrayList();
-        for (int i =0 ;i<users.size();i++){
-            User user = (User) users.get(i);
-            userIds.add(user.getUserid()); //存入当前已有用户ID
-        }
-        if (users.size()<5000){
+        List userids = userMapper.selectAllIdByTasking();
+        if (userids.size()<50){
             //如果当前用户少于5K，则插入用户达到5K
            // int count  = 5000-users.size();
-            for (int i=users.size();i<5000;i++){
+            for (int i=userids.size();i<50;i++){
                 String username = "张" + i;
                 String password = "123456";
                 User user = new User();
@@ -38,14 +36,11 @@ public class UserServiceImpl implements UserService {
                 user.setPassword(password);
                 userMapper.insert(user);
                 int id = user.getUserid();
-                userIds.add(user.getUserid());//存入新插入用户ID
+                userids.add(user.getUserid());//存入新插入用户ID
             }
         }
-        return userIds;
+        return userids;
     }
-
-    @Autowired
-    UserMapper userMapper;
 
 //    @Override
 //    public User queryUser(int id) {

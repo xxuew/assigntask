@@ -1,6 +1,7 @@
 package com.wx.assigntask.service;
 
 
+import com.wx.assigntask.entity.Release;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public interface ReleaseService {
 //    public void updateDivided(String divided,String inputName,String algName);
 //
 //    public String findDivided(String inputName,String algName);
-    int insertRelease(String plan);
+    int insertRelease(Release release);
 
     String findDivided(int id);
 

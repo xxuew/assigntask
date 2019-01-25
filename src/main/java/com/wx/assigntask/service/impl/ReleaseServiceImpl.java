@@ -54,17 +54,15 @@ public class ReleaseServiceImpl implements ReleaseService {
     }
 
     @Override
-    public int insertRelease(String plan) {
+    public int insertRelease(Release release) {
         List<String> plans = releaseMapper.selectPlans();
         //TODO
         //判断的很粗糙，需要改，可以结合发布者ID等因素来判断
-        if (plans.contains(plan))
+        if (plans.contains(release.getPlan()))
         {
             return -1;
         }
         else {
-            Release release = new Release();
-            release.setPlan(plan);
             releaseMapper.insertRelease(release);
             int id = release.getReleaseid();
             return id;

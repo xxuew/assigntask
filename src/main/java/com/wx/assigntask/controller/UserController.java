@@ -1,5 +1,6 @@
 package com.wx.assigntask.controller;
 
+import com.wx.assigntask.entity.Release;
 import com.wx.assigntask.entity.User;
 import com.wx.assigntask.service.*;
 import org.springframework.beans.factory.annotation.*;
@@ -60,7 +61,11 @@ public class UserController {
     public String releaseInfo(){
             //TODO
             // 这里写死了
-            int releaseId = releaseService.insertRelease("两两对比排除"); //发布即插入
+            Release release = new Release();
+            release.setPlan("两两对比排除");
+            //release.setPlan("先纵再横，算法内排序");
+            release.setAlgnames("lstm,nn,cnn,tfidf,doc,index");
+            int releaseId = releaseService.insertRelease(release); //发布即插入
             if (releaseId == -1)
                 return "user/myreleasetask";
             else {
@@ -68,6 +73,9 @@ public class UserController {
                 subTaskService.geneSubTask(releaseId);
                 return  "user/myreleasetask";
             }
+
+     //   return  "user/myreleasetask";
+
     }
 
 

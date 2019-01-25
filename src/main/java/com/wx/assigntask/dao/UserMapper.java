@@ -29,6 +29,7 @@ public interface UserMapper {
     User findUserById(int userid);
 
     List<User> selectAllByTasking();
+    List selectAllIdByTasking();
 
     int updateTaking (int userId,int tasking);
 }

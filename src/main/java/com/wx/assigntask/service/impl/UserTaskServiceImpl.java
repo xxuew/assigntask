@@ -29,5 +29,20 @@ public class UserTaskServiceImpl implements UserTaskService {
         List list = usertaskMapper.findByUserId(userId);
         return null;
     }
-    
+
+    @Override
+    public int selectAveScore1(int taskid) {
+        Usertask usertask = new Usertask();
+        usertask.setTaskid(taskid);
+        int aveScore1 = usertaskMapper.selectAveScore1(usertask);
+        return aveScore1;
+    }
+
+    @Override
+    public int selectAveScore2(int taskid) {
+        Usertask usertask =new Usertask();
+        usertask.setTaskid(taskid);
+        int aveScore2 = usertaskMapper.selectAveScore2(usertask);
+        return aveScore2;
+    }
 }

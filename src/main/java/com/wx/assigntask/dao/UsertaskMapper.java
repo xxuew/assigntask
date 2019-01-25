@@ -32,4 +32,7 @@ public interface UsertaskMapper {
     void assignTaskToU(int userId,int taskId);
 
     int insertSubTask(Usertask usertask);
+
+    int selectAveScore1(Usertask usertask);
+    int selectAveScore2(Usertask usertask);
 }
