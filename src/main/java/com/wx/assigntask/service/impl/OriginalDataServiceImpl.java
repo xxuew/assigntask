@@ -5,7 +5,7 @@ import com.wx.assigntask.entity.OriginalData;
 import com.wx.assigntask.service.OriginalDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +15,7 @@ import java.util.List;
  * @Version 1.0
  */
 @Service
-public class OriginalDataServiceIml implements OriginalDataService {
+public class OriginalDataServiceImpl implements OriginalDataService {
 
     @Autowired
     OriginalDataMapper originalDataMapper;
@@ -92,6 +92,11 @@ public class OriginalDataServiceIml implements OriginalDataService {
         list.add(originalData.getIndexDes9());
         list.add(originalData.getIndexDes10());
         return list;
+    }
+
+    @Override
+    public OriginalData selectByid(Integer oid) {
+        return null;
     }
 
     @Override

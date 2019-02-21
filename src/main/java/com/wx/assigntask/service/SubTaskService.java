@@ -1,5 +1,7 @@
 package com.wx.assigntask.service;
 
+import com.wx.assigntask.comment.ItemList;
+import com.wx.assigntask.entity.OriginalData;
 import com.wx.assigntask.entity.Subtask;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +15,10 @@ import java.util.Random;
  */
 @Repository
 public interface SubTaskService {
-//    public Subtask findSubBySubId(int id);
+    public Subtask findSubBySubId(int id);
+    public List<ItemList> insertSubTask(List<OriginalData> originalData);
+
+    public Subtask selectByPrimaryKey(int id);
 
     int insertSubTask(int plan,String algName1,String algName2, int dividedId, String itemName1, String itemDes1, String itemName2, String itemDes2);
 

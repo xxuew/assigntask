@@ -1,5 +1,5 @@
 use assigntask;
-drop table `divided`;
+drop table if exists `divided`;
 CREATE TABLE `divided` (
   `dividedId` int(11) NOT NULL AUTO_INCREMENT,
   `releaseId` int(11) DEFAULT NULL COMMENT '发布任务ID，假设本次发布有100个input',

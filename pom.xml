@@ -99,12 +99,22 @@
             <optional>true</optional>
         </dependency>
 
+
         <!--根据数据库表自动生成entity、dao和mapper-->
         <dependency>
             <groupId>org.mybatis.generator</groupId>
             <artifactId>mybatis-generator-core</artifactId>
             <version>1.3.5</version>
         </dependency>
+
+        <!--自闭合标签-->
+        <dependency>
+            <groupId>net.sourceforge.nekohtml</groupId>
+            <artifactId>nekohtml</artifactId>
+            <version>1.9.22</version>
+        </dependency>
+        <!---->
+
     </dependencies>
 
     <build>

@@ -1,0 +1,172 @@
+body{
+    background:#f3f3f3 url(../img/step_bg_01ffcef.png) repeat;
+}
+*{ margin: 0; padding: 0}
+ul,li{ list-style: none}
+.tabClick{ background: #f3f3f3; overflow: hidden}
+.tabClick li{ height:40px; line-height: 40px; width: 10%; float: left; text-align: center}
+.tabClick li.active{ color: #099; transition: 0.1s; font-weight: bold}
+.tabCon{ overflow: hidden}
+.tabBox{ position: relative}
+.tabList {
+    font-size: 14px;
+    color: #333;
+    /*overflow: hidden;*/
+
+    word-break: break-all;
+    width:100%;
+    float:left;
+
+    text-align:center;
+    /*color:#D3D3D3;*/
+    /*font-size:20px;*/
+    /*标题用这个字体*/
+    /*font-family: "Arial Black"*/
+     font-family: Consolas, "Courier New", Courier, monospace;
+}
+.lineBorder{ height: 2px; overflow: hidden; border-bottom:1px solid #099; background: #f3f3f3}
+.lineDiv{ background: #099; height: 2px; width:10%;}
+
+.input {
+    float:left;
+    width: 360px;
+    margin-right: 5%;
+}
+.comment{
+    float:left;
+    width: 560px;
+    margin: 45px 0 0 30px;
+    text-align: center;
+}
+.comment-container{
+    background: white;
+    height:88%;
+    width: 100%;
+    padding: 0 10% 0 10%;
+}
+
+.current-order{
+    color: #59b84b;
+    font-size: 50px;
+    margin-right: 5px;
+}
+.step-item-header{
+    height: 44px;
+    line-height: 44px;
+    border-bottom: 1px solid #E8E8E8;
+    color: #ccc;
+    font-size: 30px;
+    font-weight: 400;
+    font-family: arial, "Microsoft YaHei", 宋体, sans-serif, tahoma;
+    margin:20px 0 30px 0;
+}
+.item-name{
+    color: #5bc0de;
+    font-size:20px;
+    font-family: "Arial Black";
+    margin-right: 10px;
+}
+.item-des{
+    text-align: left;
+    text-indent:32px;
+}
+/*隐藏des*/
+.item-des{
+    display:block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical
+}
+/*显示des*/
+.item-des:hover{
+    display:block;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical
+}
+
+#submit {
+    border: 1px solid #00748f;
+    height: 42px;
+    width: 100px;
+    padding: 0;
+    cursor: pointer;
+    font: bold 15px Arial, Helvetica;
+    color: #fafafa;
+    text-transform: uppercase;
+    background-color: #EE9A00;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#31b2c3), to(#0483a0));
+    background-image: -webkit-linear-gradient(top, #31b2c3, #0483a0);
+    background-image: -moz-linear-gradient(top, #31b2c3, #0483a0);
+    background-image: -ms-linear-gradient(top, #31b2c3, #0483a0);
+    background-image: -o-linear-gradient(top, #31b2c3, #0483a0);
+    background-image: linear-gradient(top, #31b2c3, #0483a0);
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    text-shadow: 0 1px 0 rgba(0, 0 ,0, .3);
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 0 #fff;
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 0 #fff;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 0 #fff;
+}
+
+/*{#鼠标浮在上面时显示的阴影#}*/
+#submit:hover,
+#submit:focus {
+    background-color: #31b2c3;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#0483a0), to(#31b2c3));
+    background-image: -webkit-linear-gradient(top, #0483a0, #31b2c3);
+    background-image: -moz-linear-gradient(top, #0483a0, #31b2c3);
+    background-image: -ms-linear-gradient(top, #0483a0, #31b2c3);
+    background-image: -o-linear-gradient(top, #0483a0, #31b2c3);
+    background-image: linear-gradient(top, #0483a0, #31b2c3);
+}
+
+
+/*--------------------------------------------------------*/
+#range {
+    width: 170px;
+    height: 6px;
+    background-color: #e5e5e5;
+    border-radius: 3px;
+}
+#text {
+    width: 49px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    border-radius: 6px;
+    margin-left: 20px;
+    font-size: 30px;
+    font-weight: 400;
+    font-family: arial, "Microsoft YaHei", 宋体, sans-serif, tahoma;
+}
+/* 滑动条 */
+input[type='range'] {
+    margin-top: 8px;
+    outline: none;
+    -webkit-appearance: none;
+    /*清除系统默认样式*/
+    width: 56% !important;
+    background: -webkit-linear-gradient(#00c3d5, #00c3d5) no-repeat, #ddd;
+    background-size: 0% 100%;
+    /*设置左右宽度比例*/
+    height: 3px;
+    /*横条的高度*/
+}
+/*拖动块的样式*/
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    /*清除系统默认样式*/
+    height: 16px;
+    /*拖动块高度*/
+    width: 16px;
+    /*拖动块宽度*/
+    background: #fff;
+    /*拖动块背景*/
+    border-radius: 50%;
+    /*外观设置为圆形*/
+    border: solid 1px #ddd;
+    /*设置边框*/
+}

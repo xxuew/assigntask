@@ -12,6 +12,7 @@ import java.util.List;
  */
 @Repository
 public interface OriginalDataService {
+    public OriginalData selectByid(Integer oid);
     List selectAllItemsNames(int id);
     List selectAllItemDes(int id);
     List<OriginalData> selectAll();

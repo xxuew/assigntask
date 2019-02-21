@@ -1,9 +1,11 @@
 package com.wx.assigntask.service.impl;
 
 
+import com.wx.assigntask.comment.ItemList;
 import com.wx.assigntask.dao.*;
 import com.wx.assigntask.entity.*;
 import com.wx.assigntask.service.*;
+import com.wx.assigntask.subtask.BuildTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +55,61 @@ public class SubTaskServiceImpl implements SubTaskService {
 //        SubTask subTask = subTaskDao.findSubBySubId(id);
 //        return subTask;
 //    }
+
+//TODO DEV
+    @Override
+    public Subtask findSubBySubId(int id) {
+        return null;
+    }
+
+    @Override
+//    将两种算法的十个item两两配对
+    public List<ItemList> insertSubTask(List<OriginalData> originalData) {
+        String s;
+        BuildTask buildTask = new BuildTask();
+        String[] s1 = new String[42];
+        OriginalData o;
+        ItemList ll;
+        List<ItemList> list = new ArrayList();
+        for(int i = 0;i<100;i++){
+            o = originalData.get(i);
+            s1 = buildTask.OdataToArray(o);
+//            for (String a:s1) {
+//                System.out.println(a);
+//            }
+            for(int n = 0;n<10;n++) {
+                for(int m = 0;m<10;m++) {
+                    ll = new ItemList();
+                    ll.setInputname(s1[0]);
+                    ll.setInputdes(s1[1]);
+                    ll.setItema(s1[(2*n+2)]);
+                    ll.setDesa(s1[(2*n+3)]);
+                    ll.setItemb(s1[(2*m+22)]);
+                    ll.setDesb(s1[(2*m+23)]);
+                    list.add(ll);
+                }
+            }
+
+        }
+
+//测试看是否生成任务
+//        for (ItemList itemList:list){
+//            System.out.println(itemList.itema);
+//            System.out.println(itemList.itemb);
+//        }
+
+        System.out.println("------------------------------------------");
+//        for (OriginalData o: originalData) {
+//            System.out.println(o.getName()+" "+o.getDes());
+//        }
+        return list;
+    }
+
+    @Override
+    public Subtask selectByPrimaryKey(int id) {
+        return null;
+    }
+//TODO DEV
 
     @Override
     public void updateRandom(String algName1,String algName2,int subtaskCount, List<Integer> subtaskids) {

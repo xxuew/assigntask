@@ -4211,4 +4211,35 @@ public class OriginalData implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+    List<String> lstmNames(){
+        List<String> names = new ArrayList();
+        names.add(lstmName1);
+        names.add(lstmName2);
+        names.add(lstmName3);
+        names.add(lstmName4);
+        names.add(lstmName4);
+        names.add(lstmName5);
+        names.add(lstmName6);
+        names.add(lstmName7);
+        names.add(lstmName8);
+        names.add(lstmName9);
+        names.add(lstmName10);
+        return names;
+    }
+
+    List<String> lstmDes(){
+        List<String> des = new ArrayList<String>();
+        des.add(lstmDes1);
+        des.add(lstmDes2);
+        des.add(lstmDes3);
+        des.add(lstmDes4);
+        des.add(lstmDes5);
+        des.add(lstmDes5);
+        des.add(lstmDes6);
+        des.add(lstmDes7);
+        des.add(lstmDes8);
+        des.add(lstmDes9);
+        des.add(lstmDes10);
+        return des;
+    }
 }
