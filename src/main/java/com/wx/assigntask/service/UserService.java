@@ -17,4 +17,8 @@ public interface UserService {
     public User findUserByUserName(String username);
 
  //   public void  assignTaskToU(int userId,int taskId);
+
+    public  List<Integer> selectAllId();
+
+    public void updateTasking(int userid);
 }

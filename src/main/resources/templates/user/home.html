@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" href="/lib/bootstrap-3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="lib/bootstrap-3.3.7/css/bootstrap-theme.min.css"/>
@@ -135,5 +135,30 @@
 </script>
 
 
+    <!--导航栏-->
+    <div th:include="head :: head"></div>
+    <form id = "userInfo" action="">
+        <table class="table table-striped">
+            <div class="center-block" style="width:300px;">
+                <h2>个人信息</h2>
+            </div>
+            <thead>
+            <tr>
+                <th>用户ID</th>
+                <th>用户名</th>
+                <th>发布的任务ID</th>
+                <!--   <th>接收的任务</th> -->
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>tets</td>
+                <td>test</td>
+                <td>test</td>
+                <!--  <td><%=user.getReceiveId()%></td> -->
+            </tr>
+            </tbody>
+        </table>
+    </form>
 </body>
 </html>

@@ -48,4 +48,24 @@ public interface ReleaseMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Release record);
+
+    /**
+     * 插入release
+     */
+
+    int insertRelease(Release release);
+
+    /**
+     * 查找ifDivided
+     */
+
+    Release selectById(int releaseid);
+    String findDivided(int releaseid);
+    List<String> selectPlans();
+    Release findReleaseById(int releaseid);
+    List<Integer> selectNullResult();
+
+    int updateIfDivided(int releaseid,String ifDivided);
+
+
 }

@@ -1,11 +1,11 @@
 package com.wx.assigntask.dao;
 
 import com.wx.assigntask.entity.Divided;
+import com.wx.assigntask.entity.Subtask;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
 @Mapper
 @Repository
 public interface DividedMapper {
@@ -48,4 +48,23 @@ public interface DividedMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Divided record);
+
+    /**
+     * 插入算法分组
+     */
+    int insertDivided(Divided divided);
+
+    int updataDivided(String ifdivided,int dividedId);
+    int updateScore1(Divided divided);
+    int updateScore2(Divided divided);
+    void updateOrdered(Divided divided);
+
+    String findIfDivided(int dividedId);
+    List<Integer> selectNullScore1();//查询score1为空的dividedid
+    List<Integer> selectNullScore2();//查询score2为空的dividedid
+    List<Integer> selectNullOrdered();//查询无序的divideid，针对算法内排序
+    List<Integer> selectNullWinScore();//获取divided表中winscore=null的record
+    List<Divided> selectByReleaseAlgs(Divided divided);
+    int selectSumScore1(Divided divided);//根据releaseid、algname1、algname2查询
+    int selectSumScore2(Divided divided);
 }

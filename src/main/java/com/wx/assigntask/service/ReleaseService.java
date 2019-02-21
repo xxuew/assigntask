@@ -13,9 +13,18 @@ import java.util.List;
 @Repository
 public interface ReleaseService {
 
-    public List finAlgsByInputName(String inputName);
+//    public List finAlgsByInputName(String inputName);
+//
+//    public void updateDivided(String divided,String inputName,String algName);
+//
+//    public String findDivided(String inputName,String algName);
+    int insertRelease(Release release);
 
-    public void updateDivided(String divided,String inputName,String algName);
+    String findDivided(int id);
 
-    public String findDivided(String inputName,String algName);
+    public void updateIfDivided(int releaseid,String ifDivided);
+
+  //  public void assignTaskToUser();
+
+
 }

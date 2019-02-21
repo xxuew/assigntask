@@ -15,5 +15,7 @@ public interface UserTaskService {
     public void assignTaskToU(int userId,int taskId);
 
     public List findByUserId(int userId);
+    public int selectAveScore1(int taskid);
+    public int selectAveScore2(int taskid);
 
 }

@@ -1,12 +1,8 @@
 use assigntask;
-
-DROP TABLE IF EXISTS `plan`;
+drop table if exists `plan`;
 CREATE TABLE `plan` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `plan_name` varchar(255) DEFAULT NULL,
-  `pla_describe` varchar(255) DEFAULT NULL,
-  `predict_workernum` varchar(255) DEFAULT NULL,
-
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
-
+  `planId` int(11) NOT NULL AUTO_INCREMENT,
+  `planname` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`planId`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+set @auto_increment_increment = 1;

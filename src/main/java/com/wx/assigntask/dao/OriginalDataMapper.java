@@ -48,4 +48,7 @@ public interface OriginalDataMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(OriginalData record);
+
+    OriginalData selectAllItemDes(int id);
+    OriginalData selectAllItemsNames(int id);
 }

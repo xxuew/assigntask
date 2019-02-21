@@ -24,10 +24,12 @@ public interface UserMapper {
      */
     List<User> selectAll();
 
-    /**
-     * 通过用户名查询
-     * @param username
-     * @return
-     */
     User findUserByUserName(String username);
+
+    User findUserById(int userid);
+
+    List<User> selectAllByTasking();
+    List selectAllIdByTasking();
+
+    int updateTaking (int userId,int tasking);
 }

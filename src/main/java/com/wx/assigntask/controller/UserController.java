@@ -1,13 +1,13 @@
 package com.wx.assigntask.controller;
 
-
 import com.wx.assigntask.comment.ItemList;
 import com.wx.assigntask.dao.DividedMapper;
 import com.wx.assigntask.dao.OriginalDataMapper;
 import com.wx.assigntask.dao.ReleaseMapper;
-import com.wx.assigntask.dao.SubtaskMapper;
 import com.wx.assigntask.entity.OriginalData;
+import com.wx.assigntask.entity.Release;
 import com.wx.assigntask.entity.User;
+import com.wx.assigntask.service.*;
 import com.wx.assigntask.service.OriginalDataService;
 import com.wx.assigntask.service.ReleaseService;
 import com.wx.assigntask.service.SubTaskService;
@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -53,12 +55,6 @@ public class UserController {
     @Autowired
     OriginalDataService originalDataService;
 
-    @RequestMapping(value = "/login")
-    public String login(){
-
-        return "user/login";
-    }
-
     @PostMapping("loginjudge")
     @ResponseBody
     public String loginJudge(HttpServletRequest request,String username,String password){
@@ -77,30 +73,34 @@ public class UserController {
     }
 
     @RequestMapping(value = "/home")
-    public String home( HttpServletRequest request){
+    public String home( HttpSession httpSession){
 //        User user = (User) httpSession.getAttribute("currentUser");
 //        request.setAttribute("userInfo",user);
-        String username = request.getParameter("username");
-        System.out.println(username+"看看有啥");
         return "user/home";
     }
 
-    //返回数据库数据传给jsp
     @RequestMapping(value = "/myreleasetask")
     public String releaseInfo(){
-
+            //TODO
+            // 这里写死了
+//            Release release = new Release();
+//            release.setPlan("两两对比排除");
+//            //release.setPlan("先纵再横，算法内排序");
+//            release.setAlgnames("lstm,nn,cnn,tfidf,doc,index");
+//            int releaseId = releaseService.insertRelease(release); //发布即插入
+//            if (releaseId == -1)
+//                return "user/myreleasetask";
+//            else {
+//                //如果该方案未分派则生成方案分派
+//                subTaskService.geneSubTask(releaseId);
+//                return  "user/myreleasetask";
+//            }
 
         return  "user/myreleasetask";
+
     }
 
-//        ReleaseTask releaseTask =releaseService.findReleaseById(1);
-//        request.setAttribute("releaseInfos",releaseTask);
-
-
-
-
-
-
+    //TODO DEV
     @RequestMapping(value = "/comment")
     public String common(Map<String, Object> map){
         List<OriginalData> lista;
@@ -130,7 +130,7 @@ public class UserController {
     }
 
 
-//    private OriginalDataMapper originalDataService;
+    //    private OriginalDataMapper originalDataService;
     @ResponseBody
     @RequestMapping(value="/results",method= RequestMethod.POST)
     public String results(HttpServletRequest request){
@@ -159,9 +159,6 @@ public class UserController {
 
         return "OK";
     }
-
-
-
 
 
 }

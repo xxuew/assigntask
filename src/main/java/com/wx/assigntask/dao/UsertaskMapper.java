@@ -1,11 +1,11 @@
 package com.wx.assigntask.dao;
 
+import com.wx.assigntask.entity.User;
 import com.wx.assigntask.entity.Usertask;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
 @Mapper
 @Repository
 public interface UsertaskMapper {
@@ -24,4 +24,15 @@ public interface UsertaskMapper {
      * @mbg.generated
      */
     List<Usertask> selectAll();
+
+    User findUserByUserName(String username);
+
+    List findByUserId(int userId);
+
+    void assignTaskToU(int userId,int taskId);
+
+    int insertSubTask(Usertask usertask);
+
+    int selectAveScore1(Usertask usertask);
+    int selectAveScore2(Usertask usertask);
 }
