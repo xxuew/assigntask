@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Release</title>
+    <link rel="stylesheet" href="/lib/bootstrap-3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="lib/bootstrap-3.3.7/css/bootstrap-theme.min.css"/>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="lib/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/layui.js"></script>
+    <script type="text/javascript" src="js/addrelease.js"></script>
+</head>
+<body>
+<!--导航栏-->
+<div th:include="head :: head"></div>
+<div class="center-block" style="width:300px;">
+    <h2>发布任务</h2>
+</div>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th>任务名称</th>
+            <td><input type="text" name="releasename" placeholder="任务名称" id="release_name"></td>
+        </tr>
+        <tr>
+            <th>选用方案</th>
+            <td>
+                <select id="release_plan">
+                    <option >两两对比排除</option>
+                    <option >先纵再横，算法内排序</option>
+                    <option >层次分析法</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>任务包含的算法名</th>
+            <td><input type="text" name="releasename" placeholder="任务包含的算法名" id="release_algs"></td>
+        </tr>
+        <tr>
+            <th>数据源SQL脚本文件
+                <!--<button id="addfile_again" type="button" style="margin-left: 20px">添加</button>-->
+            </th>
+            <td>
+                <input id="choosefile" type="file" name="choosefile" style='display:none' onchange="showmfnames()"  multiple /> <!--一次性上传多个文件-->
+                <button  type="button" id="upfile" onclick="$('input[id=choosefile]').click();">上传文件</button>
+                <div class="layui-col-md7" style='display:inline-block'>
+                    <!--<div class="layui-form-mid layui-word-aux">此处只是演示联动排版，并未做联动交互</div>-->
+                    <div class="row" id="file-ul">
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div align="center">
+        <input  type="button" value="确认发布" onclick="submitRelease()">
+    </div>
+</body>
+</html>

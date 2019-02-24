@@ -66,6 +66,4 @@ public interface ReleaseMapper {
     List<Integer> selectNullResult();
 
     int updateIfDivided(int releaseid,String ifDivided);
-
-
 }

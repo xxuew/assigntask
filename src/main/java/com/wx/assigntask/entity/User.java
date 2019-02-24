@@ -9,6 +9,7 @@ public class User {
     private int userid;
     private String username;
     private String password;
+
     private int tasking; //记录用户目前还未完成的subtask
 
     public int getUserid() {
@@ -42,4 +43,5 @@ public class User {
     public void setTasking(int tasking) {
         this.tasking = tasking;
     }
+
 }

@@ -85,9 +85,6 @@ public class WriteSql {
             ScriptRunner runner = new ScriptRunner(conn);
             runner.setAutoCommit(true);
 
-//            String fileName = String.format("src/main/resources/db/%s.sql", tableName);
-//            File file = new File(fileName);
-
             try {
                 if (file.getName().endsWith(".sql")) {
                     runner.setFullLineDelimiter(false);

@@ -18,13 +18,12 @@ public interface ReleaseService {
 //    public void updateDivided(String divided,String inputName,String algName);
 //
 //    public String findDivided(String inputName,String algName);
-    int insertRelease(Release release);
+    int insertRelease(int userid,String releasename,String plan,String algnames);
 
     String findDivided(int id);
 
+    Release selectById(int releaseid);
+
     public void updateIfDivided(int releaseid,String ifDivided);
-
-  //  public void assignTaskToUser();
-
 
 }

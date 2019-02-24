@@ -16,6 +16,7 @@
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="lib/bootstrap-3.3.7/js/bootstrap.min.js"></script>
     <script src="js/user.js"></script>
+    <script src="js/login.js"></script>
    <!--这一句的作用是引用头部导航栏，HTML里对应的是iframe标签
     <jsp:include page="../head.jsp"></jsp:include>
     -->
@@ -53,10 +54,6 @@
             </ul>
         </div>
 
-
-
-
-
     <div class="cont_login">
       <div class="cont_forms" >
         <div class="cont_img_back_"> <img src="img/po.jpg" alt="" /> </div>
@@ -82,30 +79,33 @@
     </div>
   </div>
 </div>
+<!--导航栏-->
+<div th:include="head :: head"></div>
 
-<form id = "userInfo" action="">
-    <table class="table table-striped">
+<table class="table table-striped">
+    <div class="row">
         <div class="center-block" style="width:300px;">
             <h2>个人信息</h2>
         </div>
-        <thead>
-        <tr>
-            <th>用户ID</th>
-            <th>用户名</th>
-            <th>发布的任务ID</th>
-            <!--   <th>接收的任务</th> -->
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>tets</td>
-            <td>test</td>
-            <td>test</td>
-            <!--  <td><%=user.getReceiveId()%></td> -->
-        </tr>
-        </tbody>
-    </table>
-</form>
+    </div>
+
+    <thead>
+    <tr>
+        <th>用户ID</th>
+        <th>用户名</th>
+        <th>发布的任务ID</th>
+        <!--   <th>接收的任务</th> -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td id="userid"></td>
+        <td id="username"></td>
+        <td id="releasedId"></td>
+        <!--  <td><%=user.getReceiveId()%></td> -->
+    </tr>
+    </tbody>
+</table>
 
 
 <script>
@@ -134,31 +134,5 @@
 	});
 </script>
 
-
-    <!--导航栏-->
-    <div th:include="head :: head"></div>
-    <form id = "userInfo" action="">
-        <table class="table table-striped">
-            <div class="center-block" style="width:300px;">
-                <h2>个人信息</h2>
-            </div>
-            <thead>
-            <tr>
-                <th>用户ID</th>
-                <th>用户名</th>
-                <th>发布的任务ID</th>
-                <!--   <th>接收的任务</th> -->
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>tets</td>
-                <td>test</td>
-                <td>test</td>
-                <!--  <td><%=user.getReceiveId()%></td> -->
-            </tr>
-            </tbody>
-        </table>
-    </form>
 </body>
 </html>

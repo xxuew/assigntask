@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8 "/>
     <link rel="stylesheet" href="/lib/bootstrap-3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="lib/bootstrap-3.3.7/css/bootstrap-theme.min.css"/>
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="lib/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/user.js"></script>
+    <script src="js/my_release.js"></script>
+    <!--<script src="js/login.js"></script> -->
+
+   <!-- <script type="text/javascript" src="js/addrelease.js"></script> -->
    <!--
     <jsp:include page="../head.jsp"></jsp:include>
     -->
@@ -19,7 +23,7 @@
         <div class="row">
             <div class="center-block" style="width:300px;">
                 <h2>我发布的任务
-                    <button id="addReleaseTask" class = "btn btn-primary" type= "submit" conclick="addRelease()">发布任务</button>
+                    <button id="addReleaseTask" class = "btn btn-primary" type= "submit" onclick="javascritpt:window.location.href='/addrelease'">发布任务</button>
                 </h2>
             </div>
         </div>
@@ -27,17 +31,19 @@
         <tr>
             <th>任务ID</th>
             <th>任务名称</th>
-            <th>任务进度</th>
             <th>选取方案</th>
+            <th>任务进度</th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+        <tbody id="releasedInfo">
+        <!--
+        <tr >
+             <td id="releaseid"></td>
+             <td id="releasename"></td>
+             <td id="plan"></td>
+             <td id="taskprogress"></td>
         </tr>
+        -->
         </tbody>
     </table>
 </body>

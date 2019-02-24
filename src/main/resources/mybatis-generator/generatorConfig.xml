@@ -91,9 +91,10 @@
 
             <generatedKey column="inputName" sqlStatement="Mysql" identity="true" />
         </table>
+
         <table schema="assigntask" tableName="release"
                enableCountByExample="false"
-               enableUpdateByExample="true"
+               enableUpdateByExample="false"
                enableDeleteByExample="true"
                enableSelectByExample="true"
                selectByExampleQueryId="true">
@@ -101,6 +102,7 @@
 
             <generatedKey column="releaseId" sqlStatement="Mysql" identity="true" />
         </table>
+
         <table schema="assigntask" tableName="subdata"
                enableCountByExample="false"
                enableUpdateByExample="true"
@@ -138,7 +140,7 @@
     -->
 
         <!--
-        <table schema="assigntask" tableName="usertask"
+        <table schema="assigntask" tableName="userreceive"
                enableCountByExample="false"
                enableUpdateByExample="true"
                enableDeleteByExample="true"
@@ -169,7 +171,7 @@
         <generatedKey column="userId" sqlStatement="Mysql" identity="true" />
     </table>
     -->
-
+<!--
     <table schema="assigntask" tableName="algresult"
            enableCountByExample="false"
            enableUpdateByExample="false"
@@ -177,10 +179,11 @@
            enableSelectByExample="false"
            selectByExampleQueryId="false">
         <property name="useActualColumnNames" value="false" />
-        <!-- 数据库表主键 -->
+
         <generatedKey column="id" sqlStatement="Mysql" identity="true" />
     </table>
-
+    -->
+<!--
         <table schema="assigntask" tableName="original_data"
                enableCountByExample="false"
                enableUpdateByExample="true"
@@ -190,5 +193,23 @@
             <property name="useActualColumnNames" value="false" />
         </table>
 
+        <table schema="assigntask" tableName="userrelease"
+               enableCountByExample="false"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false" />
+        </table>
+        -->
+
+        <table schema="assigntask" tableName="myreceive"
+               enableCountByExample="false"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false" />
+        </table>
     </context>
 </generatorConfiguration>

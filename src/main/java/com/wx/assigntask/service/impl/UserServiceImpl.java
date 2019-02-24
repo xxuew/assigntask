@@ -76,4 +76,5 @@ public class UserServiceImpl implements UserService {
         }
         else userMapper.updateTaking(userid,tasking+1);
     }
+
 }

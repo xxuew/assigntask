@@ -7,3 +7,5 @@ CREATE TABLE `user` (
   PRIMARY KEY (`userId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 set @auto_increment_increment = 1;
+insert into assigntask.user (username,password) values("root","123456");
+select * from assigntask.user;

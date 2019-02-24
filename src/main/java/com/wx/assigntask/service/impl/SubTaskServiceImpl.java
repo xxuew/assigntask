@@ -24,7 +24,7 @@ public class SubTaskServiceImpl implements SubTaskService {
     @Autowired
     UserService userService;
     @Autowired
-    UserTaskService userTaskService;
+    UserReceiveService userReceiveService;
     @Autowired
     OrderListService orderListService;
     @Autowired
@@ -35,6 +35,8 @@ public class SubTaskServiceImpl implements SubTaskService {
     RecommandService recommandService;
     @Autowired
     AlgResultService algResultService;
+    @Autowired
+    MyReceiveService myReceiveService;
 
     @Autowired
     AlgresultMapper algresultMapper;
@@ -43,7 +45,7 @@ public class SubTaskServiceImpl implements SubTaskService {
     @Autowired
     UserMapper userMapper;
     @Autowired
-    UsertaskMapper usertaskMapper;
+    UserreceiveMapper userreceiveMapper;
     @Autowired
     ReleaseMapper releaseMapper;
     @Autowired
@@ -347,13 +349,13 @@ public class SubTaskServiceImpl implements SubTaskService {
         for (int i=0;i<nullScore1Ids.size();i++){
             int subtaskid = nullScore1Ids.get(i);
             Divided divided = dividedMapper.selectByPrimaryKey(subtaskMapper.selectByPrimaryKey(subtaskid).getDividedid());
-            int score1 = userTaskService.selectAveScore1(subtaskid);//根据subtaskid从usertask表获取score平均值
+            int score1 = userReceiveService.selectAveScore1(subtaskid);//根据subtaskid从usertask表获取score平均值
             updateScore1(score1,subtaskid,plan,divided.getAlgname1(),divided.getAlgname2());
         }
         for (int i=0;i<nullScore2Ids.size();i++){
             int subtaskid = nullScore2Ids.get(i);
             Divided divided = dividedMapper.selectByPrimaryKey(subtaskMapper.selectByPrimaryKey(subtaskid).getDividedid());
-            int score2 = userTaskService.selectAveScore2(subtaskid);//从usertask表获取score平均值
+            int score2 = userReceiveService.selectAveScore2(subtaskid);//从usertask表获取score平均值
             updateScore2(score2,subtaskid,plan,divided.getAlgname1(),divided.getAlgname2());
         }
     }
@@ -386,12 +388,12 @@ public class SubTaskServiceImpl implements SubTaskService {
 
         for (int i=0;i<nullScore1Ids.size();i++){
             int subtaskid = nullScore1Ids.get(i);
-            int score1 = userTaskService.selectAveScore1(subtaskid);//根据subtaskid从usertask表获取score平均值
+            int score1 = userReceiveService.selectAveScore1(subtaskid);//根据subtaskid从usertask表获取score平均值
             updateScore1(score1,subtaskid,plan,algName1,algName2);
         }
         for (int i=0;i<nullScore2Ids.size();i++){
             int subtaskid = nullScore2Ids.get(i);
-            int score2 = userTaskService.selectAveScore2(subtaskid);//从usertask表获取score平均值
+            int score2 = userReceiveService.selectAveScore2(subtaskid);//从usertask表获取score平均值
             updateScore2(score2,subtaskid,plan,algName1,algName2);
         }
     }
@@ -665,8 +667,9 @@ public class SubTaskServiceImpl implements SubTaskService {
             int taskCount = 0;//记录subtask的移动
             while (userCount < userIDs.size() && taskCount < subtasks.size()) {
                 //分配任务插入对应的usertask表
-                Usertask usertask = new Usertask();
+                Userreceive userreceive = new Userreceive();
                 int userId = userIDs.get(userCount);
+                List<Integer> userOnceJob = new ArrayList<>(); //存储用户一次任务，即10个subtask一组，不足10个仍为一组
                 while (userMapper.findUserById(userId).getTasking() >= 3) {
                     // 判断当前用户的tasking是否小于3selectAllSubTask(plan,algNum);
                     userCount++;
@@ -704,10 +707,11 @@ public class SubTaskServiceImpl implements SubTaskService {
 //                                }
                     }
                     int subTaskId = subtask.getSubtaskid();
-                    usertask.setUserid(userId);
-                    usertask.setTaskid(subTaskId);
-                    usertask.setDividedid(dividedid);
-                    usertaskMapper.insertSubTask(usertask);
+                    userOnceJob.add(subTaskId);
+                    userreceive.setUserid(userId);
+                    userreceive.setTaskid(subTaskId);
+                    userreceive.setDividedid(dividedid);
+                    userreceiveMapper.insertSubTask(userreceive);
                     userTaskCount++;
                     subtask.setFrequency(subtask.getFrequency() + 1);//修改subtask的frequency
                     updateFre(plan, algName1, algName2, subtask);
@@ -718,6 +722,7 @@ public class SubTaskServiceImpl implements SubTaskService {
                 }
                 if (userTaskCount == 0) break;  //userTaskCount=10，说明已经不分配任务了
                 else if (userTaskCount <= 10) {
+                    myReceiveService.insertRecord(userOnceJob,userId,dividedid); //插入一个用户的一次任务（10个subtask）
                     userMapper.updateTaking(userId, userMapper.findUserById(userId).getTasking() + 1);//用户目前任务+1
                     if (userCount + 1 > userIDs.size() && taskCount < subtasks.size()) {
                         //当用户都分配过一次，subtask还没分配完，就将用户从头再分配一次

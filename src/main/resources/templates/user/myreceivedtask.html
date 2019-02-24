@@ -5,6 +5,8 @@
     <jsp:include page="../head.jsp"></jsp:include>
     -->
     <title>接收的任务</title>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/my_receive.js"></script>
 </head>
 <body>
     <!--导航栏-->
@@ -18,19 +20,22 @@
         </div>
         <thead>
         <tr>
-            <th>任务ID</th>
-            <th>任务名称</th>
+            <th>序号</th>
+            <th>开始任务</th>
+            <th>任务状态</th>
             <!--   <th>开始任务</th> -->
         </tr>
         </thead>
-        <tbody>
+        <tbody id="receivedInfo">
+        <!--
         <c:forEach items="${taskList}" var="item" varStatus="vs">
             <tr>
                 <td>${item.subtask_id}</td>
                 <td></td>
-                <!--   <td><button id="addReleaseTask" class = "btn btn-primary" type= "submit">开始任务</button></td> -->
+                <td><button id="addReleaseTask" class = "btn btn-primary" type= "submit">开始任务</button></td>
             </tr>
         </c:forEach>
+        -->
         </tbody>
     </table>
 </body>

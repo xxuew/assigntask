@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.lang.String;
 
-import java.util.List;
-
 /**
  * @Author: wx
  * @Date: 2018/12/7 18:30
@@ -23,7 +21,7 @@ public class ReleaseServiceImpl implements ReleaseService {
     ReleaseMapper releaseMapper;
 
     @Autowired
-    UsertaskMapper usertaskMapper;
+    UserreceiveMapper userreceiveMapper;
     @Autowired
     SubtaskMapper subtaskMapper;
     @Autowired
@@ -54,19 +52,16 @@ public class ReleaseServiceImpl implements ReleaseService {
     }
 
     @Override
-    public int insertRelease(Release release) {
-        List<String> plans = releaseMapper.selectPlans();
-        //TODO
-        //判断的很粗糙，需要改，可以结合发布者ID等因素来判断
-        if (plans.contains(release.getPlan()))
-        {
-            return -1;
-        }
-        else {
-            releaseMapper.insertRelease(release);
-            int id = release.getReleaseid();
-            return id;
-        }
+    public int insertRelease(int userid,String releasename,String plan,String algnames) {
+        Release release = new Release();
+        release.setUserid(userid);
+        release.setReleasename(releasename);
+        release.setPlan(plan);
+        release.setAlgnames(algnames);
+        releaseMapper.insertRelease(release);
+        int id = release.getReleaseid();
+        return id;
+
     }
 
     @Override
@@ -75,5 +70,9 @@ public class ReleaseServiceImpl implements ReleaseService {
         return ifDivided;
     }
 
-
+    @Override
+    public Release selectById(int releaseid) {
+        Release release = releaseMapper.selectById(releaseid);
+        return release;
+    }
 }
