@@ -6,6 +6,7 @@ import com.wx.assigntask.dao.*;
 import com.wx.assigntask.entity.*;
 import com.wx.assigntask.service.*;
 import com.wx.assigntask.subtask.BuildTask;
+import com.wx.assigntask.tools.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,20 +51,10 @@ public class SubTaskServiceImpl implements SubTaskService {
     ReleaseMapper releaseMapper;
     @Autowired
     DividedMapper dividedMapper;
+    @Autowired
+    Constant constant;
 
-
-//    @Override
-//    public SubTask findSubBySubId(int id) {
-//        SubTask subTask = subTaskDao.findSubBySubId(id);
-//        return subTask;
-//    }
-
-//TODO DEV
-    @Override
-    public Subtask findSubBySubId(int id) {
-        return null;
-    }
-
+    //TODO DEV
     @Override
 //    将两种算法的十个item两两配对
     public List<ItemList> insertSubTask(List<OriginalData> originalData) {
@@ -107,10 +98,6 @@ public class SubTaskServiceImpl implements SubTaskService {
         return list;
     }
 
-    @Override
-    public Subtask selectByPrimaryKey(int id) {
-        return null;
-    }
 //TODO DEV
 
     @Override
@@ -179,6 +166,7 @@ public class SubTaskServiceImpl implements SubTaskService {
     @Override
     public Subtask selectSubBySubId(int subtaskid,int plan,String algName1,String algName2) {
         Subtask subtask = new Subtask();
+
         if (plan == 1){
             if (algName1.equals("lstm")&&algName2.equals("nn")) {
                 //algNum=0对应lstm和nn对比
@@ -201,6 +189,51 @@ public class SubTaskServiceImpl implements SubTaskService {
             subtask = subtaskMapper.selectSubtaskBySubid(subtaskid);
         }
         return subtask;
+    }
+
+    /**
+     * 根据myreceive的subtask_1--subtask_10查询
+     * @param myreceive
+     * @return
+     */
+    @Override
+    public List<Subtask> selectSubBySubId(Myreceive myreceive) {
+
+            Divided divided = dividedMapper.selectByPrimaryKey(myreceive.getDividedid());
+            String algName1 = divided.getAlgname1(); //对比的算法1名称
+            String algName2 = divided.getAlgname2(); //对比的算法2名称
+            Release release = releaseMapper.selectById(divided.getReleaseid());
+            int plan = 0;
+            if (release.getPlan().equals(constant.getPLAN1())) {
+                plan = 1;
+            } else if (release.getPlan().equals(constant.getPLAN2())) {
+                plan = 2;
+            } else if (release.getPlan().equals(constant.getPLAN3())) {
+                plan = 3;
+            }
+            List<Subtask> subtasks = new ArrayList<>();
+            for (int j=1;j<=10;j++){
+                //todo 可以list嵌套list,list里再放对象吗，比如List<List> list;list.add(subtask)
+                Subtask subtask = new Subtask();
+                switch (j){
+                    case 1:subtask = selectSubBySubId(myreceive.getSubtaskid_1(),plan,algName1,algName2);break;
+                    case 2:subtask = selectSubBySubId(myreceive.getSubtaskid_2(),plan,algName1,algName2);break;
+                    case 3:subtask = selectSubBySubId(myreceive.getSubtaskid_3(),plan,algName1,algName2);break;
+                    case 4:subtask = selectSubBySubId(myreceive.getSubtaskid_4(),plan,algName1,algName2);break;
+                    case 5:subtask = selectSubBySubId(myreceive.getSubtaskid_5(),plan,algName1,algName2);break;
+                    case 6:subtask = selectSubBySubId(myreceive.getSubtaskid_6(),plan,algName1,algName2);break;
+                    case 7:subtask = selectSubBySubId(myreceive.getSubtaskid_7(),plan,algName1,algName2);break;
+                    case 8:subtask = selectSubBySubId(myreceive.getSubtaskid_8(),plan,algName1,algName2);break;
+                    case 9:subtask = selectSubBySubId(myreceive.getSubtaskid_9(),plan,algName1,algName2);break;
+                    case 10:subtask = selectSubBySubId(myreceive.getSubtaskid_10(),plan,algName1,algName2);break;
+                }
+                if (subtask == null) {
+                    break; //如果该subtask已为空，则说明用户该组任务不足十个，break
+                }
+                subtasks.add(subtask);
+            }
+
+        return subtasks;
     }
 
     @Override
@@ -427,7 +460,7 @@ public class SubTaskServiceImpl implements SubTaskService {
             List inputs = recommandService.selectAll(releaseId);
 
             List algs = algs(); //6种算法名,针对每次input都要进行6种算法的划分以及生成subtask
-            if (release.getPlan().equals("两两对比排除")){
+            if (release.getPlan().equals(constant.getPLAN1())){
                 int plan = 1;
                 while (algs.size()>0){
                     //六个算法比五次
@@ -435,7 +468,7 @@ public class SubTaskServiceImpl implements SubTaskService {
                     algs = algResultService.selectNoFinalAlg(releaseId,plan); //获取上一轮胜出的algname
                 }
             }
-            else if (release.getPlan().equals("先纵再横，算法内排序")){
+            else if (release.getPlan().equals(constant.getPLAN2())){
                 int plan = 2;
                 dividedPlan2(plan,algs,inputs,releaseId); //算法内部排序subtask生成分配
                 handleSubtaskData(plan);
@@ -670,7 +703,7 @@ public class SubTaskServiceImpl implements SubTaskService {
                 Userreceive userreceive = new Userreceive();
                 int userId = userIDs.get(userCount);
                 List<Integer> userOnceJob = new ArrayList<>(); //存储用户一次任务，即10个subtask一组，不足10个仍为一组
-                while (userMapper.findUserById(userId).getTasking() >= 3) {
+                while (userMapper.findUserById(userId).getTasking() >= constant.getUSER_TASKING()) {
                     // 判断当前用户的tasking是否小于3selectAllSubTask(plan,algNum);
                     userCount++;
                     if (userCount >= userIDs.size()) {
@@ -684,7 +717,7 @@ public class SubTaskServiceImpl implements SubTaskService {
                 for (int i = 0; i < 10; i++) {
                     //先保证每个用户分到了10个subtask
                     Subtask subtask = subtasks.get(taskCount);
-                    if (subtask.getFrequency() >= 5) {
+                    if (subtask.getFrequency() >= constant.getSUBTASK_FRE()) {
                         //TODO
                         //最先进来的应该是random=0的subtask，若random=0的fre=5，说明剩下的都达到了5，直接break
                         if (taskCount == 0) break;
@@ -707,11 +740,11 @@ public class SubTaskServiceImpl implements SubTaskService {
 //                                }
                     }
                     int subTaskId = subtask.getSubtaskid();
-                    userOnceJob.add(subTaskId);
                     userreceive.setUserid(userId);
                     userreceive.setTaskid(subTaskId);
                     userreceive.setDividedid(dividedid);
                     userreceiveMapper.insertSubTask(userreceive);
+                    userOnceJob.add(subTaskId);
                     userTaskCount++;
                     subtask.setFrequency(subtask.getFrequency() + 1);//修改subtask的frequency
                     updateFre(plan, algName1, algName2, subtask);

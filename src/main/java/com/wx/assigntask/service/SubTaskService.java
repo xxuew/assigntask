@@ -1,6 +1,7 @@
 package com.wx.assigntask.service;
 
 import com.wx.assigntask.comment.ItemList;
+import com.wx.assigntask.entity.Myreceive;
 import com.wx.assigntask.entity.OriginalData;
 import com.wx.assigntask.entity.Subtask;
 import org.springframework.stereotype.Repository;
@@ -15,16 +16,39 @@ import java.util.Random;
  */
 @Repository
 public interface SubTaskService {
-    public Subtask findSubBySubId(int id);
-    public List<ItemList> insertSubTask(List<OriginalData> originalData);
 
-    public Subtask selectByPrimaryKey(int id);
+    //todo delete
+     List<ItemList> insertSubTask(List<OriginalData> originalData);
 
     int insertSubTask(int plan,String algName1,String algName2, int dividedId, String itemName1, String itemDes1, String itemName2, String itemDes2);
 
+    /**
+     * 根据subtask数量生成不重复的随机数
+     * @param total
+     * @return
+     */
     int[] getNumber(int total);
     List<Subtask> selectAllSubTask(int plan,String algName1,String algName2);
+
+    /**
+     * 通过subtaskid查询
+     * @param subtaskid
+     * @param plan
+     * @param algName1
+     * @param algName2
+     * @return
+     */
     Subtask selectSubBySubId(int subtaskid,int plan,String algName1,String algName2);
+    /**
+     * 通过myreceive的subtask_1--subtask_10查询
+     * @param myreceives
+     * @return
+     */
+    List<Subtask> selectSubBySubId(Myreceive myreceives);
+
+    /**
+     * 生成任务
+     */
     void geneSubTask(int releaseId);
     int selectSumScore1 (int dividedid,int plan,String algName1,String algName2);
     int selectSumScore2(int dividedid,int plan,String algName1,String algName2);

@@ -57,7 +57,7 @@ public class UserController {
     }
 
     //TODO DEV
-    @RequestMapping(value = "/comment")
+    @RequestMapping(value = "/commentOriginal")
     public String common(Map<String, Object> map){
         List<OriginalData> lista;
         List<ItemList> a;
@@ -82,7 +82,7 @@ public class UserController {
 
 
 
-        return "commentOriginal";
+        return "user/commentOriginal";
     }
 
 

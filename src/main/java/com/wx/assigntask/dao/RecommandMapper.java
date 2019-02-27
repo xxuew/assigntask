@@ -26,24 +26,30 @@ public interface RecommandMapper {
     List<Recommand> selectAllLstm();
     Recommand selectAllLstmItemsNames(int id);
     Recommand selectAllLstmItemDes(int id);
+    Recommand selectLstmInputById(int id);
 
     List<Recommand> selectAllNn();
     Recommand selectAllNnItemsNames(int id);
     Recommand selectAllNnItemDes(int id);
+    Recommand selectNnInputById(int id);
 
     List<Recommand> selectAllCnn();
     Recommand selectAllCnnItemsNames(int id);
     Recommand selectAllCnnItemDes(int id);
+    Recommand selectCnnInputById(int id);
 
     List<Recommand> selectAllTfidf();
     Recommand selectAllTfiItemsNames(int id);
     Recommand selectAllTfiItemDes(int id);
+    Recommand selectTfiInputById(int id);
 
     List<Recommand> selectAllDoc();
     Recommand selectAllDocItemsNames(int id);
     Recommand selectAllDocItemDes(int id);
+    Recommand selectDocInputById(int id);
 
     List<Recommand> selectAllIndex();
     Recommand selectAllIndexItemsNames(int id);
     Recommand selectAllIndexItemDes(int id);
+    Recommand selectIndexInputById(int id);
 }

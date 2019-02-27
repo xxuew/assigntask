@@ -85,14 +85,15 @@
   <select id="findDivided" resultType="String">
     select ifdivided from `release` where releaseId = #{releaseid}
   </select>
-
-  <update id="updateIfDivided" parameterType="com.wx.assigntask.entity.Release">
-    update `release` set ifdivided = #{param2} where releaseid = #{param1}
-  </update>
- <select id="selectPlans" resultType="String">
+  <select id="selectPlans" resultType="String">
    select plan from `release`
  </select>
   <select id="findReleaseById" resultType="com.wx.assigntask.entity.Release">
     select * from `release` where releaseid = #{releaseid}
   </select>
+
+  <update id="updateIfDivided" parameterType="com.wx.assigntask.entity.Release">
+    update `release` set ifdivided = #{param2} where releaseid = #{param1}
+  </update>
+
 </mapper>

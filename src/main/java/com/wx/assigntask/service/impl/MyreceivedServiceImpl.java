@@ -45,4 +45,13 @@ public class MyreceivedServiceImpl implements MyReceiveService {
         List<Myreceive> myreceives = myreceiveMapper.selectByUser(userid);
         return myreceives;
     }
+
+    @Override
+    public Myreceive selectByUser(int userid,int count) {
+        List<Myreceive> myreceives = myreceiveMapper.selectByUser(userid);
+        if (count<=myreceives.size()){
+            return myreceives.get(count-1);
+        }
+        else return null;
+    }
 }

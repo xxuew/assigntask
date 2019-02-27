@@ -18,4 +18,5 @@ import java.util.List;
 public interface MyReceiveService {
     void insertRecord(List<Integer> subtaskids,int userid,int divided);
     List<Myreceive> selectByUser(int userid);
+    Myreceive selectByUser(int userid,int count);
 }

@@ -46,4 +46,17 @@ public class UserReceiveServiceImpl implements UserReceiveService {
         List<Integer> releaseids = userreceiveMapper.selectReleaseIdByUser(userid);
         return releaseids;
     }
+
+    @Override
+    public void updateScore(int dividedid, int userid, int subtaskid,int score1,int score2) {
+        Userreceive userreceive = new Userreceive();
+        userreceive.setScore1(score1);
+        userreceive.setScore2(score2);
+        userreceive.setDividedid(dividedid);
+        userreceive.setUserid(userid);
+        userreceive.setTaskid(subtaskid);
+
+        userreceiveMapper.updateScore(userreceive);
+    }
+
 }

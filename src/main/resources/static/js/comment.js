@@ -133,12 +133,128 @@ var init={
 
 }
 
-// var rangeList = document.querySelectorAll('input[type="range"]');
-// for(var i=0;i<rangeList.length;i++){
-//     var range = rangeList[i];
-//     range.onchange = function () {
-//         //修改后面span中的内容
-//         this.nextElementSibling.innerHTML = this.value;
-//     }
-//
-// }
+$(function () {
+    $.ajax({
+        type:"get",
+        url:"/loginInfo",
+        traditional: true,
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        dataType:"json",
+        success:function (userInfo) {
+            var data = {
+                userid:userInfo.userid,
+                queryString:location.search
+            }
+            console.log(userInfo);
+            $.ajax({
+                type:"get",
+                url:"/commentInfo",
+                dataType:"json",
+                data:data,
+                success:function (commentInfos) {
+                    console.log(commentInfos);
+                    var input = commentInfos.input; //inputname、inputdes
+                    var subtasks = commentInfos.subtasks;
+                    console.log("input: " + input);
+                    console.log("subtasks: " + subtasks);
+                    var subtaskArr = [];
+                    for (var i = 0;i<subtasks.length;i++){
+                        var subtask = subtasks[i];
+                        var count = i+1;
+                        subtaskArr.push(subtask);
+                        var inputnameid = "#"+"inputname"+count;
+                        $(inputnameid).append(input.inputname);
+
+                        var inputdesid = "#"+"inputdes"+count;
+                        $(inputdesid).append(input.inputdes);
+
+                        var nameid_a = "#"+"subtaskname"+count+"_a";
+                        $(nameid_a).append(subtask.itemname1);
+
+                        var desid_a = "#"+"subtaskdes"+count+"_a";
+                        $(desid_a).append(subtask.itemdes1);
+
+                        var nameid_b = "#"+"subtaskname"+count+"_b";
+                        $(nameid_b).append(subtask.itemname2);
+
+                        var desid_b = "#"+"subtaskdes"+count+"_b";
+                        $(desid_b).append(subtask.itemdes2);
+                    }
+                    $("#comment_submit").click(function () {
+                        insertCommentRes(subtaskArr);
+                    })
+
+                    // var comment_html = "";
+                    //
+                    // for (var i = 0; i < subtasks.length; i++) {
+                    //     var count = i+1;
+                    //     var input_html = "<div class='input'>" +
+                    //                         "<div class='step-item-header'>" +
+                    //                         "<span class='current-order'>" + count + "</span>/10</div>" +
+                    //                         "<li  class='item-name'>" + input.inputname + "</li>" +
+                    //                         "<li  class='item-des'>" + input.inputdes + "</li>" +
+                    //                     "</div>"
+                    //     var subtask = subtasks[i];
+                    //     console.log("subtask: " + subtask);
+                    //     //ids
+                    //     var itemname1 = "itemname1" +i;
+                    //     var itemname2 = "itemname2" +i;
+                    //     var range1 = "range1" + i;
+                    //     var range2 = "range2" + i;
+                    //     var score1 = "score1" + i;
+                    //     var score2 = "score2" + i;
+                    //     var subtask_html = "<div class='comment'>" +
+                    //                             "<div style='height:180px'>" +
+                    //                                 "<li  class='item-name'>" + subtask.itemname1 + "</li>" +
+                    //                                 "<li  class='item-des'>" + subtask.itemdes1 + "</li>" +
+                    //                                 "<input name = '"+itemname1+"' type='range' min =0 max =10  id='range'>" +
+                    //                                 "<span id='text'>" + 0 + "</span>" +
+                    //                         "</div>" +
+                    //                             "<div style='height:180px'> " +
+                    //                                 "<li  class='item-name'>" + subtask.itemname2 + "</li>" +
+                    //                                 "<li  class='item-des'>" + subtask.itemdes2 + "</li>" +
+                    //                                 "<input name = '"+itemname2+"' type='range' min =0 max =10 value =0 id='range'>" +
+                    //                                 "<span id='text'>" + 0 + "</span>" +
+                    //                             "</div>" +
+                    //                         "</div>"
+                    //     comment_html = comment_html +
+                    //                     "<div class='place_holder style='height:12%;width: 100%'>" + "</div>" +
+                    //                     "<div class='comment-container'>" +
+                    //                     "<ul border='1' >" +
+                    //                     input_html + subtask_html +
+                    //                     "</ul>" + "</div>" ;
+                    //
+                    // }
+                    // $("#commentItem").html(comment_html);
+                }
+            })
+
+        }
+    })
+})
+
+function insertCommentRes(subtasks){
+    $.ajax({
+        url:"/comment_result",
+        type:"post",
+        dataType:"text",
+       contentType:"application/json",
+       data:JSON.stringify(subtasks),
+        success:function (data) {
+            console.log(data);
+            if (data == "OK"){
+                alert("提交成功");
+                location.href = "/myreceivedtask";
+            }
+            else alert(data);
+        },
+        error:function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log("任务完成提交失败");
+            console.log(XMLHttpRequest.status);
+            console.log(XMLHttpRequest.readyState);
+            console.log(textStatus);
+
+        }
+    })
+
+}

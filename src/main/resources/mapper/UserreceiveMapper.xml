@@ -34,10 +34,6 @@
     select * from userreceive where userid = #{userid}
   </select>
 
-  <insert id="insertSubTask" parameterType="com.wx.assigntask.entity.Userreceive">
-    insert into userreceive (userid,dividedid,subtaskid) values (#{userid},#{dividedid},#{subtaskid})
-  </insert>
-
   <select id="selectAveScore1" resultType="int">
     select IFNULL(AVG(score1),0) as score1 from userreceive where subtaskid=#{subtaskid}
   </select>
@@ -47,4 +43,14 @@
   <select id="selectReleaseIdByUser" resultType="int">
     select releaseid from userreceive where userid = #{userid}
   </select>
+
+  <insert id="insertSubTask" parameterType="com.wx.assigntask.entity.Userreceive">
+    insert into userreceive (userid,dividedid,subtaskid) values (#{userid},#{dividedid},#{subtaskid})
+  </insert>
+
+  <update id="updateScore" parameterType="com.wx.assigntask.entity.Userreceive">
+    update userreceive set score1 = #{score1} ,score2 = #{score2}
+    where dividedid = #{dividedid} and userid = #{userid} and subtaskid = #{subtaskid}
+  </update>
+
 </mapper>

@@ -94,6 +94,25 @@
     insert into subtaskfinal_2 (dividedId,itemname1,itemDes1,itemname2,itemDes2) values (#{dividedid},#{itemname1},#{itemdes1},#{itemname2},#{itemdes2})
   </insert>
 
+  <select id="selectSubtaskBySubid" resultType="com.wx.assigntask.entity.Subtask">
+    select * from subtask where subtaskid = #{subtaskid}
+  </select>
+  <select id="selectLstmNnBySubid" resultType="com.wx.assigntask.entity.Subtask">
+    select * from subtask_lstm_nn where subtaskid = #{subtaskid}
+  </select>
+  <select id="selectCnnTfidfBySubid" resultType="com.wx.assigntask.entity.Subtask">
+    select * from subtask_cnn_tfidf where subtaskid = #{subtaskid}
+  </select>
+  <select id="selectDocIndexBySubid" resultType="com.wx.assigntask.entity.Subtask">
+    select * from subtask_doc_index where subtaskid = #{subtaskid}
+  </select>
+  <select id="selectFinal1BySubid" resultType="com.wx.assigntask.entity.Subtask">
+    select * from subtaskfinal_1 where subtaskid = #{subtaskid}
+  </select>
+  <select id="selectFinal2BySubid" resultType="com.wx.assigntask.entity.Subtask">
+    select * from subtaskfinal_2 where subtaskid = #{subtaskid}
+  </select>
+
   <select id="selectAllSubtask" resultType="com.wx.assigntask.entity.Subtask">
     select * from subtask where frequency &lt; 5 order by randomnum
   </select>

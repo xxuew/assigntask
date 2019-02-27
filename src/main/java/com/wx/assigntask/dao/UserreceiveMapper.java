@@ -29,9 +29,12 @@ public interface UserreceiveMapper {
 
     List<Userreceive> findByUserId(int userId);
 
-    int insertSubTask(Userreceive userreceive);
-
     int selectAveScore1(Userreceive userreceive);
     int selectAveScore2(Userreceive userreceive);
     List<Integer> selectReleaseIdByUser(int userid);
+
+    int insertSubTask(Userreceive userreceive);
+
+    void updateScore(Userreceive userreceive);
+
 }

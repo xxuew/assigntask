@@ -1,6 +1,5 @@
 package com.wx.assigntask.controller;
 
-import com.wx.assigntask.tools.Massage;
 import com.wx.assigntask.tools.WriteSql;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;

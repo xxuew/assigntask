@@ -78,6 +78,9 @@
     select id,inputdes,des1,des2,des3,des4,des5,des6,des7,des8,des9,des10
     from lstmrecommand where id = #{id}
   </select>
+  <select id="selectLstmInputById" resultType="com.wx.assigntask.entity.Recommand">
+    select inputname,inputdes from lstmrecommand where id = #{id}
+  </select>
 
   <select id="selectAllNn" resultType="com.wx.assigntask.entity.Recommand">
     select * from nnrecommand
@@ -89,6 +92,9 @@
   <select id="selectAllNnItemDes" resultType="com.wx.assigntask.entity.Recommand">
     select id,inputdes,des1,des2,des3,des4,des5,des6,des7,des8,des9,des10
     from nnrecommand where id = #{id}
+  </select>
+  <select id="selectNnInputById" resultType="com.wx.assigntask.entity.Recommand">
+    select inputname,inputdes from nnrecommand where id = #{id}
   </select>
 
   <select id="selectAllCnn" resultType="com.wx.assigntask.entity.Recommand">
@@ -102,6 +108,9 @@
     select id,inputdes,des1,des2,des3,des4,des5,des6,des7,des8,des9,des10
     from cnnrecommand where id = #{id}
   </select>
+  <select id="selectCnnInputById" resultType="com.wx.assigntask.entity.Recommand">
+    select inputname,inputdes from cnnrecommand where id = #{id}
+  </select>
 
   <select id="selectAllTfidf" resultType="com.wx.assigntask.entity.Recommand">
     select * from tfidfrecommand
@@ -113,6 +122,9 @@
   <select id="selectAllTfiItemDes" resultType="com.wx.assigntask.entity.Recommand">
     select id,inputdes,des1,des2,des3,des4,des5,des6,des7,des8,des9,des10
     from tfidfrecommand where id = #{id} <!--and releaseid = #{releaseid}-->
+  </select>
+  <select id="selectTfiInputById" resultType="com.wx.assigntask.entity.Recommand">
+    select inputname,inputdes from tfidfrecommand where id = #{id}
   </select>
 
   <select id="selectAllDoc" resultType="com.wx.assigntask.entity.Recommand">
@@ -126,6 +138,9 @@
     select id,inputdes,des1,des2,des3,des4,des5,des6,des7,des8,des9,des10
     from docrecommand where id = #{id} <!--and releaseid = #{releaseid}-->
   </select>
+  <select id="selectDocInputById" resultType="com.wx.assigntask.entity.Recommand">
+    select inputname,inputdes from docrecommand where id = #{id}
+  </select>
 
   <select id="selectAllIndex" resultType="com.wx.assigntask.entity.Recommand">
     select * from indexrecommand
@@ -137,5 +152,8 @@
   <select id="selectAllIndexItemDes" resultType="com.wx.assigntask.entity.Recommand">
     select id,inputdes,des1,des2,des3,des4,des5,des6,des7,des8,des9,des10
     from indexrecommand where id = #{id} <!--and releaseid = #{releaseid}-->
+  </select>
+  <select id="selectIndexInputById" resultType="com.wx.assigntask.entity.Recommand">
+    select inputname,inputdes from indexrecommand where id = #{id}
   </select>
 </mapper>

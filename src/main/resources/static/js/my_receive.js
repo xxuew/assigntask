@@ -18,10 +18,11 @@ $(function () {
                 for (var i =0;i<receiveInfos.length;i++) {
                     var receiveInfo = receiveInfos[i];
                     var count = i+1;
+                    var href = '/comment?'+ count;
                     receive_Infos = receive_Infos +
                                     "<tr>" +
                                     "<td>" + count + "</td>" +
-                                    "<td>" + "<a href='/comment'>开始任务</a>" + "</td>" +
+                                    "<td>" + "<a href='"+href+"'>开始任务</a>" + "</td>" +
                                     "<td>" + receiveInfo.ifcomplete + "</td>" +
                                     "</tr>";
                     // $("#releaseid").append(receiveInfo.releaseid);

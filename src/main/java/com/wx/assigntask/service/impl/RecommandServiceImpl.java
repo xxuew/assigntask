@@ -1,7 +1,10 @@
 package com.wx.assigntask.service.impl;
 
+import com.wx.assigntask.dao.DividedMapper;
 import com.wx.assigntask.dao.RecommandMapper;
 import com.wx.assigntask.dao.ReleaseMapper;
+import com.wx.assigntask.entity.Divided;
+import com.wx.assigntask.entity.Myreceive;
 import com.wx.assigntask.entity.Recommand;
 import com.wx.assigntask.service.RecommandService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,27 +20,24 @@ public class RecommandServiceImpl implements RecommandService {
     RecommandMapper recommandMapper;
     @Autowired
     ReleaseMapper releaseMapper;
+    @Autowired
+    DividedMapper dividedMapper;
 
     @Override
-    public List selectAllItemsNames(int recommandid,String algName) {
+    public List selectAllItemsNames(int recommandid, String algName) {
         Recommand recommandNames = new Recommand();
 
-        if (algName.equals("lstm")){
+        if (algName.equals("lstm")) {
             recommandNames = recommandMapper.selectAllLstmItemsNames(recommandid); //下标0为id，1为inputname，2开始为itemname
-        }
-        else if (algName.equals("nn")){
+        } else if (algName.equals("nn")) {
             recommandNames = recommandMapper.selectAllNnItemsNames(recommandid);
-        }
-        else if (algName.equals("cnn")){
+        } else if (algName.equals("cnn")) {
             recommandNames = recommandMapper.selectAllCnnItemsNames(recommandid);
-        }
-        else if (algName.equals("tfidf")){
+        } else if (algName.equals("tfidf")) {
             recommandNames = recommandMapper.selectAllTfiItemsNames(recommandid);
-        }
-        else if (algName.equals("doc")){
+        } else if (algName.equals("doc")) {
             recommandNames = recommandMapper.selectAllDocItemsNames(recommandid);
-        }
-        else if (algName.equals("index")){
+        } else if (algName.equals("index")) {
             recommandNames = recommandMapper.selectAllIndexItemsNames(recommandid);
         }
         List itemNames = new ArrayList();
@@ -59,22 +59,17 @@ public class RecommandServiceImpl implements RecommandService {
     @Override
     public List selectAllItemDes(int recommandid, String algName) {
         Recommand recommandDes = new Recommand();
-        if (algName.equals("lstm")){
+        if (algName.equals("lstm")) {
             recommandDes = recommandMapper.selectAllLstmItemDes(recommandid); //下标0为id，1为inputdes，2开始为itemdes
-        }
-        else if (algName.equals("nn")){
+        } else if (algName.equals("nn")) {
             recommandDes = recommandMapper.selectAllNnItemDes(recommandid);
-        }
-        else if (algName.equals("cnn")){
+        } else if (algName.equals("cnn")) {
             recommandDes = recommandMapper.selectAllCnnItemDes(recommandid);
-        }
-        else if (algName.equals("tfidf")){
+        } else if (algName.equals("tfidf")) {
             recommandDes = recommandMapper.selectAllTfiItemDes(recommandid);
-        }
-        else if (algName.equals("doc")){
+        } else if (algName.equals("doc")) {
             recommandDes = recommandMapper.selectAllDocItemDes(recommandid);
-        }
-        else if (algName.equals("index")){
+        } else if (algName.equals("index")) {
             recommandDes = recommandMapper.selectAllIndexItemDes(recommandid);
         }
         List itemDes = new ArrayList();
@@ -97,24 +92,49 @@ public class RecommandServiceImpl implements RecommandService {
     public List selectAll(int releaseid) {
         List inputSize = new ArrayList();
         String algNames = releaseMapper.selectById(releaseid).getAlgnames(); //本次release包含的algNames
-        if (algNames.contains("lstm")){
+        if (algNames.contains("lstm")) {
             inputSize = recommandMapper.selectAllLstm();
-        }
-        else if (algNames.contains("nn")){
+        } else if (algNames.contains("nn")) {
             inputSize = recommandMapper.selectAllNn();
-        }
-        else if (algNames.contains("cnn")){
+        } else if (algNames.contains("cnn")) {
             inputSize = recommandMapper.selectAllCnn();
-        }
-        else if (algNames.contains("tfidf")){
+        } else if (algNames.contains("tfidf")) {
             inputSize = recommandMapper.selectAllTfidf();
-        }
-        else if (algNames.contains("doc")){
+        } else if (algNames.contains("doc")) {
             inputSize = recommandMapper.selectAllDoc();
-        }
-        else if (algNames.contains("index")){
+        } else if (algNames.contains("index")) {
             inputSize = recommandMapper.selectAllIndex();
         }
         return inputSize;
+    }
+
+    /**
+     * 获取myreceive中的inputname和inputdes
+     *
+     * @param myreceive
+     * @return
+     */
+    @Override
+    public Recommand selectInputById(Myreceive myreceive) {
+
+        Divided divided = dividedMapper.selectByPrimaryKey(myreceive.getDividedid());
+        int inputid = divided.getInputid();
+        String algName = divided.getAlgname1();//只需一个algName即可，因为alg1和alg2都来自同一个input
+        Recommand recommand = new Recommand();
+        if (algName.equals("lstm")) {
+            recommand = recommandMapper.selectLstmInputById(inputid);
+        } else if (algName.equals("nn")) {
+            recommand = recommandMapper.selectNnInputById(inputid);
+        } else if (algName.equals("cnn")) {
+            recommand = recommandMapper.selectCnnInputById(inputid);
+        } else if (algName.equals("tfidf")) {
+            recommand = recommandMapper.selectTfiInputById(inputid);
+        } else if (algName.equals("doc")) {
+            recommand = recommandMapper.selectDocInputById(inputid);
+        } else if (algName.equals("index")) {
+            recommand = recommandMapper.selectIndexInputById(inputid);
+        }
+
+        return recommand;
     }
 }
