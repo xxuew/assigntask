@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.wx.assigntask.comment.ItemList;
 import com.wx.assigntask.entity.*;
+import com.wx.assigntask.entity.model.FormData;
+import com.wx.assigntask.entity.model.FormList;
 import com.wx.assigntask.service.MyReceiveService;
 import com.wx.assigntask.service.RecommandService;
 import com.wx.assigntask.service.SubTaskService;
@@ -11,15 +13,15 @@ import com.wx.assigntask.service.UserReceiveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.w3c.dom.Document;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author:wx
@@ -68,29 +70,30 @@ public class CommentController {
 
     @PostMapping("/comment_result")
     @ResponseBody
-    public String insertCommentRes(HttpServletRequest request,@RequestBody Subtask[] subtasks){
+    public String insertCommentRes(HttpServletRequest request, String queryString,int[] formValues ){
 
         User user = (User) request.getSession().getAttribute("currentUser");
-        for (int i=0;i<subtasks.length;i++){
-            Subtask subtask = subtasks[i];
-            int score1 = subtask.getScore1();
-            int score2 = subtask.getScore2();
-            int divided = subtask.getDividedid();
-            userReceiveService.updateScore(subtask.getDividedid(),user.getUserid(),
-                    subtask.getSubtaskid(),score1,score2);
+//        String resulta1 = request.getParameter("itema1");
+//        String resultb1 = request.getParameter("itemb1");
+    //    String queryString = request.getQueryString();
+        queryString = queryString.replace("?", "");
+
+        JSONObject jsonObject = commentItemInfo(user.getUserid(), queryString);
+        List<Subtask> subtasks = (List<Subtask>) jsonObject.get("subtasks");
+        int formCount = -1;
+        for (int i=0;i<subtasks.size()&&formCount<formValues.length-1;i++){
+            Subtask subtask = subtasks.get(i);
+
+                int score1 = formValues[++formCount];
+                int score2 = formValues[++formCount];
+
+                System.out.println(subtask.getItemname1()+" "+score1);
+                System.out.println(subtask.getItemname2()+" "+score2);
+
+                int divided = subtask.getDividedid();
+                userReceiveService.updateScore(subtask.getDividedid(),user.getUserid(),
+                        subtask.getSubtaskid(),score1,score2);
         }
-        //任务列表myreceives，具体到用户的第几个myreceive,可以将comment_count作为myreceives的下标获取对应的myreceive
-
-
-
-        //            for(int i = 0;i < 10;i++){
-//                String item1 =lists.get(i).itema;
-//                String item2 =lists.get(i).itemb;
-//                String resulta = request.getParameter("itema"+(i+1));
-//                String resultb = request.getParameter("itemb"+(i+1));
-//                System.out.println(item1+" "+resulta);
-//                System.out.println(item2+" "+resultb);
-//            }
         return "OK";
     }
 

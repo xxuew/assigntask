@@ -180,9 +180,9 @@ $(function () {
                         var desid_b = "#"+"subtaskdes"+count+"_b";
                         $(desid_b).append(subtask.itemdes2);
                     }
-                    $("#comment_submit").click(function () {
-                        insertCommentRes(subtaskArr);
-                    })
+                    // $("#comment_submit").click(function () {
+                    //     insertCommentRes(subtaskArr);
+                    // })
 
                     // var comment_html = "";
                     //
@@ -233,28 +233,75 @@ $(function () {
     })
 })
 
-function insertCommentRes(subtasks){
-    $.ajax({
-        url:"/comment_result",
-        type:"post",
-        dataType:"text",
-       contentType:"application/json",
-       data:JSON.stringify(subtasks),
-        success:function (data) {
-            console.log(data);
-            if (data == "OK"){
-                alert("提交成功");
-                location.href = "/myreceivedtask";
-            }
-            else alert(data);
-        },
-        error:function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log("任务完成提交失败");
-            console.log(XMLHttpRequest.status);
-            console.log(XMLHttpRequest.readyState);
-            console.log(textStatus);
-
+//js方法：序列化表单
+function serializeForm(form){
+    var obj = {};
+    $.each(form.serializeArray(),function(index){
+        if(obj[this['name']]){
+            obj[this['name']] = obj[this['name']] + ','+this['value'];
+        } else {
+            obj[this['name']] =this['value'];
         }
-    })
+    });
+    return obj;
+}
+
+function insertCommentRes(){
+
+        var formData = $("#comment_form").serializeArray();
+
+
+        var formName=new Array();
+        var formValue=new Array();
+        for(var i=0;i<formData.length;i++){
+            console.log(formData[i]);
+            console.log(formData[i].name);
+            formName[i]=formData[i].name;
+            formValue[i]=formData[i].value;
+        }
+        var tranData = {
+            formNames:formName,
+            formValues:formValue,
+            queryString:location.search
+        };
+    console.log(tranData);
+       $.ajax({
+           type:"post",
+           url:"/comment_result",
+           contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+           traditional:true,
+           dataType:"text",
+           data:tranData,
+           success:function (data) {
+               console.log(data);
+               if (data == "OK"){
+                   alert("提交成功");
+                   location.href = "/myreceivedtask";
+               }
+               else alert(data);
+           },
+           error:function (XMLHttpRequest, textStatus, errorThrown) {
+               console.log("任务完成提交失败");
+               console.log(XMLHttpRequest.status);
+               console.log(XMLHttpRequest.readyState);
+               console.log(textStatus);
+
+           }
+       })
+
+
+    // var data = {
+    //     queryString:location.search
+    // };
+    // console.log("queryString"+data);
+
+
+    // $.ajax({
+    //     url:"/comment_result",
+    //     type:"post",
+    //     dataType: "text",
+    //     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+    //     data: data,
+
 
 }

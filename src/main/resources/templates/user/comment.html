@@ -12,7 +12,7 @@
 <!--导航栏-->
 <div th:include="head :: head"></div>
 <div class="wrap" id="wrap">
-
+<form  id="comment_form" > <!-- action="/comment_result"-->
         <div class="tabCon">
             <div class="tabBox">
 
@@ -294,7 +294,7 @@
                                 </div>
 
                                 <div align="center" >
-                                    <input type="button" value="Submit" id="comment_submit"/>
+                                    <input type="button" value="Submit" id="comment_submit"  onclick="insertCommentRes()"/><!---->
                                 </div>
                             </div>
                         </ul>
@@ -305,7 +305,7 @@
 
             </div>
         </div>
-
+</form>
     <div class="lineBorder">
         <div class="lineDiv"><!--移动的div--></div>
     </div>
@@ -334,6 +334,9 @@
             this.nextElementSibling.innerHTML = this.value;
         }
     }
+
+
+
 
 </script>
 </body>
