@@ -24,6 +24,8 @@ public interface MyreceiveMapper {
      * @mbg.generated
      */
     List<Myreceive> selectAll();
-
     List<Myreceive> selectByUser(int userid);
+    List<Myreceive> selectIfcomByUser(Myreceive myreceive);
+    void updateIfcomple(Myreceive myreceive);
+
 }

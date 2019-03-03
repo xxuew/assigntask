@@ -91,7 +91,7 @@ function showmfnames() {
  */
 function submitRelease(){
     var formData = new FormData();
-    var mfiles = document.getElementById("choosefile").files;
+    var mfiles = document.getElementById("addfile_1").files[0];
     for (var i = 0;i<mfiles.length;i++){
         formData.append("files[]",mfiles[i]);//存入文件
     }
@@ -149,3 +149,4 @@ function generSubTask(formdata) {
         }
     })
 }
+

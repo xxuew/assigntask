@@ -2,6 +2,7 @@ drop table if exists `myreceive` ;
 CREATE TABLE `myreceive` (
   `id` int auto_increment not null unique,
   `userId` int(11) DEFAULT NULL,
+  `releaseid` int DEFAULT NULL,
   `dividedid` int DEFAULT NULL,
   `subtaskId_1` int(11) DEFAULT NULL,
   `subtaskId_2` int(11) DEFAULT NULL,

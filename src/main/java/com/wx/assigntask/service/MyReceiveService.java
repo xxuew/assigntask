@@ -16,7 +16,10 @@ import java.util.List;
  */
 @Repository
 public interface MyReceiveService {
-    void insertRecord(List<Integer> subtaskids,int userid,int divided);
+    void insertRecord(List<Integer> subtaskids,int userid,int releaseid,int divided);
+    void updateIfcomple(int id,String ifComplete);
     List<Myreceive> selectByUser(int userid);
     Myreceive selectByUser(int userid,int count);
+    List<Myreceive> selectIfcomByUser(int userid,String ifComplete);
+
 }

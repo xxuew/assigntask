@@ -525,7 +525,7 @@ public class SubTaskServiceImpl implements SubTaskService {
                     //这里subtaskcount只有10，还是重复？或许可以提到input循环外，100次的lstm都生成后再分配
                     dividedService.updataDivided("yes", dividedId);
                     updateRandom(algName1,algName2,subtaskCount,subtaskids);
-                    assignTaskToUser(plan,dividedId,algName1,algName2);//分派任务，将userID和subtaskid写进usertask表
+                    assignTaskToUser(plan,dividedId,releaseId,algName1,algName2);//分派任务，将userID和subtaskid写进usertask表
                 }
             }
             //todo
@@ -562,7 +562,7 @@ public class SubTaskServiceImpl implements SubTaskService {
                     //TODO
                     //这里subtaskcount只有45，可能还是重复？或许可以提到input循环外，100次的lstm都生成后再分配
                     updateRandom(algName,algName,subtaskCount,subtaskids);
-                    assignTaskToUser(plan,dividedId,algName,algName);//分派任务，将userID和subtaskid写进usertask表
+                    assignTaskToUser(plan,dividedId,releaseId,algName,algName);//分派任务，将userID和subtaskid写进usertask表
                 }
             }
         }
@@ -690,7 +690,7 @@ public class SubTaskServiceImpl implements SubTaskService {
         return rtnNumber;                           //返回int型数组
     }
 
-    public void assignTaskToUser(int plan,int dividedid,String algName1,String algName2) {
+    public void assignTaskToUser(int plan,int dividedid,int releaseid,String algName1,String algName2) {
         List<Integer> userIDs = userService.selectAllId(); //所有用户ID
         List algs = algs();
         //根据algs存放顺序分配
@@ -755,7 +755,7 @@ public class SubTaskServiceImpl implements SubTaskService {
                 }
                 if (userTaskCount == 0) break;  //userTaskCount=10，说明已经不分配任务了
                 else if (userTaskCount <= 10) {
-                    myReceiveService.insertRecord(userOnceJob,userId,dividedid); //插入一个用户的一次任务（10个subtask）
+                    myReceiveService.insertRecord(userOnceJob,userId,releaseid,dividedid); //插入一个用户的一次任务（10个subtask）
                     userMapper.updateTaking(userId, userMapper.findUserById(userId).getTasking() + 1);//用户目前任务+1
                     if (userCount + 1 > userIDs.size() && taskCount < subtasks.size()) {
                         //当用户都分配过一次，subtask还没分配完，就将用户从头再分配一次

@@ -1,27 +1,17 @@
 package com.wx.assigntask.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.wx.assigntask.comment.ItemList;
 import com.wx.assigntask.entity.*;
-import com.wx.assigntask.entity.model.FormData;
-import com.wx.assigntask.entity.model.FormList;
 import com.wx.assigntask.service.MyReceiveService;
 import com.wx.assigntask.service.RecommandService;
 import com.wx.assigntask.service.SubTaskService;
 import com.wx.assigntask.service.UserReceiveService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.w3c.dom.Document;
-
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 /**
  * @Author:wx
@@ -56,6 +46,7 @@ public class CommentController {
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("input",recommand);
                 jsonObject.put("subtasks",subtasks);
+                jsonObject.put("myreceive",myreceive);
                 return jsonObject;
             }
             else  return null;
@@ -87,13 +78,12 @@ public class CommentController {
                 int score1 = formValues[++formCount];
                 int score2 = formValues[++formCount];
 
-                System.out.println(subtask.getItemname1()+" "+score1);
-                System.out.println(subtask.getItemname2()+" "+score2);
-
-                int divided = subtask.getDividedid();
                 userReceiveService.updateScore(subtask.getDividedid(),user.getUserid(),
                         subtask.getSubtaskid(),score1,score2);
         }
+        Myreceive myreceive = (Myreceive) jsonObject.get("myreceive");
+        myReceiveService.updateIfcomple(myreceive.getId(),"已完成"); //myreceive ifcomplete改为完成
+
         return "OK";
     }
 

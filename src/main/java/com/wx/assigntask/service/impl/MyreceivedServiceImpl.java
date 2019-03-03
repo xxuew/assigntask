@@ -19,9 +19,10 @@ public class MyreceivedServiceImpl implements MyReceiveService {
     MyreceiveMapper myreceiveMapper;
 
     @Override
-    public void insertRecord(List<Integer> subtaskids, int userid, int divided) {
+    public void insertRecord(List<Integer> subtaskids, int userid,int releaseid, int divided) {
         Myreceive myreceive = new Myreceive();
         myreceive.setUserid(userid);
+        myreceive.setReleaseid(releaseid);
         myreceive.setDividedid(divided);
         for (int i=0;i<subtaskids.size();i++){
             switch (i+1){
@@ -46,6 +47,27 @@ public class MyreceivedServiceImpl implements MyReceiveService {
         return myreceives;
     }
 
+    /**
+     * 选取未完成或已完成
+     * @param userid
+     * @param ifComplete
+     * @return
+     */
+    @Override
+    public List<Myreceive> selectIfcomByUser(int userid, String ifComplete) {
+        Myreceive myreceive = new Myreceive();
+        myreceive.setUserid(userid);
+        myreceive.setIfcomplete(ifComplete);
+        List<Myreceive> myreceives = myreceiveMapper.selectIfcomByUser(myreceive);
+        return myreceives;
+    }
+
+    /**
+     * 选取打分者正在打分的myreceive
+     * @param userid
+     * @param count
+     * @return
+     */
     @Override
     public Myreceive selectByUser(int userid,int count) {
         List<Myreceive> myreceives = myreceiveMapper.selectByUser(userid);
@@ -53,5 +75,13 @@ public class MyreceivedServiceImpl implements MyReceiveService {
             return myreceives.get(count-1);
         }
         else return null;
+    }
+
+    @Override
+    public void updateIfcomple(int id,String ifComplete) {
+        Myreceive myreceive = new Myreceive();
+        myreceive.setId(id);
+        myreceive.setIfcomplete(ifComplete);
+        myreceiveMapper.updateIfcomple(myreceive);
     }
 }
