@@ -1,343 +1,406 @@
 <!DOCTYPE html>
-    <html  xmlns:th="http://www.thymeleaf.org"  lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
-        <link rel="stylesheet" href="css/comment.css" type="text/css" />
-        <script src="js/jquery-1.11.1.min.js"></script>
-        <script type="text/javascript" src="js/comment.js" ></script>
-        <title>user</title>
-    </head>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开始评分</title>
+
+    <!-- Favicons -->
+    <!--<link href="img/favicon.png" rel="icon">-->
+    <!--<link href="img/apple-touch-icon.png" rel="apple-touch-icon">-->
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="lib/bootstrap-3.3.7/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="css/comment.css" type="text/css"/>
+    <!--external css-->
+    <link href="css/font-awesome.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/zabuto_calendar.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.gritter.css"/>
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet">
+    <!--<script src="lib/chart-master/Chart.js"></script>-->
+</head>
 <body>
-<!--导航栏-->
-<div th:include="head :: head"></div>
-<div class="wrap" id="wrap">
-<form  id="comment_form" > <!-- action="/comment_result"-->
-        <div class="tabCon">
-            <div class="tabBox">
-
-                <div class="tabList" style="height:501px" >
-                    <div class="place_holder" style="height:12%;width: 100%"></div>
-                    <div class="comment-container">
-                        <ul border="1" >
-                            <div class="input">
-                                <div class="step-item-header"><span class="current-order">1</span>/10</div>
-                                <li id="inputname1" class="item-name"></li>
-                                <li id="inputdes1" class="item-des"></li>
-                            </div>
-
-                            <div class="comment">
-                                <div style="height:180px">
-                                    <li id="subtaskname1_a" class="item-name"></li>
-                                    <li id="subtaskdes1_a" class="item-des"></li>
-                                    <input name = "itema1" type="range" min =0 max =10 value =0 id="range">
-                                    <span id="text">0</span>
-                                </div>
-                                <div style="height:180px">
-                                    <li id="subtaskname1_b" class="item-name"></li>
-                                    <li id="subtaskdes1_b" class="item-des"></li>
-                                    <input name = "itemb1" type="range" min =0 max =10 value =0 id="range" >
-                                    <span id="text">0</span>
-                                </div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="tabList" style="height:501px" >
-                    <div class="place_holder" style="height:12%;width: 100%"></div>
-                    <div class="comment-container">
-                        <ul border="1" >
-                            <div class="input">
-                                <div class="step-item-header"><span class="current-order">2</span>/10</div>
-                                <li id="inputname2" class="item-name"></li>
-                                <li id="inputdes2" class="item-des"></li>
-                            </div>
-
-                            <div class="comment">
-                                <div style="height:180px">
-                                    <li id="subtaskname2_a" class="item-name"></li>
-                                    <li id="subtaskdes2_a" class="item-des"></li>
-                                    <input name = "itema2" type="range" min =0 max =10 value =0 id="range">
-                                    <span id="text">0</span>
-                                </div>
-                                <div style="height:180px">
-                                    <li id="subtaskname2_b" class="item-name"></li>
-                                    <li id="subtaskdes2_b" class="item-des"></li>
-                                    <input name = "itemb2" type="range" min =0 max =10 value =0 id="range" >
-                                    <span id="text">0</span>
-                                </div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="tabList" style="height:501px" >
-                    <div class="place_holder" style="height:12%;width: 100%"></div>
-                    <div class="comment-container">
-                        <ul border="1" >
-                            <div class="input">
-                                <div class="step-item-header"><span class="current-order">3</span>/10</div>
-                                <li id="inputname3" class="item-name"></li>
-                                <li id="inputdes3" class="item-des"></li>
-                            </div>
-
-                            <div class="comment">
-                                <div style="height:180px">
-                                    <li id="subtaskname3_a" class="item-name"></li>
-                                    <li id="subtaskdes3_a" class="item-des"></li>
-                                    <input name = "itema3" type="range" min =0 max =10 value =0 id="range">
-                                    <span id="text">0</span>
-                                </div>
-                                <div style="height:180px">
-                                    <li id="subtaskname3_b" class="item-name"></li>
-                                    <li id="subtaskdes3_b" class="item-des"></li>
-                                    <input name = "itemb3" type="range" min =0 max =10 value =0 id="range" >
-                                    <span id="text">0</span>
-                                </div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="tabList" style="height:501px" >
-                    <div class="place_holder" style="height:12%;width: 100%"></div>
-                    <div class="comment-container">
-                        <ul border="1" >
-                            <div class="input">
-                                <div class="step-item-header"><span class="current-order">4</span>/10</div>
-                                <li id="inputname4" class="item-name"></li>
-                                <li id="inputdes4" class="item-des"></li>
-                            </div>
-
-                            <div class="comment">
-                                <div style="height:180px">
-                                    <li id="subtaskname4_a" class="item-name"></li>
-                                    <li id="subtaskdes4_a" class="item-des"></li>
-                                    <input name = "itema4" type="range" min =0 max =10 value =0 id="range">
-                                    <span id="text">0</span>
-                                </div>
-                                <div style="height:180px">
-                                    <li id="subtaskname4_b" class="item-name"></li>
-                                    <li id="subtaskdes4_b" class="item-des"></li>
-                                    <input name = "itemb4" type="range" min =0 max =10 value =0 id="range" >
-                                    <span id="text">0</span>
-                                </div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="tabList" style="height:501px" >
-                    <div class="place_holder" style="height:12%;width: 100%"></div>
-                    <div class="comment-container">
-                        <ul border="1" >
-                            <div class="input">
-                                <div class="step-item-header"><span class="current-order">5</span>/10</div>
-                                <li id="inputname5" class="item-name"></li>
-                                <li id="inputdes5" class="item-des"></li>
-                            </div>
-
-                            <div class="comment">
-                                <div style="height:180px">
-                                    <li id="subtaskname5_a" class="item-name"></li>
-                                    <li id="subtaskdes5_a" class="item-des"></li>
-                                    <input name = "itema5" type="range" min =0 max =10 value =0 id="range">
-                                    <span id="text">0</span>
-                                </div>
-                                <div style="height:180px">
-                                    <li id="subtaskname5_b" class="item-name"></li>
-                                    <li id="subtaskdes5_b" class="item-des"></li>
-                                    <input name = "itemb5" type="range" min =0 max =10 value =0 id="range" >
-                                    <span id="text">0</span>
-                                </div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="tabList" style="height:501px" >
-                    <div class="place_holder" style="height:12%;width: 100%"></div>
-                    <div class="comment-container">
-                        <ul border="1" >
-                            <div class="input">
-                                <div class="step-item-header"><span class="current-order">6</span>/10</div>
-                                <li id="inputname6" class="item-name"></li>
-                                <li id="inputdes6" class="item-des"></li>
-                            </div>
-
-                            <div class="comment">
-                                <div style="height:180px">
-                                    <li id="subtaskname6_a" class="item-name"></li>
-                                    <li id="subtaskdes6_a" class="item-des"></li>
-                                    <input name = "itema6" type="range" min =0 max =10 value =0 id="range">
-                                    <span id="text">0</span>
-                                </div>
-                                <div style="height:180px">
-                                    <li id="subtaskname6_b" class="item-name"></li>
-                                    <li id="subtaskdes6_b" class="item-des"></li>
-                                    <input name = "itemb6" type="range" min =0 max =10 value =0 id="range" >
-                                    <span id="text">0</span>
-                                </div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="tabList" style="height:501px" >
-                    <div class="place_holder" style="height:12%;width: 100%"></div>
-                    <div class="comment-container">
-                        <ul border="1" >
-                            <div class="input">
-                                <div class="step-item-header"><span class="current-order">7</span>/10</div>
-                                <li id="inputname7" class="item-name"></li>
-                                <li id="inputdes7" class="item-des"></li>
-                            </div>
-
-                            <div class="comment">
-                                <div style="height:180px">
-                                    <li id="subtaskname7_a" class="item-name"></li>
-                                    <li id="subtaskdes7_a" class="item-des"></li>
-                                    <input name = "itema7" type="range" min =0 max =10 value =0 id="range">
-                                    <span id="text">0</span>
-                                </div>
-                                <div style="height:180px">
-                                    <li id="subtaskname7_b" class="item-name"></li>
-                                    <li id="subtaskdes7_b" class="item-des"></li>
-                                    <input name = "itemb7" type="range" min =0 max =10 value =0 id="range" >
-                                    <span id="text">0</span>
-                                </div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="tabList" style="height:501px" >
-                    <div class="place_holder" style="height:12%;width: 100%"></div>
-                    <div class="comment-container">
-                        <ul border="1" >
-                            <div class="input">
-                                <div class="step-item-header"><span class="current-order">8</span>/10</div>
-                                <li id="inputname8" class="item-name"></li>
-                                <li id="inputdes8" class="item-des"></li>
-                            </div>
-
-                            <div class="comment">
-                                <div style="height:180px">
-                                    <li id="subtaskname8_a" class="item-name"></li>
-                                    <li id="subtaskdes8_a" class="item-des"></li>
-                                    <input name = "itema8" type="range" min =0 max =10 value =0 id="range">
-                                    <span id="text">0</span>
-                                </div>
-                                <div style="height:180px">
-                                    <li id="subtaskname8_b" class="item-name"></li>
-                                    <li id="subtaskdes8_b" class="item-des"></li>
-                                    <input name = "itemb8" type="range" min =0 max =10 value =0 id="range" >
-                                    <span id="text">0</span>
-                                </div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="tabList" style="height:501px" >
-                    <div class="place_holder" style="height:12%;width: 100%"></div>
-                    <div class="comment-container">
-                        <ul border="1" >
-                            <div class="input">
-                                <div class="step-item-header"><span class="current-order">9</span>/10</div>
-                                <li id="inputname9" class="item-name"></li>
-                                <li id="inputdes9" class="item-des"></li>
-                            </div>
-
-                            <div class="comment">
-                                <div style="height:180px">
-                                    <li id="subtaskname9_a" class="item-name"></li>
-                                    <li id="subtaskdes9_a" class="item-des"></li>
-                                    <input name = "itema9" type="range" min =0 max =10 value =0 id="range">
-                                    <span id="text">0</span>
-                                </div>
-                                <div style="height:180px">
-                                    <li id="subtaskname9_b" class="item-name"></li>
-                                    <li id="subtaskdes9_b" class="item-des"></li>
-                                    <input name = "itemb9" type="range" min =0 max =10 value =0 id="range" >
-                                    <span id="text">0</span>
-                                </div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="tabList" style="height:501px" >
-                    <div class="place_holder" style="height:12%;width: 100%"></div>
-                    <div class="comment-container">
-                        <ul border="1" >
-                            <div class="input">
-                                <div class="step-item-header"><span class="current-order">10</span>/10</div>
-                                <li id="inputname10" class="item-name"></li>
-                                <li id="inputdes10" class="item-des"></li>
-
-                            </div>
-
-                            <div class="comment">
-                                <div style="height:160px">
-                                    <li id="subtaskname10_a" class="item-name"></li>
-                                    <li id="subtaskdes10_a" class="item-des"></li>
-                                    <input name = "itema10" type="range" min =0 max =10 value =0 id="range">
-                                    <span id="text">0</span>
-                                </div>
-                                <div style="height:160px">
-                                    <li id="subtaskname10_b" class="item-name"></li>
-                                    <li id="subtaskdes10_b" class="item-des"></li>
-                                    <input name = "itemb10" type="range" min =0 max =10 value =0 id="range" >
-                                    <span id="text">0</span>
-                                </div>
-
-                                <div align="center" >
-                                    <input type="button" value="Submit" id="comment_submit"  onclick="insertCommentRes()"/><!---->
-                                </div>
-                            </div>
-                        </ul>
-
-                    </div>
-
-                </div>
-
-            </div>
+<section id="container">
+    <!--header start-->
+    <header class="header black-bg">
+        <div class="sidebar-toggle-box">
+            <div data-placement="right" data-original-title="Toggle Navigation"></div>
+            <!--class="fa fa-bars tooltips"-->
         </div>
-</form>
-    <div class="lineBorder">
-        <div class="lineDiv"><!--移动的div--></div>
-    </div>
-    <footer>
-        <ul class="tabClick">
-            <li class="active">1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-            <li>6</li>
-            <li>7</li>
-            <li>8</li>
-            <li>9</li>
-            <li>10</li>
-        </ul>
-    </footer>
-</div>
+        <!--logo start-->
+        <a href="index.html" class="logo"><b><span>文本检索结果评估系统</span></b></a>
+        <!--logo end-->
+        <div class="top-menu">
+            <ul class="nav pull-right top-menu">
+                <li><a class="logout" href="/" cl>退出登录</a></li>
+            </ul>
+        </div>
+    </header>
+    <!--header end-->
+    <!--sidebar start-->
+    <aside>
+        <div id="sidebar" class="nav-collapse ">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu" id="nav-accordion">
+                <p class="centered"><a href="profile.html"><img src="img/nju.jpg" class="img-circle" width="80"></a></p>
+                <h5 class="centered" id="current_user">root</h5>
+                <li class="mt">
+                    <a class="active" href="/myreleasetask">
+                        <!--<i class="fa fa-dashboard"></i>-->
+                        <span>我发布的任务</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="/myreceivedtask">
+                        <!--<i class="fa fa-desktop"></i>-->
+                        <span>我收到的任务</span>
+                    </a>
+                </li>
 
+            </ul>
+            <!-- sidebar menu end-->
+        </div>
+    </aside>
+    <!--sidebar end-->
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="wrap" id="wrap">
+                <form id="comment_form"> <!-- action="/comment_result"-->
+                    <div class="tabCon">
+                        <div class="tabBox">
+
+                            <div class="tabList" style="height:501px">
+                                <div class="place_holder" style="height:12%;width: 100%"></div>
+                                <div class="comment-container">
+                                    <ul border="1">
+                                        <div class="input">
+                                            <div class="step-item-header"><span class="current-order">1</span>/10</div>
+                                            <li id="inputname1" class="item-name"></li>
+                                            <li id="inputdes1" class="item-des"></li>
+                                        </div>
+
+                                        <div class="comment">
+                                            <div style="height:180px">
+                                                <li id="subtaskname1_a" class="item-name"></li>
+                                                <li id="subtaskdes1_a" class="item-des"></li>
+                                                <input name="itema1" type="range" min=0 max=10 value=0 id="range">
+                                                <span id="text">0</span>
+                                            </div>
+                                            <div style="height:180px">
+                                                <li id="subtaskname1_b" class="item-name"></li>
+                                                <li id="subtaskdes1_b" class="item-des"></li>
+                                                <input name="itemb1" type="range" min=0 max=10 value=0 id="range">
+                                                <span id="text">0</span>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="tabList" style="height:501px">
+                                <div class="place_holder" style="height:12%;width: 100%"></div>
+                                <div class="comment-container">
+                                    <ul border="1">
+                                        <div class="input">
+                                            <div class="step-item-header"><span class="current-order">2</span>/10</div>
+                                            <li id="inputname2" class="item-name"></li>
+                                            <li id="inputdes2" class="item-des"></li>
+                                        </div>
+
+                                        <div class="comment">
+                                            <div style="height:180px">
+                                                <li id="subtaskname2_a" class="item-name"></li>
+                                                <li id="subtaskdes2_a" class="item-des"></li>
+                                                <input name="itema2" type="range" min=0 max=10 value=0 id="range">
+                                                <span id="text">0</span>
+                                            </div>
+                                            <div style="height:180px">
+                                                <li id="subtaskname2_b" class="item-name"></li>
+                                                <li id="subtaskdes2_b" class="item-des"></li>
+                                                <input name="itemb2" type="range" min=0 max=10 value=0 id="range">
+                                                <span id="text">0</span>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="tabList" style="height:501px">
+                                <div class="place_holder" style="height:12%;width: 100%"></div>
+                                <div class="comment-container">
+                                    <ul border="1">
+                                        <div class="input">
+                                            <div class="step-item-header"><span class="current-order">3</span>/10</div>
+                                            <li id="inputname3" class="item-name"></li>
+                                            <li id="inputdes3" class="item-des"></li>
+                                        </div>
+
+                                        <div class="comment">
+                                            <div style="height:180px">
+                                                <li id="subtaskname3_a" class="item-name"></li>
+                                                <li id="subtaskdes3_a" class="item-des"></li>
+                                                <input name="itema3" type="range" min=0 max=10 value=0 id="range">
+                                                <span id="text">0</span>
+                                            </div>
+                                            <div style="height:180px">
+                                                <li id="subtaskname3_b" class="item-name"></li>
+                                                <li id="subtaskdes3_b" class="item-des"></li>
+                                                <input name="itemb3" type="range" min=0 max=10 value=0 id="range">
+                                                <span id="text">0</span>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="tabList" style="height:501px">
+                                <div class="place_holder" style="height:12%;width: 100%"></div>
+                                <div class="comment-container">
+                                    <ul border="1">
+                                        <div class="input">
+                                            <div class="step-item-header"><span class="current-order">4</span>/10</div>
+                                            <li id="inputname4" class="item-name"></li>
+                                            <li id="inputdes4" class="item-des"></li>
+                                        </div>
+
+                                        <div class="comment">
+                                            <div style="height:180px">
+                                                <li id="subtaskname4_a" class="item-name"></li>
+                                                <li id="subtaskdes4_a" class="item-des"></li>
+                                                <input name="itema4" type="range" min=0 max=10 value=0 id="range">
+                                                <span id="text">0</span>
+                                            </div>
+                                            <div style="height:180px">
+                                                <li id="subtaskname4_b" class="item-name"></li>
+                                                <li id="subtaskdes4_b" class="item-des"></li>
+                                                <input name="itemb4" type="range" min=0 max=10 value=0 id="range">
+                                                <span id="text">0</span>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="tabList" style="height:501px">
+                                <div class="place_holder" style="height:12%;width: 100%"></div>
+                                <div class="comment-container">
+                                    <ul border="1">
+                                        <div class="input">
+                                            <div class="step-item-header"><span class="current-order">5</span>/10</div>
+                                            <li id="inputname5" class="item-name"></li>
+                                            <li id="inputdes5" class="item-des"></li>
+                                        </div>
+
+                                        <div class="comment">
+                                            <div style="height:180px">
+                                                <li id="subtaskname5_a" class="item-name"></li>
+                                                <li id="subtaskdes5_a" class="item-des"></li>
+                                                <input name="itema5" type="range" min=0 max=10 value=0 id="range">
+                                                <span id="text">0</span>
+                                            </div>
+                                            <div style="height:180px">
+                                                <li id="subtaskname5_b" class="item-name"></li>
+                                                <li id="subtaskdes5_b" class="item-des"></li>
+                                                <input name="itemb5" type="range" min=0 max=10 value=0 id="range">
+                                                <span id="text">0</span>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="tabList" style="height:501px">
+                                <div class="place_holder" style="height:12%;width: 100%"></div>
+                                <div class="comment-container">
+                                    <ul border="1">
+                                        <div class="input">
+                                            <div class="step-item-header"><span class="current-order">6</span>/10</div>
+                                            <li id="inputname6" class="item-name"></li>
+                                            <li id="inputdes6" class="item-des"></li>
+                                        </div>
+
+                                        <div class="comment">
+                                            <div style="height:180px">
+                                                <li id="subtaskname6_a" class="item-name"></li>
+                                                <li id="subtaskdes6_a" class="item-des"></li>
+                                                <input name="itema6" type="range" min=0 max=10 value=0 id="range">
+                                                <span id="text">0</span>
+                                            </div>
+                                            <div style="height:180px">
+                                                <li id="subtaskname6_b" class="item-name"></li>
+                                                <li id="subtaskdes6_b" class="item-des"></li>
+                                                <input name="itemb6" type="range" min=0 max=10 value=0 id="range">
+                                                <span id="text">0</span>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="tabList" style="height:501px">
+                                <div class="place_holder" style="height:12%;width: 100%"></div>
+                                <div class="comment-container">
+                                    <ul border="1">
+                                        <div class="input">
+                                            <div class="step-item-header"><span class="current-order">7</span>/10</div>
+                                            <li id="inputname7" class="item-name"></li>
+                                            <li id="inputdes7" class="item-des"></li>
+                                        </div>
+
+                                        <div class="comment">
+                                            <div style="height:180px">
+                                                <li id="subtaskname7_a" class="item-name"></li>
+                                                <li id="subtaskdes7_a" class="item-des"></li>
+                                                <input name="itema7" type="range" min=0 max=10 value=0 id="range">
+                                                <span id="text">0</span>
+                                            </div>
+                                            <div style="height:180px">
+                                                <li id="subtaskname7_b" class="item-name"></li>
+                                                <li id="subtaskdes7_b" class="item-des"></li>
+                                                <input name="itemb7" type="range" min=0 max=10 value=0 id="range">
+                                                <span id="text">0</span>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="tabList" style="height:501px">
+                                <div class="place_holder" style="height:12%;width: 100%"></div>
+                                <div class="comment-container">
+                                    <ul border="1">
+                                        <div class="input">
+                                            <div class="step-item-header"><span class="current-order">8</span>/10</div>
+                                            <li id="inputname8" class="item-name"></li>
+                                            <li id="inputdes8" class="item-des"></li>
+                                        </div>
+
+                                        <div class="comment">
+                                            <div style="height:180px">
+                                                <li id="subtaskname8_a" class="item-name"></li>
+                                                <li id="subtaskdes8_a" class="item-des"></li>
+                                                <input name="itema8" type="range" min=0 max=10 value=0 id="range">
+                                                <span id="text">0</span>
+                                            </div>
+                                            <div style="height:180px">
+                                                <li id="subtaskname8_b" class="item-name"></li>
+                                                <li id="subtaskdes8_b" class="item-des"></li>
+                                                <input name="itemb8" type="range" min=0 max=10 value=0 id="range">
+                                                <span id="text">0</span>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="tabList" style="height:501px">
+                                <div class="place_holder" style="height:12%;width: 100%"></div>
+                                <div class="comment-container">
+                                    <ul border="1">
+                                        <div class="input">
+                                            <div class="step-item-header"><span class="current-order">9</span>/10</div>
+                                            <li id="inputname9" class="item-name"></li>
+                                            <li id="inputdes9" class="item-des"></li>
+                                        </div>
+
+                                        <div class="comment">
+                                            <div style="height:180px">
+                                                <li id="subtaskname9_a" class="item-name"></li>
+                                                <li id="subtaskdes9_a" class="item-des"></li>
+                                                <input name="itema9" type="range" min=0 max=10 value=0 id="range">
+                                                <span id="text">0</span>
+                                            </div>
+                                            <div style="height:180px">
+                                                <li id="subtaskname9_b" class="item-name"></li>
+                                                <li id="subtaskdes9_b" class="item-des"></li>
+                                                <input name="itemb9" type="range" min=0 max=10 value=0 id="range">
+                                                <span id="text">0</span>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="tabList" style="height:501px">
+                                <div class="place_holder" style="height:12%;width: 100%"></div>
+                                <div class="comment-container">
+                                    <ul border="1">
+                                        <div class="input">
+                                            <div class="step-item-header"><span class="current-order">10</span>/10</div>
+                                            <li id="inputname10" class="item-name"></li>
+                                            <li id="inputdes10" class="item-des"></li>
+
+                                        </div>
+
+                                        <div class="comment">
+                                            <div style="height:160px">
+                                                <li id="subtaskname10_a" class="item-name"></li>
+                                                <li id="subtaskdes10_a" class="item-des"></li>
+                                                <input name="itema10" type="range" min=0 max=10 value=0 id="range">
+                                                <span id="text">0</span>
+                                            </div>
+                                            <div style="height:160px">
+                                                <li id="subtaskname10_b" class="item-name"></li>
+                                                <li id="subtaskdes10_b" class="item-des"></li>
+                                                <input name="itemb10" type="range" min=0 max=10 value=0 id="range">
+                                                <span id="text">0</span>
+                                            </div>
+
+                                            <div align="center">
+                                                <button type="button" class="btn btn-primary" id="comment_submit"
+                                                        onclick="insertCommentRes()">提交
+                                                </button><!---->
+                                            </div>
+                                        </div>
+                                    </ul>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+                <div class="lineBorder">
+                    <div class="lineDiv"><!--移动的div--></div>
+                </div>
+                <footer>
+                    <ul class="tabClick">
+                        <li class="active">1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                        <li>6</li>
+                        <li>7</li>
+                        <li>8</li>
+                        <li>9</li>
+                        <li>10</li>
+                    </ul>
+                </footer>
+            </div>
+
+            <!--main content end-->
+        </section>
+    </section>
+</section>
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/comment.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script>
     var rangeList = document.querySelectorAll('input[type="range"]');
-    for(var i=0;i<rangeList.length;i++){
+    for (var i = 0; i < rangeList.length; i++) {
         var range = rangeList[i];
         range.onchange = function () {
             //修改后面span中的内容
             this.nextElementSibling.innerHTML = this.value;
         }
     }
-
-
-
-
 </script>
 </body>
 </html>

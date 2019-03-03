@@ -1,76 +1,5 @@
 
 /**
- * 发布任务
- */
-// window.onload = function addRelease() {
-//     var btn = document.getElementById("addReleaseTask");
-//     btn.onclick = function () {
-//         // $("body").append("<div id='dlg_lost' style='padding:20px;'></div>");
-//         // $('#dlg_lost').dialog({
-//         //     href:path+'/user/login.html',
-//         //     modal:true,
-//         //     closed:false,
-//         //     title:'信息发布',
-//         //     width:580,
-//         //     height:380,
-//         //     buttons:[{
-//         //         text:'提交',
-//         //         iconCls:'icon-ok',
-//         //         handler:function(){
-//         //             $('#form_lost').form('submit',{
-//         //                 url:path+'/LostServlet',
-//         //                 onSubmit:function(){
-//         //                     return $(this).form('validate');
-//         //                 },
-//         //                 success:function(data){
-//         //                     if(data == "-1"){
-//         //                         $.messager.alert('系统消息','请登录后发布信息！','error');
-//         //                     }else{
-//         //                         $.messager.alert('系统消息','发布成功！','info',function(){
-//         //                             $('#dlg_lost').dialog('refresh');
-//         //                             $('#dlg_lost').dialog('close');
-//         //                             location.href = path+'/users/lost_list.jsp';
-//         //                         },false);
-//         //                     }
-//         //                 }
-//         //             });
-//         //         }
-//         //     },{
-//         //         text:'重置',
-//         //         iconCls:'icon-reload',
-//         //         handler:function(){
-//         //             $('#dlg_lost').dialog('refresh');
-//         //         }
-//         //     }]
-//         // });
-//         //   var release=$("addReleaseTask").val();
-//         $.ajax({
-//             url: "/home",
-//             type: "post",
-//             traditional: true,
-//             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-//             dataType: "text",
-//             //     data: release,
-//             success: function (data) {
-//                 // console.log(data);
-//                 // if(data=="OK"){
-//                 //     location.href = "/home";
-//                 // }else{
-//                 alert(data);
-//                 alert($(this).form('validate')) ;
-//                 //  }
-//             },
-//             error: function (XMLHttpRequest, textStatus, errorThrown) {
-//                 console.log(XMLHttpRequest.status);
-//                 console.log(XMLHttpRequest.readyState);
-//                 console.log(textStatus);
-//
-//             },
-//         });
-//     }
-// }
-
-/**
  * 多文件上传监听
  */
 function showmfnames() {
@@ -91,8 +20,14 @@ function showmfnames() {
  */
 function submitRelease(){
     var formData = new FormData();
-    var mfiles = document.getElementById("addfile_1").files[0];
+    // var mfiles = document.getElementById("addfile_1").files[0];
+    // for (var i = 0;i<mfiles.length;i++){
+    //     formData.append("files[]",mfiles[i]);//存入文件
+    // }
+    var mfiles = $('.add_file')//.files;
+    console.log("files:" + mfiles.file);
     for (var i = 0;i<mfiles.length;i++){
+        console.log("文件名："+ mfiles[i][0].files[0]);
         formData.append("files[]",mfiles[i]);//存入文件
     }
     formData.append("release_name",$("#release_name").val());
@@ -129,6 +64,37 @@ function addRelease(formdata) {
 
 }
 
+/**
+ * 增加算法
+ */
+function addAlg() {
+  var table = $('.table');
+  var addtr = $( "<tr>" +
+      "<th>项目包含的算法名</th> " +
+      "<td> <input type='text' name='releasename' placeholder='任务包含的算法名' id='release_algs'> </td>" +
+      "<th>数据源SQL脚本文件 </th>" +
+      "<td> <input type='file' name='fileUpload' id='add_file' style='display: inline-block'/>" +
+      "<span><button type='button'  onclick='deleteAlg(this)'>删除算法</button> </span> " +
+      "</td>" +
+      "</tr>");
+  addtr.appendTo(table);
+}
+
+/**
+ * 删除算法
+ */
+function deleteAlg(obj) {
+    //多以parent就代表向前一个标签
+    //本删除 范围为<span><td><tr>
+    //如果多一个parent就会删除整个table
+    $(obj).parent().parent().parent().remove();
+}
+
+
+/**
+ * 生成任务
+ * @param formdata
+ */
 function generSubTask(formdata) {
     $.ajax({
         type: 'POST',
