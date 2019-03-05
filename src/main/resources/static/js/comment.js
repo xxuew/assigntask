@@ -132,13 +132,3 @@ var init={
     },
 
 }
-
-// var rangeList = document.querySelectorAll('input[type="range"]');
-// for(var i=0;i<rangeList.length;i++){
-//     var range = rangeList[i];
-//     range.onchange = function () {
-//         //修改后面span中的内容
-//         this.nextElementSibling.innerHTML = this.value;
-//     }
-//
-// }

@@ -1,11 +1,8 @@
 package com.wx.assigntask.service;
 
 import com.wx.assigntask.comment.ItemList;
-import com.wx.assigntask.dao.SubtaskMapper;
-import com.wx.assigntask.dao.UserMapper;
 import com.wx.assigntask.entity.OriginalData;
 import com.wx.assigntask.entity.Subtask;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

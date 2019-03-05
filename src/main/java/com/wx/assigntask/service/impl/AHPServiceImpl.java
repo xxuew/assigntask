@@ -1,18 +1,26 @@
 package com.wx.assigntask.service.impl;
 
 import com.wx.assigntask.comment.ItemList;
+import com.wx.assigntask.dao.AhpSubtaskMapper;
+import com.wx.assigntask.entity.AhpSubtask;
 import com.wx.assigntask.entity.OriginalData;
 import com.wx.assigntask.service.AHPService;
 import com.wx.assigntask.service.OriginalDataService;
 import com.wx.assigntask.subtask.BuildTask;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+@Service
 public class AHPServiceImpl implements AHPService {
+    @Autowired
     OriginalDataService originalDataService;
+
+    @Autowired
+    AhpSubtaskMapper ahpSubtaskMapper;
 
     @Override
 //    创建任务并存入到数据库
@@ -33,34 +41,52 @@ public class AHPServiceImpl implements AHPService {
                         ll = new ItemList();
                         ll.setInputname(s1[0]);
                         ll.setInputdes(s1[1]);
-                        ll.setItema(s1[(20*m+2)]);
-                        ll.setDesa(s1[(20*m+3)]);
-                        ll.setItemb(s1[(20*n+22)]);
-                        ll.setDesb(s1[(20*n+23)]);
+                        ll.setItema(s1[(20*m+2+2*j)]);
+                        ll.setDesa(s1[(20*m+3+2*j)]);
+                        ll.setItemb(s1[(20*n+22+2*j)]);
+                        ll.setDesb(s1[(20*n+23+2*j)]);
                         list.add(ll);
                     }
                 }
             }
 
         }
+
+//        生成一次就可以了，很耗时间
+        int count = 1;
+//        for (ItemList i: list) {
+//            AhpSubtask as = new AhpSubtask();
+////            as.setSubtaskid(count);
+//            as.setInputname(i.inputname);
+//            as.setInputdes1(i.inputdes);
+//            as.setItemname1(i.itema);
+//            as.setItemdes1(i.desa);
+//            as.setItemname2(i.itemb);
+//            as.setItemdes2(i.desb);
+//            ahpSubtaskMapper.insert(as);
+////            count++;
+//        }
+
+
+        System.out.println();
         return list;
     }
 
 
-    public static void main(String[] args) {
-
-        /** a为N*N矩阵 */
-        double[][] a = new double[][] { { 1 ,1.8, 2.2, 1 },
-                { 0.6, 1, 3, 1.7 },
-                { 0.4 ,0.3, 1 ,0.5 }, {  1 ,0.5, 2, 1 }
-        };
-        //
-        int N = a[0].length;
-        double[] weight = new double[N];
-        AHPServiceImpl instance = AHPServiceImpl.getInstance();
-        instance.weight(a, weight, N);
-        System.out.println(Arrays.toString(weight));
-    }
+//    public static void main(String[] args) {
+//
+//        /** a为N*N矩阵 */
+//        double[][] a = new double[][] { { 1 ,1.8, 2.2, 1 },
+//                { 0.6, 1, 3, 1.7 },
+//                { 0.4 ,0.3, 1 ,0.5 }, {  1 ,0.5, 2, 1 }
+//        };
+//        //
+//        int N = a[0].length;
+//        double[] weight = new double[N];
+//        AHPServiceImpl instance = AHPServiceImpl.getInstance();
+//        instance.weight(a, weight, N);
+//        System.out.println(Arrays.toString(weight));
+//    }
 
     // 单例
     private static final AHPServiceImpl acw = new AHPServiceImpl();

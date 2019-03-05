@@ -86,7 +86,7 @@ ul,li{ list-style: none}
     -webkit-box-orient: vertical
 }
 
-#submit {
+#comment_btn {
     border: 1px solid #00748f;
     height: 42px;
     width: 100px;
@@ -112,8 +112,8 @@ ul,li{ list-style: none}
 }
 
 /*{#鼠标浮在上面时显示的阴影#}*/
-#submit:hover,
-#submit:focus {
+#comment_btn:hover,
+#comment_btn:focus {
     background-color: #31b2c3;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#0483a0), to(#31b2c3));
     background-image: -webkit-linear-gradient(top, #0483a0, #31b2c3);
@@ -170,3 +170,6 @@ input[type='range']::-webkit-slider-thumb {
     border: solid 1px #ddd;
     /*设置边框*/
 }
+
+
+/*以下为导航栏*/

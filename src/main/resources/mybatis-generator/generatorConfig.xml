@@ -59,96 +59,105 @@
         </javaClientGenerator>
         <!-- table可以有多个,每个数据库中的表都可以写一个table，tableName表示要匹配的数据库表,也可以在tableName属性中通过使用%通配符来匹配所有数据库表,只有匹配的表才会自动生成文件 -->
         <!--如果想生成一个表则tableName="table_name"-->
-        <table schema="assigntask" tableName="divided"
+        <!--<table schema="assigntask" tableName="divided"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+            <!--&lt;!&ndash; 数据库表主键 &ndash;&gt;-->
+            <!--<generatedKey column="dividedId" sqlStatement="Mysql" identity="true" />-->
+        <!--</table>-->
+        <!--<table schema="assigntask" tableName="recommanddes"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+            <!--&lt;!&ndash; 数据库表主键 &ndash;&gt;-->
+            <!--<generatedKey column="inputName" sqlStatement="Mysql" identity="true" />-->
+        <!--</table>-->
+        <!--<table schema="assigntask" tableName="recommandname"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+            <!--&lt;!&ndash; 数据库表主键 &ndash;&gt;-->
+            <!--<generatedKey column="inputName" sqlStatement="Mysql" identity="true" />-->
+        <!--</table>-->
+        <!--<table schema="assigntask" tableName="release"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+            <!--&lt;!&ndash; 数据库表主键 &ndash;&gt;-->
+            <!--<generatedKey column="releaseId" sqlStatement="Mysql" identity="true" />-->
+        <!--</table>-->
+        <!--<table schema="assigntask" tableName="subdata"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+            <!--&lt;!&ndash; 数据库表主键 &ndash;&gt;-->
+            <!--<generatedKey column="subdataId" sqlStatement="Mysql" identity="true" />-->
+        <!--</table>-->
+
+        <!--<table schema="assigntask" tableName="subtask"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+            <!--&lt;!&ndash; 数据库表主键 &ndash;&gt;-->
+            <!--<generatedKey column="subtaskId" sqlStatement="Mysql" identity="true" />-->
+        <!--</table>-->
+
+
+        <!--<table schema="assigntask" tableName="usertask"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+
+        <!--<table schema="assigntask" tableName="original_data"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+
+
+        <table schema="assigntask" tableName="Ahp_subtask"
                enableCountByExample="false"
                enableUpdateByExample="true"
                enableDeleteByExample="true"
                enableSelectByExample="true"
                selectByExampleQueryId="true">
             <property name="useActualColumnNames" value="false" />
-            <!-- 数据库表主键 -->
-            <generatedKey column="dividedId" sqlStatement="Mysql" identity="true" />
-        </table>
-        <table schema="assigntask" tableName="recommanddes"
-               enableCountByExample="false"
-               enableUpdateByExample="true"
-               enableDeleteByExample="true"
-               enableSelectByExample="true"
-               selectByExampleQueryId="true">
-            <property name="useActualColumnNames" value="false" />
-            <!-- 数据库表主键 -->
-            <generatedKey column="inputName" sqlStatement="Mysql" identity="true" />
-        </table>
-        <table schema="assigntask" tableName="recommandname"
-               enableCountByExample="false"
-               enableUpdateByExample="true"
-               enableDeleteByExample="true"
-               enableSelectByExample="true"
-               selectByExampleQueryId="true">
-            <property name="useActualColumnNames" value="false" />
-            <!-- 数据库表主键 -->
-            <generatedKey column="inputName" sqlStatement="Mysql" identity="true" />
-        </table>
-        <table schema="assigntask" tableName="release"
-               enableCountByExample="false"
-               enableUpdateByExample="true"
-               enableDeleteByExample="true"
-               enableSelectByExample="true"
-               selectByExampleQueryId="true">
-            <property name="useActualColumnNames" value="false" />
-            <!-- 数据库表主键 -->
-            <generatedKey column="releaseId" sqlStatement="Mysql" identity="true" />
-        </table>
-        <table schema="assigntask" tableName="subdata"
-               enableCountByExample="false"
-               enableUpdateByExample="true"
-               enableDeleteByExample="true"
-               enableSelectByExample="true"
-               selectByExampleQueryId="true">
-            <property name="useActualColumnNames" value="false" />
-            <!-- 数据库表主键 -->
-            <generatedKey column="subdataId" sqlStatement="Mysql" identity="true" />
         </table>
 
-        <table schema="assigntask" tableName="subtask"
-               enableCountByExample="false"
-               enableUpdateByExample="true"
-               enableDeleteByExample="true"
-               enableSelectByExample="true"
-               selectByExampleQueryId="true">
-            <property name="useActualColumnNames" value="false" />
-            <!-- 数据库表主键 -->
-            <generatedKey column="subtaskId" sqlStatement="Mysql" identity="true" />
-        </table>
-
-        <table schema="assigntask" tableName="user"
-               enableCountByExample="false"
-               enableUpdateByExample="true"
-               enableDeleteByExample="true"
-               enableSelectByExample="true"
-               selectByExampleQueryId="true">
-            <property name="useActualColumnNames" value="false" />
-            <!-- 数据库表主键 -->
-            <generatedKey column="userId" sqlStatement="Mysql" identity="true" />
-        </table>
-
-        <table schema="assigntask" tableName="usertask"
-               enableCountByExample="false"
-               enableUpdateByExample="true"
-               enableDeleteByExample="true"
-               enableSelectByExample="true"
-               selectByExampleQueryId="true">
-            <property name="useActualColumnNames" value="false" />
-        </table>
-
-        <table schema="assigntask" tableName="original_data"
-               enableCountByExample="false"
-               enableUpdateByExample="true"
-               enableDeleteByExample="true"
-               enableSelectByExample="true"
-               selectByExampleQueryId="true">
-            <property name="useActualColumnNames" value="false" />
-        </table>
+        <!--<table schema="assigntask" tableName="user"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="true" />-->
+        <!--</table>-->
 
     </context>
 </generatorConfiguration>

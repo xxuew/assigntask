@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+//这两个注释必须写，不让dao层不能调用
 @Mapper
 @Repository
 public interface DividedMapper {

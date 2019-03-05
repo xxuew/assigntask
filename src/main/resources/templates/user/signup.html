@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Login to work on your product vision">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>注册</title>
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/jquery.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="https://app.storiesonboard.com/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://app.storiesonboard.com/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://app.storiesonboard.com/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://app.storiesonboard.com/favicon-16x16.png">
+    <link rel="manifest" href="https://app.storiesonboard.com/site.webmanifest">
+    <link rel="mask-icon" href="https://app.storiesonboard.com/safari-pinned-tab.svg" color="#5bbad5">
+    <script src="js/public.js"></script>
+    <script src="js/jquery.reject.js"></script>
+</head>
+
+<body class="login public">
+<div id="public-content-container">
+    <div id="main-container">
+        <div id="spinner" style="display: none;">
+            <div class="spinner">
+                <div class="cube1"></div>
+                <div class="cube2"></div>
+            </div>
+        </div>
+        <div id="main" class="outerpage cf" style="display: block; margin-left: 0px; margin-right: 0px; opacity: 1;">
+            <div id="register_box">
+                <div id="sub-header">
+                    <div class="sub-header-btn">
+                        <a class="btn-icon blue light" href="/login" data-pjax="true"></a>
+                    </div>
+                    <div class="sub-header-title">创建一个新的账号</div>
+                </div>
+                <form id="signup_form" novalidate="novalidate">
+                    <input style="display:none" type="text">
+                    <input style="display:none" type="password">
+                    <fieldset>
+                        <legend>您的账号</legend>
+                        <div class="control-group">
+                            <div class="control">
+                                <label>
+                                    <label for="Name">用户名</label>
+                                    <input data-val="true" data-val-required="The Name field is required." id="Name"
+                                           name="Name" type="text">
+                                </label>
+                                <span class="field-validation-valid" data-valmsg-for="Name"
+                                      data-valmsg-replace="true"></span>
+                            </div>
+                            <!--<div class="control">-->
+                            <!--<label>-->
+                            <!--<label for="Email">邮箱</label>-->
+                            <!--<input data-val="true" data-val-emailwithspaces="Invalid email address." data-val-emailwithspaces-regexp="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" data-val-remote="'Email' is invalid." data-val-remote-additionalfields="*.Email" data-val-remote-url="/signup/checkusernameavailableforsignup" data-val-required="The Email field is required." id="Email" name="Email" type="text">-->
+                            <!--</label>-->
+                            <!--<span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>-->
+                            <!--</div>-->
+                            <div class="regular-signup-input">
+                                <div class="control">
+                                    <label>
+                                        <label for="Password">密码</label>
+                                        <div class="hideShowPassword-wrapper"
+                                             style="position: relative; display: block; vertical-align: baseline; margin: 5px 0px 0px;">
+                                            <input data-val="true" data-val-length="It must be at least 6 characters"
+                                                   data-val-length-min="6"
+                                                   data-val-required="The Password field is required." id="Password"
+                                                   name="Password" class="hideShowPassword-field"
+                                                   style="margin: 0px; padding-right: 55px;" type="password"></div>
+                                    </label>
+                                    <span class="field-validation-valid" data-valmsg-for="Password"
+                                          data-valmsg-replace="true"></span>
+                                </div>
+                                <div class="control" id="captcha-container"></div>
+                                <div class="signup-btn-cntr">
+                                    <input id="signup_btn" class="btn-action-primary" value="注册" type="button">
+                                </div>
+                            </div>
+                            <input id="UtmSource" name="UtmSource" value="" type="hidden">
+                            <input id="UtmMedium" name="UtmMedium" value="" type="hidden">
+                            <input id="UtmCampaign" name="UtmCampaign" value="" type="hidden">
+                            <input id="UtmContent" name="UtmContent" value="" type="hidden">
+                            <input id="UtmTerm" name="UtmTerm" value="" type="hidden">
+                            <input id="CaptchaToken" name="CaptchaToken" value="" type="hidden">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/user.js"></script>
+</body>
+</html>

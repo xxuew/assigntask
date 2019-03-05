@@ -12,8 +12,11 @@ import java.util.List;
 //
 @Service
 public class OriginalDataServiceImpl implements OriginalDataService {
+
     @Autowired
     private OriginalDataMapper originalDataMapper;
+
+//    OriginalDataService originalDataMapper = new OriginalDataServiceImpl();
     @Override
     public OriginalData selectByid(@RequestParam("oid")Integer oid) {
         return originalDataMapper.selectByPrimaryKey(oid);
@@ -22,5 +25,10 @@ public class OriginalDataServiceImpl implements OriginalDataService {
     @Override
     public List<OriginalData> selectAll() {
         return originalDataMapper.selectAll();
+    }
+
+    @Override
+    public OriginalData selectByPrimaryKey(Integer oid) {
+        return null;
     }
 }

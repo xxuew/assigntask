@@ -10,4 +10,5 @@ import java.util.List;
 public interface OriginalDataService {
     public OriginalData selectByid(Integer oid);
     public List<OriginalData> selectAll();
+    OriginalData selectByPrimaryKey(Integer oid);
 }

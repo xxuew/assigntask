@@ -1,6 +1,7 @@
 package com.wx.assigntask.service;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 /**
  * @Author: wx
