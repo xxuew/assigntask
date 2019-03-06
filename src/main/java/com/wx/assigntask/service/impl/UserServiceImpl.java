@@ -20,6 +20,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public int addUser(User user) {
+        user.setReceived_id(0);
         return userMapper.insertUser(user);
     }
     

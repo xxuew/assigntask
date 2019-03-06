@@ -11,4 +11,5 @@ import java.util.List;
 public interface AHPService {
     List<ItemList> CreatTask();
     List<ItemList>  assignTask(User user);
+    void StoreData(User user,List<ItemList> lists);
 }

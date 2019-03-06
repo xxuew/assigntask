@@ -35,30 +35,24 @@ public class CommentController {
         }
     }
 
-
+//提交数据，并存入数据
     @PostMapping("get_comment")
     public String getComment(HttpServletRequest request, HttpSession httpSession) {
         User user = (User) httpSession.getAttribute("currentUser");
         if (user != null) {
             System.out.println("--------------------");
-            List<ItemList> a = ahpService.CreatTask();
             List<ItemList> lists = new ArrayList<ItemList>();
-
             for(int i = 0;i < 10;i++){
-                ItemList item;
-                item = a.get(i);
-                lists.add(item);
+                ItemList itemList = new ItemList();
+                String scorea = request.getParameter("scorea"+(i+1));
+                String scoreb = request.getParameter("scoreb"+(i+1));
+                System.out.println("scorea"+(i+1)+" "+scorea);
+                System.out.println("scoreb"+(i+1)+" "+scoreb);
+                itemList.setScorea(Integer.valueOf(scorea));
+                itemList.setScoreb(Integer.valueOf(scoreb));
+                lists.add(itemList);
             }
-
-            for(int i = 0;i < 10;i++){
-                String item1 =lists.get(i).itema;
-                String item2 =lists.get(i).itemb;
-                String resulta = request.getParameter("itema"+(i+1));
-                String resultb = request.getParameter("itemb"+(i+1));
-                System.out.println(item1+" "+resulta);
-                System.out.println(item2+" "+resultb);
-            }
-
+            ahpService.StoreData(user,lists);
         } else {
             return "user/login";
         }

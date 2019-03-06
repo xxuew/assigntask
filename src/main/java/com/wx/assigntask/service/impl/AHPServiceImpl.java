@@ -27,36 +27,76 @@ public class AHPServiceImpl implements AHPService {
 
     private int count = 0;
 //未乱序分配，后面将subtaskId换成randomNum
+//    若用户已经分配了任务则不再分配
     @Override
     public List<ItemList> assignTask(User user) {
         List<ItemList> list = new ArrayList<>();
+        User currentuser = userMapper.findUserByUserName(user.getUsername());
+//        判断是否分配了任务
+        int received_id = currentuser.getReceived_id();
+        System.out.println("-----------------------");
+        System.out.println(received_id);
+        if(received_id == 0){
 //        生成任务，将用户id写入任务数据表表
-        int id = user.getUser_id();
-        for(int i = 0;i<10;i++){
-            ItemList itemList = new ItemList();
-            count++;
+            int id = user.getUser_id();
+            for(int i = 0;i<10;i++){
+                ItemList itemList = new ItemList();
+                count++;
 //            将分配的任务id写入用户数据表
-            if(i == 0){
-                String Received_id = count+"";;
-                user.setReceived_id(Received_id);
-                userMapper.updateUser(user);
+                if(i == 0){
+                    user.setReceived_id(count);
+                    userMapper.updateUser(user);
+                }
+                AhpSubtask ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(count);
+                ahpSubtask.setDividedid(id);
+                ahpSubtaskMapper.updateByPrimaryKey(ahpSubtask);
+                itemList.setId(ahpSubtask.getSubtaskid());
+                itemList.setInputname(ahpSubtask.getInputname());
+                itemList.setInputdes(ahpSubtask.getInputdes());
+                itemList.setItema(ahpSubtask.getItemname1());
+                itemList.setDesa(ahpSubtask.getItemdes1());
+                itemList.setItemb(ahpSubtask.getItemname2());
+                itemList.setDesb(ahpSubtask.getItemdes2());
+                list.add(itemList);
             }
-            System.out.println(count);
-            AhpSubtask ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(count);
-            ahpSubtask.setDividedid(id);
-            ahpSubtaskMapper.updateByPrimaryKey(ahpSubtask);
-            itemList.setId(ahpSubtask.getSubtaskid());
-            itemList.setInputname(ahpSubtask.getInputname());
-            itemList.setInputdes(ahpSubtask.getInputdes());
-            itemList.setItema(ahpSubtask.getItemname1());
-            itemList.setDesa(ahpSubtask.getItemdes1());
-            itemList.setItemb(ahpSubtask.getItemname2());
-            itemList.setDesb(ahpSubtask.getItemdes2());
-            list.add(itemList);
+        }else{
+            for(int i = 0;i<10;i++){
+                if(i!=0){
+                    received_id++;
+                }
+                ItemList itemList = new ItemList();
+                AhpSubtask ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(received_id);
+                itemList.setId(ahpSubtask.getSubtaskid());
+                itemList.setInputname(ahpSubtask.getInputname());
+                itemList.setInputdes(ahpSubtask.getInputdes());
+                itemList.setItema(ahpSubtask.getItemname1());
+                itemList.setDesa(ahpSubtask.getItemdes1());
+                itemList.setItemb(ahpSubtask.getItemname2());
+                itemList.setDesb(ahpSubtask.getItemdes2());
+                list.add(itemList);
+            }
         }
-
         return list;
     }
+
+//存数数据，并重置received_id
+    @Override
+    public void StoreData(User user,List<ItemList> lists){
+        User currentuser = userMapper.findUserByUserName(user.getUsername());
+        int received_id = currentuser.getReceived_id();
+        for(int i = 0;i<10;i++){
+            if(i != 0){
+                received_id++;
+            }
+            AhpSubtask ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(received_id);
+            ahpSubtask.setScore1(lists.get(i).getScorea());
+            ahpSubtask.setScore2(lists.get(i).getScoreb());
+            ahpSubtaskMapper.updateByPrimaryKey(ahpSubtask);
+        }
+        currentuser.setReceived_id(0);
+        userMapper.updateUser(currentuser);
+    }
+
 
 
     @Override
