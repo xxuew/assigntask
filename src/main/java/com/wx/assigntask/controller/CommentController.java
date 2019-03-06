@@ -26,20 +26,9 @@ public class CommentController {
     public String common(Map<String, Object> map, HttpSession httpSession){
         User user = (User) httpSession.getAttribute("currentUser");
         if (user != null) {
-            List<OriginalData> lista;
-            List<ItemList> a = ahpService.CreatTask();
-//        lista= originalDataService.selectAll();
-//        a = subTaskService.insertSubTask(lista);
             List<ItemList> lists = new ArrayList<ItemList>();
-
-            for(int i = 0;i < 10;i++){
-                ItemList item = new ItemList();
-                item = a.get(i);
-                lists.add(item);
-            }
-
+            lists = ahpService.assignTask(user);
             map.put("lists",lists);
-
             return "user/comment";
         } else {
             return "user/login";
@@ -50,7 +39,6 @@ public class CommentController {
     @PostMapping("get_comment")
     public String getComment(HttpServletRequest request, HttpSession httpSession) {
         User user = (User) httpSession.getAttribute("currentUser");
-        System.out.println("调用了");
         if (user != null) {
             System.out.println("--------------------");
             List<ItemList> a = ahpService.CreatTask();

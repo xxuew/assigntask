@@ -2,8 +2,10 @@ package com.wx.assigntask.service.impl;
 
 import com.wx.assigntask.comment.ItemList;
 import com.wx.assigntask.dao.AhpSubtaskMapper;
+import com.wx.assigntask.dao.UserMapper;
 import com.wx.assigntask.entity.AhpSubtask;
 import com.wx.assigntask.entity.OriginalData;
+import com.wx.assigntask.entity.User;
 import com.wx.assigntask.service.AHPService;
 import com.wx.assigntask.service.OriginalDataService;
 import com.wx.assigntask.subtask.BuildTask;
@@ -18,9 +20,44 @@ import java.util.List;
 public class AHPServiceImpl implements AHPService {
     @Autowired
     OriginalDataService originalDataService;
-
     @Autowired
     AhpSubtaskMapper ahpSubtaskMapper;
+    @Autowired
+    UserMapper userMapper;
+
+    private int count = 0;
+//未乱序分配，后面将subtaskId换成randomNum
+    @Override
+    public List<ItemList> assignTask(User user) {
+        List<ItemList> list = new ArrayList<>();
+//        生成任务，将用户id写入任务数据表表
+        int id = user.getUser_id();
+        for(int i = 0;i<10;i++){
+            ItemList itemList = new ItemList();
+            count++;
+//            将分配的任务id写入用户数据表
+            if(i == 0){
+                String Received_id = count+"";;
+                user.setReceived_id(Received_id);
+                userMapper.updateUser(user);
+            }
+            System.out.println(count);
+            AhpSubtask ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(count);
+            ahpSubtask.setDividedid(id);
+            ahpSubtaskMapper.updateByPrimaryKey(ahpSubtask);
+            itemList.setId(ahpSubtask.getSubtaskid());
+            itemList.setInputname(ahpSubtask.getInputname());
+            itemList.setInputdes(ahpSubtask.getInputdes());
+            itemList.setItema(ahpSubtask.getItemname1());
+            itemList.setDesa(ahpSubtask.getItemdes1());
+            itemList.setItemb(ahpSubtask.getItemname2());
+            itemList.setDesb(ahpSubtask.getItemdes2());
+            list.add(itemList);
+        }
+
+        return list;
+    }
+
 
     @Override
 //    创建任务并存入到数据库

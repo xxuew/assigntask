@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
  * @Date: 2018/12/10 13:40
  * @Version 1.0
  */
+@Service
 @Repository
 public interface DividedService {
     public int insertDivided(String algname1,String algname2);

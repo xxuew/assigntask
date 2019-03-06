@@ -1,14 +1,24 @@
 package com.wx.assigntask.comment;
 
 public class ItemList {
+
     public String itema,itemb;
-    public int scorea,scoreb;
+    public int scorea,scoreb,id;
     public String desa,desb;
     public String inputname,inputdes;
     public void ItemList(){
 
     }
-    public void ItemList(String itema,String itemb){
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void ItemList(String itema, String itemb){
         this.itema = itema;
         this.itemb = itemb;
     }
