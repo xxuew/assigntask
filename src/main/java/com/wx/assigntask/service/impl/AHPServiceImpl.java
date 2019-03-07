@@ -89,8 +89,8 @@ public class AHPServiceImpl implements AHPService {
                 received_id++;
             }
             AhpSubtask ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(received_id);
-            ahpSubtask.setScore1(lists.get(i).getScorea());
-            ahpSubtask.setScore2(lists.get(i).getScoreb());
+            ahpSubtask.setScore1((float) lists.get(i).getScorea());
+            ahpSubtask.setScore2((float)lists.get(i).getScoreb());
             ahpSubtaskMapper.updateByPrimaryKey(ahpSubtask);
         }
         currentuser.setReceived_id(0);

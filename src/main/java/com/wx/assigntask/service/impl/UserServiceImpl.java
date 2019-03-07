@@ -1,11 +1,14 @@
 package com.wx.assigntask.service.impl;
 
 
+import com.wx.assigntask.comment.ItemList;
 import com.wx.assigntask.dao.UserMapper;
 import com.wx.assigntask.entity.User;
 import com.wx.assigntask.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Author: wx
@@ -21,9 +24,16 @@ public class UserServiceImpl implements IUserService {
     @Override
     public int addUser(User user) {
         user.setReceived_id(0);
-        return userMapper.insertUser(user);
+        return userMapper.insert(user);
     }
-    
+
+    @Override
+    public List<ItemList> checkUser(User user) {
+        User currentuser = userMapper.findUserByUserName(user.getUsername());
+
+        return null;
+    }
+
     @Override
     public User findUserByUserName(String username) {
         User user = userMapper.findUserByUserName(username);

@@ -23,10 +23,7 @@ public class AssignTaskController {
 //    @Autowired
 //    IUserService userService;
 //    依赖好像只用注入一次、
-    @Autowired
-    ReleaseService releaseService;
-    @Autowired
-    SubTaskService subTaskService;
+
     @Autowired
     OriginalDataService originalDataService;
 
@@ -44,13 +41,13 @@ public class AssignTaskController {
         }
     }
 
-    //返回数据库数据传给jsp
-    @RequestMapping(value = "/myreleasetask")
-    public String releaseInfo(){
-
-
-        return  "user/myreleasetask";
-    }
+//    //返回数据库数据传给jsp
+//    @RequestMapping(value = "/myreleasetask")
+//    public String releaseInfo(){
+//
+//
+//        return  "user/myreleasetask";
+//    }
 
 
 }
