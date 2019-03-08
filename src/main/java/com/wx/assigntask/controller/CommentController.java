@@ -1,9 +1,10 @@
 package com.wx.assigntask.controller;
 
 import com.wx.assigntask.comment.ItemList;
-import com.wx.assigntask.entity.OriginalData;
+import com.wx.assigntask.dao.UserMapper;
 import com.wx.assigntask.entity.User;
-import com.wx.assigntask.service.AHPService;
+import com.wx.assigntask.service.IAHPService;
+import com.wx.assigntask.service.ITaskService;
 import com.wx.assigntask.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,57 +18,35 @@ import java.util.Map;
 
 @Controller
 public class CommentController {
+    @Autowired
     IUserService userService;
     @Autowired
-    AHPService ahpService;
-
+    IAHPService ahpService;
+    @Autowired
+    ITaskService taskService;
 
     @RequestMapping(value = "/comment")
     public String common(Map<String, Object> map, HttpSession httpSession,HttpServletRequest request){
         User user = (User) httpSession.getAttribute("currentUser");
         if (user != null) {
-            System.out.println("----------申请任务----------");
-            int id = Integer.parseInt(request.getParameter("id"));
-            System.out.println("申请任务的id为："+id);
+            System.out.println("----------检查是否申请任务----------");
+            User currentuser = userService.findUserByUserName(user.getUsername());
             List<ItemList> lists = new ArrayList<ItemList>();
-//            不同id对应不同的任务
-            switch (id){
-                case 1:
-                    System.out.println("任务1");
-                    lists = ahpService.assignTask(user);
-                    break;
-                case 2:
-                    System.out.println("任务2");
-                    lists = ahpService.assignTask(user);
-                    break;
-                case 3:
-                    System.out.println("任务3");
-                    lists = ahpService.assignTask(user);
-                    break;
-                case 4:
-                    System.out.println("任务4");
-                    lists = ahpService.assignTask(user);
-                    break;
-                case 5:
-                    System.out.println("任务5");
-                    lists = ahpService.assignTask(user);
-                    break;
-                case 6:
-                    System.out.println("任务6");
-                    lists = ahpService.assignTask(user);
-                    break;
-                case 7:
-                    System.out.println("任务7");
-                    lists = ahpService.assignTask(user);
-                    break;
-                case 8:
-                    System.out.println("任务8");
-                    lists = ahpService.assignTask(user);
-                    break;
+//        判断是否分配了任务
+            int received_id = currentuser.getReceived_id();
+            if(received_id == 0){
+//        生成任务，将用户id写入任务数据表表
+                System.out.println("----------申请任务----------");
+                int id = Integer.parseInt(request.getParameter("id"));
+                System.out.println("申请任务的id为："+id);
+                lists = taskService.assignTask(id,currentuser);
+            }else{
+                lists = userService.checkUser(user);
             }
+
             map.put("lists",lists);
             return "user/comment";
-        } else {
+        }else{
             return "user/login";
         }
     }
@@ -78,7 +57,9 @@ public class CommentController {
         User user = (User) httpSession.getAttribute("currentUser");
         if (user != null) {
             System.out.println("----------提交任务----------");
-            System.out.println(request.getParameter("id"));
+            User currentuser = userService.findUserByUserName(user.getUsername());
+            int algo_id = currentuser.getAlgo_id();
+            System.out.println("algo_id"+algo_id);
             List<ItemList> lists = new ArrayList<ItemList>();
             for(int i = 0;i < 10;i++){
                 ItemList itemList = new ItemList();
@@ -90,7 +71,7 @@ public class CommentController {
                 itemList.setScoreb(Integer.valueOf(scoreb));
                 lists.add(itemList);
             }
-            ahpService.StoreData(user,lists);
+            taskService.StoreData(algo_id,user,lists);
         } else {
             return "user/login";
         }

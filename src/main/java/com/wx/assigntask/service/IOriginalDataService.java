@@ -7,7 +7,7 @@ import java.util.List;
 
 
 @Service
-public interface OriginalDataService {
+public interface IOriginalDataService {
     public OriginalData selectByid(Integer oid);
     public List<OriginalData> selectAll();
     OriginalData selectByPrimaryKey(Integer oid);

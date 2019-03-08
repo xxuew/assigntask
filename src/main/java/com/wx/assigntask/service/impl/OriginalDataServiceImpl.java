@@ -2,7 +2,7 @@ package com.wx.assigntask.service.impl;
 
 import com.wx.assigntask.dao.OriginalDataMapper;
 import com.wx.assigntask.entity.OriginalData;
-import com.wx.assigntask.service.OriginalDataService;
+import com.wx.assigntask.service.IOriginalDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,7 +11,7 @@ import java.util.List;
 
 //
 @Service
-public class OriginalDataServiceImpl implements OriginalDataService {
+public class OriginalDataServiceImpl implements IOriginalDataService {
 
     @Autowired
     private OriginalDataMapper originalDataMapper;
