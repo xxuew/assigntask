@@ -1,11 +1,10 @@
 package com.wx.assigntask.service.impl;
 
 import com.wx.assigntask.comment.ItemList;
-import com.wx.assigntask.dao.SubtaskMapper;
+import com.wx.assigntask.dao.SubtaskHorizonMapper;
 import com.wx.assigntask.dao.UserMapper;
-import com.wx.assigntask.entity.AhpSubtask;
 import com.wx.assigntask.entity.Subtask;
-import com.wx.assigntask.entity.SubtaskCnnTfidf;
+import com.wx.assigntask.entity.SubtaskHorizon;
 import com.wx.assigntask.entity.User;
 import com.wx.assigntask.service.IHorizonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,7 @@ import java.util.List;
 @Service
 public class HorizonServiceImpl implements IHorizonService {
     @Autowired
-    SubtaskMapper subtaskMapper;
+    SubtaskHorizonMapper subtaskMapper;
     @Autowired
     UserMapper userMapper;
 
@@ -38,7 +37,7 @@ public class HorizonServiceImpl implements IHorizonService {
                 user.setAlgo_id(4);
                 userMapper.updateUser(user);
             }
-            Subtask subtask = subtaskMapper.selectByPrimaryKey(horizon_count);
+            SubtaskHorizon subtask = subtaskMapper.selectByPrimaryKey(horizon_count);
 //            id表示任务分配给了谁
             subtask.setDividedId(uid);
             subtaskMapper.updateByPrimaryKey(subtask);
@@ -62,7 +61,7 @@ public class HorizonServiceImpl implements IHorizonService {
             if(i != 0){
                 received_id++;
             }
-            Subtask subtask = subtaskMapper.selectByPrimaryKey(received_id);
+            SubtaskHorizon subtask = subtaskMapper.selectByPrimaryKey(received_id);
             subtask.setScore1((float) lists.get(i).getScorea());
             subtask.setScore2((float)lists.get(i).getScoreb());
             subtaskMapper.updateByPrimaryKey(subtask);

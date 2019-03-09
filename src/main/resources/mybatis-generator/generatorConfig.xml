@@ -140,16 +140,16 @@
             <!--<property name="useActualColumnNames" value="false" />-->
         <!--</table>-->
 
-        <table schema="assigntask" tableName="user"
-        enableCountByExample="false"
-        enableUpdateByExample="true"
-        enableDeleteByExample="true"
-        enableSelectByExample="true"
-        selectByExampleQueryId="true">
-        <property name="useActualColumnNames" value="true" />
-        </table>
+        <!--<table schema="assigntask" tableName="user"-->
+        <!--enableCountByExample="false"-->
+        <!--enableUpdateByExample="true"-->
+        <!--enableDeleteByExample="true"-->
+        <!--enableSelectByExample="true"-->
+        <!--selectByExampleQueryId="true">-->
+        <!--<property name="useActualColumnNames" value="true" />-->
+        <!--</table>-->
 
-        <!--<table schema="assigntask" tableName="Ahp_subtask"-->
+        <!--<table schema="assigntask" tableName="subtask_ahp"-->
         <!--enableCountByExample="false"-->
         <!--enableUpdateByExample="true"-->
         <!--enableDeleteByExample="true"-->
@@ -160,7 +160,7 @@
 
         <!---->
 
-        <!--<table schema="assigntask" tableName="subtask"-->
+        <!--<table schema="assigntask" tableName="subtask_horizon"-->
         <!--enableCountByExample="false"-->
         <!--enableUpdateByExample="true"-->
         <!--enableDeleteByExample="true"-->
@@ -196,6 +196,54 @@
         <!--<property name="useActualColumnNames" value="true" />-->
         <!--</table>-->
 
+
+
+        <table schema="assigntask" tableName="score_ahp"
+        enableCountByExample="false"
+        enableUpdateByExample="true"
+        enableDeleteByExample="true"
+        enableSelectByExample="true"
+        selectByExampleQueryId="true">
+        <property name="useActualColumnNames" value="false" />
+        </table>
+
+
+
+        <table schema="assigntask" tableName="score_horizon"
+        enableCountByExample="false"
+        enableUpdateByExample="true"
+        enableDeleteByExample="true"
+        enableSelectByExample="true"
+        selectByExampleQueryId="true">
+        <property name="useActualColumnNames" value="true" />
+        </table>
+
+        <table schema="assigntask" tableName="score_cnn_tfidf"
+        enableCountByExample="false"
+        enableUpdateByExample="true"
+        enableDeleteByExample="true"
+        enableSelectByExample="true"
+        selectByExampleQueryId="true">
+        <property name="useActualColumnNames" value="true" />
+        </table>
+
+        <table schema="assigntask" tableName="score_doc_index"
+        enableCountByExample="false"
+        enableUpdateByExample="true"
+        enableDeleteByExample="true"
+        enableSelectByExample="true"
+        selectByExampleQueryId="true">
+        <property name="useActualColumnNames" value="true" />
+        </table>
+
+        <table schema="assigntask" tableName="score_lstm_nn"
+        enableCountByExample="false"
+        enableUpdateByExample="true"
+        enableDeleteByExample="true"
+        enableSelectByExample="true"
+        selectByExampleQueryId="true">
+        <property name="useActualColumnNames" value="true" />
+        </table>
 
 
     </context>

@@ -1,9 +1,9 @@
 package com.wx.assigntask.service.impl;
 
 import com.wx.assigntask.comment.ItemList;
-import com.wx.assigntask.dao.AhpSubtaskMapper;
+import com.wx.assigntask.dao.SubtaskAhpMapper;
 import com.wx.assigntask.dao.UserMapper;
-import com.wx.assigntask.entity.AhpSubtask;
+import com.wx.assigntask.entity.SubtaskAhp;
 import com.wx.assigntask.entity.OriginalData;
 import com.wx.assigntask.entity.User;
 import com.wx.assigntask.service.IAHPService;
@@ -20,7 +20,7 @@ public class AHPServiceImpl implements IAHPService {
     @Autowired
     IOriginalDataService originalDataService;
     @Autowired
-    AhpSubtaskMapper ahpSubtaskMapper;
+    SubtaskAhpMapper ahpSubtaskMapper;
     @Autowired
     UserMapper userMapper;
 
@@ -43,7 +43,7 @@ public class AHPServiceImpl implements IAHPService {
                 user.setAlgo_id(5);
                 userMapper.updateUser(user);
             }
-            AhpSubtask ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(count);
+            SubtaskAhp ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(count);
 //            id表示任务分配给了谁
             ahpSubtask.setDividedid(uid);
             ahpSubtaskMapper.updateByPrimaryKey(ahpSubtask);
@@ -67,7 +67,7 @@ public class AHPServiceImpl implements IAHPService {
             if(i != 0){
                 received_id++;
             }
-            AhpSubtask ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(received_id);
+            SubtaskAhp ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(received_id);
             ahpSubtask.setScore1((float) lists.get(i).getScorea());
             ahpSubtask.setScore2((float)lists.get(i).getScoreb());
             ahpSubtaskMapper.updateByPrimaryKey(ahpSubtask);

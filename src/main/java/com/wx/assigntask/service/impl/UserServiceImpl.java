@@ -22,9 +22,9 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     UserMapper userMapper;
     @Autowired
-    AhpSubtaskMapper ahpSubtaskMapper;
+    SubtaskAhpMapper ahpSubtaskMapper;
     @Autowired
-    SubtaskMapper subtaskMapper;
+    SubtaskHorizonMapper subtaskMapper;
     @Autowired
     SubtaskCnnTfidfMapper subtaskCnnTfidfMapper;
     @Autowired
@@ -107,7 +107,7 @@ public class UserServiceImpl implements IUserService {
                         received_id++;
                     }
                     ItemList itemList = new ItemList();
-                    Subtask subtask = subtaskMapper.selectByPrimaryKey(received_id);
+                    SubtaskHorizon subtask = subtaskMapper.selectByPrimaryKey(received_id);
                     itemList.setId(subtask.getSubtaskId());
                     itemList.setInputname(subtask.getInputName());
                     itemList.setInputdes(subtask.getInputDes());
@@ -125,7 +125,7 @@ public class UserServiceImpl implements IUserService {
                         received_id++;
                     }
                     ItemList itemList = new ItemList();
-                    AhpSubtask ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(received_id);
+                    SubtaskAhp ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(received_id);
                     itemList.setId(ahpSubtask.getSubtaskid());
                     itemList.setInputname(ahpSubtask.getInputname());
                     itemList.setInputdes(ahpSubtask.getInputdes());
@@ -143,7 +143,7 @@ public class UserServiceImpl implements IUserService {
                         received_id++;
                     }
                     ItemList itemList = new ItemList();
-                    AhpSubtask ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(received_id);
+                    SubtaskAhp ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(received_id);
                     itemList.setId(ahpSubtask.getSubtaskid());
                     itemList.setInputname(ahpSubtask.getInputname());
                     itemList.setInputdes(ahpSubtask.getInputdes());
@@ -161,7 +161,7 @@ public class UserServiceImpl implements IUserService {
                         received_id++;
                     }
                     ItemList itemList = new ItemList();
-                    AhpSubtask ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(received_id);
+                    SubtaskAhp ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(received_id);
                     itemList.setId(ahpSubtask.getSubtaskid());
                     itemList.setInputname(ahpSubtask.getInputname());
                     itemList.setInputdes(ahpSubtask.getInputdes());
@@ -179,7 +179,7 @@ public class UserServiceImpl implements IUserService {
                         received_id++;
                     }
                     ItemList itemList = new ItemList();
-                    AhpSubtask ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(received_id);
+                    SubtaskAhp ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(received_id);
                     itemList.setId(ahpSubtask.getSubtaskid());
                     itemList.setInputname(ahpSubtask.getInputname());
                     itemList.setInputdes(ahpSubtask.getInputdes());
