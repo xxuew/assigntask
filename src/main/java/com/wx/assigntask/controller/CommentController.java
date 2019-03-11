@@ -41,6 +41,7 @@ public class CommentController {
                 System.out.println("申请任务的id为："+id);
                 lists = taskService.assignTask(id,currentuser);
             }else{
+//                检查并返回用户当前已经申请的任务
                 lists = userService.checkUser(user);
             }
 
@@ -52,7 +53,8 @@ public class CommentController {
     }
 
 //提交数据，并存入数据
-    @PostMapping("get_comment")
+//    @PostMapping("get_comment")
+    @RequestMapping(value = "get_comment")
     public String getComment(HttpServletRequest request, HttpSession httpSession) {
         User user = (User) httpSession.getAttribute("currentUser");
         if (user != null) {

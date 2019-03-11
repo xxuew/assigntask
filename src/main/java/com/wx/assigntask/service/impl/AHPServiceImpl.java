@@ -1,11 +1,11 @@
 package com.wx.assigntask.service.impl;
 
 import com.wx.assigntask.comment.ItemList;
+import com.wx.assigntask.dao.ScoreAhpMapper;
 import com.wx.assigntask.dao.SubtaskAhpMapper;
+import com.wx.assigntask.dao.TaskNumMapper;
 import com.wx.assigntask.dao.UserMapper;
-import com.wx.assigntask.entity.SubtaskAhp;
-import com.wx.assigntask.entity.OriginalData;
-import com.wx.assigntask.entity.User;
+import com.wx.assigntask.entity.*;
 import com.wx.assigntask.service.IAHPService;
 import com.wx.assigntask.service.IOriginalDataService;
 import com.wx.assigntask.subtask.BuildTask;
@@ -23,6 +23,10 @@ public class AHPServiceImpl implements IAHPService {
     SubtaskAhpMapper ahpSubtaskMapper;
     @Autowired
     UserMapper userMapper;
+    @Autowired
+    ScoreAhpMapper scoreAhpMapper;
+    @Autowired
+    TaskNumMapper taskNumMapper;
 
     private int count = 0;
 //未乱序分配，后面将subtaskId换成randomNum
@@ -30,50 +34,104 @@ public class AHPServiceImpl implements IAHPService {
     @Override
     public List<ItemList> assignTask(User user) {
         List<ItemList> list = new ArrayList<>();
+        int frequency = 0;
         System.out.println("-----------count------------");
         System.out.println(count);
+        if (count == 15000){
+            count = 0;
+        }
 //        生成任务，将用户id写入任务数据表表
         int uid = user.getUser_id();
         for(int i = 0;i<10;i++) {
             ItemList itemList = new ItemList();
             count++;
-//            将分配的任务id写入用户数据表
-            if (i == 0) {
-                user.setReceived_id(count);
-                user.setAlgo_id(5);
-                userMapper.updateUser(user);
-            }
             SubtaskAhp ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(count);
 //            id表示任务分配给了谁
             ahpSubtask.setDividedid(uid);
-            ahpSubtaskMapper.updateByPrimaryKey(ahpSubtask);
-            itemList.setId(ahpSubtask.getSubtaskid());
-            itemList.setInputname(ahpSubtask.getInputname());
-            itemList.setInputdes(ahpSubtask.getInputdes());
-            itemList.setItema(ahpSubtask.getItemname1());
-            itemList.setDesa(ahpSubtask.getItemdes1());
-            itemList.setItemb(ahpSubtask.getItemname2());
-            itemList.setDesb(ahpSubtask.getItemdes2());
-            list.add(itemList);
+            frequency = ahpSubtask.getFrequency();
+            frequency++;
+            //            将分配的任务id写入用户数据表
+            if (i == 0) {
+                user.setReceived_id(count);
+                user.setAlgo_id(5);
+                user.setFrequency(frequency);
+                userMapper.updateUser(user);
+            }
+            if(frequency <= 5) {
+                ahpSubtask.setFrequency(frequency);
+                ahpSubtaskMapper.updateByPrimaryKey(ahpSubtask);
+                itemList.setId(ahpSubtask.getSubtaskid());
+                itemList.setInputname(ahpSubtask.getInputname());
+                itemList.setInputdes(ahpSubtask.getInputdes());
+                itemList.setItema(ahpSubtask.getItemname1());
+                itemList.setDesa(ahpSubtask.getItemdes1());
+                itemList.setItemb(ahpSubtask.getItemname2());
+                itemList.setDesb(ahpSubtask.getItemdes2());
+                list.add(itemList);
+            }else {
+                return null;
+            }
         }
+        TaskNum taskNum = new TaskNum();
+        taskNum.setTable_id(5);
+        taskNum.setCurrent_num(count);
+        taskNum.setFrequence(frequency);
+        taskNumMapper.update(taskNum);
         return list;
     }
 
 //存数数据，并重置received_id
     @Override
     public void StoreData(User user,List<ItemList> lists){
+        int uid = user.getUser_id();
         int received_id = user.getReceived_id();
         for(int i = 0;i<10;i++){
             if(i != 0){
                 received_id++;
             }
-            SubtaskAhp ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(received_id);
-            ahpSubtask.setScore1((float) lists.get(i).getScorea());
-            ahpSubtask.setScore2((float)lists.get(i).getScoreb());
-            ahpSubtaskMapper.updateByPrimaryKey(ahpSubtask);
+            ScoreAhp scoreAhp = new ScoreAhp();
+            scoreAhp.setScoreid(received_id);
+            scoreAhp.setSubtaskid(received_id);
+            if(scoreAhpMapper.selectByPrimaryKey(received_id) == null){
+                scoreAhp.setScoreid(received_id);
+                scoreAhp.setSubtaskid(received_id);
+                scoreAhpMapper.insert(scoreAhp);
+            }else {
+                scoreAhp = scoreAhpMapper.selectByPrimaryKey(received_id);
+            }
+            int frequency = user.getFrequency();
+            switch (frequency){
+                case 1:
+                    scoreAhp.setUid1(uid);
+                    scoreAhp.setScorea1(lists.get(i).getScorea());
+                    scoreAhp.setScoreb1(lists.get(i).getScoreb());
+                    break;
+                case 2:
+                    scoreAhp.setUid2(uid);
+                    scoreAhp.setScorea2(lists.get(i).getScorea());
+                    scoreAhp.setScoreb2(lists.get(i).getScoreb());
+                    break;
+                case 3:
+                    scoreAhp.setUid3(uid);
+                    scoreAhp.setScorea3(lists.get(i).getScorea());
+                    scoreAhp.setScoreb3(lists.get(i).getScoreb());
+                    break;
+                case 4:
+                    scoreAhp.setUid4(uid);
+                    scoreAhp.setScorea4(lists.get(i).getScorea());
+                    scoreAhp.setScoreb4(lists.get(i).getScoreb());
+                    break;
+                case 5:
+                    scoreAhp.setUid5(uid);
+                    scoreAhp.setScorea5(lists.get(i).getScorea());
+                    scoreAhp.setScoreb5(lists.get(i).getScoreb());
+                    break;
+            }
+            scoreAhpMapper.updateByPrimaryKey(scoreAhp);
         }
         user.setReceived_id(0);
         user.setAlgo_id(0);
+        user.setFrequency(0);
         userMapper.updateUser(user);
     }
 

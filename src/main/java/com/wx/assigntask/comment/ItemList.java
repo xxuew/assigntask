@@ -30,7 +30,8 @@ public class ItemList {
         this.scoreb = scoreb;
     }
 
-    public void ItemList(String inputname,String inputdes,String itema,String itemb,int scorea,int scoreb,String desa,String desb){
+    public void ItemList(int id,String inputname,String inputdes,String itema,String desa,String itemb,String desb,int scorea,int scoreb){
+        this.id = id;
         this.itema = itema;
         this.itemb = itemb;
         this.scorea = scorea;

@@ -43,7 +43,7 @@ public class UserServiceImpl implements IUserService {
     public List<ItemList> checkUser(User user) {
         List<ItemList> list = new ArrayList<>();
         User currentuser = userMapper.findUserByUserName(user.getUsername());
-        int id = currentuser.getUser_id();
+        int id = currentuser.getAlgo_id();
         int received_id = currentuser.getReceived_id();
         switch (id){
             case 1:

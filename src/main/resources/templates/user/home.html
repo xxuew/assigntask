@@ -71,7 +71,7 @@
         <span>发现任务</span>
         </div>
 
-        <div class="card-item"  onclick="window.location='comment?id=1';">
+        <div class="card-item"  onclick="window.location='comment?id=1'">
             <div class="header-container">
                 <img src="img/image(1)" class="cover-image">
                 <div class="mark">评价任务</div>
@@ -79,10 +79,10 @@
             <div class="info-container">
                 <h1 class="title">按照要求进行打分</h1>
                 <div class="left">
-                    <span class="participants-num">10题/包</span>
+                    <span class="participants-num" >10题/包</span>
                 </div>
                 <div class="right">
-                    <span class="questions-num">剩余任务包数：48</span>
+                    <span class="questions-num" th:text="'剩余任务包数:'+${cnn}">48</span>
                 </div>
             </div>
         </div>
@@ -95,10 +95,10 @@
                 <div class="info-container">
                 <h1 class="title">按照要求进行打分</h1>
                 <div class="left">
-                    <span class="participants-num">10题/包</span>
+                    <span class="participants-num" >10题/包</span>
                 </div>
                 <div class="right">
-                    <span class="questions-num">剩余任务包数：0</span>
+                    <span class="questions-num" th:text="'剩余任务包数:'+${doc}">剩余任务包数：0</span>
                 </div>
             </div>
         </div>
@@ -114,7 +114,7 @@
                 <span class="participants-num">10题/包</span>
             </div>
             <div class="right">
-                <span class="questions-num">剩余任务包数：2801</span>
+                <span class="questions-num" th:text="'剩余任务包数:'+${lstm}">剩余任务包数：2801</span>
             </div>
         </div>
     </div>
@@ -130,7 +130,7 @@
                 <span class="participants-num">10题/包</span>
             </div>
             <div class="right">
-                <span class="questions-num">剩余任务包数：48</span>
+                <span class="questions-num" th:text="'剩余任务包数:'+${horizon}">剩余任务包数：48</span>
             </div>
         </div>
     </div>
@@ -143,10 +143,10 @@
         <div class="info-container">
             <h1 class="title">按照要求进行打分</h1>
             <div class="left">
-                <span class="participants-num">10题/包</span>
+                <span class="participants-num" >10题/包</span>
             </div>
             <div class="right">
-                <span class="questions-num">剩余任务包数：48</span>
+                <span class="questions-num" th:text="'剩余任务包数:'+${ahp}">剩余任务包数：48</span>
             </div>
         </div>
     </div>
