@@ -29,6 +29,7 @@ public class AssignTaskController {
     public String home(Map<String, Object> map, HttpSession httpSession){
         User user = (User) httpSession.getAttribute("currentUser");
         if (user != null) {
+
             List<Integer> list = new ArrayList<>();
             list = currentTaskService.currenttasknum();
             int cnn = list.get(0);

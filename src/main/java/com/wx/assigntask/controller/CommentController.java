@@ -45,6 +45,10 @@ public class CommentController {
                 lists = userService.checkUser(user);
             }
 
+            if (lists == null){
+                return "user/home";
+            }
+
             map.put("lists",lists);
             return "user/comment";
         }else{
