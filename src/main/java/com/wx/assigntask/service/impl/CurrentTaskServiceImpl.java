@@ -1,6 +1,8 @@
 package com.wx.assigntask.service.impl;
 
+import com.wx.assigntask.dao.AlgresultMapper;
 import com.wx.assigntask.dao.TaskNumMapper;
+import com.wx.assigntask.entity.Algresult;
 import com.wx.assigntask.entity.TaskNum;
 import com.wx.assigntask.service.ICurrentTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,34 +14,53 @@ import java.util.List;
 public class CurrentTaskServiceImpl implements ICurrentTaskService {
     @Autowired
     TaskNumMapper taskNumMapper;
+    @Autowired
+    AlgresultMapper algresultMapper;
+
     @Override
     public List<Integer> currenttasknum() {
         int ctnum;
         List<Integer> list = new ArrayList();
         List<TaskNum> taskList = taskNumMapper.selectAll();
+        Algresult algresult1 = algresultMapper.selectByPrimaryKey(1);
+        Algresult algresult2 = algresultMapper.selectByPrimaryKey(2);
+        Algresult algresult3 = algresultMapper.selectByPrimaryKey(3);
         for (TaskNum a:taskList) {
             int id = a.getTable_id();
             int num = a.getCurrent_num();
             int frequence = a.getFrequence();
             if (id <= 3){
                 if(frequence == 0){
-                    ctnum = 50000;
+                    ctnum = 30000;
                 }else {
-                    ctnum = 50000-num-(frequence-1)*10000;
+                    ctnum = 30000-num-(frequence-1)*10000;
                 }
                 list.add(ctnum);
             }else if (id == 4){
-                if(frequence == 0){
-                    ctnum = 32000*5;
+                if (algresult1.getWinAlgname() == null){
+                    ctnum = 0;
+                }else if(frequence == 0){
+                    ctnum = 30000;
                 }else {
-                    ctnum = 32000*5-num-(frequence-1)*10000;
+                    ctnum = 30000-num-(frequence-1)*10000;
                 }
                 list.add(ctnum);
             }else if (id == 5){
-                if(frequence == 0){
-                    ctnum = 15000*5;
+                if (algresult2.getWinAlgname() == null){
+                    ctnum = 0;
+                }else if(frequence == 0){
+                    ctnum = 30000;
                 }else {
-                    ctnum = 15000*5-num-(frequence-1)*10000;
+                    ctnum = 30000-num-(frequence-1)*10000;
+                }
+                list.add(ctnum);
+            }else if (id == 6){
+                if (algresult3.getWinAlgname() == null){
+                    ctnum = 0;
+                }else if(frequence == 0){
+                    ctnum = 30000;
+                }else {
+                    ctnum = 30000-num-(frequence-1)*10000;
                 }
                 list.add(ctnum);
             }

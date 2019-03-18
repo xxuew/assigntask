@@ -5,6 +5,8 @@
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <link rel="stylesheet" href="css/comment.css" type="text/css" />
     <link href="css/home.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="js/comment_btn.js" ></script>
     <script type="text/javascript" src="js/comment.js" ></script>
     <title>user</title>
 </head>
@@ -39,7 +41,7 @@
     </div>
 
 <div class="wrap" id="wrap">
-    <form method="post" id = "myform"   action="/get_comment">
+    <form method="post" id = "comment_form">
         <div class="tabCon">
             <div class="tabBox">
 
@@ -322,7 +324,7 @@
 
                                 <!--<div align="center" onclick="window.location='home'">-->
                                 <div align="center">
-                                    <input type="submit" value="Submit" id="comment_btn"/>
+                                    <input type="button" value="Submit" id="comment_btn"/>
                                 </div>
                             </div>
                         </ul>

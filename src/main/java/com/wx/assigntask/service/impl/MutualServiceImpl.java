@@ -29,6 +29,8 @@ public class MutualServiceImpl implements IMutualService {
     ScoreLstmNnMapper scoreLstmNnMapper;
     @Autowired
     TaskNumMapper taskNumMapper;
+    @Autowired
+    AlgresultMapper algresultMapper;
 
     private int cnn_tfidf_count = 0;
     private int doc_index_count = 0;
@@ -190,6 +192,7 @@ public class MutualServiceImpl implements IMutualService {
     public void cnn_tfidf_StoreData(User user, List<ItemList> lists) {
         int uid = user.getUser_id();
         int received_id = user.getReceived_id();
+        int frequency = user.getFrequency();
         for(int i = 0;i<10;i++){
             if(i != 0){
                 received_id++;
@@ -202,7 +205,6 @@ public class MutualServiceImpl implements IMutualService {
             }else {
                 scoreCnnTfidf = scoreCnnTfidfMapper.selectByPrimaryKey(received_id);
             }
-            int frequency = user.getFrequency();
             switch (frequency){
                 case 1:
                     scoreCnnTfidf.setUid1(uid);
@@ -219,18 +221,13 @@ public class MutualServiceImpl implements IMutualService {
                     scoreCnnTfidf.setScorea3(lists.get(i).getScorea());
                     scoreCnnTfidf.setScoreb3(lists.get(i).getScoreb());
                     break;
-                case 4:
-                    scoreCnnTfidf.setUid4(uid);
-                    scoreCnnTfidf.setScorea4(lists.get(i).getScorea());
-                    scoreCnnTfidf.setScoreb4(lists.get(i).getScoreb());
-                    break;
-                case 5:
-                    scoreCnnTfidf.setUid5(uid);
-                    scoreCnnTfidf.setScorea5(lists.get(i).getScorea());
-                    scoreCnnTfidf.setScoreb5(lists.get(i).getScoreb());
-                    break;
             }
             scoreCnnTfidfMapper.updateByPrimaryKey(scoreCnnTfidf);
+        }
+        if(received_id == 10000 && frequency == 3){
+            Algresult algresult = algresultMapper.selectByPrimaryKey(1);
+            algresult.setIffinal("yes");
+            algresultMapper.updateByPrimaryKey(algresult);
         }
         user.setReceived_id(0);
         user.setAlgo_id(0);
@@ -242,6 +239,7 @@ public class MutualServiceImpl implements IMutualService {
     public void doc_index_StoreData(User user, List<ItemList> lists){
         int uid = user.getUser_id();
         int received_id = user.getReceived_id();
+        int frequency = user.getFrequency();
         for(int i = 0;i<10;i++){
             if(i != 0){
                 received_id++;
@@ -254,7 +252,6 @@ public class MutualServiceImpl implements IMutualService {
             }else {
                 scoreDocIndex = scoreDocIndexMapper.selectByPrimaryKey(received_id);
             }
-            int frequency = user.getFrequency();
             switch (frequency){
                 case 1:
                     scoreDocIndex.setUid1(uid);
@@ -271,18 +268,13 @@ public class MutualServiceImpl implements IMutualService {
                     scoreDocIndex.setScorea3(lists.get(i).getScorea());
                     scoreDocIndex.setScoreb3(lists.get(i).getScoreb());
                     break;
-                case 4:
-                    scoreDocIndex.setUid4(uid);
-                    scoreDocIndex.setScorea4(lists.get(i).getScorea());
-                    scoreDocIndex.setScoreb4(lists.get(i).getScoreb());
-                    break;
-                case 5:
-                    scoreDocIndex.setUid5(uid);
-                    scoreDocIndex.setScorea5(lists.get(i).getScorea());
-                    scoreDocIndex.setScoreb5(lists.get(i).getScoreb());
-                    break;
             }
             scoreDocIndexMapper.updateByPrimaryKey(scoreDocIndex);
+        }
+        if(received_id == 10000 && frequency == 3){
+            Algresult algresult = algresultMapper.selectByPrimaryKey(2);
+            algresult.setIffinal("yes");
+            algresultMapper.updateByPrimaryKey(algresult);
         }
         user.setReceived_id(0);
         user.setAlgo_id(0);
@@ -294,6 +286,7 @@ public class MutualServiceImpl implements IMutualService {
     public void lstm_nn_StoreData(User user, List<ItemList> lists) {
         int received_id = user.getReceived_id();
         int uid = user.getUser_id();
+        int frequency = user.getFrequency();
         for(int i = 0;i<10;i++){
             if(i != 0){
                 received_id++;
@@ -308,7 +301,6 @@ public class MutualServiceImpl implements IMutualService {
             }else {
                 scoreLstmNn = scoreLstmNnMapper.selectByPrimaryKey(received_id);
             }
-            int frequency = user.getFrequency();
             switch (frequency){
                 case 1:
                     scoreLstmNn.setUid1(uid);
@@ -325,18 +317,13 @@ public class MutualServiceImpl implements IMutualService {
                     scoreLstmNn.setScorea3(lists.get(i).getScorea());
                     scoreLstmNn.setScoreb3(lists.get(i).getScoreb());
                     break;
-                case 4:
-                    scoreLstmNn.setUid4(uid);
-                    scoreLstmNn.setScorea4(lists.get(i).getScorea());
-                    scoreLstmNn.setScoreb4(lists.get(i).getScoreb());
-                    break;
-                case 5:
-                    scoreLstmNn.setUid5(uid);
-                    scoreLstmNn.setScorea5(lists.get(i).getScorea());
-                    scoreLstmNn.setScoreb5(lists.get(i).getScoreb());
-                    break;
             }
             scoreLstmNnMapper.updateByPrimaryKey(scoreLstmNn);
+        }
+        if(received_id == 10000 && frequency == 3){
+            Algresult algresult = algresultMapper.selectByPrimaryKey(3);
+            algresult.setIffinal("yes");
+            algresultMapper.updateByPrimaryKey(algresult);
         }
         user.setReceived_id(0);
         user.setAlgo_id(0);

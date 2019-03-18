@@ -45,10 +45,11 @@ public class CommentController {
                 lists = userService.checkUser(user);
             }
 
-            if (lists == null){
-                return "user/home";
-            }
 
+            if (lists == null){
+                System.out.println("到这了");
+                return "forward:/home";
+            }
             map.put("lists",lists);
             return "user/comment";
         }else{
@@ -57,8 +58,9 @@ public class CommentController {
     }
 
 //提交数据，并存入数据
-//    @PostMapping("get_comment")
-    @RequestMapping(value = "get_comment")
+    @PostMapping("get_comment")
+    @ResponseBody
+//    @RequestMapping(value = "get_comment")
     public String getComment(HttpServletRequest request, HttpSession httpSession) {
         User user = (User) httpSession.getAttribute("currentUser");
         if (user != null) {
@@ -79,9 +81,9 @@ public class CommentController {
             }
             taskService.StoreData(algo_id,user,lists);
         } else {
-            return "user/login";
+            return "login";
         }
-        return "user/home";
+        return "OK";
     }
 
 

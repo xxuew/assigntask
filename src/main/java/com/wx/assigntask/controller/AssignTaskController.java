@@ -4,6 +4,7 @@ import com.wx.assigntask.entity.User;
 import com.wx.assigntask.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +24,8 @@ public class AssignTaskController {
 //    IOriginalDataService originalDataService;
     @Autowired
     ICurrentTaskService currentTaskService;
-
+    @Autowired
+    ICaculateService caculateService;
 
     @RequestMapping(value = "/home")
     public String home(Map<String, Object> map, HttpSession httpSession){
@@ -35,17 +37,25 @@ public class AssignTaskController {
             int cnn = list.get(0);
             int doc = list.get(1);
             int lstm = list.get(2);
-            int horizon = list.get(3);
-            int ahp = list.get(4);
+            int final1 = list.get(3);
+            int final2 = list.get(4);
+            int final3 = list.get(5);
             map.put("cnn",cnn);
             map.put("doc",doc);
             map.put("lstm",lstm);
-            map.put("horizon",horizon);
-            map.put("ahp",ahp);
+            map.put("final1",final1);
+            map.put("final2",final2);
+            map.put("final3",final3);
+//            caculateService.caculate();
             return "user/home";
         } else {
             return "user/login";
         }
+    }
+
+    @RequestMapping(value = "mytask")
+    public String mytask(){
+        return null;
     }
 
 }

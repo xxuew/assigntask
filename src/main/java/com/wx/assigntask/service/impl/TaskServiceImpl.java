@@ -45,14 +45,6 @@ public class TaskServiceImpl implements ITaskService {
                 break;
             case 4:
                 System.out.println("任务4");
-                lists = iHorizonService.assignTask(currentuser);
-                break;
-            case 5:
-                System.out.println("任务5");
-                lists = ahpService.assignTask(currentuser);
-                break;
-            case 6:
-                System.out.println("任务6");
                 String result11 = algresultMapper.selectByPrimaryKey(1).getWinAlgname();
                 String result12 = algresultMapper.selectByPrimaryKey(2).getWinAlgname();
                 if (result11 == "cnn"&&result12 == "doc"){
@@ -65,8 +57,8 @@ public class TaskServiceImpl implements ITaskService {
                     lists = secondPartService.tfidf_index_assignTask(currentuser);
                 }
                 break;
-            case 7:
-                System.out.println("任务7");
+            case 5:
+                System.out.println("任务5");
                 String result21 = algresultMapper.selectByPrimaryKey(1).getWinAlgname();
                 String result22 = algresultMapper.selectByPrimaryKey(3).getWinAlgname();
                 if (result21 == "cnn"&&result22 == "lstm"){
@@ -79,8 +71,8 @@ public class TaskServiceImpl implements ITaskService {
                     lists = secondPartService.tfidf_nn_assignTask(currentuser);
                 }
                 break;
-            case 8:
-                System.out.println("任务8");
+            case 6:
+                System.out.println("任务6");
                 String result31 = algresultMapper.selectByPrimaryKey(2).getWinAlgname();
                 String result32 = algresultMapper.selectByPrimaryKey(3).getWinAlgname();
                 if (result31 == "doc"&&result32 == "lstm"){
@@ -116,22 +108,14 @@ public class TaskServiceImpl implements ITaskService {
                 break;
             case 4:
                 System.out.println("任务4");
-                iHorizonService.StoreData(currentuser,lists);
+                secondPartService.final1_StoreData(currentuser,lists);
                 break;
             case 5:
                 System.out.println("任务5");
-                ahpService.StoreData(currentuser,lists);
+                secondPartService.final2_StoreData(currentuser,lists);
                 break;
             case 6:
                 System.out.println("任务6");
-                secondPartService.final1_StoreData(currentuser,lists);
-                break;
-            case 7:
-                System.out.println("任务7");
-                secondPartService.final2_StoreData(currentuser,lists);
-                break;
-            case 8:
-                System.out.println("任务8");
                 secondPartService.final3_StoreData(currentuser,lists);
                 break;
         }

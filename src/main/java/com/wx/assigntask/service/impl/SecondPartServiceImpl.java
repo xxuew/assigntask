@@ -716,16 +716,6 @@ public class SecondPartServiceImpl implements ISecondPartService {
                     scoreCnnTfidf.setScorea3(lists.get(i).getScorea());
                     scoreCnnTfidf.setScoreb3(lists.get(i).getScoreb());
                     break;
-                case 4:
-                    scoreCnnTfidf.setUid4(uid);
-                    scoreCnnTfidf.setScorea4(lists.get(i).getScorea());
-                    scoreCnnTfidf.setScoreb4(lists.get(i).getScoreb());
-                    break;
-                case 5:
-                    scoreCnnTfidf.setUid5(uid);
-                    scoreCnnTfidf.setScorea5(lists.get(i).getScorea());
-                    scoreCnnTfidf.setScoreb5(lists.get(i).getScoreb());
-                    break;
             }
             scoreFinal1Mapper.updateByPrimaryKey(scoreCnnTfidf);
         }
@@ -768,16 +758,6 @@ public class SecondPartServiceImpl implements ISecondPartService {
                     scoreCnnTfidf.setScorea3(lists.get(i).getScorea());
                     scoreCnnTfidf.setScoreb3(lists.get(i).getScoreb());
                     break;
-                case 4:
-                    scoreCnnTfidf.setUid4(uid);
-                    scoreCnnTfidf.setScorea4(lists.get(i).getScorea());
-                    scoreCnnTfidf.setScoreb4(lists.get(i).getScoreb());
-                    break;
-                case 5:
-                    scoreCnnTfidf.setUid5(uid);
-                    scoreCnnTfidf.setScorea5(lists.get(i).getScorea());
-                    scoreCnnTfidf.setScoreb5(lists.get(i).getScoreb());
-                    break;
             }
             scoreFinal2Mapper.updateByPrimaryKey(scoreCnnTfidf);
         }
@@ -819,16 +799,6 @@ public class SecondPartServiceImpl implements ISecondPartService {
                     scoreCnnTfidf.setUid3(uid);
                     scoreCnnTfidf.setScorea3(lists.get(i).getScorea());
                     scoreCnnTfidf.setScoreb3(lists.get(i).getScoreb());
-                    break;
-                case 4:
-                    scoreCnnTfidf.setUid4(uid);
-                    scoreCnnTfidf.setScorea4(lists.get(i).getScorea());
-                    scoreCnnTfidf.setScoreb4(lists.get(i).getScoreb());
-                    break;
-                case 5:
-                    scoreCnnTfidf.setUid5(uid);
-                    scoreCnnTfidf.setScorea5(lists.get(i).getScorea());
-                    scoreCnnTfidf.setScoreb5(lists.get(i).getScoreb());
                     break;
             }
             scoreFinal3Mapper.updateByPrimaryKey(scoreCnnTfidf);

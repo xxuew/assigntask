@@ -12,6 +12,8 @@
 <meta name="description" content="小贡献，大AI。你处理的每一条数据，都将助力AI的发展。">
 <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
 <link href="css/home.css" rel="stylesheet">
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="js/home.js"></script>
 </head>
 <body class="">
 <!--[if lt IE 10]>
@@ -71,7 +73,7 @@
         <span>发现任务</span>
         </div>
 
-        <div class="card-item"  onclick="window.location='comment?id=1'">
+        <div id = "task1" class="card-item" >
             <div class="header-container">
                 <img src="img/image(1)" class="cover-image">
                 <div class="mark">评价任务</div>
@@ -81,13 +83,14 @@
                 <div class="left">
                     <span class="participants-num" >10题/包</span>
                 </div>
-                <div class="right">
-                    <span class="questions-num" th:text="'剩余任务包数:'+${cnn}">48</span>
+                <div class="right" >
+                    <span class="questions-num">剩余任务包数</span>
+                    <span id = "task1_name" class="questions-num" th:text="${cnn}">48</span>
                 </div>
             </div>
         </div>
 
-        <div class="card-item"  onclick="window.location='comment?id=2';">
+        <div id = "task2" class="card-item">
             <div class="header-container">
                 <img src="img/image(1)" class="cover-image">
                 <div class="mark">评分任务</div>
@@ -98,12 +101,13 @@
                     <span class="participants-num" >10题/包</span>
                 </div>
                 <div class="right">
-                    <span class="questions-num" th:text="'剩余任务包数:'+${doc}">剩余任务包数：0</span>
+                    <span class="questions-num">剩余任务包数</span>
+                    <span id = "task2_name" class="questions-num" th:text="${doc}"></span>
                 </div>
             </div>
         </div>
 
-    <div class="card-item"  onclick="window.location='comment?id=3';">
+    <div id = "task3" class="card-item">
             <div class="header-container">
             <img src="img/image(1)" class="cover-image">
             <div class="mark">评价任务</div>
@@ -114,12 +118,13 @@
                 <span class="participants-num">10题/包</span>
             </div>
             <div class="right">
-                <span class="questions-num" th:text="'剩余任务包数:'+${lstm}">剩余任务包数：2801</span>
+                <span class="questions-num">剩余任务包数</span>
+                <span id = "task3_name"  class="questions-num" th:text="${lstm}">剩余任务包数：2801</span>
             </div>
         </div>
     </div>
 
-    <div class="card-item"  onclick="window.location='comment?id=4';">
+    <div id = "task4" class="card-item">
         <div class="header-container">
             <img src="img/image(2)" class="cover-image">
             <div class="mark">评价任务</div>
@@ -130,12 +135,13 @@
                 <span class="participants-num">10题/包</span>
             </div>
             <div class="right">
-                <span class="questions-num" th:text="'剩余任务包数:'+${horizon}">剩余任务包数：48</span>
+                <span class="questions-num">剩余任务包数</span>
+                <span id = "task4_name" class="questions-num" th:text="${final1}">剩余任务包数：48</span>
             </div>
         </div>
     </div>
 
-    <div class="card-item"  onclick="window.location='comment?id=5';">
+    <div id ="task5" class="card-item" >
         <div class="header-container">
             <img src="img/image(3)" class="cover-image">
             <div class="mark">评价任务</div>
@@ -146,14 +152,15 @@
                 <span class="participants-num" >10题/包</span>
             </div>
             <div class="right">
-                <span class="questions-num" th:text="'剩余任务包数:'+${ahp}">剩余任务包数：48</span>
+                <span class="questions-num">剩余任务包数</span>
+                <span id = "task5_name"  class="questions-num" th:text="${final2}">剩余任务包数：48</span>
             </div>
         </div>
     </div>
 
-    <div class="card-item"  onclick="window.location='comment?id=6';">
+    <div id = "task6" class="card-item" >
         <div class="header-container">
-            <img src="img/image(1)" class="cover-image">
+            <img src="img/image(4)" class="cover-image">
             <div class="mark">评价任务</div>
         </div>
         <div class="info-container">
@@ -162,42 +169,12 @@
                 <span class="participants-num">10题/包</span>
             </div>
             <div class="right">
-                <span class="questions-num">剩余任务包数：48</span>
+                <span class="questions-num">剩余任务包数</span>
+                <span id = "task6_name"  class="questions-num" th:text="${final3}">剩余任务包数：48</span>
             </div>
         </div>
     </div>
 
-    <div class="card-item"  onclick="window.location='comment?id=7';">
-        <div class="header-container">
-            <img src="img/image(1)" class="cover-image">
-            <div class="mark">评价任务</div>
-        </div>
-        <div class="info-container">
-            <h1 class="title">按照要求进行打分</h1>
-            <div class="left">
-                <span class="participants-num">10题/包</span>
-            </div>
-            <div class="right">
-                <span class="questions-num">剩余任务包数：48</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="card-item"  onclick="window.location='comment?id=8';">
-        <div class="header-container">
-            <img src="img/image(1)" class="cover-image">
-            <div class="mark">评价任务</div>
-        </div>
-        <div class="info-container">
-            <h1 class="title">按照要求进行打分</h1>
-            <div class="left">
-                <span class="participants-num">10题/包</span>
-            </div>
-            <div class="right">
-                <span class="questions-num">剩余任务包数：48</span>
-            </div>
-        </div>
-    </div>
 <!--
 <div class="card-item">
 <div class="header-container">
@@ -289,7 +266,7 @@
 <script type="text/javascript" src="./有道众包 - AI数据生产平台_files/vendor.js.下载">
 </script>
 -->
-<script type="text/javascript" src="js/home.js"></script>
+
 
 </body>
 </html>

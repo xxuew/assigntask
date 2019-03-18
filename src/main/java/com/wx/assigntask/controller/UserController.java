@@ -63,7 +63,7 @@ public class UserController {
         User user = (User) httpSession.getAttribute("currentUser");
         if(user != null) {
             request.setAttribute("userInfo", user);
-            return "user/home";
+            return "forward:/home";
         }else{
             return "user/login";
         }

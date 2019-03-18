@@ -36,6 +36,16 @@ $(function(){
         });
     });
 
+    document.onkeydown = function (event) {
+        var e = event || window.event||
+            arguments.callee.caller.arguments(0);
+        if (e&&e.keyCode == 13) {
+            $("#login_btn").click();
+        }
+    };
+
+
+
     $("#signup_btn").click(function () {
         var username = $("#Name").val();
         var password = $("#Password").val();

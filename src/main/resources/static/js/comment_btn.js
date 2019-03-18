@@ -1,47 +1,75 @@
 $(function(){
     $("#comment_btn").click(function () {
-        // var inputname1 = $("#input_name1").val();
-        // var inputname2 = $("#input_name2").val();
-        // var inputname3 = $("#input_name3").val();
-        // var inputname4 = $("#input_name4").val();
-        // var inputname5 = $("#input_name5").val();
-        // var inputname6 = $("#input_name6").val();
-        // var inputname7 = $("#input_name7").val();
-        // var inputname8 = $("#input_name8").val();
-        // var inputname9 = $("#input_name9").val();
-        // var inputname10 = $("#input_name10").val();
-
-        // var username = $("#Username").val();
-        // var password = $("#Password").val();
-        // console.log(username);
-        // var user = {
-        //     username: username,
-        //     password: password
-        // };
-        // console.log(user);
-    //     $.ajax({
-    //         url: "/get_comment",
-    //         type: "post",
-    //         traditional: true,
-    //         // contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-    //         // dataType: "text",
-    //         dataType: "json",
-    //         data: $("#myform").serialize(),
-    //         success: function (data) {
-    //             console.log(data);
-    //             if(data=="OK"){
-    //                 alert("注册成功");
-    //                 location.href = "/home";
-    //             }else{
-    //                 alert(data);
-    //             }
-    //         },
-    //         error: function (XMLHttpRequest, textStatus, errorThrown) {
-    //             console.log(XMLHttpRequest.status);
-    //             console.log(XMLHttpRequest.readyState);
-    //             console.log(textStatus);
+    // var form = document.getElementById('comment_form');
+    // form.submit();
+    var scorea1 = $("#score_a1").val();
+    var scoreb1 = $("#score_b1").val();
+    var scorea2 = $("#score_a2").val();
+    var scoreb2 = $("#score_b2").val();
+    var scorea3 = $("#score_a3").val();
+    var scoreb3 = $("#score_b3").val();
+    var scorea4 = $("#score_a4").val();
+    var scoreb4 = $("#score_b4").val();
+    var scorea5 = $("#score_a5").val();
+    var scoreb5 = $("#score_b5").val();
+    var scorea6 = $("#score_a6").val();
+    var scoreb6 = $("#score_b6").val();
+    var scorea7 = $("#score_a7").val();
+    var scoreb7 = $("#score_b7").val();
+    var scorea8 = $("#score_a8").val();
+    var scoreb8 = $("#score_b8").val();
+    var scorea9 = $("#score_a9").val();
+    var scoreb9 = $("#score_b9").val();
+    var scorea10 = $("#score_a10").val();
+    var scoreb10 = $("#score_b10").val();
+    if (scorea1 == 0 || scoreb1 == 0){
+        alert("第一个未打分");
+        return  false;
+    } else if (scorea2 == 0 || scoreb2 == 0){
+        alert("第二个未打分");
+        return  false;
+    }else if (scorea3 == 0 || scoreb3 == 0){
+        alert("第三个未打分");
+    }else if (scorea4 == 0 || scoreb4 == 0){
+        alert("第四个未打分");
+    }else if (scorea5 == 0 || scoreb5 == 0){
+        alert("第五个未打分");
+    }else if (scorea6 == 0 || scoreb6 == 0){
+        alert("第六个未打分");
+    }else if (scorea7 == 0 || scoreb7 == 0){
+        alert("第七个未打分");
+    }else if (scorea8 == 0 || scoreb8 == 0){
+        alert("第八个未打分");
+    }else if (scorea9 == 0 || scoreb9 == 0){
+        alert("第九个未打分");
+    }else if (scorea10 == 0 || scoreb10 == 0){
+        alert("第十个未打分");
+    }else{
+        $.ajax({
+            url: "/get_comment",
+            type: "post",
+            traditional: true,
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            dataType: "text",
+            data: $('#comment_form').serialize(),
+            success: function (data) {
+                console.log(data);
+                if (data == "OK") {
+                    location.href = "/home";
+                } else {
+                    location.href = "/login";
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status);
+                console.log(XMLHttpRequest.readyState);
+                console.log(textStatus);
                 alert("服务发生错误！");
-    //         },
-    //     });
+            },
+
+
+        });
+    }
     });
 });
+
