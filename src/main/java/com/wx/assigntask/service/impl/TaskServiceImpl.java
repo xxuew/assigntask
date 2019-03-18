@@ -47,42 +47,44 @@ public class TaskServiceImpl implements ITaskService {
                 System.out.println("任务4");
                 String result11 = algresultMapper.selectByPrimaryKey(1).getWinAlgname();
                 String result12 = algresultMapper.selectByPrimaryKey(2).getWinAlgname();
-                if (result11 == "cnn"&&result12 == "doc"){
-                    lists = secondPartService.cnn_doc_assignTask(currentuser);
-                }else if (result11 == "cnn"&&result12 == "index"){
-                    lists = secondPartService.cnn_index_assignTask(currentuser);
-                }else if (result11 == "tfidf"&&result12 == "doc"){
-                    lists = secondPartService.tfidf_doc_assignTask(currentuser);
-                }else if (result11 == "tfidf"&&result12 == "index"){
-                    lists = secondPartService.tfidf_index_assignTask(currentuser);
+                System.out.println(result11 == "cnn");
+                System.out.println(result11.equals("cnn"));
+                if (result11.equals("cnn")&&result12.equals("doc")){
+                    lists = secondPartService.cnn_doc_assignTask(currentuser,4);
+                }else if (result11.equals("cnn")&&result12.equals("index")){
+                    lists = secondPartService.cnn_index_assignTask(currentuser,4);
+                }else if (result11.equals("tfidf")&&result12.equals("doc")){
+                    lists = secondPartService.tfidf_doc_assignTask(currentuser,4);
+                }else if (result11.equals("tfidf")&&result12.equals("index")){
+                    lists = secondPartService.tfidf_index_assignTask(currentuser,4);
                 }
                 break;
             case 5:
                 System.out.println("任务5");
                 String result21 = algresultMapper.selectByPrimaryKey(1).getWinAlgname();
                 String result22 = algresultMapper.selectByPrimaryKey(3).getWinAlgname();
-                if (result21 == "cnn"&&result22 == "lstm"){
-                    lists = secondPartService.cnn_lstm_assignTask(currentuser);
-                }else if (result21 == "cnn"&&result22 == "nn"){
-                    lists = secondPartService.cnn_nn_assignTask(currentuser);
-                }else if (result21 == "tfidf"&&result22 == "lstm"){
-                    lists = secondPartService.tfidf_lstm_assignTask(currentuser);
-                }else if (result21 == "tfidf"&&result22 == "nn"){
-                    lists = secondPartService.tfidf_nn_assignTask(currentuser);
+                if (result21.equals("cnn")&&result22.equals("lstm")){
+                    lists = secondPartService.cnn_lstm_assignTask(currentuser,5);
+                }else if (result21.equals("cnn")&&result22.equals("nn")){
+                    lists = secondPartService.cnn_nn_assignTask(currentuser,5);
+                }else if (result21.equals("tfidf")&&result22.equals("lstm")){
+                    lists = secondPartService.tfidf_lstm_assignTask(currentuser,5);
+                }else if (result21.equals("tfidf")&&result22.equals("nn")){
+                    lists = secondPartService.tfidf_nn_assignTask(currentuser,5);
                 }
                 break;
             case 6:
                 System.out.println("任务6");
                 String result31 = algresultMapper.selectByPrimaryKey(2).getWinAlgname();
                 String result32 = algresultMapper.selectByPrimaryKey(3).getWinAlgname();
-                if (result31 == "doc"&&result32 == "lstm"){
-                    lists = secondPartService.doc_lstm_assignTask(currentuser);
-                }else if (result31 == "doc"&&result32 == "nn"){
-                    lists = secondPartService.doc_nn_assignTask(currentuser);
-                }else if (result31 == "index"&&result32 == "lstm"){
-                    lists = secondPartService.index_lstm_assignTask(currentuser);
-                }else if (result31 == "index"&&result32 == "nn"){
-                    lists = secondPartService.index_nn_assignTask(currentuser);
+                if (result31.equals("doc")&&result32.equals("lstm")){
+                    lists = secondPartService.doc_lstm_assignTask(currentuser,6);
+                }else if (result31.equals("doc")&&result32.equals("nn")){
+                    lists = secondPartService.doc_nn_assignTask(currentuser,6);
+                }else if (result31.equals("index")&&result32.equals("lstm")){
+                    lists = secondPartService.index_lstm_assignTask(currentuser,6);
+                }else if (result31.equals("index")&&result32.equals("nn")){
+                    lists = secondPartService.index_nn_assignTask(currentuser,6);
                 }
                 break;
         }

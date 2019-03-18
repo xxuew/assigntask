@@ -44,14 +44,13 @@ public class CommentController {
 //                检查并返回用户当前已经申请的任务
                 lists = userService.checkUser(user);
             }
-
-
             if (lists == null){
-                System.out.println("到这了");
+                System.out.println("此任务没有了");
                 return "forward:/home";
+            }else{
+                map.put("lists",lists);
+                return "user/comment";
             }
-            map.put("lists",lists);
-            return "user/comment";
         }else{
             return "user/login";
         }

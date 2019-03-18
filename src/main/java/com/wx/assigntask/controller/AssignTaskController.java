@@ -46,7 +46,8 @@ public class AssignTaskController {
             map.put("final1",final1);
             map.put("final2",final2);
             map.put("final3",final3);
-//            caculateService.caculate();
+
+            caculateService.caculate();
             return "user/home";
         } else {
             return "user/login";

@@ -33,14 +33,84 @@ public class CaculateServiceImpl implements ICaculateService {
         Algresult algresult2 = algresultMapper.selectByPrimaryKey(2);
         Algresult algresult3 = algresultMapper.selectByPrimaryKey(3);
         if (algresult1.getWinAlgname() == null){
-            System.out.println("algresult1.getWinAlgname()"+algresult1.getWinAlgname());
+            System.out.println("algresult1.getWinAlgname()："+algresult1.getWinAlgname());
+            System.out.println("algresult2.getIffinal()："+algresult2.getIffinal());
+            System.out.println(algresult1.getIffinal().equals("yes") );
         }
-        if (algresult1.getIffinal() == "yes"&& algresult1.getWinAlgname() == null &&
-                algresult2.getIffinal() == "yes"&& algresult2.getWinAlgname() == null &&
-                algresult3.getIffinal() == "yes"&& algresult3.getWinAlgname() == null ){
+        if (algresult1.getIffinal().equals("yes")&& algresult1.getWinAlgname() == null &&
+                algresult2.getIffinal().equals("yes")&& algresult2.getWinAlgname() == null &&
+                algresult3.getIffinal().equals("yes")&& algresult3.getWinAlgname() == null ){
+            System.out.println("内部在执行");
+
             for(int i = 1;i <=10000;i++){
-                ScoreDocIndex scoreLstmNn = scoreDocIndexMapper.selectByPrimaryKey(i);
+                ScoreCnnTfidf scoreLstmNn = scoreCnnTfidfMapper.selectByPrimaryKey(i);
+                SubtaskCnnTfidf subtaskLstmNn = subtaskCnnTfidfMapper.selectByPrimaryKey(i);
+                if (scoreLstmNn == null){
+                    scoreLstmNn = new ScoreCnnTfidf();
+                    scoreLstmNn.setScorea1(0);
+                    scoreLstmNn.setScorea2(0);
+                    scoreLstmNn.setScorea3(0);
+                    scoreLstmNn.setScoreb1(0);
+                    scoreLstmNn.setScoreb2(0);
+                    scoreLstmNn.setScoreb3(0);
+                }
+                if (scoreLstmNn.getScorea1() == null){
+                    scoreLstmNn.setScorea1(0);
+                }
+                if (scoreLstmNn.getScorea2() == null){
+                    scoreLstmNn.setScorea2(0);
+                }
+                if (scoreLstmNn.getScorea3() == null){
+                    scoreLstmNn.setScorea3(0);
+                }
+                if (scoreLstmNn.getScoreb1() == null){
+                    scoreLstmNn.setScoreb1(0);
+                }
+                if (scoreLstmNn.getScoreb2() == null){
+                    scoreLstmNn.setScoreb2(0);
+                }
+                if (scoreLstmNn.getScoreb3() == null){
+                    scoreLstmNn.setScoreb3(0);
+                }
+                float scorea = (scoreLstmNn.getScorea1()+scoreLstmNn.getScorea2()+scoreLstmNn.getScorea3())/5;
+                float scoreb = (scoreLstmNn.getScoreb1()+scoreLstmNn.getScoreb2()+scoreLstmNn.getScoreb3())/5;
+                subtaskLstmNn.setScore1(scorea);
+                subtaskLstmNn.setScore2(scoreb);
+                subtaskCnnTfidfMapper.updateByPrimaryKey(subtaskLstmNn);
+            }
+
+
+            for(int i = 1;i <=10000;i++){
                 SubtaskDocIndex subtaskLstmNn = subtaskDocIndexMapper.selectByPrimaryKey(i);
+                ScoreDocIndex scoreLstmNn = scoreDocIndexMapper.selectByPrimaryKey(i);
+                if (scoreLstmNn == null){
+                    scoreLstmNn = new ScoreDocIndex();
+                    scoreLstmNn.setScorea1(0);
+                    scoreLstmNn.setScorea2(0);
+                    scoreLstmNn.setScorea3(0);
+                    scoreLstmNn.setScoreb1(0);
+                    scoreLstmNn.setScoreb2(0);
+                    scoreLstmNn.setScoreb3(0);
+                }
+                if (scoreLstmNn.getScorea1() == null){
+                    scoreLstmNn.setScorea1(0);
+                }
+                if (scoreLstmNn.getScorea2() == null){
+                    scoreLstmNn.setScorea2(0);
+                }
+                if (scoreLstmNn.getScorea3() == null){
+                    scoreLstmNn.setScorea3(0);
+                }
+                if (scoreLstmNn.getScoreb1() == null){
+                    scoreLstmNn.setScoreb1(0);
+                }
+                if (scoreLstmNn.getScoreb2() == null){
+                    scoreLstmNn.setScoreb2(0);
+                }
+                if (scoreLstmNn.getScoreb3() == null){
+                    scoreLstmNn.setScoreb3(0);
+                }
+
                 float scorea = (scoreLstmNn.getScorea1()+scoreLstmNn.getScorea2()+scoreLstmNn.getScorea3())/5;
                 float scoreb = (scoreLstmNn.getScoreb1()+scoreLstmNn.getScoreb2()+scoreLstmNn.getScoreb3())/5;
                 subtaskLstmNn.setScore1(scorea);
@@ -51,6 +121,33 @@ public class CaculateServiceImpl implements ICaculateService {
             for(int i = 1;i <=10000;i++){
                 ScoreLstmNn scoreLstmNn = scoreLstmNnMapper.selectByPrimaryKey(i);
                 SubtaskLstmNn subtaskLstmNn = subtaskLstmNnMapper.selectByPrimaryKey(i);
+                if (scoreLstmNn == null){
+                    scoreLstmNn = new ScoreLstmNn();
+                    scoreLstmNn.setScorea1(0);
+                    scoreLstmNn.setScorea2(0);
+                    scoreLstmNn.setScorea3(0);
+                    scoreLstmNn.setScoreb1(0);
+                    scoreLstmNn.setScoreb2(0);
+                    scoreLstmNn.setScoreb3(0);
+                }
+                if (scoreLstmNn.getScorea1() == null){
+                    scoreLstmNn.setScorea1(0);
+                }
+                if (scoreLstmNn.getScorea2() == null){
+                    scoreLstmNn.setScorea2(0);
+                }
+                if (scoreLstmNn.getScorea3() == null){
+                    scoreLstmNn.setScorea3(0);
+                }
+                if (scoreLstmNn.getScoreb1() == null){
+                    scoreLstmNn.setScoreb1(0);
+                }
+                if (scoreLstmNn.getScoreb2() == null){
+                    scoreLstmNn.setScoreb2(0);
+                }
+                if (scoreLstmNn.getScoreb3() == null){
+                    scoreLstmNn.setScoreb3(0);
+                }
                 float scorea = (scoreLstmNn.getScorea1()+scoreLstmNn.getScorea2()+scoreLstmNn.getScorea3())/5;
                 float scoreb = (scoreLstmNn.getScoreb1()+scoreLstmNn.getScoreb2()+scoreLstmNn.getScoreb3())/5;
                 subtaskLstmNn.setScore1(scorea);
@@ -58,17 +155,8 @@ public class CaculateServiceImpl implements ICaculateService {
                 subtaskLstmNnMapper.updateByPrimaryKey(subtaskLstmNn);
             }
 
-            for(int i = 1;i <=10000;i++){
-                ScoreCnnTfidf scoreLstmNn = scoreCnnTfidfMapper.selectByPrimaryKey(i);
-                SubtaskCnnTfidf subtaskLstmNn = subtaskCnnTfidfMapper.selectByPrimaryKey(i);
-                float scorea = (scoreLstmNn.getScorea1()+scoreLstmNn.getScorea2()+scoreLstmNn.getScorea3())/5;
-                float scoreb = (scoreLstmNn.getScoreb1()+scoreLstmNn.getScoreb2()+scoreLstmNn.getScoreb3())/5;
-                subtaskLstmNn.setScore1(scorea);
-                subtaskLstmNn.setScore2(scoreb);
-                subtaskCnnTfidfMapper.updateByPrimaryKey(subtaskLstmNn);
-            }
 
-
+            System.out.println("完成第一部分");
             for (int i = 1;i<=10000;i++){
                 cnn = cnn +subtaskCnnTfidfMapper.selectByPrimaryKey(i).getScore1();
                 tfidf = tfidf + subtaskCnnTfidfMapper.selectByPrimaryKey(i).getScore2();
@@ -78,7 +166,7 @@ public class CaculateServiceImpl implements ICaculateService {
             score2 = tfidf/10000;
             cnntfidf.setScore1(score1);
             cnntfidf.setScore2(score2);
-            taskNum = taskNumMapper.selectById(6);
+            taskNum = taskNumMapper.selectById(4);
             if(score1 >= score2){
                 taskNum.setAlgo("cnn");
                 taskNumMapper.update(taskNum);
@@ -101,7 +189,7 @@ public class CaculateServiceImpl implements ICaculateService {
             score2 = index/10000;
             algresult.setScore1(score1);
             algresult.setScore2(score2);
-            taskNum = taskNumMapper.selectById(7);
+            taskNum = taskNumMapper.selectById(5);
             if(score1 >= score2){
                 taskNum.setAlgo("doc");
                 taskNumMapper.update(taskNum);
@@ -125,7 +213,7 @@ public class CaculateServiceImpl implements ICaculateService {
             score2 = nn/10000;
             lstm_nn.setScore1(score1);
             lstm_nn.setScore2(score2);
-            taskNum = taskNumMapper.selectById(8);
+            taskNum = taskNumMapper.selectById(6);
             if(score1 >= score2){
                 taskNum.setAlgo("lstm");
                 taskNumMapper.update(taskNum);
@@ -136,6 +224,8 @@ public class CaculateServiceImpl implements ICaculateService {
                 lstm_nn.setWinAlgname("nn");
             }
             algresultMapper.updateByPrimaryKey(lstm_nn);
+
+            System.out.println("完成第二部分");
         }
     }
 }

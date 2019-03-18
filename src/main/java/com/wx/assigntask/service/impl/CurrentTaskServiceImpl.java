@@ -35,6 +35,9 @@ public class CurrentTaskServiceImpl implements ICurrentTaskService {
                 }else {
                     ctnum = 30000-num-(frequence-1)*10000;
                 }
+                if (ctnum<0){
+                    ctnum = 0;
+                }
                 list.add(ctnum);
             }else if (id == 4){
                 if (algresult1.getWinAlgname() == null){
@@ -43,6 +46,9 @@ public class CurrentTaskServiceImpl implements ICurrentTaskService {
                     ctnum = 30000;
                 }else {
                     ctnum = 30000-num-(frequence-1)*10000;
+                }
+                if (ctnum<0){
+                    ctnum = 0;
                 }
                 list.add(ctnum);
             }else if (id == 5){
@@ -53,6 +59,9 @@ public class CurrentTaskServiceImpl implements ICurrentTaskService {
                 }else {
                     ctnum = 30000-num-(frequence-1)*10000;
                 }
+                if (ctnum<0){
+                    ctnum = 0;
+                }
                 list.add(ctnum);
             }else if (id == 6){
                 if (algresult3.getWinAlgname() == null){
@@ -61,6 +70,9 @@ public class CurrentTaskServiceImpl implements ICurrentTaskService {
                     ctnum = 30000;
                 }else {
                     ctnum = 30000-num-(frequence-1)*10000;
+                }
+                if (ctnum<0){
+                    ctnum = 0;
                 }
                 list.add(ctnum);
             }

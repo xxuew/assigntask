@@ -60,36 +60,41 @@ public class SecondPartServiceImpl implements ISecondPartService {
     private int index_nn_count = 0;
 
     @Override
-    public List<ItemList> cnn_doc_assignTask(User user) {
-        int frequency = 0;
-        List<ItemList> list = new ArrayList<>();
-        System.out.println("-----------cnn_doc_count------------");
-        System.out.println(cnn_doc_count);
-        if(cnn_doc_count == 10000){
-            cnn_doc_count = 0;
-        }
-
-//        生成任务，将用户id写入任务数据表表
-        int uid = user.getUser_id();
-        for(int i = 0;i<10;i++) {
-            ItemList itemList = new ItemList();
-            cnn_doc_count++;
-            SubtaskCnnDoc subtaskCnnDoc = subtaskCnnDocMapper.selectByPrimaryKey(cnn_doc_count);
-            //            uid表示任务分配给了谁
-            subtaskCnnDoc.setDividedId(uid);
-//            更新重复次数
-            frequency = subtaskCnnDoc.getFrequency();
-            frequency++;
-//            将分配的任务id写入用户数据表
-            if (i == 0) {
-                user.setReceived_id(cnn_doc_count);
-                user.setAlgo_id(1);
-                user.setFrequency(frequency);
-                userMapper.updateUser(user);
+    public List<ItemList> cnn_doc_assignTask(User user,int id) {
+        TaskNum taskNum = taskNumMapper.selectById(id);
+        int frequency = taskNum.getFrequence();
+        cnn_doc_count = taskNum.getCurrent_num();
+        System.out.println("taskNum.getFrequence()"+frequency);
+        if (cnn_doc_count == 10000&&frequency == 3){
+            return null;
+        }else {
+            List<ItemList> list = new ArrayList<>();
+            System.out.println("-----------cnn_doc_count------------");
+            System.out.println(cnn_doc_count);
+            if (cnn_doc_count == 10000&&frequency != 3) {
+                cnn_doc_count = 0;
             }
-            if(frequency <= 5){
+//        生成任务，将用户id写入任务数据表表
+            int uid = user.getUser_id();
+            for (int i = 0; i < 10; i++) {
+                ItemList itemList = new ItemList();
+                cnn_doc_count++;
+                SubtaskCnnDoc subtaskCnnDoc = subtaskCnnDocMapper.selectByPrimaryKey(cnn_doc_count);
+                //            uid表示任务分配给了谁
+                subtaskCnnDoc.setDividedId(uid);
+//            更新重复次数
+                frequency = subtaskCnnDoc.getFrequency();
+                if (frequency<3){frequency++;}
+//            将分配的任务id写入用户数据表
+                if (i == 0) {
+                    user.setReceived_id(cnn_doc_count);
+                    user.setAlgo_id(id);
+                    user.setFrequency(frequency);
+                    userMapper.updateUser(user);
+                }
+
                 subtaskCnnDoc.setFrequency(frequency);
-                System.out.println("frequency:"+frequency);
+                System.out.println("frequency:" + frequency);
                 subtaskCnnDocMapper.updateByPrimaryKey(subtaskCnnDoc);
                 itemList.setId(subtaskCnnDoc.getSubtaskId());
                 itemList.setInputname(subtaskCnnDoc.getInputName());
@@ -99,49 +104,53 @@ public class SecondPartServiceImpl implements ISecondPartService {
                 itemList.setItemb(subtaskCnnDoc.getItemName2());
                 itemList.setDesb(subtaskCnnDoc.getItemDes2());
                 list.add(itemList);
-            }else {
-                return  null;
+
             }
+            taskNum.setCurrent_num(cnn_doc_count);
+            taskNum.setFrequence(frequency);
+            taskNumMapper.update(taskNum);
+            return list;
         }
-        TaskNum taskNum = new TaskNum();
-        taskNum.setTable_id(1);
-        taskNum.setCurrent_num(cnn_doc_count);
-        taskNum.setFrequence(frequency);
-        taskNumMapper.update(taskNum);
-        return list;
-    }
+        }
+
 
     @Override
-    public List<ItemList> cnn_index_assignTask(User user) {
-        int frequency = 0;
-        List<ItemList> list = new ArrayList<>();
-        System.out.println("-----------cnn_index_count------------");
-        System.out.println(cnn_index_count);
-        if(cnn_index_count == 10000){
-            cnn_index_count = 0;
-        }
+    public List<ItemList> cnn_index_assignTask(User user,int id) {
+        TaskNum taskNum = taskNumMapper.selectById(id);
+        int frequency = taskNum.getFrequence();
+        cnn_index_count = taskNum.getCurrent_num();
+        System.out.println("taskNum.getFrequence()"+frequency);
+        if (cnn_index_count == 10000&&frequency == 3){
+            return null;
+        }else {
+            List<ItemList> list = new ArrayList<>();
+            System.out.println("-----------cnn_index_count------------");
+            System.out.println(cnn_index_count);
+            if (cnn_index_count == 10000&&frequency != 3) {
+                cnn_index_count = 0;
+            }
 
 //        生成任务，将用户id写入任务数据表表
-        int uid = user.getUser_id();
-        for(int i = 0;i<10;i++) {
-            ItemList itemList = new ItemList();
-            cnn_index_count++;
-            SubtaskCnnIndex subtaskCnnTfidf = subtaskCnnIndexMapper.selectByPrimaryKey(cnn_index_count);
-            //            uid表示任务分配给了谁
-            subtaskCnnTfidf.setDividedId(uid);
+            int uid = user.getUser_id();
+            for (int i = 0; i < 10; i++) {
+                ItemList itemList = new ItemList();
+                cnn_index_count++;
+                SubtaskCnnIndex subtaskCnnTfidf = subtaskCnnIndexMapper.selectByPrimaryKey(cnn_index_count);
+                //            uid表示任务分配给了谁
+                subtaskCnnTfidf.setDividedId(uid);
 //            更新重复次数
-            frequency = subtaskCnnTfidf.getFrequency();
-            frequency++;
+                frequency = subtaskCnnTfidf.getFrequency();
+                if (frequency<3){frequency++;}
 //            将分配的任务id写入用户数据表
-            if (i == 0) {
-                user.setReceived_id(cnn_index_count);
-                user.setAlgo_id(1);
-                user.setFrequency(frequency);
-                userMapper.updateUser(user);
-            }
-            if(frequency <= 5){
+                if (i == 0) {
+                    user.setReceived_id(cnn_index_count);
+                    user.setAlgo_id(id);
+                    user.setFrequency(frequency);
+                    userMapper.updateUser(user);
+                }
+
                 subtaskCnnTfidf.setFrequency(frequency);
-                System.out.println("frequency:"+frequency);
+                System.out.println("frequency:" + frequency);
                 subtaskCnnIndexMapper.updateByPrimaryKey(subtaskCnnTfidf);
                 itemList.setId(subtaskCnnTfidf.getSubtaskId());
                 itemList.setInputname(subtaskCnnTfidf.getInputName());
@@ -151,542 +160,579 @@ public class SecondPartServiceImpl implements ISecondPartService {
                 itemList.setItemb(subtaskCnnTfidf.getItemName2());
                 itemList.setDesb(subtaskCnnTfidf.getItemDes2());
                 list.add(itemList);
-            }else {
-                return  null;
             }
+
+            taskNum.setCurrent_num(cnn_index_count);
+            taskNum.setFrequence(frequency);
+            taskNumMapper.update(taskNum);
+            return list;
         }
-        TaskNum taskNum = new TaskNum();
-        taskNum.setTable_id(1);
-        taskNum.setCurrent_num(cnn_index_count);
-        taskNum.setFrequence(frequency);
-        taskNumMapper.update(taskNum);
-        return list;
     }
 
     @Override
-    public List<ItemList> cnn_lstm_assignTask(User user) {
-        int frequency = 0;
-        List<ItemList> list = new ArrayList<>();
-        System.out.println("-----------cnn_tfidf_count------------");
-        System.out.println(cnn_lstm_count);
-        if(cnn_lstm_count == 10000){
-            cnn_lstm_count = 0;
-        }
+    public List<ItemList> cnn_lstm_assignTask(User user,int id) {
+        TaskNum taskNum = taskNumMapper.selectById(id);
+        int frequency = taskNum.getFrequence();
+        cnn_lstm_count = taskNum.getCurrent_num();
+        System.out.println("taskNum.getFrequence()"+frequency);
+        if (cnn_lstm_count == 10000&&frequency == 3){
+            return null;
+        }else {
+            List<ItemList> list = new ArrayList<>();
+            System.out.println("-----------cnn_lstm_count------------");
+            System.out.println(cnn_lstm_count);
+            if (cnn_lstm_count == 10000 && frequency != 3) {
+                cnn_lstm_count = 0;
+            }
 
 //        生成任务，将用户id写入任务数据表表
-        int uid = user.getUser_id();
-        for(int i = 0;i<10;i++) {
-            ItemList itemList = new ItemList();
-            cnn_lstm_count++;
-            SubtaskCnnLstm subtaskCnnTfidf = subtaskCnnLstmMapper.selectByPrimaryKey(cnn_lstm_count);
-            //            uid表示任务分配给了谁
-            subtaskCnnTfidf.setDividedId(uid);
+            int uid = user.getUser_id();
+            for (int i = 0; i < 10; i++) {
+                ItemList itemList = new ItemList();
+                cnn_lstm_count++;
+                SubtaskCnnLstm subtaskCnnTfidf = subtaskCnnLstmMapper.selectByPrimaryKey(cnn_lstm_count);
+                //            uid表示任务分配给了谁
+                subtaskCnnTfidf.setDividedId(uid);
 //            更新重复次数
-            frequency = subtaskCnnTfidf.getFrequency();
-            frequency++;
+                frequency = subtaskCnnTfidf.getFrequency();
+                if (frequency < 3) {
+                    frequency++;
+                }
 //            将分配的任务id写入用户数据表
-            if (i == 0) {
-                user.setReceived_id(cnn_lstm_count);
-                user.setAlgo_id(1);
-                user.setFrequency(frequency);
-                userMapper.updateUser(user);
+                if (i == 0) {
+                    user.setReceived_id(cnn_lstm_count);
+                    user.setAlgo_id(id);
+                    user.setFrequency(frequency);
+                    userMapper.updateUser(user);
+                }
+
+                    subtaskCnnTfidf.setFrequency(frequency);
+                    System.out.println("frequency:" + frequency);
+                    subtaskCnnLstmMapper.updateByPrimaryKey(subtaskCnnTfidf);
+                    itemList.setId(subtaskCnnTfidf.getSubtaskId());
+                    itemList.setInputname(subtaskCnnTfidf.getInputName());
+                    itemList.setInputdes(subtaskCnnTfidf.getInputDes());
+                    itemList.setItema(subtaskCnnTfidf.getItemName1());
+                    itemList.setDesa(subtaskCnnTfidf.getItemDes1());
+                    itemList.setItemb(subtaskCnnTfidf.getItemName2());
+                    itemList.setDesb(subtaskCnnTfidf.getItemDes2());
+                    list.add(itemList);
+
             }
-            if(frequency <= 5){
-                subtaskCnnTfidf.setFrequency(frequency);
-                System.out.println("frequency:"+frequency);
-                subtaskCnnLstmMapper.updateByPrimaryKey(subtaskCnnTfidf);
-                itemList.setId(subtaskCnnTfidf.getSubtaskId());
-                itemList.setInputname(subtaskCnnTfidf.getInputName());
-                itemList.setInputdes(subtaskCnnTfidf.getInputDes());
-                itemList.setItema(subtaskCnnTfidf.getItemName1());
-                itemList.setDesa(subtaskCnnTfidf.getItemDes1());
-                itemList.setItemb(subtaskCnnTfidf.getItemName2());
-                itemList.setDesb(subtaskCnnTfidf.getItemDes2());
-                list.add(itemList);
-            }else {
-                return  null;
-            }
+            taskNum.setCurrent_num(cnn_lstm_count);
+            taskNum.setFrequence(frequency);
+            taskNumMapper.update(taskNum);
+            return list;
         }
-        TaskNum taskNum = new TaskNum();
-        taskNum.setTable_id(1);
-        taskNum.setCurrent_num(cnn_lstm_count);
-        taskNum.setFrequence(frequency);
-        taskNumMapper.update(taskNum);
-        return list;
     }
 
     @Override
-    public List<ItemList> cnn_nn_assignTask(User user) {
-        int frequency = 0;
-        List<ItemList> list = new ArrayList<>();
-        System.out.println("-----------cnn_tfidf_count------------");
-        System.out.println(cnn_nn_count);
-        if(cnn_nn_count == 10000){
-            cnn_nn_count = 0;
-        }
+    public List<ItemList> cnn_nn_assignTask(User user,int id) {
+        TaskNum taskNum = taskNumMapper.selectById(id);
+        int frequency = taskNum.getFrequence();
+        cnn_nn_count = taskNum.getCurrent_num();
+        System.out.println("taskNum.getFrequence()"+frequency);
+        if (cnn_nn_count == 10000&&frequency == 3){
+            return null;
+        }else {
+            List<ItemList> list = new ArrayList<>();
+            System.out.println("-----------cnn_nn_count------------");
+            System.out.println(cnn_nn_count);
+            if (cnn_nn_count == 10000 && frequency != 3) {
+                cnn_nn_count = 0;
+            }
 
 //        生成任务，将用户id写入任务数据表表
-        int uid = user.getUser_id();
-        for(int i = 0;i<10;i++) {
-            ItemList itemList = new ItemList();
-            cnn_nn_count++;
-            SubtaskCnnNn subtaskCnnTfidf = subtaskCnnNnMapper.selectByPrimaryKey(cnn_nn_count);
-            //            uid表示任务分配给了谁
-            subtaskCnnTfidf.setDividedId(uid);
+            int uid = user.getUser_id();
+            for (int i = 0; i < 10; i++) {
+                ItemList itemList = new ItemList();
+                cnn_nn_count++;
+                SubtaskCnnNn subtaskCnnTfidf = subtaskCnnNnMapper.selectByPrimaryKey(cnn_nn_count);
+                //            uid表示任务分配给了谁
+                subtaskCnnTfidf.setDividedId(uid);
 //            更新重复次数
-            frequency = subtaskCnnTfidf.getFrequency();
-            frequency++;
+                frequency = subtaskCnnTfidf.getFrequency();
+                if (frequency < 3) {
+                    frequency++;
+                }
 //            将分配的任务id写入用户数据表
-            if (i == 0) {
-                user.setReceived_id(cnn_nn_count);
-                user.setAlgo_id(1);
-                user.setFrequency(frequency);
-                userMapper.updateUser(user);
+                if (i == 0) {
+                    user.setReceived_id(cnn_nn_count);
+                    user.setAlgo_id(id);
+                    user.setFrequency(frequency);
+                    userMapper.updateUser(user);
+                }
+                    subtaskCnnTfidf.setFrequency(frequency);
+                    System.out.println("frequency:" + frequency);
+                    subtaskCnnNnMapper.updateByPrimaryKey(subtaskCnnTfidf);
+                    itemList.setId(subtaskCnnTfidf.getSubtaskId());
+                    itemList.setInputname(subtaskCnnTfidf.getInputName());
+                    itemList.setInputdes(subtaskCnnTfidf.getInputDes());
+                    itemList.setItema(subtaskCnnTfidf.getItemName1());
+                    itemList.setDesa(subtaskCnnTfidf.getItemDes1());
+                    itemList.setItemb(subtaskCnnTfidf.getItemName2());
+                    itemList.setDesb(subtaskCnnTfidf.getItemDes2());
+                    list.add(itemList);
+
             }
-            if(frequency <= 5){
-                subtaskCnnTfidf.setFrequency(frequency);
-                System.out.println("frequency:"+frequency);
-                subtaskCnnNnMapper.updateByPrimaryKey(subtaskCnnTfidf);
-                itemList.setId(subtaskCnnTfidf.getSubtaskId());
-                itemList.setInputname(subtaskCnnTfidf.getInputName());
-                itemList.setInputdes(subtaskCnnTfidf.getInputDes());
-                itemList.setItema(subtaskCnnTfidf.getItemName1());
-                itemList.setDesa(subtaskCnnTfidf.getItemDes1());
-                itemList.setItemb(subtaskCnnTfidf.getItemName2());
-                itemList.setDesb(subtaskCnnTfidf.getItemDes2());
-                list.add(itemList);
-            }else {
-                return  null;
-            }
+            taskNum.setCurrent_num(cnn_nn_count);
+            taskNum.setFrequence(frequency);
+            taskNumMapper.update(taskNum);
+            return list;
         }
-        TaskNum taskNum = new TaskNum();
-        taskNum.setTable_id(1);
-        taskNum.setCurrent_num(cnn_nn_count);
-        taskNum.setFrequence(frequency);
-        taskNumMapper.update(taskNum);
-        return list;
     }
 
     @Override
-    public List<ItemList> tfidf_doc_assignTask(User user) {
-        int frequency = 0;
-        List<ItemList> list = new ArrayList<>();
-        System.out.println("-----------tfidf_doc_count------------");
-        System.out.println(tfidf_doc_count);
-        if(tfidf_doc_count == 10000){
-            tfidf_doc_count = 0;
-        }
+    public List<ItemList> tfidf_doc_assignTask(User user,int id) {
+        TaskNum taskNum = taskNumMapper.selectById(id);
+        int frequency = taskNum.getFrequence();
+        tfidf_doc_count = taskNum.getCurrent_num();
+        System.out.println("taskNum.getFrequence()"+frequency);
+        if (tfidf_doc_count == 10000&&frequency == 3){
+            return null;
+        }else {
+            List<ItemList> list = new ArrayList<>();
+            System.out.println("-----------tfidf_doc_count------------");
+            System.out.println(tfidf_doc_count);
+            if (tfidf_doc_count == 10000 && frequency != 3) {
+                tfidf_doc_count = 0;
+            }
 
 //        生成任务，将用户id写入任务数据表表
-        int uid = user.getUser_id();
-        for(int i = 0;i<10;i++) {
-            ItemList itemList = new ItemList();
-            tfidf_doc_count++;
-            SubtaskTfidfDoc subtaskCnnTfidf = subtaskTfidfDocMapper.selectByPrimaryKey(tfidf_doc_count);
-            //            uid表示任务分配给了谁
-            subtaskCnnTfidf.setDividedId(uid);
+            int uid = user.getUser_id();
+            for (int i = 0; i < 10; i++) {
+                ItemList itemList = new ItemList();
+                tfidf_doc_count++;
+                SubtaskTfidfDoc subtaskCnnTfidf = subtaskTfidfDocMapper.selectByPrimaryKey(tfidf_doc_count);
+                //            uid表示任务分配给了谁
+                subtaskCnnTfidf.setDividedId(uid);
 //            更新重复次数
-            frequency = subtaskCnnTfidf.getFrequency();
-            frequency++;
+                frequency = subtaskCnnTfidf.getFrequency();
+                if (frequency < 3) {
+                    frequency++;
+                }
 //            将分配的任务id写入用户数据表
-            if (i == 0) {
-                user.setReceived_id(tfidf_doc_count);
-                user.setAlgo_id(1);
-                user.setFrequency(frequency);
-                userMapper.updateUser(user);
+                if (i == 0) {
+                    user.setReceived_id(tfidf_doc_count);
+                    user.setAlgo_id(id);
+                    user.setFrequency(frequency);
+                    userMapper.updateUser(user);
+                }
+
+                    subtaskCnnTfidf.setFrequency(frequency);
+                    System.out.println("frequency:" + frequency);
+                    subtaskTfidfDocMapper.updateByPrimaryKey(subtaskCnnTfidf);
+                    itemList.setId(subtaskCnnTfidf.getSubtaskId());
+                    itemList.setInputname(subtaskCnnTfidf.getInputName());
+                    itemList.setInputdes(subtaskCnnTfidf.getInputDes());
+                    itemList.setItema(subtaskCnnTfidf.getItemName1());
+                    itemList.setDesa(subtaskCnnTfidf.getItemDes1());
+                    itemList.setItemb(subtaskCnnTfidf.getItemName2());
+                    itemList.setDesb(subtaskCnnTfidf.getItemDes2());
+                    list.add(itemList);
             }
-            if(frequency <= 5){
-                subtaskCnnTfidf.setFrequency(frequency);
-                System.out.println("frequency:"+frequency);
-                subtaskTfidfDocMapper.updateByPrimaryKey(subtaskCnnTfidf);
-                itemList.setId(subtaskCnnTfidf.getSubtaskId());
-                itemList.setInputname(subtaskCnnTfidf.getInputName());
-                itemList.setInputdes(subtaskCnnTfidf.getInputDes());
-                itemList.setItema(subtaskCnnTfidf.getItemName1());
-                itemList.setDesa(subtaskCnnTfidf.getItemDes1());
-                itemList.setItemb(subtaskCnnTfidf.getItemName2());
-                itemList.setDesb(subtaskCnnTfidf.getItemDes2());
-                list.add(itemList);
-            }else {
-                return  null;
-            }
+            taskNum.setCurrent_num(tfidf_doc_count);
+            taskNum.setFrequence(frequency);
+            taskNumMapper.update(taskNum);
+            return list;
         }
-        TaskNum taskNum = new TaskNum();
-        taskNum.setTable_id(1);
-        taskNum.setCurrent_num(tfidf_doc_count);
-        taskNum.setFrequence(frequency);
-        taskNumMapper.update(taskNum);
-        return list;
     }
 
     @Override
-    public List<ItemList> tfidf_index_assignTask(User user) {
-        int frequency = 0;
-        List<ItemList> list = new ArrayList<>();
-        System.out.println("-----------tfidf_index_count------------");
-        System.out.println(tfidf_index_count);
-        if(tfidf_index_count == 10000){
-            tfidf_index_count = 0;
-        }
+    public List<ItemList> tfidf_index_assignTask(User user,int id) {
+        TaskNum taskNum = taskNumMapper.selectById(id);
+        int frequency = taskNum.getFrequence();
+        tfidf_index_count = taskNum.getCurrent_num();
+        System.out.println("taskNum.getFrequence()"+frequency);
+        if (tfidf_index_count == 10000&&frequency == 3){
+            return null;
+        }else {
+            List<ItemList> list = new ArrayList<>();
+            System.out.println("-----------tfidf_index_count------------");
+            System.out.println(tfidf_index_count);
+            if (tfidf_index_count == 10000 && frequency != 3) {
+                tfidf_index_count = 0;
+            }
 
 //        生成任务，将用户id写入任务数据表表
-        int uid = user.getUser_id();
-        for(int i = 0;i<10;i++) {
-            ItemList itemList = new ItemList();
-            tfidf_index_count++;
-            SubtaskTfidfIndex subtaskCnnTfidf = subtaskTfidfIndexMapper.selectByPrimaryKey(tfidf_index_count);
-            //            uid表示任务分配给了谁
-            subtaskCnnTfidf.setDividedId(uid);
+            int uid = user.getUser_id();
+            for (int i = 0; i < 10; i++) {
+                ItemList itemList = new ItemList();
+                tfidf_index_count++;
+                SubtaskTfidfIndex subtaskCnnTfidf = subtaskTfidfIndexMapper.selectByPrimaryKey(tfidf_index_count);
+                //            uid表示任务分配给了谁
+                subtaskCnnTfidf.setDividedId(uid);
 //            更新重复次数
-            frequency = subtaskCnnTfidf.getFrequency();
-            frequency++;
+                frequency = subtaskCnnTfidf.getFrequency();
+                if (frequency < 3) {
+                    frequency++;
+                }
 //            将分配的任务id写入用户数据表
-            if (i == 0) {
-                user.setReceived_id(tfidf_index_count);
-                user.setAlgo_id(1);
-                user.setFrequency(frequency);
-                userMapper.updateUser(user);
+                if (i == 0) {
+                    user.setReceived_id(tfidf_index_count);
+                    user.setAlgo_id(1);
+                    user.setFrequency(frequency);
+                    userMapper.updateUser(user);
+                }
+
+                    subtaskCnnTfidf.setFrequency(frequency);
+                    System.out.println("frequency:" + frequency);
+                    subtaskTfidfIndexMapper.updateByPrimaryKey(subtaskCnnTfidf);
+                    itemList.setId(subtaskCnnTfidf.getSubtaskId());
+                    itemList.setInputname(subtaskCnnTfidf.getInputName());
+                    itemList.setInputdes(subtaskCnnTfidf.getInputDes());
+                    itemList.setItema(subtaskCnnTfidf.getItemName1());
+                    itemList.setDesa(subtaskCnnTfidf.getItemDes1());
+                    itemList.setItemb(subtaskCnnTfidf.getItemName2());
+                    itemList.setDesb(subtaskCnnTfidf.getItemDes2());
+                    list.add(itemList);
             }
-            if(frequency <= 5){
-                subtaskCnnTfidf.setFrequency(frequency);
-                System.out.println("frequency:"+frequency);
-                subtaskTfidfIndexMapper.updateByPrimaryKey(subtaskCnnTfidf);
-                itemList.setId(subtaskCnnTfidf.getSubtaskId());
-                itemList.setInputname(subtaskCnnTfidf.getInputName());
-                itemList.setInputdes(subtaskCnnTfidf.getInputDes());
-                itemList.setItema(subtaskCnnTfidf.getItemName1());
-                itemList.setDesa(subtaskCnnTfidf.getItemDes1());
-                itemList.setItemb(subtaskCnnTfidf.getItemName2());
-                itemList.setDesb(subtaskCnnTfidf.getItemDes2());
-                list.add(itemList);
-            }else {
-                return  null;
-            }
+            taskNum.setCurrent_num(tfidf_index_count);
+            taskNum.setFrequence(frequency);
+            taskNumMapper.update(taskNum);
+            return list;
         }
-        TaskNum taskNum = new TaskNum();
-        taskNum.setTable_id(1);
-        taskNum.setCurrent_num(tfidf_index_count);
-        taskNum.setFrequence(frequency);
-        taskNumMapper.update(taskNum);
-        return list;
     }
 
     @Override
-    public List<ItemList> tfidf_lstm_assignTask(User user) {
-        int frequency = 0;
-        List<ItemList> list = new ArrayList<>();
-        System.out.println("-----------tfidf_lstm_count------------");
-        System.out.println(tfidf_lstm_count);
-        if(tfidf_lstm_count == 10000){
-            tfidf_lstm_count = 0;
-        }
+    public List<ItemList> tfidf_lstm_assignTask(User user,int id) {
+        TaskNum taskNum = taskNumMapper.selectById(id);
+        int frequency = taskNum.getFrequence();
+        tfidf_lstm_count = taskNum.getCurrent_num();
+        System.out.println("taskNum.getFrequence()"+frequency);
+        if (tfidf_lstm_count == 10000&&frequency == 3){
+            return null;
+        }else {
+            List<ItemList> list = new ArrayList<>();
+            System.out.println("-----------tfidf_lstm_count------------");
+            System.out.println(tfidf_lstm_count);
+            if (tfidf_lstm_count == 10000 && frequency != 3) {
+                tfidf_lstm_count = 0;
+            }
 
 //        生成任务，将用户id写入任务数据表表
-        int uid = user.getUser_id();
-        for(int i = 0;i<10;i++) {
-            ItemList itemList = new ItemList();
-            tfidf_lstm_count++;
-            SubtaskTfidfLstm subtaskCnnTfidf = subtaskTfidfLstmMapper.selectByPrimaryKey(tfidf_lstm_count);
-            //            uid表示任务分配给了谁
-            subtaskCnnTfidf.setDividedId(uid);
+            int uid = user.getUser_id();
+            for (int i = 0; i < 10; i++) {
+                ItemList itemList = new ItemList();
+                tfidf_lstm_count++;
+                SubtaskTfidfLstm subtaskCnnTfidf = subtaskTfidfLstmMapper.selectByPrimaryKey(tfidf_lstm_count);
+                //            uid表示任务分配给了谁
+                subtaskCnnTfidf.setDividedId(uid);
 //            更新重复次数
-            frequency = subtaskCnnTfidf.getFrequency();
-            frequency++;
+                frequency = subtaskCnnTfidf.getFrequency();
+                if (frequency < 3) {
+                    frequency++;
+                }
 //            将分配的任务id写入用户数据表
-            if (i == 0) {
-                user.setReceived_id(tfidf_lstm_count);
-                user.setAlgo_id(1);
-                user.setFrequency(frequency);
-                userMapper.updateUser(user);
+                if (i == 0) {
+                    user.setReceived_id(tfidf_lstm_count);
+                    user.setAlgo_id(id);
+                    user.setFrequency(frequency);
+                    userMapper.updateUser(user);
+                }
+                    subtaskCnnTfidf.setFrequency(frequency);
+                    System.out.println("frequency:" + frequency);
+                    subtaskTfidfLstmMapper.updateByPrimaryKey(subtaskCnnTfidf);
+                    itemList.setId(subtaskCnnTfidf.getSubtaskId());
+                    itemList.setInputname(subtaskCnnTfidf.getInputName());
+                    itemList.setInputdes(subtaskCnnTfidf.getInputDes());
+                    itemList.setItema(subtaskCnnTfidf.getItemName1());
+                    itemList.setDesa(subtaskCnnTfidf.getItemDes1());
+                    itemList.setItemb(subtaskCnnTfidf.getItemName2());
+                    itemList.setDesb(subtaskCnnTfidf.getItemDes2());
+                    list.add(itemList);
             }
-            if(frequency <= 5){
-                subtaskCnnTfidf.setFrequency(frequency);
-                System.out.println("frequency:"+frequency);
-                subtaskTfidfLstmMapper.updateByPrimaryKey(subtaskCnnTfidf);
-                itemList.setId(subtaskCnnTfidf.getSubtaskId());
-                itemList.setInputname(subtaskCnnTfidf.getInputName());
-                itemList.setInputdes(subtaskCnnTfidf.getInputDes());
-                itemList.setItema(subtaskCnnTfidf.getItemName1());
-                itemList.setDesa(subtaskCnnTfidf.getItemDes1());
-                itemList.setItemb(subtaskCnnTfidf.getItemName2());
-                itemList.setDesb(subtaskCnnTfidf.getItemDes2());
-                list.add(itemList);
-            }else {
-                return  null;
-            }
+            taskNum.setCurrent_num(tfidf_lstm_count);
+            taskNum.setFrequence(frequency);
+            taskNumMapper.update(taskNum);
+            return list;
         }
-        TaskNum taskNum = new TaskNum();
-        taskNum.setTable_id(1);
-        taskNum.setCurrent_num(tfidf_lstm_count);
-        taskNum.setFrequence(frequency);
-        taskNumMapper.update(taskNum);
-        return list;
     }
 
     @Override
-    public List<ItemList> tfidf_nn_assignTask(User user) {
-        int frequency = 0;
-        List<ItemList> list = new ArrayList<>();
-        System.out.println("-----------tfidf_nn_count------------");
-        System.out.println(tfidf_nn_count);
-        if(tfidf_nn_count == 10000){
-            tfidf_nn_count = 0;
-        }
+    public List<ItemList> tfidf_nn_assignTask(User user,int id) {
+        TaskNum taskNum = taskNumMapper.selectById(id);
+        int frequency = taskNum.getFrequence();
+        tfidf_nn_count = taskNum.getCurrent_num();
+        System.out.println("taskNum.getFrequence()"+frequency);
+        if (tfidf_nn_count == 10000&&frequency == 3){
+            return null;
+        }else {
+            List<ItemList> list = new ArrayList<>();
+            System.out.println("-----------tfidf_nn_count------------");
+            System.out.println(tfidf_nn_count);
+            if (tfidf_nn_count == 10000 && frequency != 3) {
+                tfidf_nn_count = 0;
+            }
 
 //        生成任务，将用户id写入任务数据表表
-        int uid = user.getUser_id();
-        for(int i = 0;i<10;i++) {
-            ItemList itemList = new ItemList();
-            tfidf_nn_count++;
-            SubtaskTfidfNn subtaskCnnTfidf = subtaskTfidfNnMapper.selectByPrimaryKey(tfidf_nn_count);
-            //            uid表示任务分配给了谁
-            subtaskCnnTfidf.setDividedId(uid);
+            int uid = user.getUser_id();
+            for (int i = 0; i < 10; i++) {
+                ItemList itemList = new ItemList();
+                tfidf_nn_count++;
+                SubtaskTfidfNn subtaskCnnTfidf = subtaskTfidfNnMapper.selectByPrimaryKey(tfidf_nn_count);
+                //            uid表示任务分配给了谁
+                subtaskCnnTfidf.setDividedId(uid);
 //            更新重复次数
-            frequency = subtaskCnnTfidf.getFrequency();
-            frequency++;
+                frequency = subtaskCnnTfidf.getFrequency();
+                if (frequency < 3) {
+                    frequency++;
+                }
 //            将分配的任务id写入用户数据表
-            if (i == 0) {
-                user.setReceived_id(tfidf_nn_count);
-                user.setAlgo_id(1);
-                user.setFrequency(frequency);
-                userMapper.updateUser(user);
+                if (i == 0) {
+                    user.setReceived_id(tfidf_nn_count);
+                    user.setAlgo_id(id);
+                    user.setFrequency(frequency);
+                    userMapper.updateUser(user);
+                }
+                    subtaskCnnTfidf.setFrequency(frequency);
+                    System.out.println("frequency:" + frequency);
+                    subtaskTfidfNnMapper.updateByPrimaryKey(subtaskCnnTfidf);
+                    itemList.setId(subtaskCnnTfidf.getSubtaskId());
+                    itemList.setInputname(subtaskCnnTfidf.getInputName());
+                    itemList.setInputdes(subtaskCnnTfidf.getInputDes());
+                    itemList.setItema(subtaskCnnTfidf.getItemName1());
+                    itemList.setDesa(subtaskCnnTfidf.getItemDes1());
+                    itemList.setItemb(subtaskCnnTfidf.getItemName2());
+                    itemList.setDesb(subtaskCnnTfidf.getItemDes2());
+                    list.add(itemList);
             }
-            if(frequency <= 5){
-                subtaskCnnTfidf.setFrequency(frequency);
-                System.out.println("frequency:"+frequency);
-                subtaskTfidfNnMapper.updateByPrimaryKey(subtaskCnnTfidf);
-                itemList.setId(subtaskCnnTfidf.getSubtaskId());
-                itemList.setInputname(subtaskCnnTfidf.getInputName());
-                itemList.setInputdes(subtaskCnnTfidf.getInputDes());
-                itemList.setItema(subtaskCnnTfidf.getItemName1());
-                itemList.setDesa(subtaskCnnTfidf.getItemDes1());
-                itemList.setItemb(subtaskCnnTfidf.getItemName2());
-                itemList.setDesb(subtaskCnnTfidf.getItemDes2());
-                list.add(itemList);
-            }else {
-                return  null;
-            }
+
+            taskNum.setCurrent_num(tfidf_nn_count);
+            taskNum.setFrequence(frequency);
+            taskNumMapper.update(taskNum);
+            return list;
         }
-        TaskNum taskNum = new TaskNum();
-        taskNum.setTable_id(1);
-        taskNum.setCurrent_num(tfidf_nn_count);
-        taskNum.setFrequence(frequency);
-        taskNumMapper.update(taskNum);
-        return list;
     }
 
     @Override
-    public List<ItemList> doc_lstm_assignTask(User user) {
-        int frequency = 0;
-        List<ItemList> list = new ArrayList<>();
-        System.out.println("-----------doc_lstm_count------------");
-        System.out.println(doc_lstm_count);
-        if(doc_lstm_count == 10000){
-            doc_lstm_count = 0;
-        }
+    public List<ItemList> doc_lstm_assignTask(User user,int id) {
+        TaskNum taskNum = taskNumMapper.selectById(id);
+        int frequency = taskNum.getFrequence();
+        doc_lstm_count = taskNum.getCurrent_num();
+        System.out.println("taskNum.getFrequence()"+frequency);
+        if (doc_lstm_count == 10000&&frequency == 3){
+            return null;
+        }else {
+            List<ItemList> list = new ArrayList<>();
+            System.out.println("-----------doc_lstm_count------------");
+            System.out.println(doc_lstm_count);
+            if (doc_lstm_count == 10000 && frequency != 3) {
+                doc_lstm_count = 0;
+            }
 
 //        生成任务，将用户id写入任务数据表表
-        int uid = user.getUser_id();
-        for(int i = 0;i<10;i++) {
-            ItemList itemList = new ItemList();
-            doc_lstm_count++;
-            SubtaskDocLstm subtaskCnnTfidf = subtaskDocLstmMapper.selectByPrimaryKey(doc_lstm_count);
-            //            uid表示任务分配给了谁
-            subtaskCnnTfidf.setDividedId(uid);
+            int uid = user.getUser_id();
+            for (int i = 0; i < 10; i++) {
+                ItemList itemList = new ItemList();
+                doc_lstm_count++;
+                SubtaskDocLstm subtaskCnnTfidf = subtaskDocLstmMapper.selectByPrimaryKey(doc_lstm_count);
+                //            uid表示任务分配给了谁
+                subtaskCnnTfidf.setDividedId(uid);
 //            更新重复次数
-            frequency = subtaskCnnTfidf.getFrequency();
-            frequency++;
+                frequency = subtaskCnnTfidf.getFrequency();
+                if (frequency < 3) {
+                    frequency++;
+                }
 //            将分配的任务id写入用户数据表
-            if (i == 0) {
-                user.setReceived_id(doc_lstm_count);
-                user.setAlgo_id(1);
-                user.setFrequency(frequency);
-                userMapper.updateUser(user);
+                if (i == 0) {
+                    user.setReceived_id(doc_lstm_count);
+                    user.setAlgo_id(id);
+                    user.setFrequency(frequency);
+                    userMapper.updateUser(user);
+                }
+
+                    subtaskCnnTfidf.setFrequency(frequency);
+                    System.out.println("frequency:" + frequency);
+                    subtaskDocLstmMapper.updateByPrimaryKey(subtaskCnnTfidf);
+                    itemList.setId(subtaskCnnTfidf.getSubtaskId());
+                    itemList.setInputname(subtaskCnnTfidf.getInputName());
+                    itemList.setInputdes(subtaskCnnTfidf.getInputDes());
+                    itemList.setItema(subtaskCnnTfidf.getItemName1());
+                    itemList.setDesa(subtaskCnnTfidf.getItemDes1());
+                    itemList.setItemb(subtaskCnnTfidf.getItemName2());
+                    itemList.setDesb(subtaskCnnTfidf.getItemDes2());
+                    list.add(itemList);
             }
-            if(frequency <= 5){
-                subtaskCnnTfidf.setFrequency(frequency);
-                System.out.println("frequency:"+frequency);
-                subtaskDocLstmMapper.updateByPrimaryKey(subtaskCnnTfidf);
-                itemList.setId(subtaskCnnTfidf.getSubtaskId());
-                itemList.setInputname(subtaskCnnTfidf.getInputName());
-                itemList.setInputdes(subtaskCnnTfidf.getInputDes());
-                itemList.setItema(subtaskCnnTfidf.getItemName1());
-                itemList.setDesa(subtaskCnnTfidf.getItemDes1());
-                itemList.setItemb(subtaskCnnTfidf.getItemName2());
-                itemList.setDesb(subtaskCnnTfidf.getItemDes2());
-                list.add(itemList);
-            }else {
-                return  null;
-            }
+            taskNum.setCurrent_num(doc_lstm_count);
+            taskNum.setFrequence(frequency);
+            taskNumMapper.update(taskNum);
+            return list;
         }
-        TaskNum taskNum = new TaskNum();
-        taskNum.setTable_id(1);
-        taskNum.setCurrent_num(doc_lstm_count);
-        taskNum.setFrequence(frequency);
-        taskNumMapper.update(taskNum);
-        return list;
     }
 
     @Override
-    public List<ItemList> doc_nn_assignTask(User user) {
-        int frequency = 0;
-        List<ItemList> list = new ArrayList<>();
-        System.out.println("-----------cnn_tfidf_count------------");
-        System.out.println(doc_nn_count);
-        if(doc_nn_count == 10000){
-            doc_nn_count = 0;
-        }
+    public List<ItemList> doc_nn_assignTask(User user,int id) {
+        TaskNum taskNum = taskNumMapper.selectById(id);
+        int frequency = taskNum.getFrequence();
+        doc_nn_count = taskNum.getCurrent_num();
+        System.out.println("taskNum.getFrequence()"+frequency);
+        if (doc_nn_count == 10000&&frequency == 3){
+            return null;
+        }else {
+            List<ItemList> list = new ArrayList<>();
+            System.out.println("-----------cnn_tfidf_count------------");
+            System.out.println(doc_nn_count);
+            if (doc_nn_count == 10000 && frequency != 3) {
+                doc_nn_count = 0;
+            }
 
 //        生成任务，将用户id写入任务数据表表
-        int uid = user.getUser_id();
-        for(int i = 0;i<10;i++) {
-            ItemList itemList = new ItemList();
-            doc_nn_count++;
-            SubtaskDocNn subtaskCnnTfidf = subtaskDocNnMapper.selectByPrimaryKey(doc_nn_count);
-            //            uid表示任务分配给了谁
-            subtaskCnnTfidf.setDividedId(uid);
+            int uid = user.getUser_id();
+            for (int i = 0; i < 10; i++) {
+                ItemList itemList = new ItemList();
+                doc_nn_count++;
+                SubtaskDocNn subtaskCnnTfidf = subtaskDocNnMapper.selectByPrimaryKey(doc_nn_count);
+                //            uid表示任务分配给了谁
+                subtaskCnnTfidf.setDividedId(uid);
 //            更新重复次数
-            frequency = subtaskCnnTfidf.getFrequency();
-            frequency++;
+                frequency = subtaskCnnTfidf.getFrequency();
+                if (frequency < 3) {
+                    frequency++;
+                }
 //            将分配的任务id写入用户数据表
-            if (i == 0) {
-                user.setReceived_id(doc_nn_count);
-                user.setAlgo_id(1);
-                user.setFrequency(frequency);
-                userMapper.updateUser(user);
+                if (i == 0) {
+                    user.setReceived_id(doc_nn_count);
+                    user.setAlgo_id(id);
+                    user.setFrequency(frequency);
+                    userMapper.updateUser(user);
+                }
+                    subtaskCnnTfidf.setFrequency(frequency);
+                    System.out.println("frequency:" + frequency);
+                    subtaskDocNnMapper.updateByPrimaryKey(subtaskCnnTfidf);
+                    itemList.setId(subtaskCnnTfidf.getSubtaskId());
+                    itemList.setInputname(subtaskCnnTfidf.getInputName());
+                    itemList.setInputdes(subtaskCnnTfidf.getInputDes());
+                    itemList.setItema(subtaskCnnTfidf.getItemName1());
+                    itemList.setDesa(subtaskCnnTfidf.getItemDes1());
+                    itemList.setItemb(subtaskCnnTfidf.getItemName2());
+                    itemList.setDesb(subtaskCnnTfidf.getItemDes2());
+                    list.add(itemList);
+
             }
-            if(frequency <= 5){
-                subtaskCnnTfidf.setFrequency(frequency);
-                System.out.println("frequency:"+frequency);
-                subtaskDocNnMapper.updateByPrimaryKey(subtaskCnnTfidf);
-                itemList.setId(subtaskCnnTfidf.getSubtaskId());
-                itemList.setInputname(subtaskCnnTfidf.getInputName());
-                itemList.setInputdes(subtaskCnnTfidf.getInputDes());
-                itemList.setItema(subtaskCnnTfidf.getItemName1());
-                itemList.setDesa(subtaskCnnTfidf.getItemDes1());
-                itemList.setItemb(subtaskCnnTfidf.getItemName2());
-                itemList.setDesb(subtaskCnnTfidf.getItemDes2());
-                list.add(itemList);
-            }else {
-                return  null;
-            }
+            taskNum.setCurrent_num(doc_nn_count);
+            taskNum.setFrequence(frequency);
+            taskNumMapper.update(taskNum);
+            return list;
         }
-        TaskNum taskNum = new TaskNum();
-        taskNum.setTable_id(1);
-        taskNum.setCurrent_num(doc_nn_count);
-        taskNum.setFrequence(frequency);
-        taskNumMapper.update(taskNum);
-        return list;
     }
 
     @Override
-    public List<ItemList> index_lstm_assignTask(User user) {
-        int frequency = 0;
-        List<ItemList> list = new ArrayList<>();
-        System.out.println("-----------cnn_tfidf_count------------");
-        System.out.println(index_lstm_count);
-        if(index_lstm_count == 10000){
-            index_lstm_count = 0;
-        }
+    public List<ItemList> index_lstm_assignTask(User user,int id) {
+        TaskNum taskNum = taskNumMapper.selectById(id);
+        int frequency = taskNum.getFrequence();
+        index_lstm_count = taskNum.getCurrent_num();
+        System.out.println("taskNum.getFrequence()"+frequency);
+        if (index_lstm_count == 10000&&frequency == 3){
+            return null;
+        }else {
+            List<ItemList> list = new ArrayList<>();
+            System.out.println("-----------cnn_tfidf_count------------");
+            System.out.println(index_lstm_count);
+            if (index_lstm_count == 10000 && frequency != 3) {
+                index_lstm_count = 0;
+            }
 
 //        生成任务，将用户id写入任务数据表表
-        int uid = user.getUser_id();
-        for(int i = 0;i<10;i++) {
-            ItemList itemList = new ItemList();
-            index_lstm_count++;
-            SubtaskIndexLstm subtaskCnnTfidf = subtaskIndexLstmMapper.selectByPrimaryKey(index_lstm_count);
-            //            uid表示任务分配给了谁
-            subtaskCnnTfidf.setDividedId(uid);
+            int uid = user.getUser_id();
+            for (int i = 0; i < 10; i++) {
+                ItemList itemList = new ItemList();
+                index_lstm_count++;
+                SubtaskIndexLstm subtaskCnnTfidf = subtaskIndexLstmMapper.selectByPrimaryKey(index_lstm_count);
+                //            uid表示任务分配给了谁
+                subtaskCnnTfidf.setDividedId(uid);
 //            更新重复次数
-            frequency = subtaskCnnTfidf.getFrequency();
-            frequency++;
+                frequency = subtaskCnnTfidf.getFrequency();
+                if (frequency < 3) {
+                    frequency++;
+                }
 //            将分配的任务id写入用户数据表
-            if (i == 0) {
-                user.setReceived_id(index_lstm_count);
-                user.setAlgo_id(1);
-                user.setFrequency(frequency);
-                userMapper.updateUser(user);
+                if (i == 0) {
+                    user.setReceived_id(index_lstm_count);
+                    user.setAlgo_id(id);
+                    user.setFrequency(frequency);
+                    userMapper.updateUser(user);
+                }
+                    subtaskCnnTfidf.setFrequency(frequency);
+                    System.out.println("frequency:" + frequency);
+                    subtaskIndexLstmMapper.updateByPrimaryKey(subtaskCnnTfidf);
+                    itemList.setId(subtaskCnnTfidf.getSubtaskId());
+                    itemList.setInputname(subtaskCnnTfidf.getInputName());
+                    itemList.setInputdes(subtaskCnnTfidf.getInputDes());
+                    itemList.setItema(subtaskCnnTfidf.getItemName1());
+                    itemList.setDesa(subtaskCnnTfidf.getItemDes1());
+                    itemList.setItemb(subtaskCnnTfidf.getItemName2());
+                    itemList.setDesb(subtaskCnnTfidf.getItemDes2());
+                    list.add(itemList);
             }
-            if(frequency <= 5){
-                subtaskCnnTfidf.setFrequency(frequency);
-                System.out.println("frequency:"+frequency);
-                subtaskIndexLstmMapper.updateByPrimaryKey(subtaskCnnTfidf);
-                itemList.setId(subtaskCnnTfidf.getSubtaskId());
-                itemList.setInputname(subtaskCnnTfidf.getInputName());
-                itemList.setInputdes(subtaskCnnTfidf.getInputDes());
-                itemList.setItema(subtaskCnnTfidf.getItemName1());
-                itemList.setDesa(subtaskCnnTfidf.getItemDes1());
-                itemList.setItemb(subtaskCnnTfidf.getItemName2());
-                itemList.setDesb(subtaskCnnTfidf.getItemDes2());
-                list.add(itemList);
-            }else {
-                return  null;
-            }
+
+            taskNum.setCurrent_num(index_lstm_count);
+            taskNum.setFrequence(frequency);
+            taskNumMapper.update(taskNum);
+            return list;
         }
-        TaskNum taskNum = new TaskNum();
-        taskNum.setTable_id(1);
-        taskNum.setCurrent_num(index_lstm_count);
-        taskNum.setFrequence(frequency);
-        taskNumMapper.update(taskNum);
-        return list;
     }
 
     @Override
-    public List<ItemList> index_nn_assignTask(User user) {
-        int frequency = 0;
-        List<ItemList> list = new ArrayList<>();
-        System.out.println("-----------cnn_tfidf_count------------");
-        System.out.println(index_nn_count);
-        if(index_nn_count == 10000){
-            index_nn_count = 0;
-        }
+    public List<ItemList> index_nn_assignTask(User user,int id) {
+        TaskNum taskNum = taskNumMapper.selectById(id);
+        int frequency = taskNum.getFrequence();
+        index_nn_count = taskNum.getCurrent_num();
+        System.out.println("taskNum.getFrequence()"+frequency);
+        if (index_nn_count == 10000&&frequency == 3){
+            return null;
+        }else {
+            List<ItemList> list = new ArrayList<>();
+            System.out.println("-----------cnn_tfidf_count------------");
+            System.out.println(index_nn_count);
+            if (index_nn_count == 10000 && frequency != 3) {
+                index_nn_count = 0;
+            }
 
 //        生成任务，将用户id写入任务数据表表
-        int uid = user.getUser_id();
-        for(int i = 0;i<10;i++) {
-            ItemList itemList = new ItemList();
-            index_nn_count++;
-            SubtaskIndexNn subtaskCnnTfidf = subtaskIndexNnMapper.selectByPrimaryKey(index_nn_count);
-            //            uid表示任务分配给了谁
-            subtaskCnnTfidf.setDividedId(uid);
+            int uid = user.getUser_id();
+            for (int i = 0; i < 10; i++) {
+                ItemList itemList = new ItemList();
+                index_nn_count++;
+                SubtaskIndexNn subtaskCnnTfidf = subtaskIndexNnMapper.selectByPrimaryKey(index_nn_count);
+                //            uid表示任务分配给了谁
+                subtaskCnnTfidf.setDividedId(uid);
 //            更新重复次数
-            frequency = subtaskCnnTfidf.getFrequency();
-            frequency++;
+                frequency = subtaskCnnTfidf.getFrequency();
+                if (frequency < 3) {
+                    frequency++;
+                }
 //            将分配的任务id写入用户数据表
-            if (i == 0) {
-                user.setReceived_id(index_nn_count);
-                user.setAlgo_id(1);
-                user.setFrequency(frequency);
-                userMapper.updateUser(user);
+                if (i == 0) {
+                    user.setReceived_id(index_nn_count);
+                    user.setAlgo_id(id);
+                    user.setFrequency(frequency);
+                    userMapper.updateUser(user);
+                }
+                    subtaskCnnTfidf.setFrequency(frequency);
+                    System.out.println("frequency:" + frequency);
+                    subtaskIndexNnMapper.updateByPrimaryKey(subtaskCnnTfidf);
+                    itemList.setId(subtaskCnnTfidf.getSubtaskId());
+                    itemList.setInputname(subtaskCnnTfidf.getInputName());
+                    itemList.setInputdes(subtaskCnnTfidf.getInputDes());
+                    itemList.setItema(subtaskCnnTfidf.getItemName1());
+                    itemList.setDesa(subtaskCnnTfidf.getItemDes1());
+                    itemList.setItemb(subtaskCnnTfidf.getItemName2());
+                    itemList.setDesb(subtaskCnnTfidf.getItemDes2());
+                    list.add(itemList);
             }
-            if(frequency <= 5){
-                subtaskCnnTfidf.setFrequency(frequency);
-                System.out.println("frequency:"+frequency);
-                subtaskIndexNnMapper.updateByPrimaryKey(subtaskCnnTfidf);
-                itemList.setId(subtaskCnnTfidf.getSubtaskId());
-                itemList.setInputname(subtaskCnnTfidf.getInputName());
-                itemList.setInputdes(subtaskCnnTfidf.getInputDes());
-                itemList.setItema(subtaskCnnTfidf.getItemName1());
-                itemList.setDesa(subtaskCnnTfidf.getItemDes1());
-                itemList.setItemb(subtaskCnnTfidf.getItemName2());
-                itemList.setDesb(subtaskCnnTfidf.getItemDes2());
-                list.add(itemList);
-            }else {
-                return  null;
-            }
+            taskNum.setCurrent_num(index_nn_count);
+            taskNum.setFrequence(frequency);
+            taskNumMapper.update(taskNum);
+            return list;
         }
-        TaskNum taskNum = new TaskNum();
-        taskNum.setTable_id(1);
-        taskNum.setCurrent_num(index_nn_count);
-        taskNum.setFrequence(frequency);
-        taskNumMapper.update(taskNum);
-        return list;
     }
 
     @Override
     public void final1_StoreData(User user, List<ItemList> lists) {
         int uid = user.getUser_id();
         int received_id = user.getReceived_id();
+        int frequency = user.getFrequency();
         for(int i = 0;i<10;i++){
             if(i != 0){
                 received_id++;
@@ -699,7 +745,6 @@ public class SecondPartServiceImpl implements ISecondPartService {
             }else {
                 scoreCnnTfidf = scoreFinal1Mapper.selectByPrimaryKey(received_id);
             }
-            int frequency = user.getFrequency();
             switch (frequency){
                 case 1:
                     scoreCnnTfidf.setUid1(uid);
