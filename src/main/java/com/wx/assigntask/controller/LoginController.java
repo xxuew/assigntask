@@ -39,7 +39,9 @@ public class LoginController {
     @ResponseBody
     public User loginInfo(HttpServletRequest request,HttpSession httpSession){
         User user = (User) httpSession.getAttribute("currentUser");
-
+        if (user == null){
+            return null;
+        }
         return user;
     }
 }

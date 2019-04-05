@@ -28,6 +28,8 @@ public class Subtask implements Serializable {
      *
      * @mbg.generated
      */
+    private String inputname;
+    private String inputdes;
     private String itemname1;
 
     /**
@@ -331,6 +333,22 @@ public class Subtask implements Serializable {
      */
     public void setItemdes2(String itemdes2) {
         this.itemdes2 = itemdes2 == null ? null : itemdes2.trim();
+    }
+
+    public String getInputname() {
+        return inputname;
+    }
+
+    public void setInputname(String inputname) {
+        this.inputname = inputname;
+    }
+
+    public String getInputdes() {
+        return inputdes;
+    }
+
+    public void setInputdes(String inputdes) {
+        this.inputdes = inputdes;
     }
 
     /**

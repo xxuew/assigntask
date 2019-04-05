@@ -21,7 +21,7 @@ $(function(){
             success: function (data) {
                 console.log(data);
                 if(data=="OK"){
-                    location.href = "/home";
+                    location.href = "/myreleasetask";
                 }else{
                     alert(data);
                 }
@@ -45,7 +45,7 @@ $(function () {
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
         dataType:"json",
         success:function (userInfo) {
-            console.log(userInfo);
+            // console.log(userInfo);
             $("#userid").append(userInfo.userid);
             $("#username").append(userInfo.username);
         },

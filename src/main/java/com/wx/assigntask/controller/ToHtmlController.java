@@ -1,7 +1,15 @@
 package com.wx.assigntask.controller;
 
+import com.wx.assigntask.service.AHPService;
+import com.wx.assigntask.service.SubTaskService;
+import com.wx.assigntask.tools.ModifiedGrubbs;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author: wx
@@ -14,6 +22,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class ToHtmlController {
+
+   @Autowired
+    SubTaskService subTaskService;
+
     @RequestMapping("/picUpload")
     public String picUpload(){
         return "user/picUpload";
@@ -32,5 +44,30 @@ public class ToHtmlController {
     @RequestMapping("/general")
     public String templeteGernal(){
         return "templete/general";
+    }
+
+    @RequestMapping("/ahpCreateTask")
+    public void ahpCreateTask(){
+
+       subTaskService.geneSubTask(1);
+//        return "templete/general";
+    }
+    @RequestMapping("/handleGrubbs")
+    public String grubbs(HttpServletRequest request){
+
+//        ModifiedGrubbs grubbs = new ModifiedGrubbs();
+////         List<Double> matrix = (List<Double>) request.getSession().getAttribute("grubbsMatrix");
+////         String queryString []=   request.getQueryString().replace("+"," ").split("");
+//        List<Double> matrix2 = new ArrayList<>();
+//        String queryString [] = request.getParameter("grubbsMatrix").split(" ");
+//        for (int i =0;i<queryString.length;i++){
+//            matrix2.add((double)new Integer(queryString[i]));
+//        }
+////        grubbs.judgeGrubbs(matrix);
+//        List<Double> resultMatrix =  grubbs.judgeGrubbs(matrix2);
+//        request.setAttribute("resultMatrix:",resultMatrix);
+//        return resultMatrix;
+//        return "templete/general";
+        return "ok";
     }
 }

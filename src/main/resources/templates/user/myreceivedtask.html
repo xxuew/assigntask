@@ -44,16 +44,16 @@
         <div id="sidebar" class="nav-collapse ">
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
-                <p class="centered"><a href="profile.html"><img src="img/nju.jpg" class="img-circle" width="80"></a></p>
+                <p class="centered"><a href="profile.html"><img src="img/po.jpg" class="img-circle" width="80"></a></p>
                 <h5 class="centered" id="current_user">root</h5>
                 <li class="mt">
-                    <a class="active" href="/myreleasetask">
+                    <a  href="/myreleasetask">
                         <!--<i class="fa fa-dashboard"></i>-->
                         <span>我发布的任务</span>
                     </a>
                 </li>
-                <li class="sub-menu">
-                    <a href="/myreceivedtask">
+                <li>
+                    <a class="active" href="/myreceivedtask">
                         <!--<i class="fa fa-desktop"></i>-->
                         <span>我收到的任务</span>
                     </a>
@@ -75,6 +75,7 @@
                             <select id="job_status" class="btn btn-primary">
                                 <option value="opt1" selected="selected">未完成</option>
                                 <option value="opt2">已完成</option>
+                                <option value="opt3">不可信</option>
                             </select>
                         </h2>
                     </div>
@@ -82,6 +83,7 @@
                 <thead>
                 <tr>
                     <th>序号</th>
+                    <th>任务ID</th>
                     <th>开始任务</th>
                     <th>任务状态</th>
                     <th>项目名称</th>

@@ -91,7 +91,7 @@
 
             <generatedKey column="inputName" sqlStatement="Mysql" identity="true" />
         </table>
-
+         -->
         <table schema="assigntask" tableName="release"
                enableCountByExample="false"
                enableUpdateByExample="false"
@@ -102,7 +102,7 @@
 
             <generatedKey column="releaseId" sqlStatement="Mysql" identity="true" />
         </table>
-
+        <!--
         <table schema="assigntask" tableName="subdata"
                enableCountByExample="false"
                enableUpdateByExample="true"
@@ -202,7 +202,7 @@
             <property name="useActualColumnNames" value="false" />
         </table>
         -->
-
+        <!--
         <table schema="assigntask" tableName="myreceive"
                enableCountByExample="false"
                enableUpdateByExample="true"
@@ -211,5 +211,16 @@
                selectByExampleQueryId="true">
             <property name="useActualColumnNames" value="false" />
         </table>
+        -->
+        <!--
+        <table schema="assigntask" tableName="releasetables"
+               enableCountByExample="false"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <property name="useActualColumnNames" value="false" />
+        </table>
+        -->
     </context>
 </generatorConfiguration>

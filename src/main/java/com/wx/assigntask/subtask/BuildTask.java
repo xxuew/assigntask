@@ -1,7 +1,18 @@
 package com.wx.assigntask.subtask;
 
+import com.wx.assigntask.dao.OriginalDataMapper;
+import com.wx.assigntask.dao.SubtaskMapper;
 import com.wx.assigntask.entity.OriginalData;
+import com.wx.assigntask.entity.Subtask;
+import com.wx.assigntask.service.OriginalDataService;
+import com.wx.assigntask.service.SubTaskService;
+import com.wx.assigntask.service.UserService;
+import com.wx.assigntask.service.impl.OriginalDataServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import java.util.List;
 import java.util.Random;
 
 public class BuildTask {

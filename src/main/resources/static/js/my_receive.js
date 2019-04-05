@@ -56,7 +56,7 @@ function pageInfos(tranData) {
                         var count = i+1;
                         var href = '/comment?'+ count;
                         var startJob = "";
-                        if (tranData.optionText == "已完成"){
+                        if (tranData.optionText == "已完成" || tranData.optionText == "不可信"){
                             startJob = "<td>" + "已完成任务" + "</td>";
                         }
                         else {
@@ -64,8 +64,10 @@ function pageInfos(tranData) {
                         }
                         receive_Infos = receive_Infos +
                             "<tr>" +
-                            "<td>" + count + "</td>" + startJob +
+                            "<td>" + count + "</td>" +
+                            "<td>" + myReceiveInfo.id + "</td>" + startJob +
                             "<td>" + myReceiveInfo.ifcomplete + "</td>" +
+                            // "<td>" + "JU-TE-03" + "</td>" +
                             "<td>" + releaseInfo.releasename + "</td>" +
                             "</tr>";
                     }

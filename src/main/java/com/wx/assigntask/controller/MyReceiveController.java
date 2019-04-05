@@ -38,19 +38,23 @@ public class MyReceiveController {
 
         if (!optionText.isEmpty()){
             myreceives = myReceiveService.selectIfcomByUser(userid,optionText);
+            if (optionText.equals("不可信")){
+                int tex=0;
+                System.out.println(myreceives);
+            }
 
         }else{
             myreceives = myReceiveService.selectByUser(userid);
+
+
         }
         List<Release> releases = new ArrayList<>();
         for (int i=0;i<myreceives.size();i++){
             Myreceive myreceive = myreceives.get(i);
-            Release release = releaseService.selectById(myreceive.getReleaseid());
+            Release release = releaseService.findReleaseById(myreceive.getReleaseid());
             releases.add(release);
         }
-//        JSONObject jsonObject = new JSONObject();
-//        jsonObject.put("releases:",releases);
-       // jsonObject.put("myreceives:",myreceives);
+
         Map map = new HashMap<String,List>();
         map.put("releases",releases);
         map.put("myreceives",myreceives);

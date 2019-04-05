@@ -7,7 +7,10 @@ import com.wx.assigntask.service.ReleaseService;
 import com.wx.assigntask.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
 import java.lang.String;
+import java.util.List;
 
 /**
  * @Author: wx
@@ -28,24 +31,6 @@ public class ReleaseServiceImpl implements ReleaseService {
     UserService userService;
 
 
-//    @Override
-//    public List finAlgsByInputName(String inputName) {
-//
-//        List algs = releaseDao.finAlgsByInputName(inputName);
-//        return algs;
-//    }
-//
-//    @Override
-//    public void updateDivided(String divided,String inputName,String algName) {
-//        releaseDao.updateDivided(divided,inputName,algName);
-//    }
-//
-//    @Override
-//    public String findDivided(String inputName, String algName) {
-//        String divided = releaseDao.findDivided(inputName,algName);
-//        return divided;
-//    }
-
     @Override
     public void updateIfDivided(int releaseid, String ifDivided) {
         releaseMapper.updateIfDivided(releaseid,ifDivided);
@@ -61,7 +46,23 @@ public class ReleaseServiceImpl implements ReleaseService {
         releaseMapper.insertRelease(release);
         int id = release.getReleaseid();
         return id;
+    }
 
+    @Override
+    public int insertRelease(HttpServletRequest request, int userid,String[] recommandAlgNames) {
+        Release release = new Release();
+        release.setUserid(userid);
+        release.setReleasename(request.getParameter("release_name")); //项目名称
+        release.setPlan(request.getParameter("release_plan")); //生成方案
+        String recommandAlgName = "";
+        for (int i=0;i<recommandAlgNames.length-1;i++){
+            recommandAlgName = recommandAlgName + recommandAlgNames[i] + ",";
+        }
+        recommandAlgName = recommandAlgName + recommandAlgNames[recommandAlgName.length()-1];
+        release.setAlgnames(recommandAlgName); // 算法名
+        releaseMapper.insertRelease(release);
+        int id = release.getReleaseid();
+        return id;
     }
 
     @Override
@@ -70,9 +71,25 @@ public class ReleaseServiceImpl implements ReleaseService {
         return ifDivided;
     }
 
+    /**
+     * 根据releaseid查找已发布项目
+     * @param releaseid
+     * @return
+     */
     @Override
-    public Release selectById(int releaseid) {
-        Release release = releaseMapper.selectById(releaseid);
+    public Release findReleaseById(int releaseid) {
+        Release release = releaseMapper.findReleaseById(releaseid);
         return release;
+    }
+
+    /**
+     * 根据userid查找已发布项目
+     * @param userid
+     * @return
+     */
+    @Override
+    public List<Release> selectByUserid(int userid) {
+        List<Release> releaseList= releaseMapper.findByUserid(userid);
+        return releaseList;
     }
 }

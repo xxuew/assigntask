@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.support.EncodedResource;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
+import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.sql.Connection;
@@ -31,8 +33,9 @@ import java.sql.SQLException;
  *
  *    3，执行source语句 ，source + 路径，
  */
+@Component
 public class WriteSql {
-//    @Autowired
+    //    @Autowired
 //    SqlSessionFactory sqlSessionFactory;
 //    @Value("${spring.datasource.driver-class-name}")
 //    String className;
@@ -42,6 +45,32 @@ public class WriteSql {
 //    String dbUsername ;
 //    @Value("${spring.datasource.password}")
 //    String dbPassword;
+    public int saveSqlFile(MultipartFile[] fileUpload) {
+        //本地项目地址/target/clases
+        String proPath = this.getClass().getClassLoader().getResource("").getPath();
+        String filePath = proPath + "upload-files/";
+        //获取文件名
+        // List<String> fileNames = new ArrayList<>();
+        for (int i = 0; i < fileUpload.length; i++) {
+            String fileName = fileUpload[i].getOriginalFilename();//文件不能超过1M
+            File file = new File(filePath + fileName);
+            File fileParent = file.getParentFile();
+            if (!fileParent.exists()) {
+                fileParent.mkdirs();
+            }
+            try {
+                //将文件保存到相应路径里
+                fileUpload[i].transferTo(file);
+                //写入数据库
+                WriteSqlFile(file);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return -1;
+            }
+        }
+        return 1;
+    }
+
     public void WriteSqlFile(File file){
 
 ////            Runtime runtime = Runtime.getRuntime();

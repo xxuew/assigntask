@@ -22,12 +22,7 @@ public class MyReleaseController {
     @ResponseBody //此注解不能省略，否则Ajax不能接收返回值
     public List<Release> myRelease(int userid){
 
-        List<Integer> releaseids = userReleaseService.selectByUser(userid);
-        List<Release> releArr = new ArrayList<>();
-        for (int i = 0; i < releaseids.size();i++){
-            int releaseid = releaseids.get(i);
-            releArr.add(releaseService.selectById(releaseid));
-        }
+        List<Release> releArr = releaseService.selectByUserid(userid);
 
         return releArr;
     }

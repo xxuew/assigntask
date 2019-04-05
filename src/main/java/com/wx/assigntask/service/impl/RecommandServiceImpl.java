@@ -91,7 +91,7 @@ public class RecommandServiceImpl implements RecommandService {
     @Override
     public List selectAll(int releaseid) {
         List inputSize = new ArrayList();
-        String algNames = releaseMapper.selectById(releaseid).getAlgnames(); //本次release包含的algNames
+        String algNames = releaseMapper.findReleaseById(releaseid).getAlgnames(); //本次release包含的algNames
         if (algNames.contains("lstm")) {
             inputSize = recommandMapper.selectAllLstm();
         } else if (algNames.contains("nn")) {

@@ -163,22 +163,22 @@ $(function () {
                         var count = i+1;
                         subtaskArr.push(subtask);
                         var inputnameid = "#"+"inputname"+count;
-                        $(inputnameid).append(input.inputname);
+                        $(inputnameid).append( "检索：" + input.inputname);
 
                         var inputdesid = "#"+"inputdes"+count;
-                        $(inputdesid).append(input.inputdes);
+                        $(inputdesid).append("描述：" + input.inputdes);
 
                         var nameid_a = "#"+"subtaskname"+count+"_a";
-                        $(nameid_a).append(subtask.itemname1);
+                        $(nameid_a).append("推荐1：" + subtask.itemname1);
 
                         var desid_a = "#"+"subtaskdes"+count+"_a";
-                        $(desid_a).append(subtask.itemdes1);
+                        $(desid_a).append("推荐1描述：" + subtask.itemdes1);
 
                         var nameid_b = "#"+"subtaskname"+count+"_b";
-                        $(nameid_b).append(subtask.itemname2);
+                        $(nameid_b).append("推荐2：" + subtask.itemname2);
 
                         var desid_b = "#"+"subtaskdes"+count+"_b";
-                        $(desid_b).append(subtask.itemdes2);
+                        $(desid_b).append("推荐2描述：" + subtask.itemdes2);
                     }
                     // $("#comment_submit").click(function () {
                     //     insertCommentRes(subtaskArr);
