@@ -47,4 +47,23 @@ public interface ReleasetablesMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Releasetables record);
+
+//    /**
+//     * 根据releaseID、algname查找推荐结果表名
+//     * @param releasetables
+//     * @return
+//     */
+//    Releasetables findByIdAlg(Releasetables releasetables);
+
+    /**
+     * 根据releaseID、algname查找推荐结果表名
+     * @param releaseid
+     * @param algname
+     * @return
+     */
+    String findRecoTab(int releaseid,String algname);
+
+    String findInputTab(int releaseid,String algname);
+
+
 }

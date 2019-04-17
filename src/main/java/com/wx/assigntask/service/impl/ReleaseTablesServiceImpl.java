@@ -38,4 +38,13 @@ public class ReleaseTablesServiceImpl implements ReleaseTablesService {
             releasetablesMapper.insert(releasetables);
         }
     }
+//
+//    @Override
+//    public Releasetables findRecoTab(int releaseid, String algname) {
+//        Releasetables releasetables = new Releasetables();
+//        releasetables.setAlgname(algname);
+//        releasetables.setReleaseid(releaseid);
+//        releasetables = releasetablesMapper.findByIdAlg(releasetables);
+//        return releasetables;
+//    }
 }

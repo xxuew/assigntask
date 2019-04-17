@@ -7,13 +7,14 @@ import com.wx.assigntask.entity.*;
 import com.wx.assigntask.service.*;
 import com.wx.assigntask.subtask.BuildTask;
 import com.wx.assigntask.tools.Constant;
-import groovy.transform.Undefined;
+import com.wx.assigntask.tools.GenSubtaskCps;
+import com.wx.assigntask.tools.RandomNum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 /**
  * @Author: wx
@@ -34,7 +35,7 @@ public class SubTaskServiceImpl implements SubTaskService {
     @Autowired
     DividedService dividedService;
     @Autowired
-    RecommandService recommandService;
+    RecommendService recommendService;
     @Autowired
     AlgResultService algResultService;
     @Autowired
@@ -53,7 +54,52 @@ public class SubTaskServiceImpl implements SubTaskService {
     @Autowired
     DividedMapper dividedMapper;
     @Autowired
+    ReleasetablesMapper releasetablesMapper;
+    @Autowired
+    InputsMapper inputsMapper;
+    @Autowired
+    RecommandMapper recommandMapper;
+
+    @Autowired
     Constant constant;
+    @Autowired
+    RandomNum randomNum;
+    @Autowired
+    GenSubtaskCps genSubtaskCps;
+
+    @Override
+    public void geneSubTask(int releaseId) {
+        //根据releaseID生成subtask
+        String ifDivided = releaseMapper.findDivided(releaseId); //判断刚插入的是否分配
+        Release release = releaseMapper.findReleaseById(releaseId);
+        if (!ifDivided.equals("yes")) {
+
+            List algs = Arrays.asList(release.getAlgnames().split(",")); //算法名,针对每次input都要进行6种算法的划分以及生成subtask
+          //  List inputs = recommandService.selectAll(releaseId); //数据源,根据算法名和releaseID来确定推荐结果数据源表名
+            if (release.getPlan().equals(constant.getPLAN_COMPARECOMPLETE())){
+                while (algs.size()>0){
+                    //六个算法比五次
+                    int dividedId = compareAlgs(release.getPlan(),algs,releaseId);
+                //    prune(release.getPlan(),algs,releaseId);//剪枝，之后把处理数据方法从compareAlgs拿出来放进prune
+                    algs = algResultService.selectNoFinalAlg(releaseId); //获取上一轮胜出的algname
+                }
+            }
+            else if (release.getPlan().equals(constant.getPLAN_SAMELAYER())){
+//                sameLayer(release.getPlan(),algs,releaseId); //算法内部排序subtask生成分配
+//                handleSubtaskData(plan);
+//                orderListService.dealData(); //处理数据，排序插入orderlist表
+//                while (algs.size()>0){
+//                    //六个算法比五次
+//                    compareAlgs(plan,algs,releaseId);
+//                    algs = algResultService.selectNoFinalAlg(releaseId,plan); //获取上一轮胜出的algname
+                }
+            }
+            else if (release.getPlan().equals((constant.getPLAN_SAMELAYER()))){
+//                int plan = 3;
+//                sameLayer(plan,algs,releaseId);
+            }
+        }
+
 
     //TODO DEV
     @Override
@@ -104,7 +150,7 @@ public class SubTaskServiceImpl implements SubTaskService {
     @Override
     public void updateRandom(String algName1,String algName2,int subtaskCount, List<Integer> subtaskids) {
 
-        int[] randoms = getNumber(subtaskCount);
+        int[] randoms = randomNum.getNumber(subtaskCount);
         for (int z = 0; z < subtaskids.size() && z < randoms.length; z++) {
             //更新每个subtask的randomNum
 //            updateRandom(k, randoms[z], subtaskids.get(z).intValue());
@@ -137,10 +183,10 @@ public class SubTaskServiceImpl implements SubTaskService {
     }
 
     @Override
-    public List<Subtask> selectAllSubTask(int plan,String algName1,String algName2) {
+    public List<Subtask> selectAllSubTask(String plan,String algName1,String algName2) {
         //返回所有frequency小于5的subtask
         List<Subtask> subtasks = new ArrayList<>();
-        if (plan == 1){
+        if (plan.equals(constant.getPLAN_COMPARECOMPLETE())){
             if (algName1.equals("lstm") && algName2.equals("nn")) {
                 //algNum=0对应lstm和nn对比
                 subtasks = subtaskMapper.selectAllLstmNn();
@@ -158,7 +204,7 @@ public class SubTaskServiceImpl implements SubTaskService {
                 subtasks = subtaskMapper.selectAllFinal2();
             }
         }
-        else if (plan == 2){
+        else if (plan.equals(constant.getPLAN_SAMELAYER())){
             subtasks = subtaskMapper.selectAllSubtask();
         }
         return subtasks;
@@ -205,11 +251,11 @@ public class SubTaskServiceImpl implements SubTaskService {
             String algName2 = divided.getAlgname2(); //对比的算法2名称
             Release release = releaseMapper.findReleaseById(divided.getReleaseid());
             int plan = 0;
-            if (release.getPlan().equals(constant.getPLAN1())) {
+            if (release.getPlan().equals(constant.getPLAN_AHP())) {
                 plan = 1;
-            } else if (release.getPlan().equals(constant.getPLAN2())) {
+            } else if (release.getPlan().equals(constant.getPLAN_COMPARECOMPLETE())) {
                 plan = 2;
-            } else if (release.getPlan().equals(constant.getPLAN3())) {
+            } else if (release.getPlan().equals(constant.getPLAN_SAMELAYER())) {
                 plan = 3;
             }
             List<Subtask> subtasks = new ArrayList<>();
@@ -238,8 +284,8 @@ public class SubTaskServiceImpl implements SubTaskService {
     }
 
     @Override
-    public void updateFre(int  plan,String algName1,String algName2, Subtask subtask) {
-        if (plan == 2){
+    public void updateFre(String  plan,String algName1,String algName2, Subtask subtask) {
+        if (plan.equals(constant.getPLAN_COMPARECOMPLETE())){
             subtaskMapper.updateFre(subtask);
         }
         else {
@@ -451,106 +497,61 @@ public class SubTaskServiceImpl implements SubTaskService {
         }
     }
 
-    @Override
-    public void geneSubTask(int releaseId) {
-        //根据releaseID生成subtask
-        System.out.println("111");
-        String ifDivided = releaseMapper.findDivided(releaseId); //判断刚插入的是否分配
-        Release release = releaseMapper.findReleaseById(releaseId);
-        if (!ifDivided.equals("yes")) {
-            //完整步骤是去releaseInput关联表查找本次inputID，再去original_data查找相关数据,目前没有关联表，直接去original_data查找相关数据
-            List inputs = recommandService.selectAll(releaseId); //数据源
 
-            List algs = algs(); //6种算法名,针对每次input都要进行6种算法的划分以及生成subtask
-            if (release.getPlan().equals(constant.getPLAN1())){
-                int plan = 1;
-                while (algs.size()>0){
-                    //六个算法比五次
-                     int dividedId = compareAlgs(plan,algs,inputs,releaseId);
-                     prune(plan,algs,releaseId);//剪枝，之后把处理数据方法从compareAlgs拿出来放进prune
-                    algs = algResultService.selectNoFinalAlg(releaseId,plan); //获取上一轮胜出的algname
-                }
-            }
-            else if (release.getPlan().equals(constant.getPLAN2())){
-                int plan = 2;
-                sameLayer(plan,algs,inputs,releaseId); //算法内部排序subtask生成分配
-                handleSubtaskData(plan);
-                orderListService.dealData(); //处理数据，排序插入orderlist表
-                while (algs.size()>0){
-                    //六个算法比五次
-                    compareAlgs(plan,algs,inputs,releaseId);
-                    algs = algResultService.selectNoFinalAlg(releaseId,plan); //获取上一轮胜出的algname
-                }
-            }
-            else if (release.getPlan().equals((constant.getPLAN3()))){
-                int plan = 3;
-                sameLayer(plan,algs,inputs,releaseId);
-            }
-        }
-    }
 
     /**
      * 剪枝
      */
     //todo
-    public void prune(int plan,List algs,int releaseId){
-        int subtaskCount = 0;
-        List subtaskids = new ArrayList();
-        for (int k = 0; k < algs.size() - 1; ) {
-            String algName1 = algs.get(k).toString();
-            String algName2 = algs.get(k + 1).toString();
-            updateRandom(algName1, algName2, subtaskCount, subtaskids);
-          //  assignTaskToUser(plan, dividedId, releaseId, algName1, algName2);//分派任务，将userID和subtaskid写进usertask表
-            k = k + 2;
-            handleSubtaskData(plan, algName1, algName2);
-            handleDividedData(plan, algName1, algName2);
-            algResultService.insertRecord(releaseId, algName1, algName2);
-        }
-        releaseMapper.updateIfDivided(releaseId, "yes");
-        algResultService.handleAlgResult();
-        algs = algResultService.selectNoFinalAlg(releaseId,plan); //获取上一轮胜出的algname
-    }
+//    public void prune(String plan,List algs,int releaseId){
+//        int subtaskCount = 0;
+//        List subtaskids = new ArrayList();
+//        for (int k = 0; k < algs.size() - 1; ) {
+//            String algName1 = algs.get(k).toString();
+//            String algName2 = algs.get(k + 1).toString();
+//            updateRandom(algName1, algName2, subtaskCount, subtaskids);
+//          //  assignTaskToUser(plan, dividedId, releaseId, algName1, algName2);//分派任务，将userID和subtaskid写进usertask表
+//            k = k + 2;
+//            handleSubtaskData(plan, algName1, algName2);
+//            handleDividedData(plan, algName1, algName2);
+//            algResultService.insertRecord(releaseId, algName1, algName2);
+//        }
+//        releaseMapper.updateIfDivided(releaseId, "yes");
+//        algResultService.handleAlgResult();
+//        algs = algResultService.selectNoFinalAlg(releaseId,plan); //获取上一轮胜出的algname
+//    }
 
-    public int compareAlgs(int plan,List algs,List inputs,int releaseId){//两两对比排除
+    public int compareAlgs(String plan,List algs,int releaseId){//两两对比排除
         int dividedId = 0;
         for (int k = 0; k < algs.size() - 1; ) {
             String algName1 = algs.get(k).toString();
             String algName2 = algs.get(k + 1).toString();
             if (algName1.equals(algName2)) {
+                //该项目全部完成
                 List<Integer> algResultId = algresultMapper.selectNoFinalIds(releaseId);
                 algResultService.updateIffinal(algResultId.get(0),"yes");
                 break;
             }
+
+            String inputTable = releasetablesMapper.findInputTab(releaseId,algName1);//查找检索数据源表
+            List<Inputs> inputs = inputsMapper.selectAllInput(inputTable);//查找检索数据源
             //把100次input关于该对比组的subtask都生成并分发
             for (int i = 0; i < inputs.size(); i++) {
-                //从original_data获取itemNames和itemDes
-                Recommand recommand = (Recommand) inputs.get(i);
-
-                 dividedId = dividedService.insertDivided(releaseId, recommand.getId(), algName1, algName2);
-                //写进divided即划分subtask写进subtask表
-                String diIfDiv = dividedService.findIfDivided(dividedId);
-                if (!diIfDiv.equals("yes") || diIfDiv.isEmpty()) {
+                 Inputs input = inputs.get(i); //一次检索内容
+                 dividedId = dividedService.insertDivided(releaseId, input.getInputid(), algName1, algName2);//写进divided即划分subtask写进subtask表
+                 String diIfDiv = dividedService.findIfDivided(dividedId);
+                 if (!diIfDiv.equals("yes") || diIfDiv.isEmpty()) {
                     List<Integer> subtaskids = new ArrayList<Integer>();
 
-                    //plan1的items从recommand取，plan2从order取
-                    List itemNames1 = new ArrayList();
-                    List itemNames2 = new ArrayList();
-                    List itemDes1 = new ArrayList();
-                    List itemDes2 = new ArrayList();
-                    if (plan == 1){
-                        itemNames1 = recommandService.selectAllItemsNames(recommand.getId(),algName1);
-                        itemNames2 = recommandService.selectAllItemsNames(recommand.getId(),algName2);
-                        itemDes1 = recommandService.selectAllItemDes(recommand.getId(),algName1);
-                        itemDes2 = recommandService.selectAllItemDes(recommand.getId(),algName2);
-                    }else if (plan == 2){
-                        itemNames1 = orderListService.selectItemNames(recommand.getId(),releaseId,algName1);
-                        itemNames2 = orderListService.selectItemNames(recommand.getId(),releaseId,algName2);
-                        itemDes1 = orderListService.selectItemDes(recommand.getId(),releaseId,algName1);
-                        itemDes2 = orderListService.selectItemDes(recommand.getId(),releaseId,algName2);
+                    //充分对比剪枝的items从recommand取，同层对比剪枝从order取,写入subtask
+                     int subtaskCount = 0;
+                    if (plan.equals(constant.getPLAN_COMPARECOMPLETE())){
+                        subtaskCount = genSubtaskCps.compareComplete(dividedId,releaseId,algName1,algName2,subtaskids);
+                    }else if (plan.equals(constant.getPLAN_SAMELAYER())){
+                        subtaskCount = genSubtaskCps.sameLayerAlg(dividedId,releaseId,algName1,algName2,subtaskids,input.getInputid());
                     }
-
-                    //若没有分配则分配写入subtask
-                    int subtaskCount = subTaskCp(plan,itemNames1,itemNames2, itemDes1,itemDes2,algName1,algName2, subtaskids, dividedId);
+//                    //若没有分配则分配
+//                     subtaskCount = subTaskCpPlan1(plan,algName1,algName2, subtaskids, dividedId);
                     //TODO
                     //这里subtaskcount只有10，还是重复？或许可以提到input循环外，100次的lstm都生成后再分配
                     dividedService.updataDivided("yes", dividedId);
@@ -561,8 +562,8 @@ public class SubTaskServiceImpl implements SubTaskService {
             //todo
             //插入algresult记录
             k = k + 2;
-            handleSubtaskData(plan,algName1,algName2);
-            handleDividedData(plan,algName1,algName2);
+//            handleSubtaskData(plan,algName1,algName2);
+//            handleDividedData(plan,algName1,algName2);
             algResultService.insertRecord(releaseId,algName1,algName2);
         }
         releaseMapper.updateIfDivided(releaseId,"yes");
@@ -570,17 +571,18 @@ public class SubTaskServiceImpl implements SubTaskService {
         return dividedId;
     }
 
-    public void sameLayer(int plan, List algs, List inputs, int releaseId){
+
+    public void sameLayer(String plan, List algs, List inputs, int releaseId){
             //先纵再横，算法内排序
         for (int k = 0; k < algs.size();k++ ) {
             //把100次input关于该对比组的subtask都生成并分发
             for (int i = 0; i < inputs.size(); i++) {
                 //从original_data获取itemNames和itemDes
-                Recommand recommand = (Recommand) inputs.get(i);
+                Recommend recommend = (Recommend) inputs.get(i);
                 String algName = algs.get(k).toString();
-                List itemNames = recommandService.selectAllItemsNames(recommand.getId(),algName);
-                List itemDes = recommandService.selectAllItemDes(recommand.getId(),algName);
-                int dividedId = dividedService.insertDivided(releaseId, recommand.getId(), algName, algName);
+                List itemNames = recommendService.selectAllItemsNames(recommend.getId(),algName);
+                List itemDes = recommendService.selectAllItemDes(recommend.getId(),algName);
+                int dividedId = dividedService.insertDivided(releaseId, recommend.getId(), algName, algName);
 
                 //划分subtask写进subtask表
                 String diIfDiv = dividedService.findIfDivided(dividedId);
@@ -600,39 +602,39 @@ public class SubTaskServiceImpl implements SubTaskService {
     }
 
 
-    public int subTaskCp(int plan,List itemNames1,List itemNames2, List itemDess1,List itemDess2, String algName1,String algName2, List subtaskids, int dividedId) {
-         int subtaskCount = 0;
-         if (plan == 1){
-             for (int j = 2; j < itemNames1.size(); j++) {
-                 //A1对B1-B10，A1不变，B变
-                 for (int z = 2; z < itemNames2.size(); z++) {
-                     String itemName1 = itemNames1.get(j).toString();
-                     String itemName2 = itemNames2.get(z).toString();
-                     String itemDes1 = itemDess1.get(j).toString();
-                     String itemDes2 = itemDess2.get(z).toString();
-                     //插入subtask
-                     int subtaskid = insertSubTask(plan,algName1,algName2,dividedId, itemName1, itemDes1, itemName2, itemDes2);
-                     subtaskids.add(subtaskid);
-                     subtaskCount++;
-                 }
-             }
-         }
-         else if (plan == 2){
-             for (int i = 0;i<itemNames1.size();i++){
-                 String itemName1 = itemNames1.get(i).toString();
-                 String itemName2 = itemNames2.get(i).toString();
-                 String itemDes1 = itemDess1.get(i).toString();
-                 String itemDes2 = itemDess2.get(i).toString();
-                 //插入subtask
-                 int subtaskid = insertSubTask(plan,algName1,algName2,dividedId, itemName1, itemDes1, itemName2, itemDes2);
-                 subtaskids.add(subtaskid);
-                 subtaskCount++;
-             }
-         }
-        return subtaskCount;
-    }
+//    public int subTaskCp(int plan, String algName1,String algName2, List subtaskids, int dividedId) {
+//         int subtaskCount = 0;
+//         if (plan == 1){
+//             for (int j = 2; j < itemNames1.size(); j++) {
+//                 //A1对B1-B10，A1不变，B变
+//                 for (int z = 2; z < itemNames2.size(); z++) {
+//                     String itemName1 = itemNames1.get(j).toString();
+//                     String itemName2 = itemNames2.get(z).toString();
+//                     String itemDes1 = itemDess1.get(j).toString();
+//                     String itemDes2 = itemDess2.get(z).toString();
+//                     //插入subtask
+//                     int subtaskid = insertSubTask(plan,algName1,algName2,dividedId, itemName1, itemDes1, itemName2, itemDes2);
+//                     subtaskids.add(subtaskid);
+//                     subtaskCount++;
+//                 }
+//             }
+//         }
+//         else if (plan == 2){
+//             for (int i = 0;i<itemNames1.size();i++){
+//                 String itemName1 = itemNames1.get(i).toString();
+//                 String itemName2 = itemNames2.get(i).toString();
+//                 String itemDes1 = itemDess1.get(i).toString();
+//                 String itemDes2 = itemDess2.get(i).toString();
+//                 //插入subtask
+//                 int subtaskid = insertSubTask(plan,algName1,algName2,dividedId, itemName1, itemDes1, itemName2, itemDes2);
+//                 subtaskids.add(subtaskid);
+//                 subtaskCount++;
+//             }
+//         }
+//        return subtaskCount;
+//    }
 
-    public int intraGroup(int plan,List itemNames, List itemDes, String algName, List subtaskids, int dividedId) {
+    public int intraGroup(String plan,List itemNames, List itemDes, String algName, List subtaskids, int dividedId) {
         System.out.println("生成算法内排序子任务 :"+Class.class.getName());
         int subtaskCount = 0; //subtask个数
         //算法内部排序
@@ -657,14 +659,14 @@ public class SubTaskServiceImpl implements SubTaskService {
 
 
     @Override
-    public int insertSubTask(int plan,String algName1,String algName2, int dividedId, String itemName1, String itemDes1, String itemName2, String itemDes2) {
+    public int insertSubTask(String plan,String algName1,String algName2, int dividedId, String itemName1, String itemDes1, String itemName2, String itemDes2) {
         Subtask subtask = new Subtask();
         subtask.setDividedid(dividedId);
         subtask.setItemname1(itemName1);
         subtask.setItemdes1(itemDes1);
         subtask.setItemname2(itemName2);
         subtask.setItemdes2(itemDes2);
-        if (plan == 1){
+        if (plan.equals(constant.getPLAN_COMPARECOMPLETE())){
             if (algName1.equals("lstm") && algName2.equals("nn")) {
                 //lstm和nn对比
                 subtaskMapper.inserToLstmNn(subtask);
@@ -682,49 +684,19 @@ public class SubTaskServiceImpl implements SubTaskService {
                 subtaskMapper.insertToFinal2(subtask);
             }
         }
-        else if (plan == 2){
-            subtaskMapper.inserSubtask(subtask);
+        else if (plan.equals(constant.getPLAN_SAMELAYER())){
+            subtaskMapper.inserSubtask(dividedId,itemName1,itemDes1,itemName2,itemDes2);
         }
 
         int subtaskid = subtask.getSubtaskid();
         return subtaskid;
     }
 
-    public List<String> algs() {
-        //TODO  这里算法名称已经写死了
-        List algs = new ArrayList();
-        algs.add("lstm");
-        algs.add("nn");
-        algs.add("cnn");
-        algs.add("tfidf");
-        algs.add("doc");
-        algs.add("index");
-        return algs;
-    }
 
-    public void insertRandom(){
 
-    }
-
-    public int[] getNumber(int total) {
-        int[] NumberBox = new int[total];           //容器A
-        int[] rtnNumber = new int[total];           //容器B
-        for (int i = 0; i < total; i++) {
-            NumberBox[i] = i;     //先把N个数放入容器A中
-        }
-        int end = total - 1;
-        for (int j = 0; j < total; j++) {
-            int num = new Random().nextInt(end + 1);  //取随机数
-            rtnNumber[j] = NumberBox[num];            //把随机数放入容器B
-            NumberBox[num] = NumberBox[end];          //把容器A中最后一个数覆盖所取的随机数
-            end--;                                    //缩小随机数所取范围
-        }
-        return rtnNumber;                           //返回int型数组
-    }
-
-    public void assignTaskToUser(int plan,int dividedid,int releaseid,String algName1,String algName2) {
+    public void assignTaskToUser(String plan,int dividedid,int releaseid,String algName1,String algName2) {
         List<Integer> userIDs = userService.selectAllId(); //所有用户ID
-        List algs = algs();
+
         //根据algs存放顺序分配
         List<Subtask> subtasks = selectAllSubTask(plan, algName1, algName2); //所有frequency小于5的subtask
         if (subtasks.size() > 0) {

@@ -56,7 +56,7 @@ public class AlgResultServiceImpl  implements AlgResultService {
     }
 
     @Override
-    public List<String> selectNoFinalAlg(int releaseid, int plan) {
+    public List<String> selectNoFinalAlg(int releaseid) {
         List<String> algs = algresultMapper.selectNoFinalAlg(releaseid); //获取上一轮胜出的algname
         List<Integer> algResultIds = algresultMapper.selectNoFinalIds(releaseid);
         if (algs.size() > 1){

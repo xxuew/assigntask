@@ -32,4 +32,8 @@ public interface UserMapper {
     List selectAllIdByTasking();
 
     int updateTaking (int userId,int tasking);
+
+    int updatePassword(int userId, String password);
+
+    User findUserByEmail(String email);
 }

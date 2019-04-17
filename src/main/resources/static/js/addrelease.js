@@ -1,4 +1,49 @@
 /**
+ * 提示字段要求
+ */
+$(function  (){
+
+    $("#zdRecommends").click(function () {
+        $("#mask").css({"display":"block"});
+        $("#zdRecommendsTS").css({"display":"block"});
+    });
+    $("#cancelRecommennd").click(function () {
+        $("#mask").css({"display":"none"});
+        $("#zdRecommendsTS").css({"display":"none"})
+    });
+    //
+
+    $("#zdInputs").click(function () {
+        $("#mask").css({"display":"block"});
+        $("#zdInputsTS").css({"display":"block"});
+    });
+    $("#cancelInputs").click(function () {
+        $("#mask").css({"display":"none"});
+        $("#zdInputsTS").css({"display":"none"});
+    });
+
+});
+
+/**
+ * 判断是否登录
+ */
+$(function () {
+    $.ajax({
+        type:"get",
+        url:"/loginInfo",
+        traditional: true,
+        contentType: "application/json; charset=UTF-8",
+        dataType:"json",
+        success:function (userInfo) {
+            console.log(userInfo);
+            if (userInfo.userid == -1){
+                alert("请登录！")
+                location.href = "/";
+            }
+        }
+    })
+})
+/**
  * 改变子任务量
  */
 $("#release_plan").change(function () {
@@ -27,11 +72,31 @@ $("#release_plan").change(function () {
  * 存入发布项目填写的信息
  */
 function addRelease() {
-    var formData = new FormData();
-    formData.append("release_name", $("#release_name").val());//项目名称
-    formData.append("release_plan", $("#release_plan").val());//生成方案
-    formData.append("input_tablename", $("#input_tablename").val());//文本检索数据表名
-    addFile(formData);//存入所有上传文件
+    // $.ajax({
+    //     type:"GET",
+    //     url:"",
+    //     traditional:true,
+    //     contentType:"",
+    //     dataType:"json",
+    //     success:function (userInfo) {
+    //         console.log(userInfo);
+    //         if (userInfo.userid == -1){
+    //             alert("请登录！")
+    //         } else {
+                var formData = new FormData();
+                if ($("#release_name").val() == null || $("#release_name").val() == ""
+                    ||$("#release_plan").val() == null || $("#release_plan").val() == ""
+                    || $("#input_tablename").val() ==null ||  $("#input_tablename").val() == ""){
+                    alert("有信息未填写！");
+                } else {
+                    formData.append("release_name", $("#release_name").val());//项目名称
+                    formData.append("release_plan", $("#release_plan").val());//生成方案
+                    formData.append("input_tablename", $("#input_tablename").val());//文本检索数据表名
+                    addFile(formData);//存入所有上传文件
+                }
+   //         }
+    //     }
+    // })
 }
 
 /**
@@ -54,7 +119,7 @@ function addFile(formData){
             if (add_file_recommands.length < 2) {
                 alert('至少上传两个推荐结果数据源文件!');
             } else {
-                formData.append("mFiles", add_file_input.files[0]); //存入文本检索内容数据源文件
+               formData.append("mFiles", add_file_input.files[0]); //存入文本检索内容数据源文件
                 var fileCount = 0;
                 for (var i = 0; i < add_file_recommands.length; i++) {
                     //遍历每一个推荐结果数据源文件
@@ -77,14 +142,11 @@ function addFile(formData){
                     }
                 }
             }
-        }
-    }
+      }
+   }
     if (fileCount == add_file_recommands.length){
         addAlgNames(formData); //存入填写的算法名和算法表名
      }
-    //else {
-    //     alert("有文件未上传！");
-    // }
 }
 
 /**
@@ -122,26 +184,37 @@ function submitRelease(formdata) {
         processData:false,
         dataType:"json",
         mimeType:"multipart/form-data",
-        success: function (releaseid) {
-            // console.log("releaseid: "+releaseid);
-            if (releaseid ==-1){
-                alert("写入文件发生错误!");
-            } else if (releaseid == -2){
-                alert("请登录！")
-            } else {
-                alert("发布成功");
-                location.href = "/myreleasetask";
-                // formdata.append("releaseid",releaseid);
-                // generSubTask(formdata);
-            }
+        success: function (result) {
+             console.log("releaseid: "+result.releaseid);
+             if (result.releaseid > 0){
+                 formdata.append("releaseid",result.releaseid);
+                 generSubTask(formdata);
+                 alert(result.msg);
+             }else {
+                 alert(result.msg);
+             }
+            $.ajax({
+                url:"/setSession",
+                type:"post",
+                async:false,
+                data:result.user,
+                success:function f(res) {
+                    if(res == "success"){
+                        location.href = "/myreleasetask";
+                    }else{
+                        location.href = "/";
+                    }
+                }
+            });
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("发布失败")
             console.log(XMLHttpRequest.status);
             console.log(XMLHttpRequest.readyState);
             console.log(textStatus);
+            console.log(errorThrown);
         }
-    })
+    });
 
 }
 
@@ -149,18 +222,25 @@ function submitRelease(formdata) {
  * 增加算法
  */
 function addAlg() {
-  var table = $('.table');
-  var addtr = $( "<tr>" +
-      "<th>推荐算法名</th> " +
-      "<td> <input type='text' class='form-control' name='recommand_algname' placeholder='任务包含的算法名' id='recommand_algname'> </td>" +
-      "<th>推荐结果表名</th>" +
-      "<td><input type='text' class='form-control' name='recommand_tablename' placeholder='推荐结果表名' id='recommand_tablename'></td>" +
-      "<th>推荐结果数据源 </th>" +
-      "<td> <input type='file' name='add_files' id='add_file' style='display: inline-block'/>" +
-      "<span><button type='button'  onclick='deleteAlg(this)'>删除算法</button> </span> " +
-      "</td>" +
-      "</tr>");
-  addtr.appendTo(table);
+
+//    var add_file_recommends = document.getElementsByName("add_files");//算法推荐结果数据源文件
+//    var count = add_file_recommends.length + 1;
+    var recommmend_num = document.getElementsByName("recommand_num"); //所有的推荐算法名
+    var last_recommend_num = recommmend_num[recommmend_num.length - 1].innerText; //最后一个推荐算法名
+    var count = parseInt(last_recommend_num.replace(/[^0-9]/ig, "")) + 1;
+
+    var table = $('.table');
+    var addtr = $("<tr>" +
+        "<th name='recommand_num'>推荐算法" + count + "</th> " +
+        "<td> <input type='text' class='form-control' name='recommand_algname' placeholder='任务包含的算法名' id='recommand_algname'> </td>" +
+        "<th>推荐结果表名</th>" +
+        "<td><input type='text' class='form-control' name='recommand_tablename' placeholder='推荐结果表名' id='recommand_tablename'></td>" +
+        "<th>推荐结果数据源 </th>" +
+        "<td> <input type='file' name='add_files' id='add_file' style='display: inline-block'/>" +
+        "<span><button type='button'  onclick='deleteAlg(this)'>删除算法</button> </span> " +
+        "</td>" +
+        "</tr>");
+    addtr.appendTo(table);
 }
 
 /**
@@ -191,11 +271,22 @@ function generSubTask(formdata) {
             console.log("genersubtask success");
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("genersubtask failed")
             console.log(XMLHttpRequest.status);
             console.log(XMLHttpRequest.readyState);
             console.log(textStatus);
+            alert("genersubtask failed")
         }
     })
 }
 
+/**
+ * TODO
+ * 调用bootstrap的模态框
+ */
+// $(function  (){
+//     $(".btn").click(function () {
+//         console.log("c:\\fakepath\\JU-TE-01.docx");
+//         $("#myModal").modal();
+//     })
+//
+// });

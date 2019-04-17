@@ -10,5 +10,5 @@ public interface AlgResultService {
    void insertRecord(int releaseId,String algName1,String algName2);
    void handleAlgResult();
    void updateIffinal(int id,String iffinal);
-   List<String> selectNoFinalAlg(int releaseid,int plan);
+   List<String> selectNoFinalAlg(int releaseid);
 }

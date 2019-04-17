@@ -1,13 +1,13 @@
 package com.wx.assigntask.service;
 
 import com.wx.assigntask.entity.Myreceive;
-import com.wx.assigntask.entity.Recommand;
+import com.wx.assigntask.entity.Recommend;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface RecommandService {
+public interface RecommendService {
     List selectAllItemsNames(int recommandid, String algName);
     List selectAllItemDes(int recommandid,String algName);
     List selectAll(int releaseid);
@@ -17,5 +17,5 @@ public interface RecommandService {
      * @param myreceives
      * @return
      */
-    Recommand selectInputById(Myreceive myreceives);
+    Recommend selectInputById(Myreceive myreceives);
 }

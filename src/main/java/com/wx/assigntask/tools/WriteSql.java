@@ -6,6 +6,7 @@ package com.wx.assigntask.tools;
  * @Version 1.0
  */
 
+import com.wx.assigntask.dao.tool.CheckTableMapper;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -17,10 +18,13 @@ import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 要用java调用mysql的命令 实现sql脚本的引入
@@ -35,17 +39,26 @@ import java.sql.SQLException;
  */
 @Component
 public class WriteSql {
-    //    @Autowired
-//    SqlSessionFactory sqlSessionFactory;
-//    @Value("${spring.datasource.driver-class-name}")
-//    String className;
-//    @Value("${spring.datasource.url}")
-//    String dbUrl;
-//    @Value("${spring.datasource.username}")
-//    String dbUsername ;
-//    @Value("${spring.datasource.password}")
-//    String dbPassword;
-    public int saveSqlFile(MultipartFile[] fileUpload) {
+
+    @Autowired
+    CheckTableMapper checkTableMapper;
+    @Autowired
+    Constant constant;
+    @Value("${spring.datasource.url}")
+    public String dbUrl;
+    @Value("${spring.datasource.driver-class-name}")
+    public String className;
+    @Value("${spring.datasource.username}")
+    public String  dbUsername;
+    @Value("${spring.datasource.password}")
+    public String dbPassword;
+
+    /**
+     * 保存上传文件至:/项目路径/target/upload-files
+     * @param fileUpload
+     * @return
+     */
+    public boolean saveSqlFile(MultipartFile[] fileUpload) {
         //本地项目地址/target/clases
         String proPath = this.getClass().getClassLoader().getResource("").getPath();
         String filePath = proPath + "upload-files/";
@@ -62,52 +75,25 @@ public class WriteSql {
                 //将文件保存到相应路径里
                 fileUpload[i].transferTo(file);
                 //写入数据库
-                WriteSqlFile(file);
+                boolean writeStatus = WriteSqlFile(file);
+                if (writeStatus == false){
+                    return false;
+                }
             } catch (Exception e) {
                 e.printStackTrace();
-                return -1;
+                return false;
             }
         }
-        return 1;
+        return true;
     }
 
-    public void WriteSqlFile(File file){
-
-////            Runtime runtime = Runtime.getRuntime();
-////            String cmdarray[] = { "mysql -uroot -p123456", "use test","source F:\\IDEAProjects\\assigntask\\src\\main\\resources\\static\\uploadsqlfiles\\recommand.sql" };
-////            Process process;
-////            try {
-////                process = runtime.exec("cmd /c " + cmdarray[0]);// cmd之后执行数组的第一个条件进入数据库
-////                // 执行了第一条命令以后已经登录到mysql了
-////                OutputStream os = process.getOutputStream();
-////                OutputStreamWriter writer = new OutputStreamWriter(os);
-////                writer.write(cmdarray[1]+"\r\n"+cmdarray[2]);//向图形界面输出第二第三条命令。中间 \r\n  作用是用来换行的
-////                writer.flush();
-////                writer.close();
-////                os.close();
-////            } catch (IOException e) {
-////                e.printStackTrace();
-////            }
-//            try {
-//                SqlSession sqlSession = sqlSessionFactory.openSession();
-//                Connection conn = sqlSession.getConnection();
-//
-//                String sqlPath = "F:\\IDEAProjects\\assigntask\\src\\main\\resources\\static\\uploadsqlfiles\\.sql";
-//                FileSystemResource rc = new FileSystemResource(sqlPath);
-//                EncodedResource er = new EncodedResource(rc, "GBK");
-//                ScriptUtils.executeSqlScript(conn, er);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//                throw e;
-//            }
-
+    /**
+     * 执行SQL脚本文件
+     * @param file
+     */
+    public boolean WriteSqlFile(File file){
 
         try {
-
-            String className = "com.mysql.cj.jdbc.Driver";
-            String dbUrl = "jdbc:mysql://localhost:3306/assigntask?allowMultiQueries=true&useSSL=false";
-            String dbUsername = "root";
-            String dbPassword = "123456";
 
             Class.forName(className);
             Connection conn = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
@@ -123,19 +109,51 @@ public class WriteSql {
                     runner.setAutoCommit(true);
                     runner.setStopOnError(true);
                     runner.runScript(new InputStreamReader(new FileInputStream(file), "utf8"));
-                  //  logger.info(String.format("【%s】回滚成功", tableName));
+                    //  logger.info(String.format("【%s】回滚成功", tableName));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                return false;
             }
-
             conn.close();
-        } catch (SQLException e) {
+        }catch (Exception e){
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-
-            e.printStackTrace();
+            return false;
         }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+
+        return true;
+    }
+
+    /**
+     * 检验上传SQL文件的表字段及字段类型
+     * @param recommandTableNames
+     * @param request
+     * @return
+     */
+    public String checkColNameType(String[] recommandTableNames, HttpServletRequest request){
+
+        String inuputTableName = request.getParameter("input_tablename"); //检索内容表名
+        List<Map> inputCol = checkTableMapper.selectColNameType(constant.getTABLENAME_INPUT()); //检索内容接口表，字段及字段类型
+        List<Map> newInputCol = checkTableMapper.selectColNameType(inuputTableName); //上传的检索内容表，字段及字段类型
+        if (!inputCol.equals(newInputCol)){
+            //检验检索内容input表
+            return "检索数据表字段错误！";
+        }
+
+        List<Map> targetRecommendTable = checkTableMapper.selectColNameType(constant.getTABLENAME_RECOMMEND()); //推荐结果接口表，字段及字段类型
+        for (int i=0;i<recommandTableNames.length;i++){
+            //检验推荐结果recommend表
+            List<Map> newTableCol= checkTableMapper.selectColNameType(recommandTableNames[i]); //上传的推荐结果表，字段及字段类型
+            if (!newTableCol.equals(targetRecommendTable)){
+                return recommandTableNames[i] + "表字段错误！";
+            }
+        }
+        return "success";
 
     }
 }

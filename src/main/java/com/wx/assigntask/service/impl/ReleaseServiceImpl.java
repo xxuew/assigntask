@@ -58,7 +58,7 @@ public class ReleaseServiceImpl implements ReleaseService {
         for (int i=0;i<recommandAlgNames.length-1;i++){
             recommandAlgName = recommandAlgName + recommandAlgNames[i] + ",";
         }
-        recommandAlgName = recommandAlgName + recommandAlgNames[recommandAlgName.length()-1];
+        recommandAlgName = recommandAlgName + recommandAlgNames[recommandAlgNames.length-1];
         release.setAlgnames(recommandAlgName); // 算法名
         releaseMapper.insertRelease(release);
         int id = release.getReleaseid();

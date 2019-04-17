@@ -17,18 +17,18 @@ import java.util.Random;
 @Repository
 public interface SubTaskService {
 
+    /**
+     * 生成任务
+     */
+    void geneSubTask(int releaseId);
+
     //todo delete
      List<ItemList> insertSubTask(List<OriginalData> originalData);
 
-    int insertSubTask(int plan,String algName1,String algName2, int dividedId, String itemName1, String itemDes1, String itemName2, String itemDes2);
+    int insertSubTask(String plan,String algName1,String algName2, int dividedId, String itemName1, String itemDes1, String itemName2, String itemDes2);
 
-    /**
-     * 根据subtask数量生成不重复的随机数
-     * @param total
-     * @return
-     */
-    int[] getNumber(int total);
-    List<Subtask> selectAllSubTask(int plan,String algName1,String algName2);
+
+    List<Subtask> selectAllSubTask(String plan,String algName1,String algName2);
 
     /**
      * 通过subtaskid查询
@@ -46,17 +46,14 @@ public interface SubTaskService {
      */
     List<Subtask> selectSubBySubId(Myreceive myreceives);
 
-    /**
-     * 生成任务
-     */
-    void geneSubTask(int releaseId);
+
     int selectSumScore1 (int dividedid,int plan,String algName1,String algName2);
     int selectSumScore2(int dividedid,int plan,String algName1,String algName2);
 //    int selectItem1AveScore(int divided,int itemName);//查询A1出现在itemName1时的平均score
 //    int selectItem2AveScore(int divided,int itemName);
 
     void updateRandom(String algName1,String algName2, int subtaskCount, List<Integer> subtaskids);
-    void updateFre(int  plan,String algName1,String algName2, Subtask subtask);
+    void updateFre(String  plan,String algName1,String algName2, Subtask subtask);
     void updateScore1(int score1,int subtaskid,int plan,String algName1,String algName2);
     void updateScore2(int score2,int subtaskid,int plan,String algName1,String algName2);
 

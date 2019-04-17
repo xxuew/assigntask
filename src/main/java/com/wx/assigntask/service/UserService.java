@@ -21,4 +21,10 @@ public interface UserService {
     public  List<Integer> selectAllId();
 
     public void updateTasking(int userid);
+
+    boolean save(User curuser);
+
+    boolean updatePassword(Integer userid, String password);
+
+    User findUserByEmail(String email);
 }

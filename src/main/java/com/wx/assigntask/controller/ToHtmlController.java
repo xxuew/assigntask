@@ -1,6 +1,6 @@
 package com.wx.assigntask.controller;
 
-import com.wx.assigntask.service.AHPService;
+import com.wx.assigntask.dao.tool.CheckTableMapper;
 import com.wx.assigntask.service.SubTaskService;
 import com.wx.assigntask.tools.ModifiedGrubbs;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: wx
@@ -25,6 +26,8 @@ public class ToHtmlController {
 
    @Autowired
     SubTaskService subTaskService;
+   @Autowired
+    CheckTableMapper checkTableMapper;
 
     @RequestMapping("/picUpload")
     public String picUpload(){
@@ -52,6 +55,18 @@ public class ToHtmlController {
        subTaskService.geneSubTask(1);
 //        return "templete/general";
     }
+
+    @RequestMapping("/testCheckTble")
+    public void checkTable(){
+        List<Map> checkTables = checkTableMapper.selectColNameType("algresult");
+        for (int i = 0;i<checkTables.size();i++){
+            Map checkTable = checkTables.get(i);
+//            String columnname = checkTable.getColumnname();
+//            String datatype = checkTable.getDatatype();
+//            System.out.println(columnname + " ###### " +datatype);
+        }
+    }
+
     @RequestMapping("/handleGrubbs")
     public String grubbs(HttpServletRequest request){
 

@@ -3,7 +3,7 @@ package com.wx.assigntask.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.wx.assigntask.entity.*;
 import com.wx.assigntask.service.MyReceiveService;
-import com.wx.assigntask.service.RecommandService;
+import com.wx.assigntask.service.RecommendService;
 import com.wx.assigntask.service.SubTaskService;
 import com.wx.assigntask.service.UserReceiveService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class CommentController {
     @Autowired
     SubTaskService subTaskService;
     @Autowired
-    RecommandService recommandService;
+    RecommendService recommendService;
     @Autowired
     UserReceiveService userReceiveService;
 
@@ -41,10 +41,10 @@ public class CommentController {
                 List<Subtask> subtasks = subTaskService.selectSubBySubId(myreceive);//根据subtaskid_1-10从subtask中获取itemname和itemDes
                 //根据myreceive中获得的dividedid，从divided表找相应的inputid，从而找到inputname和inputdes
                 //todo 要保证divided表中的inputID是准确的，一开始分配任务时没有考虑发布的任务不是六种算法的情况，inputid可能不准确
-                Recommand recommand = recommandService.selectInputById(myreceive);
+                Recommend recommend = recommendService.selectInputById(myreceive);
 
                 JSONObject jsonObject = new JSONObject();
-                jsonObject.put("input",recommand);
+                jsonObject.put("input", recommend);
                 jsonObject.put("subtasks",subtasks);
                 jsonObject.put("myreceive",myreceive);
                 return jsonObject;

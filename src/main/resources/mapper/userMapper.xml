@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wx.assigntask.dao.UserMapper">
     <insert id="insert" keyProperty="userid" parameterType="com.wx.assigntask.entity.User" useGeneratedKeys="true">
-        insert into user (username,password) values (#{username},#{password})
+        insert into user (username,password,email) values (#{username},#{password},#{email})
     </insert>
     <select id="selectAll" resultType="com.wx.assigntask.entity.User">
         select * from user
@@ -10,6 +10,7 @@
     <select id="findUserByUserName" resultType="com.wx.assigntask.entity.User">
         select * from user where username=#{username}
     </select>
+
     <select id="findUserById" resultType="com.wx.assigntask.entity.User">
         select * from user where userid = #{userid}
     </select>
@@ -23,4 +24,14 @@
     <update id="updateTaking" parameterType="com.wx.assigntask.entity.User">
         update user set tasking = #{param2} where userid = #{param1}
     </update>
+
+    <update id ="updatePassword" parameterType="com.wx.assigntask.entity.User">
+--  update user set password = 123456 where userid = 3;
+        update user set password = #{param2} where userid = #{param1}
+    </update>
+
+    <select id="findUserByEmail" resultType="com.wx.assigntask.entity.User">
+--  select * from user where email = '2864305619@qq.com';
+        select * from user where email=#{email}
+    </select>
 </mapper>

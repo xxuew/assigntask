@@ -77,4 +77,23 @@ public class UserServiceImpl implements UserService {
         else userMapper.updateTaking(userid,tasking+1);
     }
 
+    @Override
+    public boolean save(User curuser) {
+       int val =  userMapper.insert(curuser);//insert 的返回值：代表 受影响的行数
+        return val == 1;
+    }
+
+    @Override
+    public boolean updatePassword(Integer userid, String password) {
+        int val = userMapper.updatePassword(userid,password);
+        return val == 1;
+    }
+
+    @Override
+    public User findUserByEmail(String email) {
+        User user = userMapper.findUserByEmail(email);
+        return user;
+    }
+
+
 }

@@ -1,23 +1,17 @@
 package com.wx.assigntask.service.impl;
 
-import com.wx.assigntask.dao.DividedMapper;
-import com.wx.assigntask.dao.OrderlistMapper;
-import com.wx.assigntask.dao.SubtaskMapper;
+import com.wx.assigntask.dao.*;
 import com.wx.assigntask.entity.Divided;
 import com.wx.assigntask.entity.Orderlist;
-import com.wx.assigntask.entity.Recommand;
+import com.wx.assigntask.entity.Recommend;
 import com.wx.assigntask.entity.Subtask;
 import com.wx.assigntask.service.DividedService;
 import com.wx.assigntask.service.OrderListService;
-import com.wx.assigntask.service.RecommandService;
-import com.wx.assigntask.service.SubTaskService;
+import com.wx.assigntask.service.RecommendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -35,9 +29,13 @@ public class OrderListServiceImpl implements OrderListService {
     @Autowired
     SubtaskMapper subtaskMapper;
     @Autowired
-    RecommandService recommandService;
+    RecommendService recommendService;
     @Autowired
     DividedService dividedService;
+    @Autowired
+    RecommandMapper recommandMapper;
+    @Autowired
+    ReleasetablesMapper releasetablesMapper;
 
     @Override
     public void insertRecord(Orderlist orderlist,String algName) {
@@ -196,12 +194,14 @@ public class OrderListServiceImpl implements OrderListService {
             int dividedid = nullOrderedIds.get(i);
             Divided divided = dividedMapper.selectByPrimaryKey(dividedid);
             String algName = divided.getAlgname1();
-            List itemNames = recommandService.selectAllItemsNames(divided.getInputid(), algName);
-            List itemDess = recommandService.selectAllItemDes(divided.getInputid(), algName);
-            for (int z = 2; z < itemNames.size(); z++) {
+            String tablename = releasetablesMapper.findRecoTab(divided.getReleaseid(),algName);
+            List<Recommend> recommendList = recommandMapper.selectAll(tablename);
+//            List itemNames = recommandService.selectAllItemsNames(divided.getInputid(), algName);
+//            List itemDess = recommandService.selectAllItemDes(divided.getInputid(), algName);
+            for (int z = 0; z < recommendList.size(); z++) {
                 //有10个itemNames
-                String itemName = itemNames.get(z).toString();
-                String itemDes = itemDess.get(z).toString();
+                String itemName = recommendList.get(z).getItemname();
+                String itemDes = recommendList.get(z).getItemdes();
                 Subtask subtask = new Subtask();
                 subtask.setDividedid(dividedid);
                 subtask.setItemname1(itemName);
@@ -213,7 +213,7 @@ public class OrderListServiceImpl implements OrderListService {
                 Orderlist orderlist = new Orderlist();
                 orderlist.setDividedid(dividedid);
                 orderlist.setReleaseid(divided.getReleaseid());
-                orderlist.setInputid(Integer.parseInt(itemNames.get(0).toString()));
+                orderlist.setInputid(recommendList.get(z).getInputid());
                 orderlist.setItemname(itemName);
                 orderlist.setItemdes(itemDes);
                 orderlist.setAlgname(algName);

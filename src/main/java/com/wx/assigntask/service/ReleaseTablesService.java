@@ -1,5 +1,6 @@
 package com.wx.assigntask.service;
 
+import com.wx.assigntask.entity.Releasetables;
 import org.springframework.stereotype.Repository;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,4 +13,5 @@ import javax.servlet.http.HttpServletRequest;
 @Repository
 public interface ReleaseTablesService {
     void insertRecord(HttpServletRequest request,String[] recommandTableNames,String [] recommandAlgNames,int releaseid);
+//    Releasetables findRecoTab(int releaseid,String algname);
 }

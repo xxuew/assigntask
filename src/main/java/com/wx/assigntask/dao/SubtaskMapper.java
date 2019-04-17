@@ -52,7 +52,7 @@ public interface SubtaskMapper {
     /**
      * 插入subtask
      */
-    int inserSubtask(Subtask subtask);
+    int inserSubtask(int dividedId,String itemname1,String itemDes1,String itemname2,String itemDes2);
     int inserToLstmNn(Subtask subtask);
     int insertToCnnTfidf(Subtask subtask);
     int insertToDocIndex(Subtask subtask);

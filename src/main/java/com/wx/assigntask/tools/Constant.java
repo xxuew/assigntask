@@ -13,26 +13,28 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class Constant {
-    String PLAN1 = "层次分析法";
-    String PLAN2 = "充分对比剪枝法";
-    String PLAN3 = "同层对比剪枝法";
-    String PLAN1_subtaskFormula = "K*L(L+K-2)/2,(K为推荐算法个数，L为每个算法推荐的结果数)";
-    String PLAN2_subtaskFormula = "L^2*(K-1),(K为推荐算法个数，L为每个算法推荐的结果数)";
-    String PLAN3_subtaskFormula = "1+(KL-2)*(L+1)/2,(K为推荐算法个数，L为每个算法推荐的结果数)";
-    int USER_TASKING = 3;//用户未完成任务只能有三个
-    int SUBTASK_FRE = 5;//subtask被分配次数，即被评价次数
-    int TASK_COUNT = 10;//用户一次性任务包含十个subtask
+    private String PLAN_AHP = "层次分析法";
+    private String PLAN_COMPARECOMPLETE = "充分对比剪枝法";
+    private String PLAN_SAMELAYER = "同层对比剪枝法";
+    private String AHP_subtaskFormula = "K*L(L+K-2)/2,(K=推荐算法数，L=每个算法推荐的结果数)";
+    private String COMPARECOMPLETE_subtaskFormula = "L^2*(K-1),(K为推荐算法个数，L为每个算法推荐的结果数)";
+    private String SAMELAYER_subtaskFormula = "1+(KL-2)*(L+1)/2,(K为推荐算法个数，L为每个算法推荐的结果数)";
+    private int USER_TASKING = 3;//用户未完成任务只能有三个
+    private int SUBTASK_FRE = 5;//subtask被分配次数，即被评价次数
+    private int TASK_COUNT = 10;//用户一次性任务包含十个subtask
+    private String TABLENAME_INPUT = "inputs"; //文本检索内容表，接口表名
+    private String TABLENAME_RECOMMEND = "recommend"; //推荐结果表，接口表名
 
-    public String getPLAN1() {
-        return PLAN1;
+    public String getPLAN_AHP() {
+        return PLAN_AHP;
     }
 
-    public String getPLAN2() {
-        return PLAN2;
+    public String getPLAN_COMPARECOMPLETE() {
+        return PLAN_COMPARECOMPLETE;
     }
 
-    public String getPLAN3() {
-        return PLAN3;
+    public String getPLAN_SAMELAYER() {
+        return PLAN_SAMELAYER;
     }
 
     public int getUSER_TASKING() {
@@ -47,15 +49,23 @@ public class Constant {
         return TASK_COUNT;
     }
 
-    public String getPLAN1_subtaskFormula() {
-        return PLAN1_subtaskFormula;
+    public String getAHP_subtaskFormula() {
+        return AHP_subtaskFormula;
     }
 
-    public String getPLAN2_subtaskFormula() {
-        return PLAN2_subtaskFormula;
+    public String getCOMPARECOMPLETE_subtaskFormula() {
+        return COMPARECOMPLETE_subtaskFormula;
     }
 
-    public String getPLAN3_subtaskFormula() {
-        return PLAN3_subtaskFormula;
+    public String getSAMELAYER_subtaskFormula() {
+        return SAMELAYER_subtaskFormula;
+    }
+
+    public String getTABLENAME_INPUT() {
+        return TABLENAME_INPUT;
+    }
+
+    public String getTABLENAME_RECOMMEND() {
+        return TABLENAME_RECOMMEND;
     }
 }
