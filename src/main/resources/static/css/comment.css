@@ -4,7 +4,13 @@ body{
 *{ margin: 0; padding: 0}
 ul,li{ list-style: none}
 .tabClick{ background: #f3f3f3; overflow: hidden}
-.tabClick li{ height:40px; line-height: 40px; width: 10%; float: left; text-align: center}
+.tabClick li{
+    height:40px;
+    line-height: 40px;
+    width: 9.09%;
+    float: left;
+    text-align: center
+}
 .tabClick li.active{ color: #099; transition: 0.1s; font-weight: bold}
 .tabCon{ overflow: hidden}
 .tabBox{ position: relative}
@@ -25,7 +31,7 @@ ul,li{ list-style: none}
      font-family: Consolas, "Courier New", Courier, monospace;
 }
 .lineBorder{ height: 2px; overflow: hidden; border-bottom:1px solid #099; background: #f3f3f3}
-.lineDiv{ background: #099; height: 2px; width:10%;}
+.lineDiv{ background: #099; height: 2px; width:9.09%;}
 
 .input {
     float:left;
@@ -34,7 +40,7 @@ ul,li{ list-style: none}
 }
 .comment{
     float:left;
-    width: 560px;
+    width: 680px;
     margin: 45px 0 0 30px;
     text-align: center;
 }
@@ -42,12 +48,12 @@ ul,li{ list-style: none}
     background: white;
     height:88%;
     width: 100%;
-    padding: 0 10% 0 10%;
+    padding: 0 5% 0 5%;
 }
 
 .current-order{
     color: #59b84b;
-    font-size: 50px;
+    font-size: 35px;
     margin-right: 5px;
 }
 .step-item-header{
@@ -63,9 +69,33 @@ ul,li{ list-style: none}
 .item-name{
     color: #5bc0de;
     font-size:20px;
-    font-family: "Arial Black";
+    /*font-family: "Arial Black";*/
+    font-family: "ComicSansMC";
     margin-right: 10px;
+    font-weight: 800;
+    margin-bottom: 5px;
 }
+
+.input-des{
+    text-align: left;
+    text-indent:32px;
+}
+/*隐藏des*/
+.input-des{
+    display:block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 12;
+    -webkit-box-orient: vertical
+}
+/*显示des*/
+.input-des:hover{
+    display:block;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical
+}
+
 .item-des{
     text-align: left;
     text-indent:32px;
@@ -132,36 +162,37 @@ ul,li{ list-style: none}
     border-radius: 3px;
 }
 #text {
-    width: 49px;
+    width: 50px;
     height: 26px;
-    line-height: 26px;
+    line-height: 50px;
     text-align: center;
     border-radius: 6px;
     margin-left: 20px;
+    margin-top:10px;
     font-size: 30px;
     font-weight: 400;
     font-family: arial, "Microsoft YaHei", 宋体, sans-serif, tahoma;
 }
 /* 滑动条 */
 input[type='range'] {
-    margin-top: 8px;
+    /*margin-top: 8px;*/
     outline: none;
     -webkit-appearance: none;
     /*清除系统默认样式*/
     width: 56% !important;
-    background: -webkit-linear-gradient(#00c3d5, #00c3d5) no-repeat, #ddd;
+    background: -webkit-linear-gradient(#00c3d5, #00c3d5) no-repeat, #5bc0de;
     background-size: 0% 100%;
     /*设置左右宽度比例*/
-    height: 3px;
+    height: 4px;
     /*横条的高度*/
 }
 /*拖动块的样式*/
 input[type='range']::-webkit-slider-thumb {
     -webkit-appearance: none;
     /*清除系统默认样式*/
-    height: 16px;
+    height: 20px;
     /*拖动块高度*/
-    width: 16px;
+    width: 20px;
     /*拖动块宽度*/
     background: #fff;
     /*拖动块背景*/

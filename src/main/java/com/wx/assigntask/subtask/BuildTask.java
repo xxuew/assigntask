@@ -1,6 +1,6 @@
 package com.wx.assigntask.subtask;
 
-import com.wx.assigntask.entity.OriginalData;
+import com.wx.assigntask.entity.*;
 
 import java.util.Random;
 
@@ -154,6 +154,173 @@ public class BuildTask {
         return s;
     }
 
+    public String[] cnnToArray(Cnnrecommand100 cnnrecommand){
+        String[] s = new String[23];
+        s[0] = cnnrecommand.getId()+"";
+        s[1] = cnnrecommand.getName();
+        s[2] = cnnrecommand.getDes();
+        s[3] = cnnrecommand.getName1();
+        s[4] = cnnrecommand.getName2();
+        s[5] = cnnrecommand.getName3();
+        s[6] = cnnrecommand.getName4();
+        s[7] = cnnrecommand.getName5();
+        s[8] = cnnrecommand.getName6();
+        s[9] = cnnrecommand.getName7();
+        s[10] = cnnrecommand.getName8();
+        s[11] = cnnrecommand.getName9();
+        s[12] = cnnrecommand.getName10();
+        s[13] = cnnrecommand.getDes1();
+        s[14] = cnnrecommand.getDes2();
+        s[15] = cnnrecommand.getDes3();
+        s[16] = cnnrecommand.getDes4();
+        s[17] = cnnrecommand.getDes5();
+        s[18] = cnnrecommand.getDes6();
+        s[19] = cnnrecommand.getDes7();
+        s[20] = cnnrecommand.getDes8();
+        s[21] = cnnrecommand.getDes9();
+        s[22] = cnnrecommand.getDes10();
+        return s;
+    }
+
+    public String[] docToArray(Docrecommand100 cnnrecommand){
+        String[] s = new String[23];
+        s[0] = cnnrecommand.getId()+"";
+        s[1] = cnnrecommand.getName();
+        s[2] = cnnrecommand.getDes();
+        s[3] = cnnrecommand.getName1();
+        s[4] = cnnrecommand.getName2();
+        s[5] = cnnrecommand.getName3();
+        s[6] = cnnrecommand.getName4();
+        s[7] = cnnrecommand.getName5();
+        s[8] = cnnrecommand.getName6();
+        s[9] = cnnrecommand.getName7();
+        s[10] = cnnrecommand.getName8();
+        s[11] = cnnrecommand.getName9();
+        s[12] = cnnrecommand.getName10();
+        s[13] = cnnrecommand.getDes1();
+        s[14] = cnnrecommand.getDes2();
+        s[15] = cnnrecommand.getDes3();
+        s[16] = cnnrecommand.getDes4();
+        s[17] = cnnrecommand.getDes5();
+        s[18] = cnnrecommand.getDes6();
+        s[19] = cnnrecommand.getDes7();
+        s[20] = cnnrecommand.getDes8();
+        s[21] = cnnrecommand.getDes9();
+        s[22] = cnnrecommand.getDes10();
+        return s;
+    }
+
+    public String[] indexToArray(Indexrecommand100 cnnrecommand){
+        String[] s = new String[23];
+        s[0] = cnnrecommand.getId()+"";
+        s[1] = cnnrecommand.getName();
+        s[2] = cnnrecommand.getDes();
+        s[3] = cnnrecommand.getName1();
+        s[4] = cnnrecommand.getName2();
+        s[5] = cnnrecommand.getName3();
+        s[6] = cnnrecommand.getName4();
+        s[7] = cnnrecommand.getName5();
+        s[8] = cnnrecommand.getName6();
+        s[9] = cnnrecommand.getName7();
+        s[10] = cnnrecommand.getName8();
+        s[11] = cnnrecommand.getName9();
+        s[12] = cnnrecommand.getName10();
+        s[13] = cnnrecommand.getDes1();
+        s[14] = cnnrecommand.getDes2();
+        s[15] = cnnrecommand.getDes3();
+        s[16] = cnnrecommand.getDes4();
+        s[17] = cnnrecommand.getDes5();
+        s[18] = cnnrecommand.getDes6();
+        s[19] = cnnrecommand.getDes7();
+        s[20] = cnnrecommand.getDes8();
+        s[21] = cnnrecommand.getDes9();
+        s[22] = cnnrecommand.getDes10();
+        return s;
+    }
+
+    public String[] lstmToArray(Lstmrecommand100 cnnrecommand){
+        String[] s = new String[23];
+        s[0] = cnnrecommand.getId()+"";
+        s[1] = cnnrecommand.getName();
+        s[2] = cnnrecommand.getDes();
+        s[3] = cnnrecommand.getName1();
+        s[4] = cnnrecommand.getName2();
+        s[5] = cnnrecommand.getName3();
+        s[6] = cnnrecommand.getName4();
+        s[7] = cnnrecommand.getName5();
+        s[8] = cnnrecommand.getName6();
+        s[9] = cnnrecommand.getName7();
+        s[10] = cnnrecommand.getName8();
+        s[11] = cnnrecommand.getName9();
+        s[12] = cnnrecommand.getName10();
+        s[13] = cnnrecommand.getDes1();
+        s[14] = cnnrecommand.getDes2();
+        s[15] = cnnrecommand.getDes3();
+        s[16] = cnnrecommand.getDes4();
+        s[17] = cnnrecommand.getDes5();
+        s[18] = cnnrecommand.getDes6();
+        s[19] = cnnrecommand.getDes7();
+        s[20] = cnnrecommand.getDes8();
+        s[21] = cnnrecommand.getDes9();
+        s[22] = cnnrecommand.getDes10();
+        return s;
+    }
+
+    public String[] nnToArray(Nnrecommand100 cnnrecommand){
+        String[] s = new String[23];
+        s[0] = cnnrecommand.getId()+"";
+        s[1] = cnnrecommand.getName();
+        s[2] = cnnrecommand.getDes();
+        s[3] = cnnrecommand.getName1();
+        s[4] = cnnrecommand.getName2();
+        s[5] = cnnrecommand.getName3();
+        s[6] = cnnrecommand.getName4();
+        s[7] = cnnrecommand.getName5();
+        s[8] = cnnrecommand.getName6();
+        s[9] = cnnrecommand.getName7();
+        s[10] = cnnrecommand.getName8();
+        s[11] = cnnrecommand.getName9();
+        s[12] = cnnrecommand.getName10();
+        s[13] = cnnrecommand.getDes1();
+        s[14] = cnnrecommand.getDes2();
+        s[15] = cnnrecommand.getDes3();
+        s[16] = cnnrecommand.getDes4();
+        s[17] = cnnrecommand.getDes5();
+        s[18] = cnnrecommand.getDes6();
+        s[19] = cnnrecommand.getDes7();
+        s[20] = cnnrecommand.getDes8();
+        s[21] = cnnrecommand.getDes9();
+        s[22] = cnnrecommand.getDes10();
+        return s;
+    }
+
+    public String[] tfidfToArray(Tfidfrecommand100 cnnrecommand){
+        String[] s = new String[23];
+        s[0] = cnnrecommand.getId()+"";
+        s[1] = cnnrecommand.getName();
+        s[2] = cnnrecommand.getDes();
+        s[3] = cnnrecommand.getName1();
+        s[4] = cnnrecommand.getName2();
+        s[5] = cnnrecommand.getName3();
+        s[6] = cnnrecommand.getName4();
+        s[7] = cnnrecommand.getName5();
+        s[8] = cnnrecommand.getName6();
+        s[9] = cnnrecommand.getName7();
+        s[10] = cnnrecommand.getName8();
+        s[11] = cnnrecommand.getName9();
+        s[12] = cnnrecommand.getName10();
+        s[13] = cnnrecommand.getDes1();
+        s[14] = cnnrecommand.getDes2();
+        s[15] = cnnrecommand.getDes3();
+        s[16] = cnnrecommand.getDes4();
+        s[17] = cnnrecommand.getDes5();
+        s[18] = cnnrecommand.getDes6();
+        s[19] = cnnrecommand.getDes7();
+        s[20] = cnnrecommand.getDes8();
+        s[21] = cnnrecommand.getDes9();
+        s[22] = cnnrecommand.getDes10();
+        return s;
+    }
 
 
 }

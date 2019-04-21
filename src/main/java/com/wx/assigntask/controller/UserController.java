@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 
 /**
@@ -79,6 +80,17 @@ public class UserController {
         return "user/login";
     }
 
-
+    @RequestMapping(value = "/personalCenter")
+    public String personalCenter(Map<String, Object> map, HttpServletRequest request, HttpSession httpSession) {
+        User user = (User) httpSession.getAttribute("currentUser");
+        if(user != null) {
+            User currentuser = userService.findUserByUserName(user.getUsername());
+            int total = currentuser.getTotal();
+            map.put("total",total);
+            return "user/personalCenter";
+        }else{
+            return "user/login";
+        }
+    }
 
 }

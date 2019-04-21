@@ -31,11 +31,38 @@ public class UserServiceImpl implements IUserService {
     SubtaskDocIndexMapper subtaskDocIndexMapper;
     @Autowired
     SubtaskLstmNnMapper subtaskLstmNnMapper;
+    @Autowired
+    SubtaskCnnDocMapper subtaskCnnDocMapper;
+    @Autowired
+    SubtaskCnnIndexMapper subtaskCnnIndexMapper;
+    @Autowired
+    SubtaskCnnLstmMapper subtaskCnnLstmMapper;
+    @Autowired
+    SubtaskCnnNnMapper subtaskCnnNnMapper;
+    @Autowired
+    SubtaskTfidfDocMapper subtaskTfidfDocMapper;
+    @Autowired
+    SubtaskTfidfIndexMapper subtaskTfidfIndexMapper;
+    @Autowired
+    SubtaskTfidfLstmMapper subtaskTfidfLstmMapper;
+    @Autowired
+    SubtaskTfidfNnMapper subtaskTfidfNnMapper;
+    @Autowired
+    SubtaskDocLstmMapper subtaskDocLstmMapper;
+    @Autowired
+    SubtaskDocNnMapper subtaskDocNnMapper;
+    @Autowired
+    SubtaskIndexLstmMapper subtaskIndexLstmMapper;
+    @Autowired
+    SubtaskIndexNnMapper subtaskIndexNnMapper;
+    @Autowired
+    AlgresultMapper algresultMapper;
 
     @Override
     public int addUser(User user) {
         user.setReceived_id(0);
         user.setAlgo_id(0);
+        user.setTotal(0);
         return userMapper.insert(user);
     }
 
@@ -107,14 +134,45 @@ public class UserServiceImpl implements IUserService {
                         received_id++;
                     }
                     ItemList itemList = new ItemList();
-                    SubtaskHorizon subtask = subtaskMapper.selectByPrimaryKey(received_id);
-                    itemList.setId(subtask.getSubtaskId());
-                    itemList.setInputname(subtask.getInputName());
-                    itemList.setInputdes(subtask.getInputDes());
-                    itemList.setItema(subtask.getItemName1());
-                    itemList.setDesa(subtask.getItemDes1());
-                    itemList.setItemb(subtask.getItemName2());
-                    itemList.setDesb(subtask.getItemDes2());
+                    String result11 = algresultMapper.selectByPrimaryKey(1).getWinAlgname();
+                    String result12 = algresultMapper.selectByPrimaryKey(2).getWinAlgname();
+                    if (result11.equals("cnn")&&result12.equals("doc")){
+                        SubtaskCnnDoc subtask = subtaskCnnDocMapper.selectByPrimaryKey(received_id);
+                        itemList.setId(subtask.getSubtaskId());
+                        itemList.setInputname(subtask.getInputName());
+                        itemList.setInputdes(subtask.getInputDes());
+                        itemList.setItema(subtask.getItemName1());
+                        itemList.setDesa(subtask.getItemDes1());
+                        itemList.setItemb(subtask.getItemName2());
+                        itemList.setDesb(subtask.getItemDes2());
+                    }else if (result11.equals("cnn")&&result12.equals("index")){
+                        SubtaskCnnIndex subtask = subtaskCnnIndexMapper.selectByPrimaryKey(received_id);
+                        itemList.setId(subtask.getSubtaskId());
+                        itemList.setInputname(subtask.getInputName());
+                        itemList.setInputdes(subtask.getInputDes());
+                        itemList.setItema(subtask.getItemName1());
+                        itemList.setDesa(subtask.getItemDes1());
+                        itemList.setItemb(subtask.getItemName2());
+                        itemList.setDesb(subtask.getItemDes2());
+                    }else if (result11.equals("tfidf")&&result12.equals("doc")){
+                        SubtaskTfidfDoc subtask = subtaskTfidfDocMapper.selectByPrimaryKey(received_id);
+                        itemList.setId(subtask.getSubtaskId());
+                        itemList.setInputname(subtask.getInputName());
+                        itemList.setInputdes(subtask.getInputDes());
+                        itemList.setItema(subtask.getItemName1());
+                        itemList.setDesa(subtask.getItemDes1());
+                        itemList.setItemb(subtask.getItemName2());
+                        itemList.setDesb(subtask.getItemDes2());
+                    }else if (result11.equals("tfidf")&&result12.equals("index")){
+                        SubtaskTfidfIndex subtask = subtaskTfidfIndexMapper.selectByPrimaryKey(received_id);
+                        itemList.setId(subtask.getSubtaskId());
+                        itemList.setInputname(subtask.getInputName());
+                        itemList.setInputdes(subtask.getInputDes());
+                        itemList.setItema(subtask.getItemName1());
+                        itemList.setDesa(subtask.getItemDes1());
+                        itemList.setItemb(subtask.getItemName2());
+                        itemList.setDesb(subtask.getItemDes2());
+                    }
                     list.add(itemList);
                 }
                 break;
@@ -124,15 +182,46 @@ public class UserServiceImpl implements IUserService {
                     if(i!=0){
                         received_id++;
                     }
+                    String result21 = algresultMapper.selectByPrimaryKey(1).getWinAlgname();
+                    String result22 = algresultMapper.selectByPrimaryKey(3).getWinAlgname();
                     ItemList itemList = new ItemList();
-                    SubtaskAhp ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(received_id);
-                    itemList.setId(ahpSubtask.getSubtaskid());
-                    itemList.setInputname(ahpSubtask.getInputname());
-                    itemList.setInputdes(ahpSubtask.getInputdes());
-                    itemList.setItema(ahpSubtask.getItemname1());
-                    itemList.setDesa(ahpSubtask.getItemdes1());
-                    itemList.setItemb(ahpSubtask.getItemname2());
-                    itemList.setDesb(ahpSubtask.getItemdes2());
+                    if (result21.equals("cnn")&&result22.equals("lstm")){
+                        SubtaskCnnLstm subtask = subtaskCnnLstmMapper.selectByPrimaryKey(received_id);
+                        itemList.setId(subtask.getSubtaskId());
+                        itemList.setInputname(subtask.getInputName());
+                        itemList.setInputdes(subtask.getInputDes());
+                        itemList.setItema(subtask.getItemName1());
+                        itemList.setDesa(subtask.getItemDes1());
+                        itemList.setItemb(subtask.getItemName2());
+                        itemList.setDesb(subtask.getItemDes2());
+                    }else if (result21.equals("cnn")&&result22.equals("nn")){
+                        SubtaskCnnNn subtask = subtaskCnnNnMapper.selectByPrimaryKey(received_id);
+                        itemList.setId(subtask.getSubtaskId());
+                        itemList.setInputname(subtask.getInputName());
+                        itemList.setInputdes(subtask.getInputDes());
+                        itemList.setItema(subtask.getItemName1());
+                        itemList.setDesa(subtask.getItemDes1());
+                        itemList.setItemb(subtask.getItemName2());
+                        itemList.setDesb(subtask.getItemDes2());
+                    }else if (result21.equals("tfidf")&&result22.equals("lstm")){
+                        SubtaskTfidfLstm subtask = subtaskTfidfLstmMapper.selectByPrimaryKey(received_id);
+                        itemList.setId(subtask.getSubtaskId());
+                        itemList.setInputname(subtask.getInputName());
+                        itemList.setInputdes(subtask.getInputDes());
+                        itemList.setItema(subtask.getItemName1());
+                        itemList.setDesa(subtask.getItemDes1());
+                        itemList.setItemb(subtask.getItemName2());
+                        itemList.setDesb(subtask.getItemDes2());
+                    }else if (result21.equals("tfidf")&&result22.equals("nn")){
+                        SubtaskTfidfNn subtask = subtaskTfidfNnMapper.selectByPrimaryKey(received_id);
+                        itemList.setId(subtask.getSubtaskId());
+                        itemList.setInputname(subtask.getInputName());
+                        itemList.setInputdes(subtask.getInputDes());
+                        itemList.setItema(subtask.getItemName1());
+                        itemList.setDesa(subtask.getItemDes1());
+                        itemList.setItemb(subtask.getItemName2());
+                        itemList.setDesb(subtask.getItemDes2());
+                    }
                     list.add(itemList);
                 }
                 break;
@@ -143,55 +232,50 @@ public class UserServiceImpl implements IUserService {
                         received_id++;
                     }
                     ItemList itemList = new ItemList();
-                    SubtaskAhp ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(received_id);
-                    itemList.setId(ahpSubtask.getSubtaskid());
-                    itemList.setInputname(ahpSubtask.getInputname());
-                    itemList.setInputdes(ahpSubtask.getInputdes());
-                    itemList.setItema(ahpSubtask.getItemname1());
-                    itemList.setDesa(ahpSubtask.getItemdes1());
-                    itemList.setItemb(ahpSubtask.getItemname2());
-                    itemList.setDesb(ahpSubtask.getItemdes2());
-                    list.add(itemList);
-                }
-                break;
-            case 7:
-                System.out.println("任务7");
-                for(int i = 0;i<10;i++){
-                    if(i!=0){
-                        received_id++;
+                    String result31 = algresultMapper.selectByPrimaryKey(2).getWinAlgname();
+                    String result32 = algresultMapper.selectByPrimaryKey(3).getWinAlgname();
+                    if (result31.equals("doc")&&result32.equals("lstm")){
+                        SubtaskDocLstm subtask = subtaskDocLstmMapper.selectByPrimaryKey(received_id);
+                        itemList.setId(subtask.getSubtaskId());
+                        itemList.setInputname(subtask.getInputName());
+                        itemList.setInputdes(subtask.getInputDes());
+                        itemList.setItema(subtask.getItemName1());
+                        itemList.setDesa(subtask.getItemDes1());
+                        itemList.setItemb(subtask.getItemName2());
+                        itemList.setDesb(subtask.getItemDes2());
+                    }else if (result31.equals("doc")&&result32.equals("nn")){
+                        SubtaskDocNn subtask = subtaskDocNnMapper.selectByPrimaryKey(received_id);
+                        itemList.setId(subtask.getSubtaskId());
+                        itemList.setInputname(subtask.getInputName());
+                        itemList.setInputdes(subtask.getInputDes());
+                        itemList.setItema(subtask.getItemName1());
+                        itemList.setDesa(subtask.getItemDes1());
+                        itemList.setItemb(subtask.getItemName2());
+                        itemList.setDesb(subtask.getItemDes2());
+                    }else if (result31.equals("index")&&result32.equals("lstm")){
+                        SubtaskIndexLstm subtask = subtaskIndexLstmMapper.selectByPrimaryKey(received_id);
+                        itemList.setId(subtask.getSubtaskId());
+                        itemList.setInputname(subtask.getInputName());
+                        itemList.setInputdes(subtask.getInputDes());
+                        itemList.setItema(subtask.getItemName1());
+                        itemList.setDesa(subtask.getItemDes1());
+                        itemList.setItemb(subtask.getItemName2());
+                        itemList.setDesb(subtask.getItemDes2());
+                    }else if (result31.equals("index")&&result32.equals("nn")){
+                        SubtaskIndexNn subtask = subtaskIndexNnMapper.selectByPrimaryKey(received_id);
+                        itemList.setId(subtask.getSubtaskId());
+                        itemList.setInputname(subtask.getInputName());
+                        itemList.setInputdes(subtask.getInputDes());
+                        itemList.setItema(subtask.getItemName1());
+                        itemList.setDesa(subtask.getItemDes1());
+                        itemList.setItemb(subtask.getItemName2());
+                        itemList.setDesb(subtask.getItemDes2());
                     }
-                    ItemList itemList = new ItemList();
-                    SubtaskAhp ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(received_id);
-                    itemList.setId(ahpSubtask.getSubtaskid());
-                    itemList.setInputname(ahpSubtask.getInputname());
-                    itemList.setInputdes(ahpSubtask.getInputdes());
-                    itemList.setItema(ahpSubtask.getItemname1());
-                    itemList.setDesa(ahpSubtask.getItemdes1());
-                    itemList.setItemb(ahpSubtask.getItemname2());
-                    itemList.setDesb(ahpSubtask.getItemdes2());
-                    list.add(itemList);
-                }
-                break;
-            case 8:
-                System.out.println("任务8");
-                for(int i = 0;i<10;i++){
-                    if(i!=0){
-                        received_id++;
-                    }
-                    ItemList itemList = new ItemList();
-                    SubtaskAhp ahpSubtask = ahpSubtaskMapper.selectByPrimaryKey(received_id);
-                    itemList.setId(ahpSubtask.getSubtaskid());
-                    itemList.setInputname(ahpSubtask.getInputname());
-                    itemList.setInputdes(ahpSubtask.getInputdes());
-                    itemList.setItema(ahpSubtask.getItemname1());
-                    itemList.setDesa(ahpSubtask.getItemdes1());
-                    itemList.setItemb(ahpSubtask.getItemname2());
-                    itemList.setDesb(ahpSubtask.getItemdes2());
+
                     list.add(itemList);
                 }
                 break;
         }
-
         return list;
     }
 

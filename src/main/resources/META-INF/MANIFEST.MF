@@ -1,0 +1,38 @@
+Manifest-Version: 1.0
+Class-Path: spring-tx-4.3.21.RELEASE.jar spring-boot-autoconfigure-1.5
+ .18.RELEASE.jar javax.transaction-api-1.2.jar spring-data-commons-1.1
+ 3.17.RELEASE.jar thymeleaf-2.1.6.RELEASE.jar spring-context-4.3.21.RE
+ LEASE.jar nekohtml-1.9.22.jar hibernate-jpa-2.1-api-1.0.0.Final.jar m
+ ybatis-spring-boot-starter-1.1.1.jar thymeleaf-layout-dialect-1.4.0.j
+ ar spring-expression-4.3.21.RELEASE.jar spring-boot-starter-logging-1
+ .5.18.RELEASE.jar spring-boot-starter-data-jpa-1.5.18.RELEASE.jar ant
+ lr-2.7.7.jar mysql-connector-java-8.0.12.jar aspectjweaver-1.8.13.jar
+  snakeyaml-1.17.jar spring-webmvc-4.3.21.RELEASE.jar fastjson-1.2.16.
+ jar jandex-2.0.0.Final.jar ognl-3.0.8.jar mybatis-3.4.0.jar unbescape
+ -1.1.0.RELEASE.jar hibernate-core-5.0.12.Final.jar spring-boot-1.5.18
+ .RELEASE.jar spring-web-4.3.21.RELEASE.jar spring-boot-starter-web-1.
+ 5.18.RELEASE.jar classmate-1.3.4.jar tomcat-embed-websocket-8.5.35.ja
+ r jackson-core-2.8.11.jar log4j-over-slf4j-1.7.25.jar freemarker-2.3.
+ 28.jar tomcat-jdbc-8.5.35.jar jackson-databind-2.8.11.3.jar spring-be
+ ans-4.3.21.RELEASE.jar spring-aspects-4.3.21.RELEASE.jar jquery-3.3.1
+ -1.jar thymeleaf-spring4-2.1.6.RELEASE.jar spring-boot-starter-1.5.18
+ .RELEASE.jar jul-to-slf4j-1.7.25.jar logback-core-1.1.11.jar spring-c
+ ore-4.3.21.RELEASE.jar xercesImpl-2.11.0.jar spring-boot-starter-aop-
+ 1.5.18.RELEASE.jar spring-aop-4.3.21.RELEASE.jar jboss-logging-3.3.2.
+ Final.jar hibernate-commons-annotations-5.0.1.Final.jar jackson-annot
+ ations-2.8.0.jar dom4j-1.6.1.jar spring-boot-devtools-1.5.18.RELEASE.
+ jar spring-boot-starter-freemarker-1.5.18.RELEASE.jar spring-context-
+ support-4.3.21.RELEASE.jar spring-jdbc-4.3.21.RELEASE.jar spring-boot
+ -starter-thymeleaf-1.5.18.RELEASE.jar spring-boot-starter-tomcat-1.5.
+ 18.RELEASE.jar mysql-connector-java-8.0.12.jar mybatis-generator-core
+ -1.3.5.jar xml-apis-1.4.01.jar tomcat-embed-el-8.5.35.jar javassist-3
+ .21.0-GA.jar tomcat-embed-core-8.5.35.jar hibernate-validator-5.3.6.F
+ inal.jar protobuf-java-2.6.0.jar spring-orm-4.3.21.RELEASE.jar logbac
+ k-classic-1.1.11.jar mybatis-spring-boot-autoconfigure-1.1.1.jar vali
+ dation-api-1.1.0.Final.jar spring-data-jpa-1.11.17.RELEASE.jar spring
+ -boot-starter-jdbc-1.5.18.RELEASE.jar tomcat-juli-8.5.35.jar groovy-2
+ .4.15.jar tomcat-annotations-api-8.5.35.jar jcl-over-slf4j-1.7.25.jar
+  mybatis-spring-1.3.0.jar hibernate-entitymanager-5.0.12.Final.jar sl
+ f4j-api-1.7.25.jar
+Main-Class: com.wx.assigntask.AssigntaskApplication
+

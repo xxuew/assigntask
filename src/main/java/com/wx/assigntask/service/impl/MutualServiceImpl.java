@@ -197,6 +197,7 @@ public class MutualServiceImpl implements IMutualService {
 
     @Override
     public void cnn_tfidf_StoreData(User user, List<ItemList> lists) {
+        int total = user.getTotal();
         int uid = user.getUser_id();
         int received_id = user.getReceived_id();
         int frequency = user.getFrequency();
@@ -239,11 +240,14 @@ public class MutualServiceImpl implements IMutualService {
         user.setReceived_id(0);
         user.setAlgo_id(0);
         user.setFrequency(0);
+        total++;
+        user.setTotal(total);
         userMapper.updateUser(user);
     }
 
     @Override
     public void doc_index_StoreData(User user, List<ItemList> lists){
+        int total = user.getTotal();
         int uid = user.getUser_id();
         int received_id = user.getReceived_id();
         int frequency = user.getFrequency();
@@ -286,11 +290,14 @@ public class MutualServiceImpl implements IMutualService {
         user.setReceived_id(0);
         user.setAlgo_id(0);
         user.setFrequency(0);
+        total++;
+        user.setTotal(total);
         userMapper.updateUser(user);
     }
 
     @Override
     public void lstm_nn_StoreData(User user, List<ItemList> lists) {
+        int total = user.getTotal();
         int received_id = user.getReceived_id();
         int uid = user.getUser_id();
         int frequency = user.getFrequency();
@@ -335,6 +342,8 @@ public class MutualServiceImpl implements IMutualService {
         user.setReceived_id(0);
         user.setAlgo_id(0);
         user.setFrequency(0);
+        total++;
+        user.setTotal(total);
         userMapper.updateUser(user);
     }
 

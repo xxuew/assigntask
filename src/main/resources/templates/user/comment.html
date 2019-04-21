@@ -22,13 +22,13 @@
             <a data-v-1a6dcf56="" href="home.html" class="menu-item">
             任务广场
             </a>
-            <a data-v-1a6dcf56="" href="" class="menu-item">
+            <a data-v-1a6dcf56="" class="menu-item">
             我的任务
             </a>
             <div data-v-eb2f075c="" data-v-1a6dcf56="" class="has-logged">
                 <span data-bind="text:userName" th:text="${session.currentUser.username}">user</span>
                 <div data-v-eb2f075c="" class="el-badge">
-                    <a data-v-eb2f075c="" href="">个人中心</a>
+                    <a data-v-eb2f075c="" href="/personalCenter">个人中心</a>
                     <sup class="el-badge__content is-fixed" style="display: none;">0</sup>
                 </div>
                 <a data-v-eb2f075c="" class="logout" href="login.html">退出</a>
@@ -46,23 +46,40 @@
                     <div class="comment-container">
                         <ul border="1" >
                             <div class="input">
-                                <div class="step-item-header"><span class="current-order">1</span>/10</div>
+                                <img class="cover-image" src="img/input_introduction.png">
+                            </div>
+
+                            <div class="comment">
+                                <img class="cover-image" src="img/output_introduction.png">
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tabList" style="height:501px" >
+                    <div class="place_holder" style="height:12%;width: 100%"></div>
+                    <div class="comment-container">
+                        <ul border="1" >
+                            <div class="input">
+                                <div class="step-item-header"><span class="current-order">任务1</span>/共10任务</div>
                                 <li id = "input_name1" th:text="${lists[0].inputname}" class="item-name">itema</li>
-                                <li id = "input_des1" th:text="${lists[0].inputdes}" class="item-des"></li>
+                                <li id = "input_des1" th:text="${lists[0].inputdes}" class="input-des"></li>
                             </div>
 
                             <div class="comment">
                                 <div style="height:180px">
-                                    <li id = "itema1" th:text="${lists[0].itema}" class="item-name">itema</li>
+                                    <li id = "itema1" th:text="'第一种算法检索结果：'+${lists[0].itema}" class="item-name">itema</li>
                                     <li id = "desa1" th:text="${lists[0].desa}" class="item-des">desa</li>
+                                    <div style = "vertical-align: middle">
                                     <input name = "scorea1" type="range" min =0 max =10 value =0 id="score_a1">
-                                    <span id="text">0</span>
+                                    <span id="text">0分</span>
+                                    </div>
                                 </div>
                                 <div style="height:180px">
-                                    <li id = "itemb1" th:text="${lists[0].itemb}" class="item-name">itemb</li>
+                                    <li id = "itemb1" th:text="'第二种算法检索结果：'+${lists[0].itemb}" class="item-name">itemb</li>
                                     <li id = "desb1" th:text="${lists[0].desb}" class="item-des">desb</li>
                                     <input name = "scoreb1" type="range" min =0 max =10 value =0 id="score_b1" >
-                                    <span id="text">0</span>
+                                    <span id="text">0分</span>
                                 </div>
                             </div>
                         </ul>
@@ -74,23 +91,24 @@
                     <div class="comment-container">
                         <ul border="1" >
                             <div class="input">
-                                <div class="step-item-header"><span class="current-order">2</span>/10</div>
+                                <div class="step-item-header"><span class="current-order">任务2</span>/共10任务</div>
                                 <li id = "input_name2" th:text="${lists[1].inputname}" class="item-name">itema</li>
-                                <li id = "input_des2" th:text="${lists[1].inputdes}" class="item-des"></li>
+                                <li id = "input_des2" th:text="${lists[1].inputdes}" class="input-des"></li>
                             </div>
 
                             <div class="comment">
                                 <div style="height:180px">
-                                    <li id = "itema2" th:text="${lists[1].itema}" class="item-name">itema</li>
+                                    <li id = "itema2" th:text="'第一种算法检索结果：'+${lists[1].itema}" class="item-name">itema</li>
                                     <li id = "desa2" th:text="${lists[1].desa}" class="item-des">desa</li>
+                                    <div></div>
                                     <input name = "scorea2" type="range" min =0 max =10 value =0 id="score_a2">
-                                    <span id="text">0</span>
+                                    <span id="text">0分</span>
                                 </div>
                                 <div style="height:180px">
-                                    <li id = "itemb2" th:text="${lists[1].itemb}" class="item-name">itemb</li>
+                                    <li id = "itemb2" th:text="'第二种算法检索结果：'+${lists[1].itemb}" class="item-name">itemb</li>
                                     <li id = "desb2" th:text="${lists[1].desb}" class="item-des">desb</li>
                                     <input name = "scoreb2" type="range" min =0 max =10 value =0 id="score_b2" >
-                                    <span id="text">0</span>
+                                    <span id="text">0分</span>
                                 </div>
                             </div>
                         </ul>
@@ -102,23 +120,23 @@
                     <div class="comment-container">
                         <ul border="1" >
                             <div class="input">
-                                <div class="step-item-header"><span class="current-order">3</span>/10</div>
+                                <div class="step-item-header"><span class="current-order">任务3</span>/共10任务</div>
                                 <li id = "input_name3" th:text="${lists[2].inputname}" class="item-name">itema</li>
-                                <li id = "input_des3" th:text="${lists[2].inputdes}" class="item-des"></li>
+                                <li id = "input_des3" th:text="${lists[2].inputdes}" class="input-des"></li>
                             </div>
 
                             <div class="comment">
                                 <div style="height:180px">
-                                    <li id = "itema3" th:text="${lists[2].itema}" class="item-name">itema</li>
+                                    <li id = "itema3" th:text="'第一种算法检索结果：'+${lists[2].itema}" class="item-name">itema</li>
                                     <li id = "desa3" th:text="${lists[2].desa}" class="item-des">desa</li>
                                     <input name = "scorea3" type="range" min =0 max =10 value =0 id="score_a3">
-                                    <span id="text">0</span>
+                                    <span id="text">0分</span>
                                 </div>
                                 <div style="height:180px">
-                                    <li id = "itemb3" th:text="${lists[2].itemb}" class="item-name">itemb</li>
+                                    <li id = "itemb3" th:text="'第二种算法检索结果：'+${lists[2].itemb}" class="item-name">itemb</li>
                                     <li id = "desb3" th:text="${lists[2].desb}" class="item-des">desb</li>
                                     <input name = "scoreb3" type="range" min =0 max =10 value =0 id="score_b3" >
-                                    <span id="text">0</span>
+                                    <span id="text">0分</span>
                                 </div>
                             </div>
                         </ul>
@@ -130,23 +148,23 @@
                     <div class="comment-container">
                         <ul border="1" >
                             <div class="input">
-                                <div class="step-item-header"><span class="current-order">4</span>/10</div>
+                                <div class="step-item-header"><span class="current-order">任务4</span>/共10任务</div>
                                 <li id = "input_name4" th:text="${lists[3].inputname}" class="item-name">itema</li>
-                                <li id = "input_des4" th:text="${lists[3].inputdes}" class="item-des"></li>
+                                <li id = "input_des4" th:text="${lists[3].inputdes}" class="input-des"></li>
                             </div>
 
                             <div class="comment">
                                 <div style="height:180px">
-                                    <li id = "itema4" th:text="${lists[3].itema}" class="item-name">itema</li>
+                                    <li id = "itema4" th:text="'第一种算法检索结果：'+${lists[3].itema}" class="item-name">itema</li>
                                     <li id = "desa4" th:text="${lists[3].desa}" class="item-des">desa</li>
                                     <input name = "scorea4" type="range" min =0 max =10 value =0 id="score_a4">
-                                    <span id="text">0</span>
+                                    <span id="text">0分</span>
                                 </div>
                                 <div style="height:180px">
-                                    <li id = "itemb4" th:text="${lists[3].itemb}" class="item-name">itemb</li>
+                                    <li id = "itemb4" th:text="'第二种算法检索结果：'+${lists[3].itemb}" class="item-name">itemb</li>
                                     <li id = "desb4" th:text="${lists[3].desb}" class="item-des">desb</li>
                                     <input name = "scoreb4" type="range" min =0 max =10 value =0 id="score_b4" >
-                                    <span id="text">0</span>
+                                    <span id="text">0分</span>
                                 </div>
                             </div>
                         </ul>
@@ -158,23 +176,23 @@
                     <div class="comment-container">
                         <ul border="1" >
                             <div class="input">
-                                <div class="step-item-header"><span class="current-order">5</span>/10</div>
+                                <div class="step-item-header"><span class="current-order">任务5</span>/共10任务</div>
                                 <li id = "input_name5" th:text="${lists[4].inputname}" class="item-name">itema</li>
-                                <li id = "input_des5" th:text="${lists[4].inputdes}" class="item-des"></li>
+                                <li id = "input_des5" th:text="${lists[4].inputdes}" class="input-des"></li>
                             </div>
 
                             <div class="comment">
                                 <div style="height:180px">
-                                    <li id = "itema5" th:text="${lists[4].itema}" class="item-name">itema</li>
+                                    <li id = "itema5" th:text="'第一种算法检索结果：'+${lists[4].itema}" class="item-name">itema</li>
                                     <li id = "desa5" th:text="${lists[4].desa}" class="item-des">desa</li>
                                     <input name = "scorea5" type="range" min =0 max =10 value =0 id="score_a5">
-                                    <span id="text">0</span>
+                                    <span id="text">0分</span>
                                 </div>
                                 <div style="height:180px">
-                                    <li id = "itemb5" th:text="${lists[4].itemb}" class="item-name">itemb</li>
+                                    <li id = "itemb5" th:text="'第二种算法检索结果：'+${lists[4].itemb}" class="item-name">itemb</li>
                                     <li id = "desb5" th:text="${lists[4].desb}" class="item-des">desb</li>
                                     <input name = "scoreb5" type="range" min =0 max =10 value =0 id="score_b5" >
-                                    <span id="text">0</span>
+                                    <span id="text">0分</span>
                                 </div>
                             </div>
                         </ul>
@@ -186,23 +204,23 @@
                     <div class="comment-container">
                         <ul border="1" >
                             <div class="input">
-                                <div class="step-item-header"><span class="current-order">6</span>/10</div>
+                                <div class="step-item-header"><span class="current-order">任务6</span>/共10任务</div>
                                 <li id = "input_name6" th:text="${lists[5].inputname}" class="item-name">itema</li>
-                                <li id = "input_des6" th:text="${lists[5].inputdes}" class="item-des"></li>
+                                <li id = "input_des6" th:text="${lists[5].inputdes}" class="input-des"></li>
                             </div>
 
                             <div class="comment">
                                 <div style="height:180px">
-                                    <li id = "itema6" th:text="${lists[5].itema}" class="item-name">itema</li>
+                                    <li id = "itema6" th:text="'第一种算法检索结果：'+${lists[5].itema}" class="item-name">itema</li>
                                     <li id = "desa6" th:text="${lists[5].desa}" class="item-des">desa</li>
                                     <input name = "scorea6" type="range" min =0 max =10 value =0 id="score_a6">
-                                    <span id="text">0</span>
+                                    <span id="text">0分</span>
                                 </div>
                                 <div style="height:180px">
-                                    <li id = "itemb6" th:text="${lists[5].itemb}" class="item-name">itemb</li>
+                                    <li id = "itemb6" th:text="'第二种算法检索结果：'+${lists[5].itemb}" class="item-name">itemb</li>
                                     <li id = "desb6" th:text="${lists[5].desb}" class="item-des">desb</li>
                                     <input name = "scoreb6" type="range" min =0 max =10 value =0 id="score_b6" >
-                                    <span id="text">0</span>
+                                    <span id="text">0分</span>
                                 </div>
                             </div>
                         </ul>
@@ -214,23 +232,23 @@
                     <div class="comment-container">
                         <ul border="1" >
                             <div class="input">
-                                <div class="step-item-header"><span class="current-order">7</span>/10</div>
+                                <div class="step-item-header"><span class="current-order">任务7</span>/共10任务</div>
                                 <li id = "input_name7" th:text="${lists[6].inputname}" class="item-name">itema</li>
-                                <li id = "input_des7" th:text="${lists[6].inputdes}" class="item-des"></li>
+                                <li id = "input_des7" th:text="${lists[6].inputdes}" class="input-des"></li>
                             </div>
 
                             <div class="comment">
                                 <div style="height:180px">
-                                    <li id = "itema7" th:text="${lists[6].itema}" class="item-name">itema</li>
+                                    <li id = "itema7" th:text="'第一种算法检索结果：'+${lists[6].itema}" class="item-name">itema</li>
                                     <li id = "desa7" th:text="${lists[6].desa}" class="item-des">desa</li>
                                     <input name = "scorea7" type="range" min =0 max =10 value =0 id="score_a7">
-                                    <span id="text">0</span>
+                                    <span id="text">0分</span>
                                 </div>
                                 <div style="height:180px">
-                                    <li id = "itemb7" th:text="${lists[6].itemb}" class="item-name">itemb</li>
+                                    <li id = "itemb7" th:text="'第二种算法检索结果：'+${lists[6].itemb}" class="item-name">itemb</li>
                                     <li id = "desb7" th:text="${lists[6].desb}" class="item-des">desb</li>
                                     <input name = "scoreb7" type="range" min =0 max =10 value =0 id="score_b7" >
-                                    <span id="text">0</span>
+                                    <span id="text">0分</span>
                                 </div>
                             </div>
                         </ul>
@@ -242,23 +260,23 @@
                     <div class="comment-container">
                         <ul border="1" >
                             <div class="input">
-                                <div class="step-item-header"><span class="current-order">8</span>/10</div>
+                                <div class="step-item-header"><span class="current-order">任务8</span>/共10任务</div>
                                 <li id = "input_name8" th:text="${lists[7].inputname}" class="item-name">itema</li>
-                                <li id = "input_des8" th:text="${lists[7].inputdes}" class="item-des"></li>
+                                <li id = "input_des8" th:text="${lists[7].inputdes}" class="input-des"></li>
                             </div>
 
                             <div class="comment">
                                 <div style="height:180px">
-                                    <li id = "itema8" th:text="${lists[7].itema}" class="item-name">itema</li>
+                                    <li id = "itema8" th:text="'第一种算法检索结果：'+${lists[7].itema}" class="item-name">itema</li>
                                     <li id = "desa8" th:text="${lists[7].desa}" class="item-des">desa</li>
                                     <input name = "scorea8" type="range" min =0 max =10 value =0 id="score_a8">
-                                    <span id="text">0</span>
+                                    <span id="text">0分</span>
                                 </div>
                                 <div style="height:180px">
-                                    <li id = "itemb8" th:text="${lists[7].itemb}" class="item-name">itemb</li>
+                                    <li id = "itemb8" th:text="'第二种算法检索结果：'+${lists[7].itemb}" class="item-name">itemb</li>
                                     <li id = "desb8" th:text="${lists[7].desb}" class="item-des">desb</li>
                                     <input name = "scoreb8" type="range" min =0 max =10 value =0 id="score_b8" >
-                                    <span id="text">0</span>
+                                    <span id="text">0分</span>
                                 </div>
                             </div>
                         </ul>
@@ -270,23 +288,23 @@
                     <div class="comment-container">
                         <ul border="1" >
                             <div class="input">
-                                <div class="step-item-header"><span class="current-order">9</span>/10</div>
+                                <div class="step-item-header"><span class="current-order">任务9</span>/共10任务</div>
                                 <li id = "input_name9" th:text="${lists[8].inputname}" class="item-name">itema</li>
-                                <li id = "input_des9" th:text="${lists[8].inputdes}" class="item-des"></li>
+                                <li id = "input_des9" th:text="${lists[8].inputdes}" class="input-des"></li>
                             </div>
 
                             <div class="comment">
                                 <div style="height:180px">
-                                    <li id = "itema9" th:text="${lists[8].itema}" class="item-name">itema</li>
+                                    <li id = "itema9" th:text="'第一种算法检索结果：'+${lists[8].itema}" class="item-name">itema</li>
                                     <li id = "desa9" th:text="${lists[8].desa}" class="item-des">desa</li>
                                     <input name = "scorea9" type="range" min =0 max =10 value =0 id="score_a9">
-                                    <span id="text">0</span>
+                                    <span id="text">0分</span>
                                 </div>
                                 <div style="height:180px">
-                                    <li id = "itemb9" th:text="${lists[8].itemb}" class="item-name">itemb</li>
+                                    <li id = "itemb9" th:text="'第二种算法检索结果：'+${lists[8].itemb}" class="item-name">itemb</li>
                                     <li id = "desb9" th:text="${lists[8].desb}" class="item-des">desb</li>
                                     <input name = "scoreb9" type="range" min =0 max =10 value =0 id="score_b9" >
-                                    <span id="text">0</span>
+                                    <span id="text">0分</span>
                                 </div>
                             </div>
                         </ul>
@@ -298,24 +316,24 @@
                     <div class="comment-container">
                         <ul border="1" >
                             <div class="input">
-                                <div class="step-item-header"><span class="current-order">10</span>/10</div>
+                                <div class="step-item-header"><span class="current-order">任务10</span>/共10任务</div>
                                 <li id = "input_name10" th:text="${lists[9].inputname}" class="item-name">itema</li>
-                                <li id = "input_des10" th:text="${lists[9].inputdes}" class="item-des"></li>
+                                <li id = "input_des10" th:text="${lists[9].inputdes}" class="input-des"></li>
 
                             </div>
 
                             <div class="comment">
                                 <div style="height:160px">
-                                    <li id = "itema10" th:text="${lists[9].itema}" class="item-name">itema</li>
+                                    <li id = "itema10" th:text="'第一种算法检索结果：'+${lists[9].itema}" class="item-name">itema</li>
                                     <li id = "desa10" th:text="${lists[9].desa}" class="item-des">desa</li>
                                     <input name = "scorea10" type="range" min =0 max =10 value =0 id="score_a10">
-                                    <span id="text">0</span>
+                                    <span id="text">0分</span>
                                 </div>
                                 <div style="height:160px">
-                                    <li id = "itemb10" th:text="${lists[9].itemb}" class="item-name">itemb</li>
+                                    <li id = "itemb10" th:text="'第二种算法检索结果：'+${lists[9].itemb}" class="item-name">itemb</li>
                                     <li id = "desb10" th:text="${lists[9].desb}" class="item-des">desb</li>
                                     <input name = "scoreb10" type="range" min =0 max =10 value =0 id="score_b10" >
-                                    <span id="text">0</span>
+                                    <span id="text">0分</span>
                                 </div>
 
                                 <!--<div align="center" onclick="window.location='home'">-->
@@ -337,7 +355,8 @@
     </div>
     <footer>
         <ul class="tabClick">
-            <li class="active">1</li>
+            <li class="active">说明</li>
+            <li>1</li>
             <li>2</li>
             <li>3</li>
             <li>4</li>
@@ -352,14 +371,37 @@
 </div>
 
 <script>
+    // var rangeList = document.querySelectorAll('input[type="range"]');
+    // for(var i=0;i<rangeList.length;i++){
+    //     var range = rangeList[i];
+    //     range.onchange = function () {
+    //         //修改后面span中的内容
+    //         this.nextElementSibling.innerHTML = this.value+"分";
+    //     }
+    // }
+
+
     var rangeList = document.querySelectorAll('input[type="range"]');
-    for(var i=0;i<rangeList.length;i++){
+    for(var i=0;i<rangeList.length;i=i+2){
         var range = rangeList[i];
+
         range.onchange = function () {
-            //修改后面span中的内容
-            this.nextElementSibling.innerHTML = this.value;
+            //修改后面span中的内容,nextElementSibling返回指定元素之后的下一个兄弟元素（相同节点树层中的下一个元素节点）。
+            for(var i=0;i<rangeList.length;i=i+2){
+                var orange = rangeList[i];
+                orange.value = this.value;
+                orange.nextElementSibling.innerHTML = this.value+"分";
+            }
         }
     }
+
+    for(var i=1;i<rangeList.length;i=i+2){
+            var range = rangeList[i];
+            range.onchange = function () {
+                //修改后面span中的内容
+                this.nextElementSibling.innerHTML = this.value+"分";
+            }
+        }
 
 </script>
 </body>

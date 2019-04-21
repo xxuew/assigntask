@@ -116,16 +116,6 @@ public class AHPServiceImpl implements IAHPService {
                     scoreAhp.setScorea3(lists.get(i).getScorea());
                     scoreAhp.setScoreb3(lists.get(i).getScoreb());
                     break;
-                case 4:
-                    scoreAhp.setUid4(uid);
-                    scoreAhp.setScorea4(lists.get(i).getScorea());
-                    scoreAhp.setScoreb4(lists.get(i).getScoreb());
-                    break;
-                case 5:
-                    scoreAhp.setUid5(uid);
-                    scoreAhp.setScorea5(lists.get(i).getScorea());
-                    scoreAhp.setScoreb5(lists.get(i).getScoreb());
-                    break;
             }
             scoreAhpMapper.updateByPrimaryKey(scoreAhp);
         }

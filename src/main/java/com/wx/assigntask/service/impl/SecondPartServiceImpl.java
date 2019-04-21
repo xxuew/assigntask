@@ -730,6 +730,7 @@ public class SecondPartServiceImpl implements ISecondPartService {
 
     @Override
     public void final1_StoreData(User user, List<ItemList> lists) {
+        int total = user.getTotal();
         int uid = user.getUser_id();
         int received_id = user.getReceived_id();
         int frequency = user.getFrequency();
@@ -767,11 +768,14 @@ public class SecondPartServiceImpl implements ISecondPartService {
         user.setReceived_id(0);
         user.setAlgo_id(0);
         user.setFrequency(0);
+        total++;
+        user.setTotal(total);
         userMapper.updateUser(user);
     }
 
     @Override
     public void final2_StoreData(User user, List<ItemList> lists) {
+        int total = user.getTotal();
         int uid = user.getUser_id();
         int received_id = user.getReceived_id();
         for(int i = 0;i<10;i++){
@@ -809,11 +813,14 @@ public class SecondPartServiceImpl implements ISecondPartService {
         user.setReceived_id(0);
         user.setAlgo_id(0);
         user.setFrequency(0);
+        total++;
+        user.setTotal(total);
         userMapper.updateUser(user);
     }
 
     @Override
     public void final3_StoreData(User user, List<ItemList> lists) {
+        int total = user.getTotal();
         int uid = user.getUser_id();
         int received_id = user.getReceived_id();
         for(int i = 0;i<10;i++){
@@ -851,6 +858,8 @@ public class SecondPartServiceImpl implements ISecondPartService {
         user.setReceived_id(0);
         user.setAlgo_id(0);
         user.setFrequency(0);
+        total++;
+        user.setTotal(total);
         userMapper.updateUser(user);
     }
 }

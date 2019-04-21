@@ -51,7 +51,7 @@
             <div data-v-eb2f075c="" data-v-1a6dcf56="" class="has-logged">
                 <span data-bind="text:userName" th:text="${session.currentUser.username}">user</span>
                 <div data-v-eb2f075c="" class="el-badge">
-                    <a data-v-eb2f075c="" href="http://zb.youdao.com/personalCenter.html">个人中心</a>
+                    <a data-v-eb2f075c="" href="/personalCenter">个人中心</a>
                     <sup class="el-badge__content is-fixed" style="display: none;">0</sup>
                 </div>
                 <a data-v-eb2f075c="" class="logout" href="login.html">退出</a>
@@ -75,16 +75,16 @@
 
         <div id = "task1" class="card-item" >
             <div class="header-container">
-                <img src="img/image(1)" class="cover-image">
+                <img src="img/image(1).jpg" class="cover-image" id = "img1">
                 <div class="mark">评价任务</div>
             </div>
             <div class="info-container">
-                <h1 class="title">按照要求进行打分</h1>
+                <h1 class="title">对评价任务1进行打分</h1>
                 <div class="left">
-                    <span class="participants-num" >10题/包</span>
+                    <span class="participants-num" >10任务/包</span>
                 </div>
                 <div class="right" >
-                    <span class="questions-num">剩余任务包数</span>
+                    <span class="questions-num">剩余包数</span>
                     <span id = "task1_name" class="questions-num" th:text="${cnn}">48</span>
                 </div>
             </div>
@@ -92,16 +92,16 @@
 
         <div id = "task2" class="card-item">
             <div class="header-container">
-                <img src="img/image(1)" class="cover-image">
-                <div class="mark">评分任务</div>
+                <img src="img/image(2).jpg" class="cover-image" id = "img2">
+                <div class="mark">评价任务</div>
             </div>
                 <div class="info-container">
-                <h1 class="title">按照要求进行打分</h1>
+                <h1 class="title">对评价任务2进行打分</h1>
                 <div class="left">
-                    <span class="participants-num" >10题/包</span>
+                    <span class="participants-num" >10任务/包</span>
                 </div>
                 <div class="right">
-                    <span class="questions-num">剩余任务包数</span>
+                    <span class="questions-num">剩余包数</span>
                     <span id = "task2_name" class="questions-num" th:text="${doc}"></span>
                 </div>
             </div>
@@ -109,68 +109,68 @@
 
     <div id = "task3" class="card-item">
             <div class="header-container">
-            <img src="img/image(1)" class="cover-image">
+            <img src="img/image(3).jpg" class="cover-image" id = "img3">
             <div class="mark">评价任务</div>
         </div>
         <div class="info-container">
-            <h1 class="title">按照要求进行打分</h1>
+            <h1 class="title">对评价任务3进行打分</h1>
             <div class="left">
-                <span class="participants-num">10题/包</span>
+                <span class="participants-num">10任务/包</span>
             </div>
             <div class="right">
-                <span class="questions-num">剩余任务包数</span>
-                <span id = "task3_name"  class="questions-num" th:text="${lstm}">剩余任务包数：2801</span>
+                <span class="questions-num">剩余包数</span>
+                <span id = "task3_name"  class="questions-num" th:text="${lstm}">剩余包数：2801</span>
             </div>
         </div>
     </div>
 
     <div id = "task4" class="card-item">
         <div class="header-container">
-            <img src="img/image(2)" class="cover-image">
+            <img src="img/image(3).jpg" class="cover-image" id = "img4">
             <div class="mark">评价任务</div>
         </div>
         <div class="info-container">
-            <h1 class="title">按照要求进行打分</h1>
+            <h1 class="title">对评价任务4进行打分</h1>
             <div class="left">
-                <span class="participants-num">10题/包</span>
+                <span class="participants-num">10任务/包</span>
             </div>
             <div class="right">
-                <span class="questions-num">剩余任务包数</span>
-                <span id = "task4_name" class="questions-num" th:text="${final1}">剩余任务包数：48</span>
+                <span class="questions-num">剩余包数</span>
+                <span id = "task4_name" class="questions-num" th:text="${final1}">剩余包数：48</span>
             </div>
         </div>
     </div>
 
     <div id ="task5" class="card-item" >
         <div class="header-container">
-            <img src="img/image(3)" class="cover-image">
+            <img src="img/image(4).jpg" class="cover-image" id = "img5">
             <div class="mark">评价任务</div>
         </div>
         <div class="info-container">
-            <h1 class="title">按照要求进行打分</h1>
+            <h1 class="title">对评价任务5进行打分</h1>
             <div class="left">
-                <span class="participants-num" >10题/包</span>
+                <span class="participants-num" >10任务/包</span>
             </div>
             <div class="right">
-                <span class="questions-num">剩余任务包数</span>
-                <span id = "task5_name"  class="questions-num" th:text="${final2}">剩余任务包数：48</span>
+                <span class="questions-num">剩余包数</span>
+                <span id = "task5_name"  class="questions-num" th:text="${final2}">剩余包数：48</span>
             </div>
         </div>
     </div>
 
     <div id = "task6" class="card-item" >
         <div class="header-container">
-            <img src="img/image(4)" class="cover-image">
+            <img src="img/image(5).jpg" class="cover-image" id = "img6">
             <div class="mark">评价任务</div>
         </div>
         <div class="info-container">
-            <h1 class="title">按照要求进行打分</h1>
+            <h1 class="title">对评价任务6进行打分</h1>
             <div class="left">
-                <span class="participants-num">10题/包</span>
+                <span class="participants-num">10任务/包</span>
             </div>
             <div class="right">
-                <span class="questions-num">剩余任务包数</span>
-                <span id = "task6_name"  class="questions-num" th:text="${final3}">剩余任务包数：48</span>
+                <span class="questions-num">剩余包数</span>
+                <span id = "task6_name"  class="questions-num" th:text="${final3}">剩余包数：48</span>
             </div>
         </div>
     </div>
@@ -178,7 +178,7 @@
 <!--
 <div class="card-item">
 <div class="header-container">
-<img src="img/image(3)" class="cover-image">
+<img src="img/image(3).jpg" class="cover-image">
  <div class="mark">
 标注任务</div>
 </div>
@@ -195,13 +195,13 @@
 </div>
  <div class="right">
 <span class="questions-num">
-剩余任务包数：307</span>
+剩余包数：307</span>
 </div>
 </div>
 </div>
 <div class="card-item">
 <div class="header-container">
-<img src="img/image(4)" class="cover-image">
+<img src="img/image(4).jpg" class="cover-image">
  <div class="mark">
 转写任务</div>
 </div>
@@ -218,13 +218,13 @@
 </div>
  <div class="right">
 <span class="questions-num">
-剩余任务包数：137</span>
+剩余包数：137</span>
 </div>
 </div>
 </div>
 <div class="card-item">
 <div class="header-container">
-<img src="img/image(5)" class="cover-image">
+<img src="img/image(5).jpg" class="cover-image">
  <div class="mark">
 转写任务</div>
 </div>
@@ -237,11 +237,11 @@
 <span class="unit">
 元</span>
  <span class="participants-num">
-10题/包</span>
+10任务/包</span>
 </div>
  <div class="right">
 <span class="questions-num">
-剩余任务包数：0</span>
+剩余包数：0</span>
 </div>
 </div>
 </div>
