@@ -134,123 +134,85 @@ var init={
 }
 
 $(function () {
-    $.ajax({
-        type:"get",
-        url:"/loginInfo",
-        traditional: true,
-        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-        dataType:"json",
-        success:function (userInfo) {
-            var data = {
-                userid:userInfo.userid,
-                queryString:location.search
-            }
-            console.log(userInfo);
-            $.ajax({
-                type:"get",
-                url:"/commentInfo",
-                dataType:"json",
-                data:data,
-                success:function (commentInfos) {
-                    console.log(commentInfos);
-                    var input = commentInfos.input; //inputname、inputdes
-                    var subtasks = commentInfos.subtasks;
-                    console.log("input: " + input);
-                    console.log("subtasks: " + subtasks);
-                    var subtaskArr = [];
-                    for (var i = 0;i<subtasks.length;i++){
-                        var subtask = subtasks[i];
-                        var count = i+1;
-                        subtaskArr.push(subtask);
-                        var inputnameid = "#"+"inputname"+count;
-                        $(inputnameid).append( "检索：" + input.inputname);
 
-                        var inputdesid = "#"+"inputdes"+count;
-                        $(inputdesid).append("描述：" + input.inputdes);
+    getCommentInfo();
 
-                        var nameid_a = "#"+"subtaskname"+count+"_a";
-                        $(nameid_a).append("推荐1：" + subtask.itemname1);
-
-                        var desid_a = "#"+"subtaskdes"+count+"_a";
-                        $(desid_a).append("推荐1描述：" + subtask.itemdes1);
-
-                        var nameid_b = "#"+"subtaskname"+count+"_b";
-                        $(nameid_b).append("推荐2：" + subtask.itemname2);
-
-                        var desid_b = "#"+"subtaskdes"+count+"_b";
-                        $(desid_b).append("推荐2描述：" + subtask.itemdes2);
-                    }
-                    // $("#comment_submit").click(function () {
-                    //     insertCommentRes(subtaskArr);
-                    // })
-
-                    // var comment_html = "";
-                    //
-                    // for (var i = 0; i < subtasks.length; i++) {
-                    //     var count = i+1;
-                    //     var input_html = "<div class='input'>" +
-                    //                         "<div class='step-item-header'>" +
-                    //                         "<span class='current-order'>" + count + "</span>/10</div>" +
-                    //                         "<li  class='item-name'>" + input.inputname + "</li>" +
-                    //                         "<li  class='item-des'>" + input.inputdes + "</li>" +
-                    //                     "</div>"
-                    //     var subtask = subtasks[i];
-                    //     console.log("subtask: " + subtask);
-                    //     //ids
-                    //     var itemname1 = "itemname1" +i;
-                    //     var itemname2 = "itemname2" +i;
-                    //     var range1 = "range1" + i;
-                    //     var range2 = "range2" + i;
-                    //     var score1 = "score1" + i;
-                    //     var score2 = "score2" + i;
-                    //     var subtask_html = "<div class='comment'>" +
-                    //                             "<div style='height:180px'>" +
-                    //                                 "<li  class='item-name'>" + subtask.itemname1 + "</li>" +
-                    //                                 "<li  class='item-des'>" + subtask.itemdes1 + "</li>" +
-                    //                                 "<input name = '"+itemname1+"' type='range' min =0 max =10  id='range'>" +
-                    //                                 "<span id='text'>" + 0 + "</span>" +
-                    //                         "</div>" +
-                    //                             "<div style='height:180px'> " +
-                    //                                 "<li  class='item-name'>" + subtask.itemname2 + "</li>" +
-                    //                                 "<li  class='item-des'>" + subtask.itemdes2 + "</li>" +
-                    //                                 "<input name = '"+itemname2+"' type='range' min =0 max =10 value =0 id='range'>" +
-                    //                                 "<span id='text'>" + 0 + "</span>" +
-                    //                             "</div>" +
-                    //                         "</div>"
-                    //     comment_html = comment_html +
-                    //                     "<div class='place_holder style='height:12%;width: 100%'>" + "</div>" +
-                    //                     "<div class='comment-container'>" +
-                    //                     "<ul border='1' >" +
-                    //                     input_html + subtask_html +
-                    //                     "</ul>" + "</div>" ;
-                    //
-                    // }
-                    // $("#commentItem").html(comment_html);
-                }
-            })
-
-        }
-    })
 })
 
-//js方法：序列化表单
-function serializeForm(form){
-    var obj = {};
-    $.each(form.serializeArray(),function(index){
-        if(obj[this['name']]){
-            obj[this['name']] = obj[this['name']] + ','+this['value'];
-        } else {
-            obj[this['name']] =this['value'];
+function getCommentInfo(){
+    var userid = getQueryString("userid");
+    var myReceiveId = getQueryString("myReceiveId");
+    var data = {
+        userid:userid,
+        queryString:myReceiveId,
+    }
+    // alert(userid+"---"+myReceiveInfo);
+    $.ajax({
+        type:"get",
+        url:"/commentInfo",
+        dataType:"json",
+        data:data,
+        success:function (commentInfos) {
+            console.log(commentInfos);
+            var input = commentInfos.input;
+            var subtasks = commentInfos.subtasks;
+            console.log("input: " + input);
+            console.log("subtasks: " + subtasks);
+            var subtaskArr = [];
+            for (var i = 0;i<subtasks.length;i++){
+                var subtask = subtasks[i];
+                var count = i+1;
+                subtaskArr.push(subtask);
+                var inputnameid = "#"+"inputname"+count;
+                $(inputnameid).append( "检索：" + input.inputname);
+
+                var inputdesid = "#"+"inputdes"+count;
+                $(inputdesid).append("描述：" + input.inputdes);
+
+                var nameid_a = "#"+"subtaskname"+count+"_a";
+                $(nameid_a).append("推荐1：" + subtask.itemname1);
+
+                var desid_a = "#"+"subtaskdes"+count+"_a";
+                $(desid_a).append("推荐1描述：" + subtask.itemdes1);
+
+                var nameid_b = "#"+"subtaskname"+count+"_b";
+                $(nameid_b).append("推荐2：" + subtask.itemname2);
+
+                var desid_b = "#"+"subtaskdes"+count+"_b";
+                $(desid_b).append("推荐2描述：" + subtask.itemdes2);
+            }
         }
-    });
-    return obj;
+    })
 }
 
+function getQueryString(name){
+    var reg = new RegExp("(^|&)"+name+"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r!=null){
+        return decodeURIComponent(r[2]);
+    }
+    return '';
+}
+
+
+// //js方法：序列化表单
+// function serializeForm(form){
+//     var obj = {};
+//     $.each(form.serializeArray(),function(index){
+//         if(obj[this['name']]){
+//             obj[this['name']] = obj[this['name']] + ','+this['value'];
+//         } else {
+//             obj[this['name']] =this['value'];
+//         }
+//     });
+//     return obj;
+// }
+
+/**
+ * 保存评估结果
+ */
 function insertCommentRes(){
-
         var formData = $("#comment_form").serializeArray();
-
-
         var formName=new Array();
         var formValue=new Array();
         for(var i=0;i<formData.length;i++){
@@ -259,11 +221,14 @@ function insertCommentRes(){
             formName[i]=formData[i].name;
             formValue[i]=formData[i].value;
         }
-        var tranData = {
+
+         var myReceiveId = getQueryString("myReceiveId");
+         var tranData = {
             formNames:formName,
             formValues:formValue,
-            queryString:location.search
-        };
+             queryString:myReceiveId,
+         };
+
     console.log(tranData);
        $.ajax({
            type:"post",

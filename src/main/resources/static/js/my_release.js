@@ -11,7 +11,8 @@ $(function () {
                  alert("请登录！")
                  window.location = "/";
              } else {
-                 loadReleaseInfos(userInfo);
+                 loadReleaseInfos(userInfo); //加载已发布信息
+    //             generSubTask(); //生成子任务
              }
         }
     })
@@ -37,6 +38,7 @@ function loadReleaseInfos(userInfo) {
                     "<td id='release_algs'>" + releaseInfo.algnames + "</td>" +
                     // "<td id='status'>" + "LSTM字段错误"+"<button>重新上传</button>" + "</td>" +
                     "<td id='status'>" + releaseInfo.status+ "</td>" +
+                    "<td id='status'>" + releaseInfo.winalgname+ "</td>" +
                     "<td>" + "<button id='release_judge'>" + "评价" + "</button>" + "</td>" +
                     "</tr>";
             }
@@ -46,3 +48,29 @@ function loadReleaseInfos(userInfo) {
         }
     })
 }
+
+// /**
+//  * 生成任务
+//  * @param formdata
+//  */
+// function generSubTask() {
+//     $.ajax({
+//         type: 'POST',
+//         url:"/gensubtask",
+//       //  data:formdata,
+// //        contentType:false,
+// //        processData:false,
+//         dataType:"json",
+// //        mimeType:"multipart/form-data",
+//         success: function (result) {
+//             console.log(result);
+//             // console.log("genersubtask success");
+//         },
+//         error: function (XMLHttpRequest, textStatus, errorThrown) {
+//             console.log(XMLHttpRequest.status);
+//             console.log(XMLHttpRequest.readyState);
+//             console.log(textStatus);
+//             console.log("genersubtask failed")
+//         }
+//     })
+// }

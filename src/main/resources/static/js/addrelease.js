@@ -187,8 +187,8 @@ function submitRelease(formdata) {
         success: function (result) {
              console.log("releaseid: "+result.releaseid);
              if (result.releaseid > 0){
-                 formdata.append("releaseid",result.releaseid);
-                 generSubTask(formdata);
+          //       formdata.append("releaseid",result.releaseid);
+                 generSubTask();
                  alert(result.msg);
              }else {
                  alert(result.msg);
@@ -254,27 +254,54 @@ function deleteAlg(obj) {
 }
 
 
+// /**
+//  * 生成任务
+//  * @param formdata
+//  */
+// function generSubTask(formdata) {
+//     $.ajax({
+//         type: 'POST',
+//         url:"/gensubtask",
+//         data:formdata,
+//         contentType:false,
+//         processData:false,
+//         dataType:"text",
+//         mimeType:"multipart/form-data",
+//         success: function () {
+//             console.log("genersubtask success");
+//         },
+//         error: function (XMLHttpRequest, textStatus, errorThrown) {
+//             console.log(XMLHttpRequest.status);
+//             console.log(XMLHttpRequest.readyState);
+//             console.log(textStatus);
+//             alert("genersubtask failed")
+//         }
+//     })
+// }
+
 /**
  * 生成任务
  * @param formdata
  */
-function generSubTask(formdata) {
+function generSubTask() {
     $.ajax({
         type: 'POST',
         url:"/gensubtask",
-        data:formdata,
-        contentType:false,
-        processData:false,
-        dataType:"text",
-        mimeType:"multipart/form-data",
-        success: function () {
-            console.log("genersubtask success");
+        async:false,
+        //  data:formdata,
+//        contentType:false,
+//        processData:false,
+        dataType:"json",
+//        mimeType:"multipart/form-data",
+        success: function (result) {
+            console.log(result);
+            // console.log("genersubtask success");
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             console.log(XMLHttpRequest.status);
             console.log(XMLHttpRequest.readyState);
             console.log(textStatus);
-            alert("genersubtask failed")
+            console.log("genersubtask failed")
         }
     })
 }

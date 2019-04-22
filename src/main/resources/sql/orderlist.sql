@@ -8,7 +8,7 @@ CREATE TABLE `orderlist` (
   `algname` varchar(45) DEFAULT NULL,
   `itemname` varchar(45) DEFAULT NULL,
   `itemdes` text,
-  `score` float DEFAULT '0',
+  `score` double DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='算法组内排序表' auto_increment=1;
 set @auto_increment_increment=1;

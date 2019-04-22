@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wx.assigntask.dao.UserMapper">
-    <insert id="insert" keyProperty="userid" parameterType="com.wx.assigntask.entity.User" useGeneratedKeys="true">
+<mapper namespace="com.nju.assigntask.dao.UserMapper">
+    <insert id="insert" keyProperty="userid" parameterType="com.nju.assigntask.entity.User" useGeneratedKeys="true">
         insert into user (username,password,email) values (#{username},#{password},#{email})
     </insert>
-    <select id="selectAll" resultType="com.wx.assigntask.entity.User">
+    <select id="selectAll" resultType="com.nju.assigntask.entity.User">
         select * from user
     </select>
-    <select id="findUserByUserName" resultType="com.wx.assigntask.entity.User">
+    <select id="findUserByUserName" resultType="com.nju.assigntask.entity.User">
         select * from user where username=#{username}
     </select>
 
-    <select id="findUserById" resultType="com.wx.assigntask.entity.User">
+    <select id="findUserById" resultType="com.nju.assigntask.entity.User">
         select * from user where userid = #{userid}
     </select>
-    <select id="selectAllByTasking" resultType="com.wx.assigntask.entity.User">
+    <select id="selectAllByTasking" resultType="com.nju.assigntask.entity.User">
         select * from user where tasking &lt; 3 order by tasking
     </select>
     <select id="selectAllIdByTasking" resultType="int">
         select userid from  user where tasking &lt; 3 order by tasking,userid
     </select>
 
-    <update id="updateTaking" parameterType="com.wx.assigntask.entity.User">
+    <update id="updateTaking" parameterType="com.nju.assigntask.entity.User">
         update user set tasking = #{param2} where userid = #{param1}
     </update>
 
-    <update id ="updatePassword" parameterType="com.wx.assigntask.entity.User">
+    <update id ="updatePassword" parameterType="com.nju.assigntask.entity.User">
 --  update user set password = 123456 where userid = 3;
         update user set password = #{param2} where userid = #{param1}
     </update>
 
-    <select id="findUserByEmail" resultType="com.wx.assigntask.entity.User">
+    <select id="findUserByEmail" resultType="com.nju.assigntask.entity.User">
 --  select * from user where email = '2864305619@qq.com';
         select * from user where email=#{email}
     </select>
