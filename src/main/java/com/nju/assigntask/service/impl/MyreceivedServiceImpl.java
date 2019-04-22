@@ -65,7 +65,7 @@ public class MyreceivedServiceImpl implements MyReceiveService {
     /**
      * 选取打分者正在打分的myreceive
      * @param userid
-     * @param count
+     * @param myReceiveId
      * @return
      */
     @Override

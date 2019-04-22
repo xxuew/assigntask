@@ -4,7 +4,6 @@ import com.nju.assigntask.dao.ReleaseMapper;
 import com.nju.assigntask.entity.Release;
 import com.nju.assigntask.service.ReleaseService;
 import com.nju.assigntask.service.SubTaskService;
-import com.nju.assigntask.service.UserReleaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +13,7 @@ import java.util.List;
 
 @Controller
 public class MyReleaseController {
-    @Autowired
-    UserReleaseService userReleaseService;
+
     @Autowired
     ReleaseService releaseService;
     @Autowired

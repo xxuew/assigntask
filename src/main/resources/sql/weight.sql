@@ -1,3 +1,5 @@
+
+-- 目前未用，准备存放AHP的权重
 use assigntask;
 drop table if exists`weight`;
 CREATE TABLE `weight` (

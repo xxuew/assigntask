@@ -26,8 +26,7 @@ public class CommentController {
     MyReceiveService myReceiveService;
     @Autowired
     SubTaskService subTaskService;
-    @Autowired
-    RecommendService recommendService;
+
     @Autowired
     UserReceiveService userReceiveService;
 
@@ -72,9 +71,6 @@ public class CommentController {
     public String insertCommentRes(HttpServletRequest request, String queryString,int[] formValues ){
 
         User user = (User) request.getSession().getAttribute("currentUser");
-//        String resulta1 = request.getParameter("itema1");
-//        String resultb1 = request.getParameter("itemb1");
-    //    String queryString = request.getQueryString();
         JSONObject jsonObject = commentItemInfo(user.getUserid(), queryString);
         List<Subtask> subtasks = (List<Subtask>) jsonObject.get("subtasks");
         int formCount = -1;

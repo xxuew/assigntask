@@ -4,7 +4,6 @@ import com.nju.assigntask.dao.*;
 import com.nju.assigntask.entity.*;
 import com.nju.assigntask.service.DividedService;
 import com.nju.assigntask.service.OrderListService;
-import com.nju.assigntask.service.RecommendService;
 import com.nju.assigntask.tools.HandleData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,8 +24,7 @@ public class OrderListServiceImpl implements OrderListService {
     OrderlistMapper orderlistMapper;
     @Autowired
     SubtaskMapper subtaskMapper;
-    @Autowired
-    RecommendService recommendService;
+
     @Autowired
     DividedService dividedService;
     @Autowired

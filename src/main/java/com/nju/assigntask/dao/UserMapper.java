@@ -61,7 +61,6 @@ public interface UserMapper {
      * @return
      */
     int updatePassword(int userId, String password);
-
     /**
      * 通过邮箱查询
      * @param email
