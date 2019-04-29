@@ -35,7 +35,7 @@
         <!--logo end-->
         <div class="top-menu">
             <ul class="nav pull-right top-menu">
-                <li><a class="logout" href="/" cl>退出登录</a></li>
+                <li><button class="logout" type="button" id = "logout">退出登录</button></li>
             </ul>
         </div>
     </header>
@@ -68,6 +68,7 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
+            <!--<div> <button id="test"> test</button></div>-->
             <table class="table table-striped">
                 <div class="row">
                     <div class="center-block" style="width:300px;">
@@ -85,23 +86,97 @@
                     <th>选取方案</th>
                     <th>包含的算法</th>
                     <th>项目状态</th>
-                    <th>优胜算法</th>
                     <!--<th>项目进度</th>-->
                     <!--<th>抽查</th>-->
-                    <th>评价</th>
+                    <th>评分</th>
                 </tr>
                 </thead>
                 <tbody id="releasedInfo"></tbody>
             </table>
+
             <!--main content end-->
+
+            <div id = "mask"></div>
+
+            <div id="pjmb">
+                <div class="modal-dialog" style="margin-left: 200px;">
+                    <div class="modal-content" style="width: 300px;">
+                        <div class="modal-header">
+                            <button type="button" class="close" id="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">评分 </h4>
+                        </div>
+                        <div class="modal-body">
+                            <select id="score" style="margin-left: 110px;width: 56px;height: 32px;" >
+                                <option>1分</option>
+                                <option>2分</option>
+                                <option>3分</option>
+                                <option>4分</option>
+                                <option>5分</option>
+                                <option>6分</option>
+                                <option>7分</option>
+                                <option>8分</option>
+                                <option>9分</option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button" id ="cancelPj">取消</button>
+                            <button class="btn btn-theme" type="button" id="submitPj"> 提交</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="taskDetail">
+                <div class="modal-dialog">
+                    <div class="modal-content" >
+                        <div class="modal-header">
+                            <button type="button" class="close" id="closeTaskDetail" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">评分 </h4>
+                        </div>
+                        <div class="modal-body">
+                            <select  >
+                                <option>1分</option>
+                                <option>2分</option>
+                                <option>3分</option>
+                                <option>4分</option>
+                                <option>5分</option>
+                                <option>6分</option>
+                                <option>7分</option>
+                                <option>8分</option>
+                                <option>9分</option>
+                            </select>
+                        </div>
+                        <!--<div class="modal-footer">-->
+                        <!--&lt;!&ndash;<button data-dismiss="modal" class="btn btn-default" type="button" id ="canceltaskDetail">取消</button>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<button class="btn btn-theme" type="button" id="submitTaskDetail"> 提交</button>&ndash;&gt;-->
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-dialog" id="ts" style="display: none;margin-left: 200px;">
+                <div class="modal-content" style="width: 300px;">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="cancelTs">&times;</button>
+                        <h4 class="modal-title">提示： </h4>
+                    </div>
+                    <div class="modal-body" id="tsnr" >
+                        <!--<img src="img/inputs.png">-->
+                    </div>
+
+                </div>
+            </div>
         </section>
     </section>
+
 </section>
+
+
+
 <!-- js placed at the end of the document so the pages load faster -->
 <script src="js/jquery.min.js"></script>
 
 <script src="js/bootstrap.min.js"></script>
 <script src="js/my_release.js"></script>
+<script src="js/loginOut.js"></script>
 
 </body>
 </html>

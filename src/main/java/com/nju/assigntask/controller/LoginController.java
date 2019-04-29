@@ -130,4 +130,12 @@ public class LoginController {
 
         return "error";
     }
+
+    @PostMapping("/logout")
+    @ResponseBody
+    public String logout(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.removeAttribute("currentUser");
+        return "success";
+    }
 }

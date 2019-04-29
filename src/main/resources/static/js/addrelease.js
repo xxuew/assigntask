@@ -3,6 +3,8 @@
  */
 $(function  (){
 
+    getSubTask();
+
     $("#zdRecommends").click(function () {
         $("#mask").css({"display":"block"});
         $("#zdRecommendsTS").css({"display":"block"});
@@ -43,16 +45,21 @@ $(function () {
         }
     })
 })
+
 /**
  * 改变子任务量
  */
 $("#release_plan").change(function () {
+    getSubTask();
+});
+
+function  getSubTask(){
     var selectObj = document.getElementById("release_plan"); //拿到select对象
-   // console.log("selectObj" + selectObj);
+    // console.log("selectObj" + selectObj);
     var option = selectObj.selectedIndex;//拿到选中项的索引
-   // console.log("option：" + option);
+    // console.log("option：" + option);
     var  optionText = selectObj.options[option].text;//拿到选中项options中的tex
-  //  console.log("change：" + optionText);
+    //  console.log("change：" + optionText);
     var optionData ={
         optionText:optionText
     }
@@ -62,11 +69,35 @@ $("#release_plan").change(function () {
         data:optionData,
         dataType:"text",
         success:function (formula) {
-          document.getElementById("plan_subtaskNum").innerHTML = formula;
-          //alert(formula);
+            document.getElementById("plan_subtaskNum").innerHTML = formula;
+            //alert(formula);
         }
     })
-});
+}
+// /**
+//  * 改变子任务量
+//  */
+// $("#release_plan").change(function () {
+//     var selectObj = document.getElementById("release_plan"); //拿到select对象
+//    // console.log("selectObj" + selectObj);
+//     var option = selectObj.selectedIndex;//拿到选中项的索引
+//    // console.log("option：" + option);
+//     var  optionText = selectObj.options[option].text;//拿到选中项options中的tex
+//   //  console.log("change：" + optionText);
+//     var optionData ={
+//         optionText:optionText
+//     }
+//     $.ajax({
+//         type:"GET",
+//         url:"/subtaskNum",
+//         data:optionData,
+//         dataType:"text",
+//         success:function (formula) {
+//           document.getElementById("plan_subtaskNum").innerHTML = formula;
+//           //alert(formula);
+//         }
+//     })
+// });
 
 /**
  * 存入发布项目填写的信息

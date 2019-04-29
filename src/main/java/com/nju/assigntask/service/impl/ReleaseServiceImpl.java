@@ -39,6 +39,12 @@ public class ReleaseServiceImpl implements ReleaseService {
     }
 
     @Override
+    public boolean updateSatisById(Integer releaseId, String score) {
+        int val = releaseMapper.updateSatisfactionById(releaseId,score);
+        return val == 1;
+    }
+
+    @Override
     public int insertRelease(int userid,String releasename,String plan,String algnames) {
         Release release = new Release();
         release.setUserid(userid);

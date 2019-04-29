@@ -37,4 +37,11 @@ public interface ReleaseService {
 
     public void updateIfDivided(int releaseid,String ifDivided);
 
+    /**
+     * 更新评价
+     * @param releaseId
+     * @param satisfaction
+     * @return
+     */
+    boolean updateSatisById(Integer releaseId, String satisfaction);
 }

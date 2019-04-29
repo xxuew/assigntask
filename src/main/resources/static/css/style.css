@@ -66,19 +66,7 @@ body {
     height: 49%;
 }
 
-#zdInputsTS{
-    z-index: 100;
-    /* overflow: auto; */
-    display: none;
-    position: absolute;
-    /* margin-top: -401px; */
-    /* opacity: 0.3; */
-    top: 13%;
-    left: 22%;
-    width: 50%;
-    height: 49%;
-}
-#zdRecommendsTS{
+#sjgsTS{
     z-index: 100;
     /* overflow: auto; */
     display: none;
@@ -91,6 +79,35 @@ body {
     height: 49%;
 }
 
+#pjmb{
+    z-index: 100;
+    display: none;
+    position: absolute;
+    top: 13%;
+    left: 22%;
+    width: 50%;
+    height: 49%;
+}
+#taskDetail{
+    z-index: 100;
+    display: none;
+    position: absolute;
+    top: 13%;
+    left: 22%;
+    width: 50%;
+    height: 49%;
+}
+
+
+#ts{
+    z-index: 100;
+    display: none;
+    position: absolute;
+    top: 13%;
+    left: 22%;
+    width: 50%;
+    height: 49%;
+}
 ul li {
     list-style: none;
 }

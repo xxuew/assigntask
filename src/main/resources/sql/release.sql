@@ -11,6 +11,7 @@ CREATE TABLE `release` (
   `winAlgname` varchar(45) DEFAULT NULL COMMENT '获胜的算法名称',
   `result` varchar(45) DEFAULT NULL COMMENT '比分情况',
   `status` varchar(45) DEFAULT "未完成" COMMENT '项目状态',
+  `satisfaction` varchar(45) DEFAULT NULL COMMENT '评价',
   PRIMARY KEY (`releaseId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 SELECT * FROM assigntask.`release`;

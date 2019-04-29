@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -30,6 +32,30 @@ public class MyReleaseController {
         return releArr;
     }
 
+
+    @GetMapping("/addPj")
+    @ResponseBody
+    public String addPj(HttpServletRequest request, HttpServletResponse response){
+
+        String satisfaction = request.getParameter("optionText");
+        String releaseIdStr= request.getParameter("releaseId");
+        if(releaseIdStr == null || releaseIdStr == "" ){
+            return null;
+        }
+        try{
+            Integer releaseId = Integer.parseInt(releaseIdStr.trim());
+            if(satisfaction == null || satisfaction == ""){
+                return  null;
+            }
+            if(releaseService.updateSatisById(releaseId,satisfaction)){
+                return  "success";
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return  null;
+    }
 //    /**
 //     * 调用生成子任务接口
 //     */
