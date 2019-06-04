@@ -12,19 +12,22 @@ import java.util.List;
  */
 @Repository
 public interface UserService {
-//    public User userLogin(String username,String password);
 
-    public User findUserByUserName(String username);
 
- //   public void  assignTaskToU(int userId,int taskId);
+    User findUserByUserName(String username);
 
-    public  List<Integer> selectAllId();
-
-    public void updateTasking(int userid);
+    List<Integer> selectAllId();
 
     boolean save(User curuser);
 
     boolean updatePassword(Integer userid, String password);
 
     User findUserByEmail(String email);
+
+    //   public void  assignTaskToU(int userId,int taskId);
+
+    //    void updateTasking(int userid);
+
+    //    public User userLogin(String username,String password);
+
 }

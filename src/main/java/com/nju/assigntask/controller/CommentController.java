@@ -16,6 +16,7 @@ import java.util.List;
 
 
 /**
+ * 处理评估页面
  * @Author:wx
  * @Date:Created in 20:38 2019/2/24
  * @Modified by:
@@ -33,6 +34,12 @@ public class CommentController {
     @Autowired
     InputsService inputsService;
 
+    /**
+     * 显示评估详情页内容
+     * @param userid
+     * @param queryString
+     * @return
+     */
     @GetMapping("/commentInfo")
     @ResponseBody
     public JSONObject commentItemInfo(int userid,String queryString){
@@ -66,6 +73,13 @@ public class CommentController {
         //todo 之后会在recommend原始表插入releaseid，但是对这里不影响，因为inputid对于原始数据来说是唯一标识，插入releaseid只对生成任务有影响？
     }
 
+    /**
+     * 接收评估结果
+     * @param request
+     * @param queryString
+     * @param formValues
+     * @return
+     */
     @PostMapping("/comment_result")
     @ResponseBody
     public String insertCommentRes(HttpServletRequest request, String queryString,int[] formValues ){

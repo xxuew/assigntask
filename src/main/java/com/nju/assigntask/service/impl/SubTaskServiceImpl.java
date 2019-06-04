@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 /**
+ * subtask表业务相关处理
  * @Author: wx
  * @Date: 2018/12/9 21:44
  * @Version 1.0
@@ -68,6 +69,10 @@ public class SubTaskServiceImpl implements SubTaskService {
     @Autowired
     AHP ahp;
 
+    /**
+     * 生成子任务
+     * @param releases
+     */
     @Override
     public void geneSubTask(List<Release> releases) {
         //根据releaseID生成subtask
@@ -104,7 +109,7 @@ public class SubTaskServiceImpl implements SubTaskService {
     }
 
     /**
-     * 充分对比
+     * 充分对比总接口
      * @param algs
      * @param release
      */
@@ -131,7 +136,7 @@ public class SubTaskServiceImpl implements SubTaskService {
     }
 
     /**
-     * 同层对比
+     * 同层对比总接口
      * @param algs
      * @param release
      */
@@ -164,6 +169,7 @@ public class SubTaskServiceImpl implements SubTaskService {
         if (iforder == true){
             if (algs.size()>1){
                 ahpCompareAlgs(algs,release); //各算法间对比
+                assignTaskToUser();//将frequency小于设定值得subtask进行分派
                 handleData.handleSubtaskData(); //处理subtask得分
                 List<List<double [][]>> discriminantMatrix = ahp.getDiscriminantMatrix(release,algs);//根据subtask得分构造判别矩阵
                if (discriminantMatrix != null){
@@ -193,7 +199,7 @@ public class SubTaskServiceImpl implements SubTaskService {
             Inputs input = inputs.get(k); //一次检索内容
         for (int i=0;i<algs.size()-1;i++){
             String algname1 = algs.get(i).toString();
-            for (int j=1+1;j<algs.size();j++){
+            for (int j=i+1;j<algs.size();j++){
                 String algname2 = algs.get(j).toString();
 
                     dividedId = dividedService.insertDivided(release.getReleaseid(), input.getInputid(), algname1, algname2);//写进divided即划分subtask写进subtask表
@@ -215,10 +221,6 @@ public class SubTaskServiceImpl implements SubTaskService {
     }
 
 
-
-
-
-
     @Override
     public void updateRandom() {
         List<Subtask> subtasks = subtaskMapper.selectNullRandomnum();
@@ -232,6 +234,14 @@ public class SubTaskServiceImpl implements SubTaskService {
         }
     }
 
+    /**
+     * 查询myreceive对应的一次任务，即10个subtask
+     * @param subtaskid
+     * @param plan
+     * @param algName1
+     * @param algName2
+     * @return
+     */
     @Override
     public Subtask selectSubBySubId(int subtaskid,int plan,String algName1,String algName2) {
         Subtask subtask = new Subtask();
@@ -433,6 +443,9 @@ public class SubTaskServiceImpl implements SubTaskService {
         }
     }
 
+    /**
+     * 分派任务
+     */
     public void assignTaskToUser() {
         List<Integer> userIDs = userService.selectAllId(); //所有用户ID
 

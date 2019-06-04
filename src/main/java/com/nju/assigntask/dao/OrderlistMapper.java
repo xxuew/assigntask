@@ -54,6 +54,10 @@ public interface OrderlistMapper {
 //    int updateDocById(Orderlist record);
 //    int updateIndexById(Orderlist record);
 
+    /**
+     * 插入记录
+     * @param orderlist
+     */
     void insertRecord(Orderlist orderlist);
 //    void insertLstmRecord(Orderlist orderlist);
 //    void insertNnRecord(Orderlist orderlist);
@@ -84,13 +88,13 @@ public interface OrderlistMapper {
 //    List<Orderlist> selectDocByDividedid(int dividedid);
 //    List<Orderlist> selectIndexByDividedid(int dividedid);
 
-
-    List<Orderlist> selectLstmRecord(Orderlist orderlist);
-    List<Orderlist> selectNnRecord(Orderlist orderlist);
-    List<Orderlist> selectCnnRecord(Orderlist orderlist);
-    List<Orderlist> selectTfiRecord(Orderlist orderlist);
-    List<Orderlist> selectDocRecord(Orderlist orderlist);
-    List<Orderlist> selectIndexRecord(Orderlist orderlist);
+//
+//    List<Orderlist> selectLstmRecord(Orderlist orderlist);
+//    List<Orderlist> selectNnRecord(Orderlist orderlist);
+//    List<Orderlist> selectCnnRecord(Orderlist orderlist);
+//    List<Orderlist> selectTfiRecord(Orderlist orderlist);
+//    List<Orderlist> selectDocRecord(Orderlist orderlist);
+//    List<Orderlist> selectIndexRecord(Orderlist orderlist);
 
 
 }

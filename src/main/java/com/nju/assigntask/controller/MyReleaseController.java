@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+/**
+ * “我发布的项目”版块相关处理
+ */
 @Controller
 public class MyReleaseController {
 
@@ -23,6 +26,11 @@ public class MyReleaseController {
     @Autowired
     ReleaseMapper releaseMapper;
 
+    /**
+     * 展示“我收到的任务”不同任务列表的内容
+     * @param userid
+     * @return
+     */
     @GetMapping("/my_release")
     @ResponseBody //此注解不能省略，否则Ajax不能接收返回值
     public List<Release> myRelease(int userid) {
@@ -32,7 +40,12 @@ public class MyReleaseController {
         return releArr;
     }
 
-
+    /**
+     * 评价项目结果
+     * @param request
+     * @param response
+     * @return
+     */
     @GetMapping("/addPj")
     @ResponseBody
     public String addPj(HttpServletRequest request, HttpServletResponse response){

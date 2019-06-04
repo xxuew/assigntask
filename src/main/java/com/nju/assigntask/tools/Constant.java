@@ -9,7 +9,7 @@ package com.nju.assigntask.tools;
 import org.springframework.stereotype.Component;
 
 /**
- * 用来保存一些常量
+ * 统一管理项目中出现的常量
  */
 @Component
 public class Constant {
@@ -27,7 +27,7 @@ public class Constant {
     private String STATUS_UNCOMPLETE = "未完成";
     private String STATUS_COMPLETE = "已完成";
     private String INSIDE_ORDER = "推荐结果内部内部排序中";
-
+    private int REPEAT_RATE = 90; //一组数中某个数的重复率不超过90%
 
 
     public String getPLAN_AHP() {
@@ -84,5 +84,9 @@ public class Constant {
 
     public String getINSIDE_ORDER() {
         return INSIDE_ORDER;
+    }
+
+    public int getREPEAT_RATE() {
+        return REPEAT_RATE;
     }
 }

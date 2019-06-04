@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * “我收到的任务”版块相关处理
  * @Author:wx
  * @Date:Created in 17:03 2019/2/24
  * @Modified by:
@@ -30,6 +31,13 @@ public class MyReceiveController {
     ReleaseService releaseService;
 
 
+    /**
+     * 展示“我收到的任务”不同任务列表的内容
+     * @param userid
+     * @param optionText
+     * @param request
+     * @return
+     */
     @GetMapping("/my_receive")
     @ResponseBody //此注解不能省略，否则Ajax不能接收返回值
     public Map myReceive(int userid, String optionText, HttpServletRequest request){

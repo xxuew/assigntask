@@ -23,7 +23,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * “发布项目”版块处理
+ */
 @RestController
 public class SubmitReleaseController {
     @Autowired
@@ -83,7 +85,7 @@ public class SubmitReleaseController {
     }
 
     /**
-     * 存session
+     * 设置session
      * @param request
      * @param response
      * @param user
@@ -110,7 +112,7 @@ public class SubmitReleaseController {
 //
 //    }
 
-        /**
+    /**
      * 调用生成子任务接口
      */
     @PostMapping("/gensubtask")
@@ -125,7 +127,7 @@ public class SubmitReleaseController {
     }
 
     /**
-     * 控制“发布任务”页面，“子任务量”
+     * 更改“发布项目”界面“子任务量”
      * @param optionText
      * @return
      */

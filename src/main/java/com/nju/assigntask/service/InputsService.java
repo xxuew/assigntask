@@ -17,6 +17,6 @@ public interface InputsService {
      * @param myreceive
      * @return
      */
-    public Inputs selectInputById(Myreceive myreceive);
+     Inputs selectInputById(Myreceive myreceive);
 
 }

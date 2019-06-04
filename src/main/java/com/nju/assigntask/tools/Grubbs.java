@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 格鲁布斯处理数据相关
  * @Author:wx
  * @Date:Created in 15:26 2019/3/12
  * @Modified by:
@@ -22,6 +23,11 @@ public class Grubbs {
 //        }
 
 
+    /**
+     * 去可疑值
+     * @param judgeData
+     * @return
+     */
     public List<Double> judgeGrubbs(List<Double> judgeData) {
         if (judgeData.size() < 3) {
             return judgeData;
@@ -59,8 +65,13 @@ public class Grubbs {
             }
             return arr;
         }
-        //求平均
-        public double calcAverage(List<Double> sample) {
+
+    /**
+     * 求平均
+     * @param sample
+     * @return
+     */
+    public double calcAverage(List<Double> sample) {
             // TODO Auto-generated method stub
             double sum = 0;
             int cnt = 0;
@@ -71,8 +82,14 @@ public class Grubbs {
 
             return (double) sum / cnt;
         }
-        //求标准差
-        private double calcStanDeviation(List<Double> array, double average) {
+
+    /**
+     * 求标准差
+     * @param array
+     * @param average
+     * @return
+     */
+    private double calcStanDeviation(List<Double> array, double average) {
             // TODO Auto-generated method stub
             double sum = 0;
             for (int i = 0; i < array.size(); i++) {
@@ -81,7 +98,13 @@ public class Grubbs {
             }
             return (double) Math.sqrt((sum / (array.size() - 1)));
         }
-        //算临界值的表，这里alpha为0.05
+
+    /**
+     * 算临界值的表，这里alpha为0.05
+     * @param alpha
+     * @param n
+     * @return
+     */
         private double calcGrubbs(double alpha, int n) {
         //这是99%的置信水平
 //            double[] N = { 1.1546847100299753, 1.4962499999999703,

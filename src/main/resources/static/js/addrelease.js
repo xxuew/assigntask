@@ -39,8 +39,15 @@ $(function () {
         success:function (userInfo) {
             console.log(userInfo);
             if (userInfo.userid == -1){
-                alert("请登录！")
-                location.href = "/";
+                tsInfo =' <span  style="margin-left: 100px;width: 300px;">请登录！</span>';;
+                $("#tsnr").html(tsInfo);
+                $("#mask").css({"display":"block"});
+                $("#ts").css({"display":"block"});
+                $("#cancelTs").click(function () {
+                    location.href="/";
+                });
+                // alert("请登录！")
+                // location.href = "/";
             }
         }
     })
@@ -221,22 +228,22 @@ function submitRelease(formdata) {
           //       formdata.append("releaseid",result.releaseid);
                  generSubTask();
                  alert(result.msg);
+                 $.ajax({
+                     url:"/setSession",
+                     type:"post",
+                     async:false,
+                     data:result.user,
+                     success:function f(res) {
+                         if(res == "success"){
+                             location.href = "/myreleasetask";
+                         }else{
+                             location.href = "/";
+                         }
+                     }
+                 });
              }else {
                  alert(result.msg);
              }
-            $.ajax({
-                url:"/setSession",
-                type:"post",
-                async:false,
-                data:result.user,
-                success:function f(res) {
-                    if(res == "success"){
-                        location.href = "/myreleasetask";
-                    }else{
-                        location.href = "/";
-                    }
-                }
-            });
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("发布失败")

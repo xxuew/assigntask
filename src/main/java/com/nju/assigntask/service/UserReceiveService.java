@@ -13,10 +13,10 @@ import java.util.List;
 @Repository
 public interface UserReceiveService {
 
-     List<Userreceive> findByUserId(int userId);
-     int selectAveScore1(int taskid);
-     int selectAveScore2(int taskid);
-    List<Integer> selectReleaseIdByUser(int userid);
+//     List<Userreceive> findByUserId(int userId);
+//     int selectAveScore1(int taskid);
+//     int selectAveScore2(int taskid);
+//    List<Integer> selectReleaseIdByUser(int userid);
 
     void updateScore(int dividedid,int userid,int subtaskid,int score1,int score2);
 

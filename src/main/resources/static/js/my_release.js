@@ -71,7 +71,8 @@ function loadReleaseInfos(userInfo) {
                 release_Infos = release_Infos +
                     "<tr>" +
                     "<td class='release_id'>" + releaseInfo.releaseid + "</td>" +
-                    "<td class='release_name'>" + "<a onclick=detail("+releaseInfo.releaseid+")>" + releaseInfo.releasename + "</a>"+"</td>" +
+                    // "<td class='release_name'>" + "<a onclick=detail("+releaseInfo.releaseid+")>" + releaseInfo.releasename + "</a>"+"</td>" +
+                    "<td class='release_name'>"  + releaseInfo.releasename +"</td>" +
                     "<td class='release_plan'>" + releaseInfo.plan + "</td>" +
                     "<td class='release_algs'>" + releaseInfo.algnames + "</td>" +
                     // "<td id='status'>" + "LSTM字段错误"+"<button>重新上传</button>" + "</td>" +

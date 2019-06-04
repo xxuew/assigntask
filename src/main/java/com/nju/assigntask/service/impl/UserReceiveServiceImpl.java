@@ -20,34 +20,6 @@ public class UserReceiveServiceImpl implements UserReceiveService {
     UserreceiveMapper userreceiveMapper;
 
     @Override
-    public List<Userreceive> findByUserId(int userId) {
-        List<Userreceive> list = userreceiveMapper.findByUserId(userId);
-        return list;
-    }
-
-    @Override
-    public int selectAveScore1(int taskid) {
-        Userreceive userreceive = new Userreceive();
-        userreceive.setTaskid(taskid);
-        int aveScore1 = userreceiveMapper.selectAveScore1(userreceive);
-        return aveScore1;
-    }
-
-    @Override
-    public int selectAveScore2(int taskid) {
-        Userreceive userreceive =new Userreceive();
-        userreceive.setTaskid(taskid);
-        int aveScore2 = userreceiveMapper.selectAveScore2(userreceive);
-        return aveScore2;
-    }
-
-    @Override
-    public List<Integer> selectReleaseIdByUser(int userid) {
-        List<Integer> releaseids = userreceiveMapper.selectReleaseIdByUser(userid);
-        return releaseids;
-    }
-
-    @Override
     public void updateScore(int dividedid, int userid, int subtaskid,int score1,int score2) {
         Userreceive userreceive = new Userreceive();
         userreceive.setScore1(score1);
@@ -59,4 +31,31 @@ public class UserReceiveServiceImpl implements UserReceiveService {
         userreceiveMapper.updateScore(userreceive);
     }
 
+//    @Override
+//    public List<Userreceive> findByUserId(int userId) {
+//        List<Userreceive> list = userreceiveMapper.findByUserId(userId);
+//        return list;
+//    }
+//
+//    @Override
+//    public int selectAveScore1(int taskid) {
+//        Userreceive userreceive = new Userreceive();
+//        userreceive.setTaskid(taskid);
+//        int aveScore1 = userreceiveMapper.selectAveScore1(userreceive);
+//        return aveScore1;
+//    }
+//
+//    @Override
+//    public int selectAveScore2(int taskid) {
+//        Userreceive userreceive =new Userreceive();
+//        userreceive.setTaskid(taskid);
+//        int aveScore2 = userreceiveMapper.selectAveScore2(userreceive);
+//        return aveScore2;
+//    }
+//
+//    @Override
+//    public List<Integer> selectReleaseIdByUser(int userid) {
+//        List<Integer> releaseids = userreceiveMapper.selectReleaseIdByUser(userid);
+//        return releaseids;
+//    }
 }

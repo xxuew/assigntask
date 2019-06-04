@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 循环生成子任务机制
  * @Author:wx
  * @Date:Created in 15:16 2019/4/6
  * @Modified by:
@@ -126,6 +127,13 @@ public class GenSubtaskCps {
    //     return subtaskCount;
     }
 
+    /**
+     * ahp算法间对比
+     * @param dividedid
+     * @param releaseid
+     * @param algs
+     * @param input
+     */
     public void ahpCompareCps(int dividedid,int releaseid,List algs,Inputs input){
         Map<String,List> map = new HashMap<>(); //k:algname,orderlist
         for (int i=0;i<algs.size();i++){

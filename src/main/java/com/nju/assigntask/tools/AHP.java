@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
+ * AHP处理数据相关
  * @Author:wx
  * @Date:Created in 19:21 2019/3/12
  * @Modified by:
@@ -49,7 +50,7 @@ public class AHP {
 //        this.n = n;
 //    }
 
-    //原始成对比较矩阵列向量的归一化
+    //列向量归一化
     public void colNormalize(double matrix[][])//列向量的归一化
     {
         double arr[] = new double[matrix[0].length];
@@ -72,7 +73,7 @@ public class AHP {
 
     }
 
-    //得到归一化矩阵各行的行和
+    //行向量归一化
     public double[] rowNormalize(double matrix[][])//按行求和,并返回求得的数组
     {
         double arr1[] = new double[matrix[0].length];

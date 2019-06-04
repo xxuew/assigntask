@@ -37,9 +37,14 @@ public class HandleData {
         //if<90% return true  比例写在Constant
         //else
 
+        //还要判断是否有0分的，或者说0分的个数超过几个的也不可信
+
         return false;
     }
 
+    /**
+     * 处理subtask的score1，score2
+     */
     public void handleSubtaskData() {
 
         List<Integer> nullScore1Ids = subtaskMapper.selectNullScore1();//从subtask表获取score为null的subtaskid
@@ -71,6 +76,9 @@ public class HandleData {
         //处理内部排序产生的subtask的score
     }
 
+    /**
+     * 处理divided表的score1，score2
+     */
     public void handleDividedData() {
         List<Integer> nullScore1Ids = dividedMapper.selectNullScore1();//从divided表获取score为null的dividedid
         List<Integer> nullScore2Ids = dividedMapper.selectNullScore2();

@@ -14,11 +14,21 @@ import javax.servlet.http.HttpSession;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * 处理登陆注册等
+ */
 @Controller
 public class LoginController {
     @Autowired
     UserService userService;
 
+    /**
+     * 登陆判断
+     * @param request
+     * @param username
+     * @param password
+     * @return
+     */
     @PostMapping("/loginjudge")
     @ResponseBody
     public String loginJudge(HttpServletRequest request, String username, String password){
@@ -38,6 +48,12 @@ public class LoginController {
 
     }
 
+    /**
+     * 获取登陆信息
+     * @param request
+     * @param response
+     * @return
+     */
     @GetMapping("/loginInfo")
     @ResponseBody
     public User loginInfo(HttpServletRequest request,HttpServletResponse response){
@@ -52,6 +68,12 @@ public class LoginController {
         return user;
     }
 
+    /**
+     * 注册用户
+     * @param request
+     * @param response
+     * @return
+     */
     @PostMapping("/registerInfo")
     @ResponseBody
     public String register(HttpServletRequest request, HttpServletResponse response){
@@ -97,6 +119,12 @@ public class LoginController {
     }
 
 
+    /**
+     * 	重置密码
+     * @param request
+     * @param response
+     * @return
+     */
     @PostMapping("/resetPassword")
     @ResponseBody
     public String resetPassword(HttpServletRequest request, HttpServletResponse response){
@@ -131,6 +159,11 @@ public class LoginController {
         return "error";
     }
 
+    /**
+     * 登出
+     * @param request
+     * @return
+     */
     @PostMapping("/logout")
     @ResponseBody
     public String logout(HttpServletRequest request){
