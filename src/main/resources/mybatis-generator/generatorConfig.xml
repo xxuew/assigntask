@@ -199,14 +199,14 @@
 
 
 
-        <table schema="assigntask" tableName="score_ahp"
-        enableCountByExample="false"
-        enableUpdateByExample="true"
-        enableDeleteByExample="true"
-        enableSelectByExample="true"
-        selectByExampleQueryId="true">
-        <property name="useActualColumnNames" value="false" />
-        </table>
+        <!--<table schema="assigntask" tableName="score_ahp"-->
+        <!--enableCountByExample="false"-->
+        <!--enableUpdateByExample="true"-->
+        <!--enableDeleteByExample="true"-->
+        <!--enableSelectByExample="true"-->
+        <!--selectByExampleQueryId="true">-->
+        <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
 
 
 
@@ -451,6 +451,195 @@
                <!--enableSelectByExample="true"-->
                <!--selectByExampleQueryId="true">-->
             <!--<property name="useActualColumnNames" value="true" />-->
+        <!--</table>-->
+
+        <!--<table schema="assigntask1" tableName="process_cnn_index"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+
+        <!--<table schema="assigntask1" tableName="process_cnn_nn"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+
+        <!--<table schema="assigntask1" tableName="process_cnn_tfidf"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+
+        <!--<table schema="assigntask1" tableName="process_doc_index"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+
+        <!--<table schema="assigntask1" tableName="process_index_nn"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+
+        <!--<table schema="assigntask1" tableName="process_lstm_nn"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+
+        <!--<table schema="assigntask1" tableName="result_cnn_index"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+
+        <!--<table schema="assigntask1" tableName="result_cnn_nn"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+
+        <!--<table schema="assigntask1" tableName="result_cnn_tfidf"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+
+        <!--<table schema="assigntask1" tableName="result_doc_index"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+
+        <!--<table schema="assigntask1" tableName="result_index_nn"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+
+        <!--<table schema="assigntask1" tableName="result_lstm_nn"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+        <!--<table schema="assigntask1" tableName="cnn_30_2000"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+        <!--<table schema="assigntask1" tableName="lstm_30_2000"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+        <!--<table schema="assigntask1" tableName="nn_30_2000"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+        <!--<table schema="assigntask1" tableName="index_30_2000"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+        <table schema="assigntask1" tableName="nn_doc_index"
+        enableCountByExample="false"
+        enableUpdateByExample="true"
+        enableDeleteByExample="true"
+        enableSelectByExample="true"
+        selectByExampleQueryId="true">
+        <property name="useActualColumnNames" value="false" />
+        </table>
+
+        <!--<table schema="assigntask1" tableName="index2000score"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+        <!--<table schema="assigntask1" tableName="lstm2000score"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+        <!--<table schema="assigntask1" tableName="nn2000score"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+        <!--<table schema="assigntask1" tableName="cnn2000score"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        <!--</table>-->
+        <!--<table schema="assigntask1" tableName="doc2000score"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+            <!--<property name="useActualColumnNames" value="false" />-->
         <!--</table>-->
     </context>
 </generatorConfiguration>

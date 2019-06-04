@@ -79,10 +79,10 @@ public class CommentController {
                 lists.add(itemList);
             }
             taskService.StoreData(algo_id,user,lists);
+            return "OK";
         } else {
             return "login";
         }
-        return "OK";
     }
 
 

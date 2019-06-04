@@ -823,6 +823,7 @@ public class SecondPartServiceImpl implements ISecondPartService {
         int total = user.getTotal();
         int uid = user.getUser_id();
         int received_id = user.getReceived_id();
+        int frequency = user.getFrequency();
         for(int i = 0;i<10;i++){
             if(i != 0){
                 received_id++;
@@ -835,7 +836,7 @@ public class SecondPartServiceImpl implements ISecondPartService {
             }else {
                 scoreCnnTfidf = scoreFinal3Mapper.selectByPrimaryKey(received_id);
             }
-            int frequency = user.getFrequency();
+
             switch (frequency){
                 case 1:
                     scoreCnnTfidf.setUid1(uid);
@@ -855,6 +856,7 @@ public class SecondPartServiceImpl implements ISecondPartService {
             }
             scoreFinal3Mapper.updateByPrimaryKey(scoreCnnTfidf);
         }
+
         user.setReceived_id(0);
         user.setAlgo_id(0);
         user.setFrequency(0);

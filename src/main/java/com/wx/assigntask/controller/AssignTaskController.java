@@ -29,6 +29,8 @@ public class AssignTaskController {
     ICaculateService caculateService;
     @Autowired
     IBuildTaskService buildTaskService;
+    @Autowired
+    IThousand IThousand;
 
     @RequestMapping(value = "/home")
     public String home(Map<String, Object> map, HttpSession httpSession){
@@ -50,16 +52,16 @@ public class AssignTaskController {
             map.put("final2",final2);
             map.put("final3",final3);
 
-            caculateService.caculate();
+//            caculateService.caculate();
             return "user/home";
         } else {
             return "user/login";
         }
     }
 
-//    @RequestMapping(value = "mytask")
-//    @ResponseBody
-//    public String mytask(){
+    @RequestMapping(value = "mytask")
+    @ResponseBody
+    public String mytask(){
 //        buildTaskService.cnn_docbuildtask();
 //        buildTaskService.cnn_indexbuildtask();
 //        buildTaskService.cnn_lstmbuildtask();
@@ -75,7 +77,10 @@ public class AssignTaskController {
 //        buildTaskService.index_lstmbuildtask();
 //        buildTaskService.index_nnbuildtask();
 //        buildTaskService.lstm_nnbuildtask();
-//        return "ok";
-//    }
+//        caculateService.caculatePartFour();
+//        caculateService.caculatePartOne();
+        IThousand.ScoreSort();
+        return "ok";
+    }
 
 }

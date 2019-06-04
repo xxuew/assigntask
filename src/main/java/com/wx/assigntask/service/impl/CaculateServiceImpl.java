@@ -15,15 +15,52 @@ public class CaculateServiceImpl implements ICaculateService {
     @Autowired
     ScoreCnnTfidfMapper scoreCnnTfidfMapper;
     @Autowired
+    ScoreFinal1Mapper scoreFinal1;
+    @Autowired
+    ScoreFinal2Mapper scoreFinal2;
+    @Autowired
+    ScoreFinal3Mapper scoreFinal3;
+    @Autowired
     SubtaskDocIndexMapper subtaskDocIndexMapper;
     @Autowired
     SubtaskLstmNnMapper subtaskLstmNnMapper;
     @Autowired
     SubtaskCnnTfidfMapper subtaskCnnTfidfMapper;
     @Autowired
+    SubtaskCnnIndexMapper subtaskCnnIndexMapper;
+    @Autowired
+    SubtaskCnnNnMapper subtaskCnnNnMapper;
+    @Autowired
+    SubtaskIndexNnMapper subtaskIndexNnMapper;
+    @Autowired
     AlgresultMapper algresultMapper;
     @Autowired
     TaskNumMapper taskNumMapper;
+    @Autowired
+    ProcessCnnIndexMapper processCnnIndexMapper;
+    @Autowired
+    ProcessCnnNnMapper processCnnNnMapper;
+    @Autowired
+    ProcessCnnTfidfMapper processCnnTfidfMapper;
+    @Autowired
+    ProcessDocIndexMapper processDocIndexMapper;
+    @Autowired
+    ProcessIndexNnMapper processIndexNnMapper;
+    @Autowired
+    ProcessLstmNnMapper processLstmNnMapper;
+    @Autowired
+    ResultCnnIndexMapper resultCnnIndexMapper;
+    @Autowired
+    ResultCnnNnMapper resultCnnNnMapper;
+    @Autowired
+    ResultCnnTfidfMapper resultCnnTfidfMapper;
+    @Autowired
+    ResultDocIndexMapper resultDocIndexMapper;
+    @Autowired
+    ResultIndexNnMapper resultIndexNnMapper;
+    @Autowired
+    ResultLstmNnMapper resultLstmNnMapper;
+
 
     @Override
     public void caculate() {
@@ -226,6 +263,498 @@ public class CaculateServiceImpl implements ICaculateService {
             algresultMapper.updateByPrimaryKey(lstm_nn);
 
             System.out.println("完成第二部分");
+        }
+    }
+
+
+    @Override
+    public void caculatePartOne() {
+        TaskNum taskNum;
+        float doc = 0,index= 0,lstm= 0,nn= 0,cnn= 0,tfidf = 0,score1 = 0,score2 = 0;
+        System.out.println("内部在执行");
+        for(int i = 1;i <=10000;i++){
+            ScoreCnnTfidf scoreLstmNn = scoreCnnTfidfMapper.selectByPrimaryKey(i);
+            SubtaskCnnTfidf subtaskLstmNn = subtaskCnnTfidfMapper.selectByPrimaryKey(i);
+            if (scoreLstmNn == null){
+                scoreLstmNn = new ScoreCnnTfidf();
+                scoreLstmNn.setScorea1(0);
+                scoreLstmNn.setScorea2(0);
+                scoreLstmNn.setScorea3(0);
+                scoreLstmNn.setScoreb1(0);
+                scoreLstmNn.setScoreb2(0);
+                scoreLstmNn.setScoreb3(0);
+            }
+            if (scoreLstmNn.getScorea1() == null){
+                scoreLstmNn.setScorea1(0);
+            }
+            if (scoreLstmNn.getScorea2() == null){
+                scoreLstmNn.setScorea2(0);
+            }
+            if (scoreLstmNn.getScorea3() == null){
+                scoreLstmNn.setScorea3(0);
+            }
+            if (scoreLstmNn.getScoreb1() == null){
+                scoreLstmNn.setScoreb1(0);
+            }
+            if (scoreLstmNn.getScoreb2() == null){
+                scoreLstmNn.setScoreb2(0);
+            }
+            if (scoreLstmNn.getScoreb3() == null){
+                scoreLstmNn.setScoreb3(0);
+            }
+            int num = 0;
+            if (scoreLstmNn.getScorea1() != 0){
+                num=num+1;
+            }
+            if (scoreLstmNn.getScorea2() != 0){
+                num=num+1;
+            }
+            if (scoreLstmNn.getScorea3() != 0){
+                num=num+1;
+            }
+
+            float scorea = (scoreLstmNn.getScorea1()+scoreLstmNn.getScorea2()+scoreLstmNn.getScorea3())/num;
+            num = 0;
+            if (scoreLstmNn.getScoreb1() != 0){
+                num=num+1;
+            }
+            if (scoreLstmNn.getScoreb2() != 0){
+                num=num+1;
+            }
+            if (scoreLstmNn.getScoreb3() != 0){
+                num=num+1;
+            }
+            float scoreb = (scoreLstmNn.getScoreb1()+scoreLstmNn.getScoreb2()+scoreLstmNn.getScoreb3())/num;
+            subtaskLstmNn.setScore1(scorea);
+            subtaskLstmNn.setScore2(scoreb);
+            subtaskCnnTfidfMapper.updateByPrimaryKey(subtaskLstmNn);
+        }
+
+
+        for(int i = 1;i <=10000;i++){
+            SubtaskDocIndex subtaskLstmNn = subtaskDocIndexMapper.selectByPrimaryKey(i);
+            ScoreDocIndex scoreLstmNn = scoreDocIndexMapper.selectByPrimaryKey(i);
+            if (scoreLstmNn == null){
+                scoreLstmNn = new ScoreDocIndex();
+                scoreLstmNn.setScorea1(0);
+                scoreLstmNn.setScorea2(0);
+                scoreLstmNn.setScorea3(0);
+                scoreLstmNn.setScoreb1(0);
+                scoreLstmNn.setScoreb2(0);
+                scoreLstmNn.setScoreb3(0);
+            }
+            if (scoreLstmNn.getScorea1() == null){
+                scoreLstmNn.setScorea1(0);
+            }
+            if (scoreLstmNn.getScorea2() == null){
+                scoreLstmNn.setScorea2(0);
+            }
+            if (scoreLstmNn.getScorea3() == null){
+                scoreLstmNn.setScorea3(0);
+            }
+            if (scoreLstmNn.getScoreb1() == null){
+                scoreLstmNn.setScoreb1(0);
+            }
+            if (scoreLstmNn.getScoreb2() == null){
+                scoreLstmNn.setScoreb2(0);
+            }
+            if (scoreLstmNn.getScoreb3() == null){
+                scoreLstmNn.setScoreb3(0);
+            }
+
+            int num = 0;
+            if (scoreLstmNn.getScorea1() != 0){
+                num=num+1;
+            }
+            if (scoreLstmNn.getScorea2() != 0){
+                num=num+1;
+            }
+            if (scoreLstmNn.getScorea3() != 0){
+                num=num+1;
+            }
+            float scorea = (scoreLstmNn.getScorea1()+scoreLstmNn.getScorea2()+scoreLstmNn.getScorea3())/num;
+
+            num = 0;
+            if (scoreLstmNn.getScorea1() != 0){
+                num=num+1;
+            }
+            if (scoreLstmNn.getScorea2() != 0){
+                num=num+1;
+            }
+            if (scoreLstmNn.getScorea3() != 0){
+                num=num+1;
+            }
+            float scoreb = (scoreLstmNn.getScoreb1()+scoreLstmNn.getScoreb2()+scoreLstmNn.getScoreb3())/num;
+            subtaskLstmNn.setScore1(scorea);
+            subtaskLstmNn.setScore2(scoreb);
+            subtaskDocIndexMapper.updateByPrimaryKey(subtaskLstmNn);
+        }
+
+            for(int i = 1;i <=10000;i++){
+                ScoreLstmNn scoreLstmNn = scoreLstmNnMapper.selectByPrimaryKey(i);
+                SubtaskLstmNn subtaskLstmNn = subtaskLstmNnMapper.selectByPrimaryKey(i);
+                if (scoreLstmNn == null){
+                    scoreLstmNn = new ScoreLstmNn();
+                    scoreLstmNn.setScorea1(0);
+                    scoreLstmNn.setScorea2(0);
+                    scoreLstmNn.setScorea3(0);
+                    scoreLstmNn.setScoreb1(0);
+                    scoreLstmNn.setScoreb2(0);
+                    scoreLstmNn.setScoreb3(0);
+                }
+                if (scoreLstmNn.getScorea1() == null){
+                    scoreLstmNn.setScorea1(0);
+                }
+                if (scoreLstmNn.getScorea2() == null){
+                    scoreLstmNn.setScorea2(0);
+                }
+                if (scoreLstmNn.getScorea3() == null){
+                    scoreLstmNn.setScorea3(0);
+                }
+                if (scoreLstmNn.getScoreb1() == null){
+                    scoreLstmNn.setScoreb1(0);
+                }
+                if (scoreLstmNn.getScoreb2() == null){
+                    scoreLstmNn.setScoreb2(0);
+                }
+                if (scoreLstmNn.getScoreb3() == null){
+                    scoreLstmNn.setScoreb3(0);
+                }
+                int num = 0;
+                if (scoreLstmNn.getScorea1() != 0){
+                    num=num+1;
+                }
+                if (scoreLstmNn.getScorea2() != 0){
+                    num=num+1;
+                }
+                if (scoreLstmNn.getScorea3() != 0){
+                    num=num+1;
+                }
+                float scorea = (scoreLstmNn.getScorea1()+scoreLstmNn.getScorea2()+scoreLstmNn.getScorea3())/num;
+                num = 0;
+                if (scoreLstmNn.getScorea1() != 0){
+                    num=num+1;
+                }
+                if (scoreLstmNn.getScorea2() != 0){
+                    num=num+1;
+                }
+                if (scoreLstmNn.getScorea3() != 0){
+                    num=num+1;
+                }
+                float scoreb = (scoreLstmNn.getScoreb1()+scoreLstmNn.getScoreb2()+scoreLstmNn.getScoreb3())/num;
+                subtaskLstmNn.setScore1(scorea);
+                subtaskLstmNn.setScore2(scoreb);
+                subtaskLstmNnMapper.updateByPrimaryKey(subtaskLstmNn);
+            }
+            System.out.println("完成第一部分");
+
+    }
+
+    @Override
+    public void caculatePartTwo(){
+        for(int i = 1;i <=10000;i++){
+            ScoreFinal1 scoreFinal = scoreFinal1.selectByPrimaryKey(i);
+            SubtaskCnnIndex subtaskCnnIndex = subtaskCnnIndexMapper.selectByPrimaryKey(i);
+            if (scoreFinal.getScorea3() != null){
+                subtaskCnnIndex.setScore1((float)scoreFinal.getScorea3());
+                subtaskCnnIndex.setScore2((float)scoreFinal.getScoreb3());
+                subtaskCnnIndexMapper.updateByPrimaryKey(subtaskCnnIndex);
+            }
+
+            }
+        for(int i = 1;i <=10000;i++){
+            ScoreFinal2 scoreFinal = scoreFinal2.selectByPrimaryKey(i);
+            SubtaskCnnNn subtaskCnnIndex = subtaskCnnNnMapper.selectByPrimaryKey(i);
+            if (scoreFinal.getScorea3() != null) {
+                subtaskCnnIndex.setScore1((float) scoreFinal.getScorea3());
+                subtaskCnnIndex.setScore2((float) scoreFinal.getScoreb3());
+                subtaskCnnNnMapper.updateByPrimaryKey(subtaskCnnIndex);
+            }
+            }
+        for(int i = 1;i <=10000;i++){
+            ScoreFinal3 scoreFinal = scoreFinal3.selectByPrimaryKey(i);
+            SubtaskIndexNn subtaskCnnIndex = subtaskIndexNnMapper.selectByPrimaryKey(i);
+            if (scoreFinal.getScorea3() != null) {
+                subtaskCnnIndex.setScore1((float) scoreFinal.getScorea3());
+                subtaskCnnIndex.setScore2((float) scoreFinal.getScoreb3());
+                subtaskIndexNnMapper.updateByPrimaryKey(subtaskCnnIndex);
+            }
+        }
+    }
+
+    @Override
+    public void caculatePartThree(){
+        for(int i = 0;i <100;i++){
+            for (int j = 0;j<10;j++){
+                float averagea,averageb;
+                float suma=0,sumb=0;
+                int numa=0,numb=0;
+                ProcessCnnTfidf processCnnTfidf = new ProcessCnnTfidf();
+                processCnnTfidf.setProcessId(10*i+j+1);
+                for (int m=0;m<10;m++){
+                    SubtaskCnnTfidf subtaskCnnIndex = subtaskCnnTfidfMapper.selectByPrimaryKey(10*(10*i+j)+m+1);
+                    if (subtaskCnnIndex.getScore1() != 0 && subtaskCnnIndex.getScore1()!= null){
+                        suma = suma+subtaskCnnIndex.getScore1();
+                        numa=numa+1;
+                    }
+
+                }
+                for (int n=0;n<10;n++){
+                    SubtaskCnnTfidf subtaskCnnIndex = subtaskCnnTfidfMapper.selectByPrimaryKey(10*(10*i+n)+j+1);
+                    System.out.println(10*(10*i+n)+j+1);
+                    if (subtaskCnnIndex.getScore2() != 0&&subtaskCnnIndex.getScore2()!=null){
+                        sumb = sumb+subtaskCnnIndex.getScore2();
+                        numb=numb+1;
+                    }
+                }
+                processCnnTfidf.setAveragea(suma/numa);
+                processCnnTfidf.setAverageb(sumb/numb);
+                processCnnTfidfMapper.insert(processCnnTfidf);
+            }
+        }
+
+        for(int i = 0;i <100;i++){
+            for (int j = 0;j<10;j++){
+                float averagea,averageb;
+                float suma=0,sumb=0;
+                int numa=0,numb=0;
+                ProcessCnnIndex processCnnTfidf = new ProcessCnnIndex();
+                processCnnTfidf.setProcessId(10*i+j+1);
+                for (int m=0;m<10;m++){
+                    SubtaskCnnIndex subtaskCnnIndex = subtaskCnnIndexMapper.selectByPrimaryKey(10*(10*i+j)+m+1);
+                    if (subtaskCnnIndex.getScore1() != 0 && subtaskCnnIndex.getScore1()!= null){
+                        suma = suma+subtaskCnnIndex.getScore1();
+                        numa=numa+1;
+                    }
+
+                }
+                for (int n=0;n<10;n++){
+                    SubtaskCnnIndex subtaskCnnIndex = subtaskCnnIndexMapper.selectByPrimaryKey(10*(10*i+n)+j+1);
+                    System.out.println("CnnIndex"+10*(10*i+n)+j+1);
+                    if (subtaskCnnIndex.getScore2() != 0&&subtaskCnnIndex.getScore2()!=null){
+                        sumb = sumb+subtaskCnnIndex.getScore2();
+                        numb=numb+1;
+                    }
+                }
+                processCnnTfidf.setAveragea(suma/numa);
+                processCnnTfidf.setAverageb(sumb/numb);
+                processCnnIndexMapper.insert(processCnnTfidf);
+            }
+        }
+
+
+        for(int i = 0;i <100;i++){
+            for (int j = 0;j<10;j++){
+                float averagea,averageb;
+                float suma=0,sumb=0;
+                int numa=0,numb=0;
+                ProcessCnnNn processCnnTfidf = new ProcessCnnNn();
+                processCnnTfidf.setProcessId(10*i+j+1);
+                for (int m=0;m<10;m++){
+                    SubtaskCnnNn subtaskCnnIndex = subtaskCnnNnMapper.selectByPrimaryKey(10*(10*i+j)+m+1);
+                    if (subtaskCnnIndex.getScore1() != 0 && subtaskCnnIndex.getScore1()!= null){
+                        suma = suma+subtaskCnnIndex.getScore1();
+                        numa=numa+1;
+                    }
+
+                }
+                for (int n=0;n<10;n++){
+                    SubtaskCnnNn subtaskCnnIndex = subtaskCnnNnMapper.selectByPrimaryKey(10*(10*i+n)+j+1);
+                    System.out.println("CnnNn"+10*(10*i+n)+j+1);
+                    if (subtaskCnnIndex.getScore2() != 0&&subtaskCnnIndex.getScore2()!=null){
+                        sumb = sumb+subtaskCnnIndex.getScore2();
+                        numb=numb+1;
+                    }
+                }
+                processCnnTfidf.setAveragea(suma/numa);
+                processCnnTfidf.setAverageb(sumb/numb);
+                processCnnNnMapper.insert(processCnnTfidf);
+            }
+        }
+
+
+
+
+        for(int i = 0;i <100;i++){
+            for (int j = 0;j<10;j++){
+                float averagea,averageb;
+                float suma=0,sumb=0;
+                int numa=0,numb=0;
+                ProcessDocIndex processCnnTfidf = new ProcessDocIndex();
+                processCnnTfidf.setProcessId(10*i+j+1);
+                for (int m=0;m<10;m++){
+                    SubtaskDocIndex subtaskCnnIndex = subtaskDocIndexMapper.selectByPrimaryKey(10*(10*i+j)+m+1);
+                    if (subtaskCnnIndex.getScore1() != 0 && subtaskCnnIndex.getScore1()!= null){
+                        suma = suma+subtaskCnnIndex.getScore1();
+                       numa=numa+1;
+                    }
+
+                }
+                for (int n=0;n<10;n++){
+                    SubtaskDocIndex subtaskCnnIndex = subtaskDocIndexMapper.selectByPrimaryKey(10*(10*i+n)+j+1);
+                    System.out.println("DocIndex"+10*(10*i+n)+j+1);
+                    if (subtaskCnnIndex.getScore2() != 0&&subtaskCnnIndex.getScore2()!=null){
+                        sumb = sumb+subtaskCnnIndex.getScore2();
+                        numb=numb+1;
+                    }
+                }
+                processCnnTfidf.setAveragea(suma/numa);
+                processCnnTfidf.setAverageb(sumb/numb);
+                processDocIndexMapper.insert(processCnnTfidf);
+            }
+        }
+
+
+
+        for(int i = 0;i <100;i++){
+            for (int j = 0;j<10;j++){
+                float averagea,averageb;
+                float suma=0,sumb=0;
+                int numa=0,numb=0;
+                ProcessIndexNn processCnnTfidf = new ProcessIndexNn();
+                processCnnTfidf.setProcessId(10*i+j+1);
+                for (int m=0;m<10;m++){
+                    SubtaskIndexNn subtaskCnnIndex = subtaskIndexNnMapper.selectByPrimaryKey(10*(10*i+j)+m+1);
+                    if (subtaskCnnIndex.getScore1() != 0 && subtaskCnnIndex.getScore1()!= null){
+                        suma = suma+subtaskCnnIndex.getScore1();
+                        numa=numa+1;
+                    }
+
+                }
+                for (int n=0;n<10;n++){
+                    SubtaskIndexNn subtaskCnnIndex = subtaskIndexNnMapper.selectByPrimaryKey(10*(10*i+n)+j+1);
+                    System.out.println("IndexNn"+10*(10*i+n)+j+1);
+                    if (subtaskCnnIndex.getScore2() != 0&&subtaskCnnIndex.getScore2()!=null){
+                        sumb = sumb+subtaskCnnIndex.getScore2();
+                        numb=numb+1;
+                    }
+                }
+                processCnnTfidf.setAveragea(suma/numa);
+                processCnnTfidf.setAverageb(sumb/numb);
+                processIndexNnMapper.insert(processCnnTfidf);
+            }
+        }
+
+
+        for(int i = 0;i <100;i++){
+            for (int j = 0;j<10;j++){
+                float averagea,averageb;
+                float suma=0,sumb=0;
+                int numa=0,numb=0;
+                ProcessLstmNn processCnnTfidf = new ProcessLstmNn();
+                processCnnTfidf.setProcessId(10*i+j+1);
+                for (int m=0;m<10;m++){
+                    SubtaskLstmNn subtaskCnnIndex = subtaskLstmNnMapper.selectByPrimaryKey(10*(10*i+j)+m+1);
+                    if (subtaskCnnIndex.getScore1() != 0 && subtaskCnnIndex.getScore1()!= null){
+                        suma = suma+subtaskCnnIndex.getScore1();
+                        numa=numa+1;
+                    }
+
+                }
+                for (int n=0;n<10;n++){
+                    SubtaskLstmNn subtaskCnnIndex = subtaskLstmNnMapper.selectByPrimaryKey(10*(10*i+n)+j+1);
+                    System.out.println("LstmNn"+10*(10*i+n)+j+1);
+                    if (subtaskCnnIndex.getScore2() != 0&&subtaskCnnIndex.getScore2()!=null){
+                        sumb = sumb+subtaskCnnIndex.getScore2();
+                        numb=numb+1;
+                    }
+                }
+                processCnnTfidf.setAveragea(suma/numa);
+                processCnnTfidf.setAverageb(sumb/numb);
+                processLstmNnMapper.insert(processCnnTfidf);
+            }
+        }
+
+    }
+
+    @Override
+    public void caculatePartFour(){
+        float suma=0;float sumb=0;
+        for (int i =0;i<100;i++){
+            suma=0;sumb=0;
+            for (int j = 0; j<10; j++){
+                ProcessCnnIndex processCnnIndex = processCnnIndexMapper.selectById((10*i+j+1));
+                suma = suma + processCnnIndex.getAveragea();
+                sumb = sumb + processCnnIndex.getAverageb();
+            }
+            ResultCnnIndex resultCnnIndex=new ResultCnnIndex();
+            resultCnnIndex.setProcessId(i+1);
+            resultCnnIndex.setAveragea(suma/10);
+            resultCnnIndex.setAverageb(sumb/10);
+            resultCnnIndexMapper.insert(resultCnnIndex);
+        }
+        for (int i =0;i<100;i++){
+        suma=0;sumb=0;
+        for (int j = 0; j<10; j++){
+            ProcessCnnNn processCnnIndex = processCnnNnMapper.selectById((10*i+j+1));
+            suma = suma + processCnnIndex.getAveragea();
+            sumb = sumb + processCnnIndex.getAverageb();
+        }
+        ResultCnnNn resultCnnIndex=new ResultCnnNn();
+        resultCnnIndex.setProcessId(i+1);
+        resultCnnIndex.setAveragea(suma/10);
+        resultCnnIndex.setAverageb(sumb/10);
+        resultCnnNnMapper.insert(resultCnnIndex);
+        }
+
+
+        for (int i =0;i<100;i++){
+            suma=0;sumb=0;
+            for (int j = 0; j<10; j++){
+                ProcessCnnTfidf processCnnIndex = processCnnTfidfMapper.selectById((10*i+j+1));
+                suma = suma + processCnnIndex.getAveragea();
+                sumb = sumb + processCnnIndex.getAverageb();
+            }
+            ResultCnnTfidf resultCnnIndex=new ResultCnnTfidf();
+            resultCnnIndex.setProcessId(i+1);
+            resultCnnIndex.setAveragea(suma/10);
+            resultCnnIndex.setAverageb(sumb/10);
+            resultCnnTfidfMapper.insert(resultCnnIndex);
+        }
+
+
+        for (int i =0;i<100;i++){
+            suma=0;sumb=0;
+            for (int j = 0; j<10; j++){
+                ProcessDocIndex processCnnIndex = processDocIndexMapper.selectById((10*i+j+1));
+                suma = suma + processCnnIndex.getAveragea();
+                sumb = sumb + processCnnIndex.getAverageb();
+            }
+            ResultDocIndex resultCnnIndex=new ResultDocIndex();
+            resultCnnIndex.setProcessId(i+1);
+            resultCnnIndex.setAveragea(suma/10);
+            resultCnnIndex.setAverageb(sumb/10);
+            resultDocIndexMapper.insert(resultCnnIndex);
+        }
+
+
+        for (int i =0;i<100;i++){
+            suma=0;sumb=0;
+            for (int j = 0; j<10; j++){
+                ProcessIndexNn processCnnIndex = processIndexNnMapper.selectById((10*i+j+1));
+                suma = suma + processCnnIndex.getAveragea();
+                sumb = sumb + processCnnIndex.getAverageb();
+            }
+            ResultIndexNn resultCnnIndex=new ResultIndexNn();
+            resultCnnIndex.setProcessId(i+1);
+            resultCnnIndex.setAveragea(suma/10);
+            resultCnnIndex.setAverageb(sumb/10);
+            resultIndexNnMapper.insert(resultCnnIndex);
+        }
+
+
+        for (int i =0;i<100;i++){
+            suma=0;sumb=0;
+            for (int j = 0; j<10; j++){
+                ProcessLstmNn processCnnIndex = processLstmNnMapper.selectById((10*i+j+1));
+                suma = suma + processCnnIndex.getAveragea();
+                sumb = sumb + processCnnIndex.getAverageb();
+            }
+            ResultLstmNn resultCnnIndex=new ResultLstmNn();
+            resultCnnIndex.setProcessId(i+1);
+            resultCnnIndex.setAveragea(suma/10);
+            resultCnnIndex.setAverageb(sumb/10);
+            resultLstmNnMapper.insert(resultCnnIndex);
         }
     }
 }

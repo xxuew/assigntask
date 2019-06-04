@@ -11,8 +11,8 @@
     <result column="inputName" jdbcType="VARCHAR" property="inputName" />
     <result column="itemName1" jdbcType="VARCHAR" property="itemName1" />
     <result column="itemName2" jdbcType="VARCHAR" property="itemName2" />
-    <result column="score1" jdbcType="REAL" property="score1" />
-    <result column="score2" jdbcType="REAL" property="score2" />
+    <result column="score1" jdbcType="FLOAT" property="score1" />
+    <result column="score2" jdbcType="FLOAT" property="score2" />
     <result column="randomNum" jdbcType="INTEGER" property="randomNum" />
     <result column="frequency" jdbcType="INTEGER" property="frequency" />
     <result column="inputDes" jdbcType="LONGVARCHAR" property="inputDes" />
@@ -38,8 +38,8 @@
       inputDes, itemDes1, itemDes2
       )
     values (#{subtaskId,jdbcType=INTEGER}, #{dividedId,jdbcType=INTEGER}, #{inputName,jdbcType=VARCHAR}, 
-      #{itemName1,jdbcType=VARCHAR}, #{itemName2,jdbcType=VARCHAR}, #{score1,jdbcType=REAL}, 
-      #{score2,jdbcType=REAL}, #{randomNum,jdbcType=INTEGER}, #{frequency,jdbcType=INTEGER}, 
+      #{itemName1,jdbcType=VARCHAR}, #{itemName2,jdbcType=VARCHAR}, #{score1,jdbcType=FLOAT}, 
+      #{score2,jdbcType=FLOAT}, #{randomNum,jdbcType=INTEGER}, #{frequency,jdbcType=INTEGER}, 
       #{inputDes,jdbcType=LONGVARCHAR}, #{itemDes1,jdbcType=LONGVARCHAR}, #{itemDes2,jdbcType=LONGVARCHAR}
       )
   </insert>
@@ -53,8 +53,8 @@
       inputName = #{inputName,jdbcType=VARCHAR},
       itemName1 = #{itemName1,jdbcType=VARCHAR},
       itemName2 = #{itemName2,jdbcType=VARCHAR},
-      score1 = #{score1,jdbcType=REAL},
-      score2 = #{score2,jdbcType=REAL},
+      score1 = #{score1,jdbcType=FLOAT},
+      score2 = #{score2,jdbcType=FLOAT},
       randomNum = #{randomNum,jdbcType=INTEGER},
       frequency = #{frequency,jdbcType=INTEGER},
       inputDes = #{inputDes,jdbcType=LONGVARCHAR},
